@@ -149,6 +149,33 @@ test is whether the *catalog* drives the next one.
 **4. "Findings are things a child Architect already had in its Watching
 section."** Not checkable; no child Architect has run.
 
+### Applied same day — F2 and F3
+
+Appended 2026-08-09, after the entry above. Recorded rather than folded in,
+because the log is append-only.
+
+The human accepted both handoff proposals and applied them. **Note the route:
+this layer did not edit either repo** — the proposals were carried by the human,
+which is the designed flow and the only one that keeps the child systems'
+gates intact.
+
+- **F2 — brand-system gained `CYCLE-STATE.md`.** Rewritten in place at every
+  phase boundary, read before `pipeline.md`, with `pipeline.md` named as the
+  record of record on disagreement. The specific loss it closes: a human
+  decision made at the gate but not yet in `decision-log.md` exists only in the
+  transcript, and re-asking produces a cleaned-up second answer instead of their
+  first blunt one — which corrupts the §4.4 raw data.
+- **F3 — personal-university's handoff is now written during the session.**
+  `NEXT-SESSION.md` gained an `IN PROGRESS` marker and is touched at three
+  points: after the brief, after teaching, and the moment the student gives
+  engagement and friction. Full regeneration still happens at Phase 5.
+
+**For review 001:** both were adoptions *from the catalog* rather than from the
+human's memory. That is the first evidence bearing on thesis falsifier 2 —
+whether the catalog actually drives adoption. One instance, on the day it was
+written, with the same person in the loop. Weak evidence. Do not count it as
+settled.
+
 ### Watching
 
 - **Whether BS's Critic ever kills a draft or disagrees with the Writer.** Never
