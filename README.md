@@ -26,11 +26,23 @@ meta/
 | System | Domain | Status | Architect |
 |---|---|---|---|
 | [personal-university](../personal-university) | Broad classical education | `active` | every 10 sessions |
-| [zesty-eng-team](../zesty-eng-team) | Engineering delivery | `active` | every retro |
+| [zesty-eng-team](../zestyio/zesty-eng-team) | Engineering delivery — `manager-ui` | `active` | every retro |
+| [mpulse-engage-team](../mpulsemobile/mpulse-engage-team) | Engineering delivery — mPulse Engage, ~30 repos | `active` | every retro |
+| [mpulse-dpi-team](../mpulsemobile/mpulse-dpi-team) | Engineering delivery — DPI, 4 repos | `active` | every retro |
 | [brand-system](../brand-system) | Public presence | `active` | every 4 weeks |
 | [media-log](../media-log) | Media database | `dataset` | none, correctly |
 
 Details in [`systems.md`](systems.md).
+
+**Three of the six are the same system.** The two mPulse teams were derived from
+zesty-eng-team on 2026-08-10, not arrived at independently. That is a fact about
+the evidence base, not a criticism of the copies — see the note on the adoption
+matrix in [`patterns/README.md`](patterns/README.md).
+
+Relative links assume everything sits under `~/dev/`. As of 2026-08-10 only
+`zesty-eng-team`, the two mPulse teams, and this layer are checked out on this
+machine; `personal-university`, `brand-system`, and `media-log` exist on GitHub
+but not locally. A review needs them cloned first.
 
 ## The three hard rules
 
@@ -64,7 +76,8 @@ still applies.
 ## Start here
 
 Read [`patterns/README.md`](patterns/README.md). The adoption matrix is the
-whole point in one table: fifteen patterns, four systems, and which of them
-independently converged on what.
+whole point in one table: fifteen patterns, six systems, and which of them
+independently converged on what — noting that only four of the columns are
+independent, and the matrix says which.
 
 Then [`HANDOFF.md`](HANDOFF.md) for where things actually stand and what is open.

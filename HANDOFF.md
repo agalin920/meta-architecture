@@ -20,16 +20,35 @@ status: established, no review run yet
 last_review: 000 (founding entry, 2026-08-09)
 next_review: 2026-11 or on flag — quarterly, never more often than
              the fastest child Architect
+registry_changed: 2026-08-10 — two systems added, no review run
 ```
 
 ## What exists
 
-The portfolio is five repos. Four systems plus this layer, all private on
-GitHub under `agalin920`, all clean and pushed as of 2026-08-09.
+The portfolio is **seven repos**: six systems plus this layer, all on GitHub
+under `agalin920`.
+
+Two systems were added on 2026-08-10 — `mpulse-engage-team` and
+`mpulse-dpi-team`, both **derived from zesty-eng-team, not independently
+arrived at**. That distinction is load-bearing: see the `†` note on the adoption
+matrix. Registration is not a review; nothing about them has been assessed.
 
 The deliverable is [`patterns/`](patterns/) — 15 patterns with origin repo,
 adoption matrix, evidence, and failure modes. Start there; the matrix in
 [`patterns/README.md`](patterns/README.md) is the whole thing in one table.
+
+**Two things about that "all private, all clean and pushed" line, which used to
+be here and was wrong by 2026-08-10:**
+
+- **`personal-university` is PUBLIC.** Every other repo in the portfolio is
+  private. Whether that is deliberate is not recorded anywhere. It is a
+  five-second check and nobody had made it — which is the exact shape of finding
+  this layer exists for.
+- **Only four of the seven are checked out on this machine** —
+  `zesty-eng-team`, the two mPulse teams, and this layer.
+  `personal-university`, `brand-system`, and `media-log` exist on GitHub but not
+  locally. **A review cannot run until they are cloned**, and the matrix cannot
+  be verified against repos that are not present.
 
 ## What happened on 2026-08-09
 
@@ -43,6 +62,24 @@ review 000.
   its handoff from write-at-close to write-during.
 - **This repo** cut `budget.md` before it was ever filled — see below.
 
+## What happened on 2026-08-10
+
+Two systems added to the registry. **No review ran** — this was registration,
+which is bookkeeping, not assessment.
+
+- **mpulse-engage-team** and **mpulse-dpi-team** created, both adapted from
+  zesty-eng-team for the two engineering teams the human manages at mPulse. Full
+  entries in [`systems.md`](systems.md).
+- The adoption matrix gained two columns, **marked `†` and explicitly excluded
+  from the convergence claim.** Copies are not evidence. The reason to keep them
+  in the table at all is to see where a copy dropped something — and one already
+  has: both lost the `unmeasured` category that made zesty-eng-team's honest
+  metric honest.
+- One candidate pattern recorded and deliberately kept out of the catalog:
+  *knowledge accumulation as a gate rather than a habit*.
+- Two stale claims in this file corrected — the portfolio is not "five repos"
+  and is not "all private".
+
 ## Open
 
 1. **F1 — brand-system's README is stale.** It says Session Zero has not been
@@ -51,11 +88,27 @@ review 000.
    that repo's Architect, **not yet applied.** Also proposed: a
    reconcile-against-reality step in the Orchestrator's Phase 1.
 2. **No Architect has run anywhere in the portfolio.** Zero completed reviews
-   across four systems. Every claim about whether propose-never-apply actually
-   works is currently untested. This is the baseline review 001 measures against.
+   across **six** systems now, two of which shipped with an architect and a
+   drift check they have never exercised. Every claim about whether
+   propose-never-apply actually works is still untested, and adding systems
+   widened the untested surface without adding evidence. This is the baseline
+   review 001 measures against.
 3. **Review 000 failed its own falsifier check** — three of five findings were
    within reach of a local Architect. Entry 000 is founding, not a review, so
    the two-review clock has not started. **It starts at review 001.**
+4. **`personal-university` is public and nothing records whether that is
+   deliberate.** See above. Resolve it by deciding, not by checking again.
+5. **Three of seven repos are not checked out on this machine.** Review 001 is
+   blocked on cloning `personal-university`, `brand-system`, and `media-log`.
+6. **mpulse-engage-team's D-001 accepts drift from a shared org toolkit it does
+   not control, and names its own `/retro` as the only mechanism that catches
+   it.** An un-run mechanism guarding a live liability. Worth checking at review
+   001 whether that retro ever happens — not whether the drift is bad yet.
+7. **A candidate pattern is waiting on evidence**, not on argument:
+   *knowledge accumulation as a gate rather than a habit*, from
+   mpulse-dpi-team. See `patterns/README.md` § Candidate. Do not promote it into
+   the catalog before review 001 has looked at whether it produced knowledge or
+   filler.
 
 ## Decisions that constrain the next session
 
@@ -77,7 +130,17 @@ review 000.
 
 ## Next action
 
-Nothing is due. The next scheduled event is review 001, quarterly.
+Nothing is due. The next scheduled event is review 001, quarterly — **and the
+registry growing from four systems to six is not a reason to run it early.**
+`charter.md`'s failure mode is building the system being more fun than using it,
+and "we added things, let's review" is exactly what that looks like from inside.
+
+Two things are worth doing before review 001, neither of which is a review:
+
+1. Clone `personal-university`, `brand-system`, and `media-log` — the review
+   cannot verify the matrix against repos that are not present.
+2. Decide whether `personal-university` being public is intentional, and record
+   the decision either way.
 
 If something feels structurally wrong across systems before then:
 
