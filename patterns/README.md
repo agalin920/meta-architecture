@@ -19,27 +19,33 @@ evidence is an opinion and does not belong here.
 
 ## Adoption matrix
 
-PU = personal-university · ZET = zesty-eng-team · BS = brand-system · ML = media-log
+PU = personal-university · ZET = zesty-eng-team · BS = brand-system ·
+ML = media-log · **MA = meta-architecture (this repo)**
 
-| Pattern | Status | PU | ZET | BS | ML |
-|---|---|---|---|---|---|
-| [Charter as constitution](charter-as-constitution.md) | `proven` | ✅ | ✅ | ✅ | ⚠️ |
-| [Boot ritual](boot-ritual.md) | `proven` | ✅ | ✅ | ✅ | n/a |
-| [Append-only log + current state](append-only-log.md) | `proven` | ✅ | ✅ | ⚠️ | n/a |
-| [Handoff record](handoff-record.md) | `proven` | ✅ | ✅ | ❌ | n/a |
-| [Independent adversary](independent-adversary.md) | `proven` | ✅ | ✅ | ✅ | n/a |
-| [Human gate on the irreversible](human-gate.md) | `proven` | ✅ | ✅ | ✅ | ✅ |
-| [Architect on cadence](architect-on-cadence.md) | `proven` | ✅ | ✅ | ✅ | ⚠️ |
-| [Named failure modes with tripwires](named-failure-modes.md) | `proven` | ✅ | ⚠️ | ✅ | ❌ |
-| [Falsifiable thesis](falsifiable-thesis.md) | `provisional` | ✅ | ❌ | ❌ | n/a |
-| [Untrusted input boundary](untrusted-input.md) | `proven` | n/a | ✅ | ✅ | n/a |
-| [Overhead ceiling](overhead-ceiling.md) | `proven` | ✅ | ❌ | ⚠️ | n/a |
-| [Knowledge layer vs event log](knowledge-vs-log.md) | `provisional` | ⚠️ | ✅ | ❌ | n/a |
-| [Honest metric](honest-metric.md) | `provisional` | ❌ | ✅ | ❌ | n/a |
-| [Cadence defence](cadence-defence.md) | `provisional` | ⚠️ | ❌ | ✅ | n/a |
-| [Predict-then-check](predict-then-check.md) | `provisional` | ⚠️ | ❌ | ❌ | n/a |
+| Pattern | Status | PU | ZET | BS | ML | MA |
+|---|---|---|---|---|---|---|
+| [Charter as constitution](charter-as-constitution.md) | `proven` | ✅ | ✅ | ✅ | ⚠️ | ✅ |
+| [Boot ritual](boot-ritual.md) | `proven` | ✅ | ✅ | ✅ | n/a | ✅ |
+| [Append-only log + current state](append-only-log.md) | `proven` | ✅ | ✅ | ✅ | n/a | ✅ |
+| [Handoff record](handoff-record.md) | `proven` | ✅ | ✅ | ✅ | n/a | ⚠️ |
+| [Independent adversary](independent-adversary.md) | `proven` | ✅ | ✅ | ✅ | n/a | ❌ |
+| [Human gate on the irreversible](human-gate.md) | `proven` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Architect on cadence](architect-on-cadence.md) | `proven` | ✅ | ✅ | ✅ | ⚠️ | ✅ |
+| [Named failure modes with tripwires](named-failure-modes.md) | `proven` | ✅ | ⚠️ | ✅ | ❌ | ❌ |
+| [Falsifiable thesis](falsifiable-thesis.md) | `provisional` | ✅ | ❌ | ❌ | n/a | ✅ |
+| [Untrusted input boundary](untrusted-input.md) | `proven` | n/a | ✅ | ✅ | n/a | n/a |
+| [Overhead ceiling](overhead-ceiling.md) | `proven` | ✅ | ❌ | ⚠️ | n/a | ✅ |
+| [Knowledge layer vs event log](knowledge-vs-log.md) | `provisional` | ⚠️ | ✅ | ❌ | n/a | n/a |
+| [Honest metric](honest-metric.md) | `provisional` | ❌ | ✅ | ❌ | n/a | ⚠️ |
+| [Cadence defence](cadence-defence.md) | `provisional` | ⚠️ | ❌ | ✅ | n/a | n/a |
+| [Predict-then-check](predict-then-check.md) | `provisional` | ⚠️ | ❌ | ❌ | n/a | ❌ |
 
 ✅ adopted · ⚠️ partial · ❌ missing · n/a doesn't apply to this domain
+
+**MA is in its own matrix on purpose.** A layer exempt from its own catalog is
+exactly what it would flag in a child. Its three ❌ are probably correct
+absences for something that runs quarterly and produces only findings — but they
+are absences, and review 001 assesses them rather than skipping the row.
 
 **The matrix goes stale.** The Meta-Architect verifies it against the repos
 every review rather than trusting it — a stale catalog is worse than none,

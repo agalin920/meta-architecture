@@ -118,6 +118,33 @@ enum nobody uses. That is a ten-minute read, not a review.
 
 ---
 
+## meta-architecture
+
+| | |
+|---|---|
+| **Domain** | The portfolio itself — patterns, distribution, the Architects |
+| **Status** | `active` |
+| **Loop** | None, deliberately. A review is not a loop |
+| **Cadence** | Quarterly, never more often than the fastest child Architect |
+| **Architect** | `meta/architect.md` — it reviews itself, which is the known weak point |
+| **Metric** | Findings a local Architect could not have made. Review 000: 2 of 5 |
+| **Theory** | `meta/thesis.md` — three claims, four falsifiers |
+| **Handoff** | `HANDOFF.md`, cold-start only — see the note in that file |
+| **First commit** | 2026-08-09 · no review run yet |
+
+**Listed in its own registry on purpose.** A layer exempt from its own catalog
+is precisely the thing it would flag in a child, and the entry it is missing is
+the honest one: **nothing audits this layer.** It audits the four Architects
+below it and there is no fifth level, correctly — the kill condition in
+`charter.md` is the substitute, and it is deliberately mechanical so the
+judgement does not depend on the thing being judged.
+
+Its own gaps, by the catalog's matrix: no independent adversary, no honest
+metric with an `unmeasured` category, no named failure-mode table. **All three
+are probably correct absences** for something that runs four times a year and
+produces only findings — but they are absences, and review 001 should say so
+rather than leaving the layer unassessed.
+
 ## Not in the portfolio
 
 `manager-ui` and `studio-bridge` are product repos that zesty-eng-team operates

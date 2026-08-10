@@ -11,9 +11,9 @@ never crossed to the others, or that nobody is checking the Architects.
 ## What's here
 
 ```
+HANDOFF.md              state of play for a cold session — read first
 charter.md              what this layer is for — yours alone to edit
 systems.md              the registry: domain, cadence, metric, status
-budget.md               the one shared resource. NOT YET FILLED
 patterns/               the catalog — this is the deliverable
 meta/
   thesis.md             why a layer above is worth anything, with kill conditions
@@ -67,5 +67,4 @@ Read [`patterns/README.md`](patterns/README.md). The adoption matrix is the
 whole point in one table: fifteen patterns, four systems, and which of them
 independently converged on what.
 
-Then fill in [`budget.md`](budget.md) — ten minutes, once. Nothing here audits
-honestly without it, and the Meta-Architect is forbidden from inferring it.
+Then [`HANDOFF.md`](HANDOFF.md) for where things actually stand and what is open.

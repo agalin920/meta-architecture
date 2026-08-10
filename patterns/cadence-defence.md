@@ -46,7 +46,9 @@ as a local cadence problem and propose a local slowdown. So will every other
 Architect. All of them will be locally right and collectively wrong.
 
 That failure is not fixable inside any of these systems, and it is claim II of
-`meta/thesis.md`. See `budget.md`.
+`meta/thesis.md`. The Meta-Architect detects it from the observed distribution
+across repos — **where the misses cluster**, not against a capacity number. A
+stated budget was considered and cut on 2026-08-09.
 
 ## How it fails
 

@@ -176,6 +176,35 @@ whether the catalog actually drives adoption. One instance, on the day it was
 written, with the same person in the loop. Weak evidence. Do not count it as
 settled.
 
+### Superseded same day — F5 withdrawn
+
+`budget.md` was cut on 2026-08-09, unfilled. **F5 is withdrawn**, not resolved:
+the human declined to state and maintain weekly capacity, and the file asked for
+a recurring commitment in exchange for a benefit he did not want.
+
+The finding behind F5 still stands in reduced form. Split by who pays, per
+`patterns/predict-then-check.md`:
+
+- **Kept, free:** observed distribution from `git log` across the four repos.
+  Enough for what claim II is actually about — *where the misses cluster*, and
+  whether the affected system's own Architect is about to misread them as a
+  local cadence problem. That comparison never needed a denominator.
+- **Lost:** any statement that the portfolio is overcommitted in absolute terms.
+  Deliberate deprioritisation and quiet neglect now look identical from here.
+  `meta/architect.md` instructs asking rather than assuming, because a layer
+  that reads every quiet system as neglect is a guilt generator.
+
+`meta/thesis.md` §II is amended and falsifier 3 restated. Recorded as a real
+reduction in what this layer can claim.
+
+**Second-order note, for review 001 and not actionable now.** This is the second
+mechanism cut in one day for costing the human a recurring step, after the
+student prediction in personal-university. Both were right on their merits and
+both are documented. **A run of them would be comfort drift with good prose**,
+and this layer is the only thing positioned to see a run — PU's Architect can
+only see its own. At n=2, on the day the portfolio was built, this is not
+evidence of anything. Check it at review 001.
+
 ### Watching
 
 - **Whether BS's Critic ever kills a draft or disagrees with the Writer.** Never

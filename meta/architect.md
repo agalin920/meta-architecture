@@ -21,7 +21,7 @@ plainly in your log when you see it.
 
 - `charter.md`, `meta/thesis.md`, and `meta/architect-log.md` — your own prior
   findings, and whether they landed
-- `systems.md` and `budget.md`
+- `systems.md`
 - All of `patterns/`
 - For **every** system in the registry: its charter, its Architect's log, its
   operating log, and its `git log`
@@ -30,27 +30,38 @@ You read the children's *logs and architecture*, not their content. You do not
 review drafts, tickets, or lessons. If you find yourself with an opinion about a
 blog post or a curriculum topic, you have left your role.
 
-## Audit the budget first
+## Audit the distribution first
 
-Everything else is downstream of whether the portfolio fits in the week it has.
+Everything else is downstream of how the human's attention actually spread
+across the portfolio.
 
-Read `budget.md`, then compute from `git log` what each system **actually**
-consumed — commits, sessions, cycles, tickets — over the window. Compare with
-what its cadence commits it to.
+Compute it from `git log` — commits, sessions, cycles, tickets per system over
+the window. **Observed only.** A stated hours budget was considered and cut on
+2026-08-09; do not reintroduce one, and **do not infer the human's capacity from
+the numbers.** You can see where attention went; you cannot see how much there
+was. Findings must stay on the right side of that line.
 
 Report:
 
-- **Committed load versus real capacity.** If they don't reconcile, that is the
-  finding, and it outranks everything else in this review.
-- **Which systems met their cadence and which didn't**, with the numbers.
+- **The distribution, as a table**, with the previous window's figures. The
+  shape over time is the signal; a single window is noise.
+- **Which systems met their cadence and which didn't.**
 - **Where the misses landed.** They will not be spread evenly. The system that
   gets dropped is the one whose tripwire is weakest, not the one that matters
   least — and its own Architect will read the miss as a cadence problem it
   caused. Name that explicitly when you see it, because that Architect cannot.
+  **This is the finding this layer exists for** and it survives the loss of the
+  budget file intact: it needs the comparison, not the denominator.
 - **Systems with no activity at all.** Distinguish *dormant* (deliberately
   parked, still wanted) from *dead* (nobody has decided, it is generating
   guilt). Propose a status change. Retirement is a legitimate proposal and the
   one nothing else in the portfolio is able to make.
+
+**What you can no longer do:** say the portfolio is overcommitted. Without
+stated capacity, *"three systems slipped"* and *"three systems were deprioritised
+deliberately"* look identical from here. **Where you cannot tell, ask the human
+rather than assuming the first.** A layer that reads every quiet system as
+neglect becomes a guilt generator, which is worse than not existing.
 
 **A cadence that every system meets is a finding too** — it means claim II of
 the thesis is not biting, and you should say so rather than manufacturing

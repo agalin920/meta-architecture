@@ -61,6 +61,25 @@ because the evidence is outside every one of their read-lists. That is a
 structural blind spot, and structural blind spots are the only honest reason to
 add a layer.
 
+**Amended 2026-08-09 — this claim is now half-measurable.**
+
+The original design paired this with a `budget.md` holding the human's stated
+weekly capacity. It was cut the day it was written, unfilled, on the grounds
+that it asked for a number he'd have to maintain for a benefit he didn't want.
+Consistent with `patterns/predict-then-check.md`: split the mechanism by who
+pays, keep the free half.
+
+**The free half is the observed distribution** — `git log` across four repos
+shows where attention actually went, at no cost to anyone. That is enough for
+the finding this claim is really about: *which* system absorbs the misses, and
+whether its own Architect is about to misread them as a local cadence problem.
+That comparison needs no denominator.
+
+**The expensive half is gone**, and with it the ability to say the portfolio is
+overcommitted in absolute terms. Deliberate deprioritisation and quiet neglect
+now look identical from here, and the Meta-Architect is instructed to ask rather
+than assume. This is a real reduction and it is recorded as one.
+
 ### III. Nobody is scoring the scorers
 
 Every Architect audits its own past proposals — Personal University and
@@ -106,10 +125,11 @@ one every review.
   nothing is adopted from it, systems keep reinventing — then patterns are not
   transferable in the way claim I asserts, and the catalog is a museum. Cut it
   to the registry alone.
-- **If the budget is never binding** — if the portfolio never actually collides
-  over the human's time and every system meets its cadence — claim II is wrong,
-  which is the best possible outcome and still means this layer loses its main
-  justification. Say so.
+- **If the systems never actually collide** — every system meets its cadence,
+  window after window, and no misses cluster anywhere — claim II is wrong. That
+  is the best possible outcome and still means this layer loses its main
+  justification. Say so. (Restated 2026-08-09; the original was phrased around
+  a stated budget that no longer exists.)
 - **If findings here are consistently things a child Architect already had in
   its "Watching" section**, the layer is slow-reading its children rather than
   seeing between them. That is the subtle version of failing, and the easiest to
