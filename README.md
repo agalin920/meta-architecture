@@ -1,23 +1,37 @@
 # Meta-Architecture
 
-The layer above four repo-based, agent-run systems. It owns the thing none of
-them can see: **the space between them.**
+The layer that agent-run systems are **grown from**, and that **learns back**
+from what they become.
 
-Each system below has its own charter, its own operating loop, and its own
-Architect that improves it on a cadence. That works. What none of them can do is
-notice that they share one human and one week, that a pattern proven in one
-never crossed to the others, or that nobody is checking the Architects.
+Every system in this portfolio was seeded from a shared spine. Each then runs
+its own loop, adapts to its own domain, and improves itself on its own cadence.
+They diverge. Most of that divergence is local and correct. Some of it belongs
+back in the spine, where every system built afterwards inherits it — and this
+repo is the only thing positioned to notice, judge, and carry it.
+
+**Two jobs, two clocks.**
+
+| | Generative | Evolutionary |
+|---|---|---|
+| **What** | New systems are grown from the spine | Proven divergence is carried back into the spine |
+| **Clock** | On demand. No cadence | Quarterly, never faster than the fastest child Architect |
+| **Why that speed** | Pulling costs nothing and should block nothing | A spine change reaches every future system; it needs evidence, and evidence accumulates slowly |
+| **Read** | [`spine.md`](spine.md) | [`meta/architect.md`](meta/architect.md) |
+
+**Divergence is cheap and local; convergence is expensive and deliberate.** Fast
+outward, slow and selective on the way back in. That asymmetry is the design.
 
 ## What's here
 
 ```
-HANDOFF.md              state of play for a cold session — read first
-charter.md              what this layer is for — yours alone to edit
+spine.md                what a new system inherits — start here if you're building
+patterns/               the catalog: evidence, origin, adoption, failure modes
+charter.md              what this layer is for — the human's alone to edit
 systems.md              the registry: domain, cadence, metric, status
-patterns/               the catalog — this is the deliverable
+HANDOFF.md              state of play for a cold session
 meta/
-  thesis.md             why a layer above is worth anything, with kill conditions
-  architect.md          the review procedure
+  thesis.md             why a layer above is worth anything, with falsifiers
+  architect.md          the review procedure — the evolutionary clock
   architect-log.md      findings, proposals, and whether they landed
 ```
 
@@ -34,36 +48,39 @@ meta/
 
 Details in [`systems.md`](systems.md).
 
-**Three of the six are the same system.** The two mPulse teams were derived from
-zesty-eng-team on 2026-08-10, not arrived at independently. That is a fact about
-the evidence base, not a criticism of the copies — see the note on the adoption
-matrix in [`patterns/README.md`](patterns/README.md).
+**Three of the six are the same system.** The two mPulse teams were copied from
+zesty-eng-team on 2026-08-10, not grown independently from the spine. That is a
+fact about the evidence base, not a criticism of the copies — see the note on
+the adoption matrix in [`patterns/README.md`](patterns/README.md). Copies never
+count toward promotion.
 
 Relative links assume everything sits under `~/dev/`, where all seven repos are
-checked out as of 2026-08-10 — the four systems above plus
-[`zesty-eng-team`](../zestyio/zesty-eng-team) and the two mPulse teams under
-`../mpulsemobile/`.
+checked out as of 2026-08-10.
 
-## The three hard rules
+## The rules
 
 1. **Never edit a child repo.** Findings go to that system's Architect; the
-   human carries them. Every system below depends on a single human gate for
-   being reviewable and revertible, and a meta-layer that routes around it
-   destroys the property it exists to protect.
-2. **Quarterly, and never more often than the fastest child Architect.**
-3. **Under 1% of the portfolio's time.** Every system here names the same
-   failure — building the system is more fun than using it — and this repo is
-   the most exposed thing in the portfolio to it.
+   human carries them. This holds for spine changes too — a new spine version
+   does not retrofit itself into existing children. Every system below depends
+   on a single human gate for being reviewable and revertible, and a meta-layer
+   that routes around it destroys the property it exists to protect.
+2. **The spine changes on evidence, not on interest.** Only `proven` patterns
+   are default inheritance, and derived copies never count toward promotion.
+   Premature evolution is the failure mode this design invites.
+3. **The evolutionary clock stays under 1% of the portfolio's time.** Pulling
+   from the spine doesn't count — that isn't overhead, it's the point.
 
-## Kill condition
+## Building something new
 
-**If two consecutive reviews produce no finding a local Architect couldn't have
-made, delete this repo.**
+Read [`spine.md`](spine.md). It states what every system inherits, where systems
+are expected to differ, and the three tests before adopting any pattern.
 
-It is in [`charter.md`](charter.md) so the thing being judged cannot renegotiate
-it, and the Meta-Architect checks it every review, finding by finding.
+It is a resource, not a procedure — deliberately. There is no scaffold command
+and no checklist, because a procedure would pin the portfolio to the
+capabilities of whatever wrote it. Take the reasoning and build what your domain
+actually needs.
 
-## Run a review
+## Running a review
 
 ```bash
 claude "Read meta/architect.md and run a review."
@@ -73,11 +90,5 @@ Quarterly, or when something feels structurally wrong across systems. It
 proposes; you carry proposals to the child Architect; that system's own gate
 still applies.
 
-## Start here
-
-Read [`patterns/README.md`](patterns/README.md). The adoption matrix is the
-whole point in one table: fifteen patterns, six systems, and which of them
-independently converged on what — noting that only four of the columns are
-independent, and the matrix says which.
-
-Then [`HANDOFF.md`](HANDOFF.md) for where things actually stand and what is open.
+Then [`HANDOFF.md`](HANDOFF.md) for where things actually stand and what is
+open.

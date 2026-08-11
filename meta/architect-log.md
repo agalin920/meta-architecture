@@ -221,3 +221,95 @@ evidence of anything. Check it at review 001.
 - **Whether four systems is too many.** Not a finding — two days is no evidence.
   It is the question review 001 exists to answer, and the answer will come from
   `budget.md`, not from this log.
+
+---
+
+## Entry 000b — purpose restated, 2026-08-10
+
+**Not a review.** A restatement of the layer's purpose by the human, applied to
+the documents. Recorded here because it changes what future reviews are for, and
+a review that inherited the new charter without knowing when or why it changed
+would be reading a different repo than the one entry 000 describes.
+
+The two-review clock does not start here. It still starts at review 001.
+
+### What changed
+
+**The layer was doing two jobs and had only written down one.** `charter.md`
+described a passive evaluator — quarterly, hands-off, produces nothing but
+findings, deletes itself if it stops being useful. In practice `patterns/` was
+already the thing new systems were built from, and nothing said so.
+
+Restated as **two jobs on two clocks**:
+
+- **Generative, on demand.** New systems are grown from the spine. Zero cadence.
+  Captured in the new `spine.md`.
+- **Evolutionary, quarterly.** Proven divergence is carried back into the spine.
+  Slow because evidence accumulates slowly, and because a spine change reaches
+  every system built afterwards.
+
+The asymmetry is the design: divergence is cheap and local, convergence is
+expensive and deliberate.
+
+### The kill condition is removed
+
+Two consecutive reviews producing no finding a local Architect couldn't have made
+no longer deletes the repo. That condition was correct for a pure observer and is
+wrong for the thing systems are grown from — it measured a seed by the harvest of
+a season it wasn't planted in.
+
+**What replaces it is a bar on action rather than existence:** the spine does not
+change until the children have earned the change. Reasoning in `charter.md` § On
+self-judgment and `meta/thesis.md` § On falsifiers and existence.
+
+The falsifiers survive and are still checked in writing every review. They test
+claims now, not the repo's right to exist. **Entry 000's failed falsifier check —
+three of five findings within reach of a local Architect — should be re-read
+under this frame: it is evidence about thesis claims III and IV, not a countdown.**
+
+### The founding convergence claim is withdrawn as stated
+
+Entry 000 and the original thesis treated four systems converging on one spine as
+proof the spine is architecturally necessary. **Four systems built by one person
+across two days is one derivation repeated, not four independent ones.**
+
+This repo already applies exactly that skepticism one level down — the mPulse
+columns are marked `†` and barred from the convergence claim on the grounds that
+copies are not evidence. Applying it downward while exempting the founding set
+was this layer's first blind spot, and it is the kind of error nothing below was
+positioned to catch either.
+
+**What survives:** the spine is a well-motivated hypothesis with a plausible
+mechanism behind every element and no evidence yet. Sufficient to build from,
+insufficient to be confident about. The real evidence comes from systems grown
+separately and left to diverge — which is what the two-clock design is for.
+
+### Consequences for review 001
+
+- **The eight `proven` statuses have not been audited against the new
+  independence bar** (`patterns/README.md`), which now requires two or more
+  independent adopters plus evidence of a changed outcome. Some will not survive.
+  **This is a demotion exercise and it is review 001's first job.**
+- The next new system should be **grown from `spine.md`, not copied**. Copying is
+  the path of least resistance and produced zero convergence evidence twice on
+  2026-08-10. Claim I has no other route to evidence.
+
+### Files changed
+
+`charter.md`, `README.md`, `HANDOFF.md`, `meta/thesis.md`, `meta/architect.md`,
+`patterns/README.md` rewritten. `spine.md` created. `systems.md` untouched — the
+registry is still accurate and reconciling it is review 001's job, not
+bookkeeping's.
+
+### Watching
+
+- **Whether the generative half stays a resource.** The pull toward writing an
+  instantiation procedure will be strong the first time someone starts a project
+  and wants a checklist. The reasoning against it — a procedure freezes one
+  model's understanding into the framework — is recorded in three places on
+  purpose.
+- **Whether the spine changes before review 001.** It should not. Any change
+  between now and then is premature evolution by definition, since no review has
+  produced evidence.
+- **Two public repos, no recorded decision.** `personal-university` and now
+  `meta-architecture`, which names and describes five private ones.
