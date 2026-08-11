@@ -107,19 +107,15 @@ day. Full record in [`meta/architect-log.md`](meta/architect-log.md) review 000.
    records a reduced Session Zero on 2026-08-09. Proposed to that repo's
    Architect, **not yet applied.** Also proposed: a reconcile-against-reality step
    in the Orchestrator's Phase 1.
-4. **Two repos are public and nothing records whether either is deliberate** —
-   `personal-university` and now `meta-architecture`. Note that this repo names
-   and describes five private ones, including their domains and cadences.
-   **Resolve by deciding, not by checking again.**
-5. **mpulse-engage-team's D-001 accepts drift from a shared org toolkit it does
+4. **mpulse-engage-team's D-001 accepts drift from a shared org toolkit it does
    not control**, and names its own `/retro` as the only mechanism that catches
    it. An un-run mechanism guarding a live liability. Worth checking at review 001
    whether that retro ever happens — not whether the drift is bad yet.
-6. **A candidate pattern is waiting on evidence**, not on argument: *knowledge
+5. **A candidate pattern is waiting on evidence**, not on argument: *knowledge
    accumulation as a gate rather than a habit*, from mpulse-dpi-team. See
    `patterns/README.md` § Candidate. Do not promote it before review 001 has
    looked at whether it produced knowledge or filler.
-7. **Review 000 failed its own falsifier check** — three of five findings were
+6. **Review 000 failed its own falsifier check** — three of five findings were
    within reach of a local Architect. Entry 000 is founding, not a review. Note
    that this no longer carries a deletion consequence; it is now evidence about
    thesis claims III and IV specifically, and should be read that way.
@@ -130,6 +126,12 @@ day. Full record in [`meta/architect-log.md`](meta/architect-log.md) review 000.
   maintain weekly capacity; he declined. The free half survives — observed
   distribution from `git log`. **Do not reintroduce a stated budget, and do not
   infer capacity from commit counts.**
+- **Both public repos are public on purpose.** Decided by the human on
+  2026-08-10: `personal-university` and `meta-architecture` stay public. The
+  exposure was named at the time of the decision and accepted — this repo lists
+  five private systems by name, domain, and cadence, and `systems.md` goes
+  further. **This is settled; do not re-open it as a check.** If the calculus
+  changes it is a new decision, made the same way.
 - **Do not reintroduce a kill condition.** Removed deliberately on 2026-08-10
   with reasoning recorded in two places. If a future review concludes the layer
   is decoration, that is a finding for the human, not a self-executing clause.
