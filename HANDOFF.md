@@ -44,11 +44,10 @@ be here and was wrong by 2026-08-10:**
   private. Whether that is deliberate is not recorded anywhere. It is a
   five-second check and nobody had made it — which is the exact shape of finding
   this layer exists for.
-- **Only four of the seven are checked out on this machine** —
-  `zesty-eng-team`, the two mPulse teams, and this layer.
-  `personal-university`, `brand-system`, and `media-log` exist on GitHub but not
-  locally. **A review cannot run until they are cloned**, and the matrix cannot
-  be verified against repos that are not present.
+- **All seven are now checked out** under `~/dev/` as of 2026-08-10.
+  `personal-university`, `brand-system`, and `media-log` were cloned that day;
+  they had been on GitHub but not locally, which would have blocked review 001
+  outright. Nothing about them has been read since cloning.
 
 ## What happened on 2026-08-09
 
@@ -98,8 +97,9 @@ which is bookkeeping, not assessment.
    the two-review clock has not started. **It starts at review 001.**
 4. **`personal-university` is public and nothing records whether that is
    deliberate.** See above. Resolve it by deciding, not by checking again.
-5. **Three of seven repos are not checked out on this machine.** Review 001 is
-   blocked on cloning `personal-university`, `brand-system`, and `media-log`.
+5. ~~**Three of seven repos are not checked out.**~~ **Resolved 2026-08-10** —
+   all seven are now under `~/dev/`. **Review 001 is no longer blocked.** Note
+   that removing the blocker is not a reason to run it early; see § Next action.
 6. **mpulse-engage-team's D-001 accepts drift from a shared org toolkit it does
    not control, and names its own `/retro` as the only mechanism that catches
    it.** An un-run mechanism guarding a live liability. Worth checking at review
@@ -135,12 +135,14 @@ registry growing from four systems to six is not a reason to run it early.**
 `charter.md`'s failure mode is building the system being more fun than using it,
 and "we added things, let's review" is exactly what that looks like from inside.
 
-Two things are worth doing before review 001, neither of which is a review:
+One thing is worth doing before review 001, and it is not a review:
 
-1. Clone `personal-university`, `brand-system`, and `media-log` — the review
-   cannot verify the matrix against repos that are not present.
-2. Decide whether `personal-university` being public is intentional, and record
-   the decision either way.
+- Decide whether `personal-university` being public is intentional, and record
+  the decision either way. It is a decision, not a check.
+
+Cloning the three missing repos was the other, and it is done — **which means
+the only thing now standing between here and a review is the calendar.** That
+is the point at which the temptation in `charter.md` is strongest.
 
 If something feels structurally wrong across systems before then:
 

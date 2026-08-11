@@ -39,10 +39,10 @@ zesty-eng-team on 2026-08-10, not arrived at independently. That is a fact about
 the evidence base, not a criticism of the copies — see the note on the adoption
 matrix in [`patterns/README.md`](patterns/README.md).
 
-Relative links assume everything sits under `~/dev/`. As of 2026-08-10 only
-`zesty-eng-team`, the two mPulse teams, and this layer are checked out on this
-machine; `personal-university`, `brand-system`, and `media-log` exist on GitHub
-but not locally. A review needs them cloned first.
+Relative links assume everything sits under `~/dev/`, where all seven repos are
+checked out as of 2026-08-10 — the four systems above plus
+[`zesty-eng-team`](../zestyio/zesty-eng-team) and the two mPulse teams under
+`../mpulsemobile/`.
 
 ## The three hard rules
 

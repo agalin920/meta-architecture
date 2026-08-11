@@ -6,7 +6,11 @@ Maintained by the Meta-Architect. **Status is a decision, not an observation** �
 a system with no activity is `dormant` only if someone decided that. Otherwise
 it is `unreviewed`, and deciding is the Meta-Architect's job.
 
-_Last reconciled: 2026-08-10._
+_Last reconciled: 2026-08-10 — **partially.** Two systems were added, and the
+commit counts below were refreshed against the local checkouts. Nothing else was
+re-read. A full reconcile is review 001's job, not bookkeeping's, and the
+distinction matters: this file now mixes verified-today numbers with claims
+carried over from 2026-08-09._
 
 ## Status vocabulary
 
@@ -32,7 +36,7 @@ _Last reconciled: 2026-08-10._
 | **Metric** | Mastery vs later review performance; school calibration error; `hard` vs `trivial` friction ratio |
 | **Theory** | `meta/thesis.md` — five capacities, four named falsifiers |
 | **Handoff** | `NEXT-SESSION.md`, regenerated each session |
-| **First commit** | 2026-08-08 · 21 commits · 5 sessions run |
+| **First commit** | 2026-08-08 · **24 commits** as of 2026-08-10, latest that same day · 5 sessions run at last count |
 
 The most architecturally complete system in the portfolio and the source of most
 of the catalog. The only one with a falsifiable theory of what it produces.
@@ -154,7 +158,7 @@ identified failure mode — `provisional` at best, and it should not enter
 | **Metric** | Receipts ratio; resonance over reach; human-originated items per window; Critic anyone-else count |
 | **Theory** | None. A risk table with tripwires, which is failure modes rather than falsifiers |
 | **Handoff** | **None.** `pipeline.md` item states imply progress but nothing records mid-cycle position |
-| **First commit** | 2026-08-09 · 5 commits · Session Zero run reduced; 16 pipeline items, 5 decisions logged |
+| **First commit** | 2026-08-09 · **7 commits** as of 2026-08-10 · Session Zero run reduced; 16 pipeline items, 5 decisions logged |
 
 Youngest system. One day old at first registry entry — **do not read low commit
 count as stalling yet.**
