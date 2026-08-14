@@ -1061,3 +1061,96 @@ the price of the repo being public. **If the portfolio keeps producing findings
 that cannot be published with their evidence, that is an argument about the
 repo's visibility, not a reason to keep trimming the evidence** — and it belongs
 to the human, who owns both decisions.
+
+---
+
+## Advisory 2026-08-14 — holistic assessment of the framework, on the human's request
+
+**Not a review.** Commissioned off-cadence by the human with an explicitly wider
+read than `meta/architect.md` permits: both engineering teams' full architecture
+**and their delivery-side worklogs** — the surface MF-10 established no packet had
+ever examined. Recorded here because `meta/dispatch.md` requires findings to be in
+the log with evidence before they dispatch. The numbered-review clock is
+untouched; review 001 remains next and undischarged.
+
+**Delivery-side verdict, first vantage anyone has had on it:** the work product is
+stronger than the improvement loop's paper trail suggests. ZET `tickets/1358-*`
+and MET `tickets/PDEV-23733-*` are model artifacts — root cause at file:line,
+judgment calls with their authority basis, "noticed, deliberately left alone"
+sections, PHI described structurally in fixtures. MET's D-012 disposition record
+distinguishes *declined to decide* from *accepted the risk* in writing, which is
+governance hygiene most human teams lack.
+
+**Verification corrections, mine, caught before dispatch this time:** the
+assessment as delivered in chat said 2 of 9 ZET worklogs carry `## Director
+findings` — re-derived, it is **4 of 10**. And it claimed MET's `timesheet.py`
+captures token data — false; its "token" is Jira auth, and AI-usage fields flow
+through the org's `update-ai-fields` path, which MET's log records as currently
+400ing for Opus 5. Both packets below carry the corrected form. That is two
+false claims caught by re-running my own greps, in an assessment that cites the
+verify-before-report doctrine approvingly. The doctrine is earning its keep
+against its own author.
+
+### Findings AF-1 … AF-7
+
+- **AF-1 — the plan is the one artifact with no independent gate.** The reviewer
+  gates the diff; the plan arrives beside it and its frame is the easiest thing to
+  accept unnoticed. MET paid (PDEV-23733: two rounds confirmed a flawless
+  implementation of the wrong unit) and invented reviewer **§0** — framing before
+  implementation: unit-check, defect-vs-instance, rename-survival. **ZET's
+  reviewer has no equivalent** (verified: no framing/unit language anywhere in the
+  file) and ZET's own history carries plan-frame failures — the 08-09
+  design-mismatch postmortem, the #1358 declined-observation loss. Highest-value
+  single carry available. → ZET packet.
+- **AF-2 — instruction files are becoming archives on the read path.** Rules ship
+  wrapped in founding incidents (run IDs, correction blockquotes); every session
+  pays the history tax. Distinct mechanism from MF-1: *evidence* accretes inside
+  the normative path. ZET's `CLAUDE.md:90` condensation instruction has never
+  fired against `team-log.md` 93→547. → ZET packet (trigger with a number); MET's
+  read-path cap already forces this trade if 001a's accept lands — nothing new
+  carried there.
+- **AF-3 — the headline metric is severity-blind, and ZET's human-metric
+  collection is unverifiable.** A data-loss escape and a comment-noise finding are
+  one unit. Both teams classify severity in review output; the headline erases it.
+  And ZET: 4 of 10 worklogs carry `## Director findings` — the other six are
+  either zero-correction tickets or uncollected data, and the metric cannot tell
+  which. → both packets (buckets); ZET packet (explicit "none" line at close, on
+  the pattern of MET's mandatory `## Outcome`, `a138f1e`).
+- **AF-4 — state should be derived, not written.** ZET's costliest self-inflicted
+  class is stale self-authored state (auth-state.json ×3 retros; 2 of 3 escalation
+  items settled). Its remedy is rules-about-verifying; MET's is `state_check.py`
+  deriving `Current state` from GitHub/Jira. Verified: ZET `tools/` has no
+  equivalent. → ZET packet.
+- **AF-5 — cross-team inventions sit unshared for a quarter.** Reviewer §0,
+  `gates.py`, `state_check.py`, the two-pass retro, the grading step: each
+  invented in one team with the other equally exposed, and the only channels are
+  the human and this layer's quarterly clock. MET already runs the shape of the
+  fix (upstream drift check; retro § 7 sibling report). Candidate mechanism: each
+  architect reads the sibling's `decision-log.md` delta at retro as evidence
+  input — read-only, no authority, judged locally. **Spine question — it changes
+  an Architect's read-list. → review 001, not a packet.**
+- **AF-6 — context economics are unmeasured, so rule-growth has no price.**
+  Corrected form: no instrument currently captures context-per-ticket
+  (`timesheet.py` is Jira time-tracking; `update-ai-fields` carries tool/time/
+  tokens but 400s on Opus 5 and nobody feeds it back to the retro). MF-1 argues
+  from line counts because that is the only ruler. → MET packet (smallest honest
+  step: surface what update-ai-fields already collects, note the 400).
+- **AF-7 — the test surface never grows.** ZET ships "no spec covers this,
+  honestly" per-ticket into a repo with no unit tests; MET ships into repos where
+  external review coverage is thin. Agent labor is the cheapest spec-backfill
+  that exists and nothing tracks it. Not a gate (D-003's filler lesson) — a
+  tracked Outcome line. → both packets.
+
+**Also recorded, not packet material:** the standing `meta/architect.md` read-list
+(logs and architecture only) would have prevented AF-1, AF-3's collection half,
+and AF-7 from ever being found here — direct evidence for amending § Read at
+review 001 to include delivery-side worklogs (not code). The untested core
+assumption stands: nothing yet shows 364 net instruction lines in five days
+outperform frozen founding files; `gates.py` CAUGHT counts at MET are the
+cheapest falsifier built for that question. And the two teams' opposed bets —
+redundant cognition vs instrumentation — are the live A/B; instrument the
+comparison at review 001, do not converge it.
+
+**Packets:** `proposals/2026-08-14-zesty-eng-team.md` (AF-1, AF-2, AF-3, AF-4,
+AF-7) and `proposals/2026-08-14-mpulse-engage-team.md` (AF-3, AF-6, AF-7 — small
+on purpose; its 001a accepts should run first). Written, not yet dispatched.
