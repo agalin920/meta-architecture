@@ -1,9 +1,10 @@
 # Overhead ceiling
 
-**Status:** `proven` — one strong implementation, one qualitative
+**Status:** `proven` — one strong implementation, one qualitative, one mechanical
 **Invented in:** personal-university
 **Partial in:** brand-system (qualitative, no number)
-**Missing from:** zesty-eng-team
+**Adopted, never fired:** mpulse-engage-team (2026-08-13)
+**Missing from:** zesty-eng-team, mpulse-dpi-team
 
 ## The pattern
 
@@ -39,6 +40,25 @@ logs.
 - **zesty-eng-team has none.** Its ticket worklogs, team log, decision log and
   knowledge files are all load-bearing today, but nothing bounds their growth
   and nothing licenses cutting a field.
+- **mpulse-engage-team has both halves, mechanically, and neither has fired**
+  (review 001a). The number is a **1,300-line cap on the per-ticket read path**,
+  asserted in `.claude/agents/architect.md:105` and **checked by
+  `tools/verify_docs.py`** rather than remembered. Its stated reasoning is the
+  cleanest version of this pattern's argument anywhere in the portfolio: *"rule
+  cost is paid per session and rule benefit is paid per incident, so a system
+  that only adds is one that eventually nobody finishes reading. **If a retro's
+  net additions would breach it, the retro must cut to fit.**"* The pruning half
+  is `tools/gates.py --dead`, and the architect prompt says plainly that **before
+  it existed, the instruction to cut rules that never fire was unimplementable.**
+  **Neither has produced a datapoint:** the cap is 1,300 against a current 1,056,
+  and `gates.py` reports 12 of 12 declared gates unrecorded.
+
+**The gap between those two entries is the whole finding of review 001a.** ZET
+has no ceiling and has retired zero applied rules across three retros. MET has a
+ceiling that cannot bind and has retired zero across one. **Across 189 commits
+and four retros in this portfolio, no applied rule has ever been removed** —
+which is what this pattern's absence looks like from outside, and it is invisible
+from inside either repo because each individual retro looks healthy.
 
 ## Adoption notes
 
@@ -53,6 +73,28 @@ Two parts, and the second matters more:
 - **A ceiling with no mechanism.** Nobody measures percentage of session time
   directly; what actually enforces it is the pruning rule and the human's
   license to complain.
+- **A ceiling measured over the wrong file set.** Added after review 001a's
+  dispatch, because **this layer committed it while proposing the pattern.** It
+  proposed capping zesty-eng-team at ~777 lines — a set that carries ~430 lines of
+  slash commands **no ticket session opens** and **excludes every file that
+  system's boot ritual mandates.** What a ticket session there actually reads is
+  **1,474 lines**, grown ~+895 over the window, almost entirely in files outside
+  the proposed cap: `team-log.md` 93→547, `knowledge/manager-ui.md` 54→336,
+  `knowledge/product.md` 0→122. **The proposal would have bound the
+  slowest-growing eighth of the problem.** Its Architect's rejection is the rule:
+  **a ceiling that binds the wrong set is worse than none, because it licenses
+  cutting the wrong thing.** Define the capped set as *what a session reads before
+  it can start work*, enumerate it, and check it against the boot ritual — not
+  against whatever directory the files happen to live in.
+- **A ceiling set above the current value.** Added at review 001a. MET's cap is
+  1,300 against a current 1,056, so it has never bound anything and cannot until
+  it is lowered or the docs grow 244 lines. **A ceiling that has never bound is
+  indistinguishable from no ceiling** and reads as one that is being respected.
+  Set it at or just above where you actually are, not where you are comfortable.
+- **Raising the number to make it pass.** MET names this itself, in the assertion
+  comment: *"Raising the number to make this pass is the one move that defeats
+  it."* A machine-checked ceiling converts the failure from forgetting into an
+  explicit edit — which is the point, and also the exact line to watch in a diff.
 - **Cutting rigour instead of admin.** The real risk. personal-university guards
   it with the anti-rigor tripwire, and its architect log entry for the 2026-08-09
   cut explicitly flags the second-order check: *one cut with this reasoning is

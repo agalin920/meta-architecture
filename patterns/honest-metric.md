@@ -1,8 +1,18 @@
 # Honest metric
 
-**Status:** `provisional`
+**Status:** `provisional` — **two independent adopters, neither remedy measured**
 **Invented in:** zesty-eng-team
+**Independently re-derived in:** mpulse-engage-team (2026-08-13, review 001a)
 **Missing from:** personal-university, brand-system
+
+**Why it is still `provisional` at two independent adopters.** The independence
+half of the bar is now met: mpulse-engage-team inherited this metric *with the
+flaw*, diagnosed the fault from its own failure, and built a different remedy —
+see `README.md` § The independence bar and copies that re-derive. **The other
+half is not met.** Neither remedy has changed a measured number yet: ZET's
+`retro-metric.py` is one day old and MET's escape rate has never been reported
+once. **Two independent diagnoses of the same fault with two different remedies
+is strong evidence the fault is real and no evidence that either remedy works.**
 
 ## The pattern
 
@@ -45,6 +55,46 @@ trend is the only form in which these numbers mean anything.
   exclusion lives in prose. brand-system's traction has the same exposure: a
   piece that was never actually distributed will average in alongside ones that
   were.
+
+### Added at review 001a, 2026-08-13
+
+**The instruction was not enough, in the system that invented it.** ZET ran
+**three retros and reported three wrong figures, from three different causes**
+(`docs/decision-log.md:507`): n=1 with no denominator discipline; a bot counted
+before it existed; and `gh pr view --comments`, which **cannot return inline
+review comments** — where every `claude-auto-reviewer` finding lives. That last
+one **scored the gate 0.00 for three cycles against a true 0.83 on n=6.**
+
+Its own diagnosis is the part worth carrying: *"None of those is a reasoning
+failure. They are counting failures — wrong endpoint, wrong denominator,
+destroyed source. **A prompt cannot fix 'run the right query and count the
+results.'**"* Every prior retro had responded to a bad number by writing more
+careful prose about deriving it, and the number stayed wrong.
+
+The remedy is `tools/retro-metric.py` (275 lines): queries GitHub directly, uses
+the correct endpoint per bot, and **refuses to report a clean zero for a bot that
+edited its own comment in place** — it prints a floor and names the worklogs to
+read instead. **`unmeasured` moved from instructed to enforced.**
+
+**mpulse-engage-team arrived at the same fault by a different route and fixed it
+differently.** Its headline was a low blockers-per-PR figure, published with three
+caveats it says *matter more than the number*: the window's external review
+coverage was incomplete across the target repos, the repo with the weakest
+coverage produced the only blocker it did find, and nearly all of its non-blocking
+findings carried a policy tag with the same finding repeated across PRs. Its
+conclusion: blockers-per-PR *"has a denominator the team does not control... its
+variance is dominated by who was looking, not by diff quality, and it is gameable
+in the wrong direction — route work to unreviewed repos and it improves."* Its
+remedy is coverage reported beside every count, D-019 excluding the release PR
+from the denominator by name, and a move toward **escape rate** — caught by the
+internal gate vs reached an external reviewer — *"because that is about the gate,
+which is the thing being improved, and it does not move when a bot is switched
+off."*
+
+**Neither inherited the other's fix, and the two remedies are not the same
+pattern.** One makes the count honest; the other changes what is counted. That
+they converged on the *fault* and diverged on the *remedy* is why this is still
+`provisional`.
 
 ## Adoption notes
 

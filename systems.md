@@ -6,11 +6,12 @@ Maintained by the Meta-Architect. **Status is a decision, not an observation** �
 a system with no activity is `dormant` only if someone decided that. Otherwise
 it is `unreviewed`, and deciding is the Meta-Architect's job.
 
-_Last reconciled: 2026-08-10 — **partially.** Two systems were added, and the
-commit counts below were refreshed against the local checkouts. Nothing else was
-re-read. A full reconcile is review 001's job, not bookkeeping's, and the
-distinction matters: this file now mixes verified-today numbers with claims
-carried over from 2026-08-09._
+_Last reconciled: 2026-08-13 — **partially, and unevenly.** Review 001a re-read
+`zesty-eng-team` and `mpulse-engage-team` against their repos and corrected both
+entries. **The other four entries were not read and still carry 2026-08-09/10
+claims.** A full reconcile is review 001's job. The distinction matters more than
+it did before: this file now mixes numbers verified on three different days, and
+the two freshest entries sit next to four that are four days stale._
 
 ## Status vocabulary
 
@@ -59,11 +60,38 @@ resolved.
 | **Metric** | CI-reviewer blockers per PR; Director findings per ticket — both with a named `unmeasured` category |
 | **Theory** | None. `docs/decision-log.md` records rationale per decision, which is not the same thing |
 | **Handoff** | `tickets/<issue#>-<slug>.md` written at every pipeline step + `docs/team-log.md` current-state header |
-| **First commit** | 2026-08-08 · 62 commits · real PRs shipped |
+| **First commit** | 2026-08-08 · **138 commits** as of 2026-08-13 · real PRs shipped · **3 retros run** (08-08, 08-09, 08-13) |
 
 By far the most operationally exercised system, and the only one that has
 survived contact with an external world that pushes back. Source of the honest
 metric, the handoff record, and the untrusted-input boundary.
+
+**The only Architect in the portfolio with a track record** (review 001a). It has
+graded its own prior cycle proposal by proposal, **falsified one of its own
+proposals** (P8, four further instances after it landed, replaced by `1646f8b` at
+a narrower scope), and corrected two false statements it had itself committed
+hours earlier. That is the first direct evidence anywhere that the
+propose-never-apply loop does anything — and it is also evidence *against* thesis
+claim IV, which says nobody scores the scorers. Recorded as such.
+
+**Its improvement loop gained an adversary on 2026-08-13** (`ac65e24`): `/retro`
+step 2 dispatches a second `architect` against pass 1's report. On its first run
+it found that the prescribed evidence command could not see the auto-reviewer's
+findings at all — **three retros had scored that gate 0.00 against a true 0.83
+on n=6.** Six of retro #3's 13 applied changes came from pass 2. Its retirement
+test is retro #4 and has not returned.
+
+**Open:** **zero applied rules retired**, across 138 commits and three retros
+(+155/−47 on instruction files, every deletion a replacement or renumbering).
+And **no overhead tripwire** — `overhead-ceiling` is `proven` and this system is
+❌. Both were carried in `proposals/2026-08-13-zesty-eng-team.md`, **dispatched
+2026-08-13.** Its Architect **accepted the § Cuts section** (with a required
+two-state clause of its own) and **rejected the ceiling**, on the grounds that the
+line count this layer proposed capping is not a read path: a ticket session there
+reads **1,474 lines**, not 777, and the growth is in `team-log.md` (93→547) and
+`knowledge/` — files the proposed cap excluded. **The rejection is correct and the
+gap it names is its own:** `CLAUDE.md:90` tells the architect to condense
+`team-log.md` at a retro, has no number, and has never fired.
 
 **Distinguishing fork:** the only system using context-isolated subagents rather
 than roles adopted in sequence. Correct for its domain — real filesystem
@@ -84,7 +112,7 @@ converging this.
 | **Metric** | External-reviewer blockers per PR (humans, Optibot, Copilot); routing errors |
 | **Theory** | None. `docs/decision-log.md` records rationale per decision, which is not the same thing |
 | **Handoff** | `tickets/PDEV-####-<slug>.md` written at every pipeline step + `docs/team-log.md` current-state header |
-| **First commit** | 2026-08-10 · 1 commit · no ticket run yet |
+| **First commit** | 2026-08-10 · **51 commits** as of 2026-08-13 · **5 PDEV + 1 INFRA ticket, 7 PRs, 1 retro** (retro 001, 08-13) |
 
 **Derived, not independently arrived at.** Structure adapted directly from
 zesty-eng-team on 2026-08-10. See the note in `patterns/README.md` — its column
@@ -102,11 +130,73 @@ Three genuine divergences from its source, each forced by the domain:
   colleague their afternoon. It is why its operating rules are stricter than a
   solo-agent team's would be.
 
-**Open:** `docs/decision-log.md` D-001 accepts drift from the org's shared
-`agentic-development-tools` as the price of an independent pipeline, and names
-`/retro`'s drift check as the only mechanism that catches it. **That is an
-un-run mechanism guarding a live liability** — worth checking at the first
-review whether the retro actually happens.
+**The first copy in the portfolio to invent rather than drop** (review 001a).
+Everything the catalog predicted about copies is about what they *lose*. This one
+built four tools on 2026-08-13 and now holds two patterns its parent lacks:
+
+- **`tools/verify_docs.py`** (244 lines) — docs embed the command that
+  established a claim as an HTML comment, and **the claim is re-run rather than
+  reread.** Six assertions pinned, re-run 6/6 passing at review 001a. It answers
+  a real failure: *one measured fact, four files, three values, three days*
+  (`3cfe318`).
+- **`tools/gates.py`** (157 lines) — every gate emits `PASS/CAUGHT/SKIP/BLOCKED`
+  into the ticket worklog, and `CAUGHT` is the only evidence a gate is
+  load-bearing. Its own diagnosis is the best sentence in either engineering
+  repo: *"the system could observe its own outputs but not its own mechanism."*
+- **A 1,300-line budget on the per-ticket read path**, machine-asserted. **The
+  only overhead tripwire in either engineering team.**
+
+**It also independently re-derived the metric fix it did not inherit.** It took
+ZET's blockers-per-PR *with the flaw* — both mPulse copies dropped the
+`unmeasured` category — then diagnosed the fault itself (*"a denominator the team
+does not control... gameable in the wrong direction"*) and built a **different**
+remedy: coverage reported beside every count, D-019 excluding the release PR from
+the denominator by name, and a move toward **escape rate**. Review 001a ruled
+that this counts as independent evidence; see `patterns/README.md` § The
+independence bar and copies that re-derive.
+
+**And it independently invented the carry-packet.** `/retro` § 7: *"Do not edit
+the other team's repo. Report it and let him carry it across."* That is
+`meta/dispatch.md`'s rule, arrived at one level down by a system that has never
+read this repo.
+
+**Open:** **zero applied rules retired** (+209/−21 on instruction files in three
+days, every deletion a replacement). **Neither tool has produced data yet** —
+`gates.py` reports 12 of 12 declared gates unrecorded, and the read-path cap is
+1,300 against a current 1,056, so it has never bound. The instruments exist and
+the evidence does not. And **no step that grades the previous cycle's proposals**,
+which is the thing its sibling does that produced all the portfolio's best
+evidence. All carried in `proposals/2026-08-13-mpulse-engage-team.md`,
+**dispatched 2026-08-13.** Its Architect **accepted the prior-cycle grading step,
+the lower read-path cap (1,100), and the overhead ratio line** — and **rejected
+mandatory subtraction and the second adversarial pass**, both on evidence this
+layer had not gathered. **Both rejections were right.** See the correction to the
+first below.
+
+**Correction to review 001a, from that rejection:** this layer claimed the
+subtraction question was going unasked here. **It is not.**
+`.claude/agents/architect.md:124` mandates a **§ Cuts** section — *"do not skip
+this section — if nothing should be cut, say so and say why you believe it"* — and
+retro 001 produced one, proposed C3, and **the judging step rejected it with a
+recorded reason** (`docs/team-log.md:420`). Zero rules retired is still true; *the
+question never being asked* is not. Asked-and-answered is a different failure mode
+with a different remedy.
+
+**The never-edit-a-sibling rule is enforced here at the permission layer, not in
+prose.** `.claude/settings.json` denies `Edit`/`Write` on
+`../mpulse-dpi-team/**`, `../dpi/**`, and `../agentic-development-tools/**` — the
+sibling team, the product repos, and the shared org toolkit it does not control —
+alongside push denials on six service repos. **That is `human-gate` implemented as
+a harness constraint rather than an instruction**, and it is the strongest form of
+the pattern anywhere in the portfolio: it does not depend on the agent complying.
+(Noted in passing: the `Write(...)` deny lines are inert — the harness matches only
+`Edit(path)` for file writes — but every path here carries both, so the guard
+holds.)
+
+**Resolved:** D-001's drift check — registered at review 000 as *"an un-run
+mechanism guarding a live liability"* — **ran on 2026-08-13 and found real
+drift** (`047dd6b`, D-018 and D-019). The open question is now whether it runs
+*again*; a check that fires once is not yet a mechanism.
 
 ---
 

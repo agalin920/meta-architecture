@@ -16,13 +16,16 @@ layer taking on ceremony it does not need, which is a named failure mode in
 ## Current
 
 ```yaml
-status: restated 2026-08-10 — two-clock design; no review run yet
-last_review: 000 (founding entry, 2026-08-09)
-next_review: 2026-11 or on flag — quarterly, never more often than
-             the fastest child Architect
-registry_changed: 2026-08-10 — two systems added, no review run
+status: review 001a run 2026-08-13 — scoped to the two engineering teams
+last_review: 001a (scoped, 2026-08-13). 000 was the founding entry
+next_review: 001 — full portfolio, six systems. Undischarged; 001a did not
+             cover it and its first job is unchanged
+registry_changed: 2026-08-10 — two systems added
 purpose_changed: 2026-08-10 — generative half made explicit, kill condition
              removed. Not a review. See below.
+dispatched: 2026-08-13 — both packets, MET then ZET. Child repos verified
+             unchanged. 5 accepted, 5 rejected. Nothing applied anywhere;
+             the approvals are the human's. See Open 7.
 ```
 
 ## What this layer is now
@@ -97,20 +100,27 @@ day. Full record in [`meta/architect-log.md`](meta/architect-log.md) review 000.
    are now understood to be one derivation repeated. Some will survive; some are
    `provisional` and were never anything else. **Review 001's first job**, and it
    is a demotion exercise, not a validation one.
-2. **No Architect has run anywhere in the portfolio.** Zero completed reviews
-   across six systems, two of which shipped with an architect and a drift check
-   they have never exercised. Every claim about whether propose-never-apply
-   actually works is still untested. This is the baseline review 001 measures
-   against.
+2. ~~**No Architect has run anywhere in the portfolio.**~~ **Closed at review
+   001a, 2026-08-13.** Four Architect reviews have run: zesty-eng-team ×3
+   (08-08, 08-09, 08-13) and mpulse-engage-team ×1 (retro 001, 08-13).
+   Propose-never-apply is no longer untested — ZET's Architect graded its own
+   prior cycle proposal by proposal and **falsified its own P8**
+   (`docs/decision-log.md:487`), which is the first direct evidence in the
+   portfolio that the loop does anything. **The remaining four systems' Architects
+   are still unmeasured** and that is review 001's, not this item's.
 3. **F1 — brand-system's README is stale.** It says Session Zero has not been run;
    the repo has 16 pipeline items and 5 logged decisions, and `positioning.md`
    records a reduced Session Zero on 2026-08-09. Proposed to that repo's
    Architect, **not yet applied.** Also proposed: a reconcile-against-reality step
    in the Orchestrator's Phase 1.
-4. **mpulse-engage-team's D-001 accepts drift from a shared org toolkit it does
-   not control**, and names its own `/retro` as the only mechanism that catches
-   it. An un-run mechanism guarding a live liability. Worth checking at review 001
-   whether that retro ever happens — not whether the drift is bad yet.
+4. ~~**mpulse-engage-team's D-001 ... an un-run mechanism guarding a live
+   liability.**~~ **Closed at review 001a, 2026-08-13. It ran, and it found real
+   drift.** `047dd6b` — +38/−2 across `definition-of-done.md`, `platform.md` and
+   `repo-map.md`, recorded as D-018 (PR title convention) and D-019 (release PRs
+   out of the metric denominator). The mechanism is no longer hypothetical and
+   the liability is no longer unguarded. **What replaces this item:** the drift
+   check has run once and the toolkit keeps moving, so the open question is
+   whether it runs *again* — a check that fires once is not a mechanism yet.
 5. **A candidate pattern is waiting on evidence**, not on argument: *knowledge
    accumulation as a gate rather than a habit*, from mpulse-dpi-team. See
    `patterns/README.md` § Candidate. Do not promote it before review 001 has
@@ -119,6 +129,27 @@ day. Full record in [`meta/architect-log.md`](meta/architect-log.md) review 000.
    within reach of a local Architect. Entry 000 is founding, not a review. Note
    that this no longer carries a deletion consequence; it is now evidence about
    thesis claims III and IV specifically, and should be read that way.
+   **Review 001a came in at five of eight cross-system** — better, and the three
+   local ones are the three child inventions this layer *carried* rather than
+   found. Carrying is a service, not an insight. Read it that way too.
+7. **`charter.md` is still silent on dispatch, and both packets have now been
+   dispatched anyway** — on the human's explicit verbal instruction, 2026-08-13,
+   MET first per rule 5. **Both child repos verified unchanged afterwards**
+   (`889bf4f`, `6d43727`, clean trees); writes were denied at the tool layer, not
+   merely asked against. Outcomes are in `meta/architect-log.md` § dispatch record.
+   **The amendment is still unwritten and still his alone.** Verbal authorisation
+   covered one instance; it did not move the boundary, and the next session will
+   read a charter that bans editing children and says nothing about this. Wording
+   is at the bottom of `meta/dispatch.md`. **If the answer is no, say so** and
+   `meta/dispatch.md` becomes a `retired` entry with its reasoning — which is
+   worth as much as a kept one, and the mechanism worked on its first outing.
+8. **Claim IV is the thesis claim most likely to fail, and the evidence is
+   against it.** ZET's Architect graded its own prior cycle, falsified its own
+   P8, and corrected two false statements it had itself committed — an accurate,
+   self-critical self-audit, which is exactly claim IV's falsifying condition.
+   One instance is not "review after review", so it stands. **A second at ZET
+   retro #4 means the audit-the-Architects job should be cut to a spot check**,
+   as `meta/thesis.md` itself says. Do not read past this at review 002.
 
 ## Decisions that constrain the next session
 
@@ -151,10 +182,37 @@ day. Full record in [`meta/architect-log.md`](meta/architect-log.md) review 000.
 
 ## Next action
 
-Nothing is due. The next scheduled event is review 001, quarterly — **and neither
-the registry growing nor the purpose being restated is a reason to run it early.**
-"We changed things, let's review" is exactly what the named failure mode looks
-like from inside.
+**Three things are due, and none of them is a review.**
+
+1. **Approve or decline the five accepted proposals**, which is where both
+   dispatches ended and where they were designed to end. **Nothing is applied in
+   either child repo.** ZET has two diffs it says it would rather write than
+   paste — § Cuts with the two-state clause, and two verify-blocks on targets it
+   chose. MET has four, all landing in `retro.md`, off its capped read path:
+   **net zero lines added to the per-ticket read path, cap tightened by 200.**
+2. **Amend `charter.md` on dispatch, or decide not to.** Open 7. It ran once
+   without the amendment, on verbal instruction. That does not carry forward.
+3. **Decide on MF-7**, the one finding no Architect anywhere can act on. Both
+   teams are graded only by bots — MET's window drew no human review at all, and
+   ZET's three graders run under one account with two overwriting their own
+   comments. **And it is worse than 001a recorded** — MET found its own comment
+   marker missed once, on the repo with the weakest external coverage, which puts
+   a phantom external review into the only number that measures this. Buying
+   external feedback is a decision only the human can make. (Coverage specifics
+   are held back from this public repo — see the publication note in
+   `meta/architect-log.md`.)
+
+**Then nothing until review 001**, which is quarterly and undischarged. **001a
+did not discharge it** — it read two of six systems, and its own distribution
+table has four blank rows. **Two scoped reviews in a row on the same two repos
+would be this layer following attention instead of auditing it**, which is the
+inverse of its job and would look like productivity the whole way down.
+
+Still true, and still not reasons to run 001 early: the registry growing, the
+purpose being restated, or a good idea arriving from a live project. *"We changed
+things, let's review"* is exactly what the named failure mode looks like from
+inside. **Review 001a cleared that bar on a data condition — F4's baseline became
+false — and not on interest.** The next flag needs its own data condition.
 
 Two things are worth doing before review 001, and neither is a review:
 
