@@ -1262,3 +1262,14 @@ disproving command returned, and a packet item that never ran one is a
 well-written guess.** `meta/architect.md`'s "no finding without evidence" needs
 its sharper form — *no finding without an executed disproof attempt* — which is
 review 001's to consider alongside the read-list amendment.
+
+**Addendum, same day:** the human approved both teams' offered fixes and each
+team applied its own, via dispatched sessions that touched only their own repos.
+ZET reconciled `Current state` (`306a59d`) and pushed its eight waiting incident
+commits — and its session caught itself recopying a stale line mid-fix, the
+recopy mechanism live inside the commit meant to fix it. MET cleared the stale
+Jira line (`17112a9`, re-verified against live `allowedValues` before writing)
+and marked its one unmarked PR comment, noting a drift class no team event can
+cover: **state changed by an outside admin** — suggested `still_open` entries
+carry a re-check date, for retro 002. All four portfolio repos verified synced
+to `origin/main`, clean.
