@@ -1,5 +1,14 @@
 # Carry-packet — zesty-eng-team, from meta advisory 2026-08-14
 
+> **Dispatched 2026-08-14. Judged: 0 of 5 survive as proposed.** Repo verified
+> untouched by the judging session. AF-1 and AF-3's evidence was misattributed or
+> false against the artifact; AF-2 aimed at the wrong half of the file; AF-4 lost
+> to an existing mechanism that fired and worked; AF-7's premise was false. The
+> judging session also found live `Current state` drift the packet missed.
+> **Body below is as delivered — the rejected premises stand so the record of
+> what was judged stays true.** Corrections: `meta/architect-log.md` § Advisory
+> 2026-08-14 — dispatch record.
+
 ## Standing
 
 Proposals from the meta layer. **They have no authority here.** Your `/retro`

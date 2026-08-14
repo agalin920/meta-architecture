@@ -1154,3 +1154,111 @@ comparison at review 001, do not converge it.
 **Packets:** `proposals/2026-08-14-zesty-eng-team.md` (AF-1, AF-2, AF-3, AF-4,
 AF-7) and `proposals/2026-08-14-mpulse-engage-team.md` (AF-3, AF-6, AF-7 — small
 on purpose; its 001a accepts should run first). Written, not yet dispatched.
+
+---
+
+## Advisory 2026-08-14 — dispatch record, same day
+
+Both packets dispatched in parallel on the human's instruction, writes denied at
+the tool layer. Both child repos verified: MET HEAD unchanged; ZET HEAD moved
+during the window by **one unrelated incident-log commit from a concurrent
+session** (`7a3679b`, +1/−1 on `team-log.md`, cache-poisoning diagnosis) — the
+judging session wrote nothing. Noted for future dispatches: the deny pattern
+`Bash(git commit:*)` does not cover the `git -C . commit` form, which is the gap
+MET's own settings audit already named. Tighten the denies next dispatch.
+
+### Scoreboard, and it is one-sided
+
+| Finding | ZET | MET |
+|---|---|---|
+| AF-1 reviewer § 0 | **Rejected** — both cited failures misattributed | n/a |
+| AF-2 log ceiling | **Rejected** — wrong half of the file | n/a |
+| AF-3 collection line / severity buckets | **Rejected** — central claim false against the artifact | **Accepted, narrowed** (buckets only; `gates.py` half cut) |
+| AF-4 derived state | **Rejected as proposed** — existing mechanism fired once and worked | n/a |
+| AF-6 context baseline | n/a | **Accepted as query; framing dead** |
+| AF-7 test-surface line | **Rejected** — premise false | **Rejected** — premise false, with the disproving observation |
+
+**Roughly 2 of 8 survive, both amended. Review 001a went 5 of 10.** The wider
+read produced weaker packets, and both Architects said why in the same words:
+**the packets were verified by reading files the teams wrote, not by running
+commands.** ZET: *"AF-3 accused a script without executing it... only AF-4 ran a
+command, and that command was `ls tools/`."* It is the exact evidentiary standard
+both teams' own architect files exist to stop, applied to this layer from
+outside. **The advisory's chat text cited the verify-before-report doctrine
+approvingly while breaking it.**
+
+### Supersessions
+
+- **AF-3's central claim is withdrawn — it was false.** `retro-metric.py:169-171`
+  appends `(f.name, None)` with the comment *"absent != zero, and that is the
+  point"*, and when run it names all six heading-less worklogs as *uncountable,
+  not clean*. The script already distinguishes exactly what the finding accused
+  it of conflating. The denominator was wrong too: the mandate landed at retro
+  #2, three of the six worklogs predate it, and post-mandate collection is 4 of
+  7 with one miss already named by retro #3. **The action is backfilling three
+  worklogs, not a rule.**
+- **AF-1's evidence is withdrawn as misattributed.** ZET's own postmortem ranks
+  review cause 5 of 6 on the design mismatch — the loss was at *intake*, before
+  any agent saw the ticket, and a text-only reviewer cannot recover appearance
+  nobody transcribed. On the other cited failure the reviewer **did** produce
+  the disproving observation; the failure was the declining, and `1646f8b`
+  already fixed that gate. The § 0 idea may still have value; the case made for
+  it here did not.
+- **AF-7 is withdrawn at both teams — the premise was false twice.** ZET added a
+  spec on one of five PRs, and the window's other PRs had no unit to test. MET's
+  disproof is the sharper one: the window's **single external blocker landed on
+  the team's highest-test-surface diff ever** (~14:1 test-to-production lines)
+  — the fail-open predicate was not a coverage problem, and self-reported
+  coverage is the same context grading itself, which is what thin external
+  review already fails to check.
+- **AF-6's framing is dead and a stale fact this layer repeated is corrected:**
+  the Jira "AI Model Used" field **now includes Opus 5 and Sonnet 5** — MET's
+  judging session read the field's `allowedValues` directly. MET's own
+  `still_open` line is stale, and this layer inherited it without checking,
+  which is [[verify-preconditions]] failing in its third distinct form: a fact
+  can be stale *in the repo that recorded it*. What survives of AF-6 is real
+  and now measured: **~14.4M tokens across four window tickets, one ticket
+  50.5% of the whole window**, minutes reconciling exactly with tracker time —
+  the portfolio's first context-per-ticket baseline, produced by the one query
+  the packet asked for.
+- **AF-4 rejected on a live counter-example.** ZET's `architect.md:40`
+  (verify-standing-items, made evidence source #5 at retro #3) fired once and
+  worked. And the drift its judging session found *today* — a stale branch name
+  and a three-retro-old "Suggested next work" block inside the rewritten-in-place
+  header — is exactly the drift a GitHub-derived `state_check` **cannot** catch:
+  one needs a local `git rev-parse`, the other is stale advice no query has an
+  opinion about. The tool as proposed solves the class already solved.
+
+### What the children found that the layer missed
+
+- **ZET, live today:** `Current state` prose drift — actual checkout branch wrong,
+  and a founding-era planning block that survived three retros inside a header
+  that is supposed to describe the present. Same class as `auth-state.json`,
+  caught by running the disproving commands instead of reading the file. Offered
+  to fix as a normal session close; the human decides.
+- **MET:** the metric's exclusion marker missed on exactly one comment — the
+  team's reply on the one repo with the thinnest external coverage — so the
+  "zero human reviews" caveat the whole metric rests on is **one unmarked
+  comment away from silently breaking**. And the read-path budget omits
+  `tickets/README.md` (65 lines, read every ticket) — proposals can land
+  off-budget by construction. Both offered as one-line fixes pending his
+  go-ahead.
+
+### Claim IV, third consecutive hit
+
+Both Architects again out-verified the layer that audits them — ran the
+commands, read the allowedValues, pulled the deletion hunks, quoted the source
+lines. The running score across three dispatches: **the audited parties have
+been right against the auditor in every material disagreement.** Review 001
+should treat cutting the audit-the-Architects job to a spot check as the
+default position needing evidence *against* it, not for it.
+
+### The lesson, stated once for the next reader
+
+001a's packets were built from re-derived measurements and went 5/10. The
+advisory's were built from an architectural read-through and went 2/8. **The
+delta is not insight, it is verification depth: a finding is worth what its
+disproving command returned, and a packet item that never ran one is a
+well-written guess.** `meta/architect.md`'s "no finding without evidence" needs
+its sharper form — *no finding without an executed disproof attempt* — which is
+review 001's to consider alongside the read-list amendment.

@@ -1,5 +1,13 @@
 # Carry-packet — mpulse-engage-team, from meta advisory 2026-08-14
 
+> **Dispatched 2026-08-14. Judged: AF-3 accepted narrowed (buckets only), AF-6
+> accepted as the query with its framing dead (the Jira field already has Opus 5
+> — the packet inherited a stale line), AF-7 rejected on a measured disproof.**
+> Repo verified untouched. The judging session also produced the portfolio's
+> first context-per-ticket baseline and found two one-line gaps the packet
+> missed. **Body below is as delivered.** Corrections: `meta/architect-log.md`
+> § Advisory 2026-08-14 — dispatch record.
+
 ## Standing
 
 Proposals from the meta layer. **They have no authority here.** Your `/retro`
