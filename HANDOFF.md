@@ -150,6 +150,17 @@ day. Full record in [`meta/architect-log.md`](meta/architect-log.md) review 000.
    One instance is not "review after review", so it stands. **A second at ZET
    retro #4 means the audit-the-Architects job should be cut to a spot check**,
    as `meta/thesis.md` itself says. Do not read past this at review 002.
+9. **This repo has no permission guard of any kind.**
+   `.claude/settings.local.json` carries **no `deny` key** — `permissions`
+   contains only `allow`, 21 entries, including **`Bash(git push *)`
+   unrestricted.** Nothing prevents a Meta-Architect session writing to a child
+   repo except the instruction not to; both dispatches denied writes in the
+   moment, which is a judgment rather than a property. **mpulse-engage-team is
+   still the only system in the portfolio where the boundary holds against an
+   agent that decides otherwise.** Verified 2026-08-14 and deliberately not
+   applied — see the ruling entry. Two gaps to carry into any fix: `Write(...)`
+   deny lines are inert where `Edit(path)` is not, and `Bash(git commit:*)` does
+   not cover the `git -C . commit` form.
 
 ## Decisions that constrain the next session
 
@@ -184,12 +195,50 @@ day. Full record in [`meta/architect-log.md`](meta/architect-log.md) review 000.
 
 **Three things are due, and none of them is a review.**
 
-1. **Approve or decline the five accepted proposals**, which is where both
-   dispatches ended and where they were designed to end. **Nothing is applied in
-   either child repo.** ZET has two diffs it says it would rather write than
-   paste — § Cuts with the two-state clause, and two verify-blocks on targets it
-   chose. MET has four, all landing in `retro.md`, off its capped read path:
-   **net zero lines added to the per-ticket read path, cap tightened by 200.**
+1. ~~**Approve or decline the five accepted proposals.**~~ **Approved by the human
+   on 2026-08-14. Still unapplied — this is now an execution item, not a decision
+   one.** Verified the same day that none of the seven accepted items across both
+   dispatches had landed: ZET `306a59d`, MET `17112a9`, and the only post-dispatch
+   commits in either repo are each team's own self-found fixes from the advisory
+   addendum, which are a disjoint set. **Pending, by repo:**
+   - **ZET (2)** — MF-1 § Cuts with the two-state clause it made non-optional;
+     MF-4 verify-blocks on the two targets it chose. Neither present: no Cuts
+     heading and no `verify-block` anywhere in `.claude/`, `CLAUDE.md`, `docs/`.
+   - **MET (5)** — MF-1b cap 1,300 → 1,100; MF-2b grade the previous cycle;
+     MF-8 overhead ratio; AF-3 severity buckets; AF-6 context-per-ticket query.
+     None present. **MF-1b is two edits, not one:** `architect.md:103` carries the
+     number and `:106` carries the executable assertion that tests `<= 1300`.
+     Changing one without the other makes `verify_docs.py` fail against MET's own
+     accepted figure — which is the executable-claims convention working, and a
+     trap for a session applying in a hurry.
+
+   **Dispatched the same day on the human's instruction — the first application
+   dispatch this layer has run, and the first authorised to write.** Outcome:
+   - **MET — 1 of 5 applied.** `17112a9 → eb4280c`, three commits, not pushed.
+     AF-3's tooling half landed and is fixture-verified. **MF-1b, MF-2b, MF-8 and
+     AF-6 are blocked**: writes to `.claude/agents/architect.md` and
+     `.claude/commands/retro.md` were refused by harness behaviour in
+     non-interactive mode — **not by any deny rule; none exists at any settings
+     level, and an explicit `Edit(.claude/**)` grant does not lift it either.**
+     **Only an interactive session can apply these five.** MET corrected its own
+     false "deliberate guard" claim at `b0517e5`. **AF-6's precondition is now
+     answered** — transcripts do carry `message.usage` token counts, but subagent
+     usage is absent (`isSidechain` false everywhere, so any figure is a *floor*,
+     and MET delegates by default) and nothing keys a session to a ticket, so
+     attribution is by timestamp and approximate. Write the instruction to that,
+     numeric fields only, no transcript content.
+   - **ZET — MF-4 applied**, `d8c9a49 → 354359d`, two commits, not pushed. Three
+     `**Verify.**` blocks, all executed before commit — and running them caught a
+     self-matching regex that would have shipped broken. **MF-1 is blocked**, same
+     harness refusal on `.claude/agents/architect.md`. **Its accepted targets were
+     recoverable only from a session transcript and are now written into
+     `meta/architect-log.md`** — the decision existed in no reproducible form in
+     either repo, which is the dispatch write-back defect recorded there.
+   - **Useful by-product:** MET's read path is **1,056 against the accepted 1,100
+     cap — 44 lines of headroom**, and `retro.md`/`architect.md` are off the read
+     path, so all five accepts are mutually compatible. **AF-6 must not be written
+     until someone checks whether the transcripts carry `usage` counts**, and it
+     must be scoped to numeric fields only — those are HIPAA-platform session logs.
 2. **Amend `charter.md` on dispatch, or decide not to.** Open 7. It ran once
    without the amendment, on verbal instruction. That does not carry forward.
 3. **Decide on MF-7**, the one finding no Architect anywhere can act on. Both
@@ -201,6 +250,13 @@ day. Full record in [`meta/architect-log.md`](meta/architect-log.md) review 000.
    external feedback is a decision only the human can make. (Coverage specifics
    are held back from this public repo — see the publication note in
    `meta/architect-log.md`.)
+4. **Decide whether this repo gets a deny list.** Open 9, new on 2026-08-14 and
+   verified rather than argued. **Not applied deliberately** — a permissions
+   change is a change to how a Meta-Architect session is constrained, and making
+   it from inside the session it constrains is the wrong hand on the switch. It
+   is also your call whether denies here break your other sessions. **The
+   suggested form:** deny `Edit` **and** `Write` on `../*/**` and on each child
+   path by name, plus the write verbs under `Bash(git -C:*)`.
 
 **Then nothing until review 001**, which is quarterly and undischarged. **001a
 did not discharge it** — it read two of six systems, and its own distribution

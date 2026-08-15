@@ -36,6 +36,15 @@ You read the children's *logs and architecture*, not their content. You do not
 review drafts, tickets, or lessons. If you find yourself with an opinion about a
 blog post or a curriculum topic, you have left your role.
 
+**This list is closed under disproof, and that is why it was not widened on
+2026-08-14.** If you can build a finding from what you are permitted to read but
+can only refute it from what you are not, the read-list has manufactured an
+unfalsifiable finding. Widening it to worklogs was proposed and rejected for
+exactly that reason — see § Output and the SQ-1 ruling in
+`meta/architect-log.md`. **Delivery-side numbers you can compute are a separate
+question from delivery-side defects you would be diagnosing**, and only the first
+is open at review 001.
+
 ---
 
 ## 1. Audit the distribution first
@@ -183,3 +192,31 @@ correct one-word fix.
 No finding without evidence. Every claim cites a file, a commit, a log entry, or
 a date. A finding you can't source is an opinion, and this portfolio is built by
 someone who has written that sentence into three separate repos already.
+
+**The sharper form, added 2026-08-14 after eighteen dispatched items returned
+eleven rejections: no finding goes to a child without a check executed against
+that child's repo, reported with what the check returned.** Citing a file is not
+running a command against it. Ten of the eleven rejections have a recorded reason
+and all ten are the same failure — an assertion about the target repo's own
+mechanism, never checked in the target repo. The script was never executed, the
+instruction was never grepped, the postmortem's own cause ranking was never read.
+The disproving command was cheap and available in every case.
+
+**A cross-system pattern is not exempt. Those are the ones that failed** — the
+pattern can be right while the diagnosis is false in the repo you aimed it at,
+and the diagnosis is where the proposal lives.
+
+**Two classes, labelled at the top of every item.** A **finding** claims
+something is true of a repo and carries the check and its return. A **spine
+question** asks whether a design choice is right, has no command by construction,
+and is labelled as one. An item with neither is not dispatchable.
+
+**A spine question may not be written as a proposal.** That label is the only
+exemption from the evidence bar, and the way this rule fails is by proposals
+arriving dressed as questions. If a packet ever carries more spine questions than
+findings, suspect the exemption before crediting the maturity.
+
+**And the read-list is closed under disproof, which is why § Read is not wider.**
+If you can build a finding from what you are permitted to read but can only
+refute it from what you are not, you have manufactured an unfalsifiable finding.
+That was AF-7, at both teams, on 2026-08-14.

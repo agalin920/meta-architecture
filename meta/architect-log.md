@@ -1273,3 +1273,491 @@ and marked its one unmarked PR comment, noting a drift class no team event can
 cover: **state changed by an outside admin** — suggested `still_open` entries
 carry a re-check date, for retro 002. All four portfolio repos verified synced
 to `origin/main`, clean.
+
+---
+
+## Rulings on the spine questions of 2026-08-14 — SQ-1, SQ-2, SQ-3
+
+**Not a review.** A ruling session on `inbox/2026-08-14-spine-questions-meta-layer.md`,
+a packet written by an outside session with no write access and no ability to
+execute against this repo. It declared itself unverified, listed the disproof
+attempts that would kill each item, and asked to be the first thing failed if
+SQ-2 landed. **The disproofs were run rather than read. It lost one of three
+outright and had a second rewritten.** Nothing was dispatched; no child repo was
+opened.
+
+### SQ-1 — Rejected. The read-list is not amended.
+
+**Disproof 1 returned against it.** § Read as it actually stands
+(`meta/architect.md:35-37`) does not merely omit worklogs:
+
+> "You read the children's *logs and architecture*, not their content. **You do
+> not review drafts, tickets, or lessons.**"
+
+The packet quoted only the first sentence, second-hand from MF-10. The second is
+the one that governs, and `tickets` is in it by name. **The proposed amendment is
+the reversal of a named exclusion, not the filling of a silence**, and it was
+argued as the latter.
+
+**Disproof 2 returned against it, and this is the decisive one.** The three
+withdrawn advisory findings do not share a cause:
+
+- **AF-3** died on verification depth — `retro-metric.py:169-171` already does
+  what the finding accused it of not doing, and the script was never executed.
+  That is SQ-2's problem, not the read-list's.
+- **AF-1** died on misreading material already in hand — ZET's own postmortem
+  ranks review cause 5 of 6, in the document the layer cited.
+- **AF-7 died on neither.** Its evidence at both teams is material the *current*
+  read-list already permits: `docs/definition-of-done.md` at ZET, MET's own retro
+  001 record. Widening to worklogs would have added nothing to its construction.
+  Its refutations — *the window's other PRs had no unit to test* and *~14:1
+  test-to-production lines* — live in the diffs, which SQ-1 excludes **explicitly**
+  under its own *Out* list.
+
+**So SQ-1 proposes a boundary that admits the claim and excludes its refutation.**
+That is worse than the current rule and worse than a full widening, and it is
+exactly the shape of AF-7: a finding this layer could build and could not check.
+A read-list must be closed under disproof or it manufactures unfalsifiable
+findings by construction. **That test is new and it is the thing to carry forward.**
+
+**Disproof 3 returned mixed and does not rescue it.** MF-10 names a structural
+bound and does not recommend loosening the rule; the 001a entry declined to
+resolve it deliberately. But the advisory is now the experiment MF-10 implied,
+and it ran: **4 of the advisory's 8 items were delivery-side, against 0 of 001a's
+10 — and all 4 delivery-side items died.** MF-10's diagnosis is confirmed. Its
+implied remedy is refuted by the only instance of it.
+
+**What survives, and it is not what was proposed.** The bound is real and the
+answer is not a wider read. **AF-6 is the one advisory item that worked on
+delivery ground** — accepted at MET as a query, its framing dead — and what it
+did was *ask for a number the team could compute*, not diagnose a defect.
+Recorded as review 001's spine question in that form: **may this layer report
+delivery-side numbers it can compute, while remaining barred from diagnosing
+delivery-side defects?** That is a different question from the one the packet
+asked and it is the one the record supports.
+
+### SQ-2 — Direction accepted. Wording rejected. Amended form applied.
+
+**Disproof 1 was run and it killed the wording.** Across the four packets there
+are **18 dispatched items. Zero carry a command and what it returned.** Every
+`**Evidence:**` line cites a file, a line number, a commit, or a count; grepping
+the evidence blocks for any report of an executed command returns nothing. That
+includes **all 7 survivors**.
+
+**The bar as worded — "must carry the command run and what it returned" — blocks
+18 of 18.** A filter that rejects everything that worked is not a discriminator,
+it is a moratorium. The packet's own disproof 1 named that outcome as fatal and
+it is.
+
+**What the record does support is a different bar, and the deaths locate it
+exactly.** Of the 11 rejections, 10 have a recorded reason and **all 10 are the
+same failure**: an assertion about the target repo's own mechanism, never checked
+in the target repo.
+
+| Rejected | The check that would have killed it, never run |
+|---|---|
+| MF-1 @ MET | grep MET `architect.md:124` — § Cuts is mandated there |
+| MF-1b @ ZET | derive the actual read path — 777 was the wrong file set |
+| MF-2 @ MET | `gh api` across six PRs — MET ran it, the layer had not |
+| MF-3 @ ZET | read ZET `architect.md:74` — it is about a role, not a rule |
+| AF-1 @ ZET | read the postmortem's own cause ranking — 5 of 6 |
+| AF-2 @ ZET | measure which half of the file grew |
+| AF-3 @ ZET | execute `retro-metric.py` |
+| AF-4 @ ZET | grep ZET `architect.md:40` — verify-standing-items already fired |
+| AF-7 @ ZET | the diffs — no unit to test on the other PRs |
+| AF-7 @ MET | the diff — ~14:1 test-to-production |
+
+The eleventh, MF-4's two rejected targets, has no reason recorded in this log.
+**That is a gap in the 001a dispatch record and it is noted rather than filled.**
+
+Every command in that column was cheap and every one was available. **The
+discriminator is not that a command ran — it is that the command ran in the repo
+the claim was about.** MF-1's zero-retirements figure was executed and correct,
+and MF-1 was still rejected at MET, because the executed command confirmed the
+pattern while the unexecuted one would have refuted the diagnosis.
+
+**Applied, to `meta/architect.md` § Output and the `meta/dispatch.md` packet
+template:** *no finding goes to a child without a check executed against that
+child's repo, reported with what it returned.* Cross-system pattern claims are
+not exempt — they are the ones that failed. This promotes to a bar the discipline
+this log has recorded failing in three distinct forms (001a supersessions 1 and 2;
+the advisory's stale-Jira inheritance).
+
+**A defect in this log, found while writing the line above and not fixed by
+editing it.** The advisory entry at line 1218 cites `[[verify-preconditions]]` in
+wikilink syntax. **It resolves to nothing — there is no such file in `patterns/`,
+and it is the only wikilink in the entire repo.** It is a citation to the
+author's private memory store leaking into a public log, and this session
+reproduced it verbatim before catching it. That is the
+copies-inherit-the-invisible-part failure occurring inside this repo rather than
+between children. Line 1218 stands unedited because the log is append-only; **this
+paragraph is the supersession.** No pattern file is being created: with zero
+adopters it is a *gap*, not a candidate, by `patterns/README.md`'s own rule for
+mandatory subtraction.
+
+**Disproof 2 was run and narrowed the exemption.** The packet's central fear —
+that MF-10, the best item on the record, would fail this bar — **is false.**
+MF-10 carries a count (*all four proposals target the retro loop*), which is
+checkable and which this session checked. MF-6 carries four verified line cites
+(ZET `:170`, `:188`/`:237`, `:465`; MET `:58`). MF-8 was already labelled a watch
+item rather than a finding. **None of the three would have been blocked.**
+
+The two-class split is still accepted, but for the class the packet named last
+rather than first: SQ-3's four structural questions genuinely have no command.
+**With the constraint that matters written in: a spine question may not be
+written as a proposal.** That label is the exemption from the evidence bar, and
+the way this rule fails is by proposals arriving dressed as questions.
+
+### SQ-3 — Framing accepted. The cut is declined today, and the agenda is recorded.
+
+**The cut to a spot check is not this session's to make.** `meta/thesis.md`
+claim IV's falsifier reads *"review after review"*. Three dispatches inside a
+single review window is not that, and **review 001 has not run**. Declining is
+not disagreement: the 001a dispatch record already downgraded claim IV to
+*contradicted at every instance so far*, and this session adds no new instance to
+that count. The advisory's position stands unchanged — **review 001 should treat
+the cut as the default position needing evidence against it.**
+
+**The four structural questions are accepted as this layer's stated agenda**, and
+one ordering fact is available now rather than at review 001: **question 4 — do
+364 net instruction lines outperform frozen founding files — is the only one with
+an instrument already built, and it is currently unrunnable.** `gates.py` reads 0
+CAUGHT and MET reports escape rate is structurally zero until the first
+instrumented ticket ships. **The cheapest falsifier in the portfolio is blocked
+on a ticket, and that is worth knowing before the question is scheduled.**
+
+Both corollaries are accepted unchanged and neither is new: do not move this
+layer into the teams, and cross-pollination routes peer-to-peer via AF-5 rather
+than through here.
+
+### The two human items — both verified, neither applied
+
+1. **The charter amendment is still unwritten.** `grep -i dispatch charter.md`
+   returns nothing; `charter.md:74` bans editing a child repo and is silent on
+   dispatch. HANDOFF open 7 remains open, and it is his file alone.
+2. **Verified true, and worse than the packet stated.**
+   `.claude/settings.local.json` has **no `deny` key at all** — `permissions`
+   contains only `allow`, 21 entries, including **`Bash(git push *)`
+   unrestricted.** The packet said there was no guard; the accurate form is that
+   there is no deny list to have a gap in. **Not applied.** A permissions change
+   is a change to how this session is constrained, and making it from inside the
+   session it constrains is the wrong hand on the switch. It is also his call
+   whether denies here break his other sessions. **Proposed:** deny `Edit` and
+   `Write` on `../*/**` and on every child path, both forms — the `Write(...)`
+   line is inert alone — plus `Bash(git -C:*)` for the write verbs, which is the
+   gap MET's own audit named and which `Bash(git commit:*)` does not cover.
+
+### Falsifier check
+
+**Not performed.** This is a ruling session, not a review; `meta/architect.md` § 4
+binds reviews. Claim IV is the only claim SQ-3 touches and its status is
+unchanged from the 001a dispatch record. **Review 001 still owes all four in
+writing, and it is still undischarged.**
+
+### Watching
+
+- **Whether the amended bar changes anything.** The next packet is the first
+  produced under it. If its accept rate is unchanged from 2 of 8, the bar was
+  ceremony and should be cut rather than defended.
+- **Whether the spine-question class becomes the escape hatch.** It carries no
+  evidence requirement by construction. **If review 001's packet contains more
+  spine questions than findings, that is the rule failing in the predicted
+  direction**, not the layer maturing.
+- **Whether a delivery-side finding ever survives.** 4 dispatched, 4 dead. Under
+  the amended bar a delivery-side finding must now be checked in a surface § Read
+  forbids, which means **the honest outcome is that this layer stops producing
+  them.** That is the intended effect of the SQ-1 rejection and should be read as
+  the mechanism working, not as the bound tightening unnoticed.
+- **This packet's own scoring.** Built by reading, judged by running: 1 rejected,
+  1 rewritten, 1 accepted-and-deferred. **That is a better rate than 2 of 8, and
+  the reason is that its author wrote the disproofs down.** A packet that names
+  the command that would kill it is worth more than one that runs a command that
+  confirms it.
+
+### Prior proposals — did they land? Checked 2026-08-14, and none had
+
+Run because the ruling session flagged `HANDOFF.md` next-action 1 as possibly
+stale. **It was not stale. Nothing had been discharged**, and the check is
+recorded so the next session does not re-derive it.
+
+**Verified by artifact, not by commit subject** — the discipline this entry just
+wrote into § Output, applied to this layer's own bookkeeping:
+
+| Accepted item | Repo | Check | Result |
+|---|---|---|---|
+| MF-1 § Cuts + two-state clause | ZET | grep Cuts heading / "never recorded is not" in `retro.md`, `architect.md`, `CLAUDE.md` | 0 matches |
+| MF-4 verify-blocks | ZET | grep `verify-block`/`<!-- verify` in `.claude/`, `CLAUDE.md`, `docs/` | 0 matches |
+| MF-1b cap 1,300 → 1,100 | MET | read `architect.md:103` and `:106` | still **1,300**, assertion still `<= 1300` |
+| MF-2b grade the previous cycle | MET | grep prior-cycle language in `retro.md` | 0 matches |
+| MF-8 overhead ratio | MET | grep `retro.md`, `architect.md` | 0 matches |
+| AF-3 severity buckets | MET | same | 0 matches |
+| AF-6 context-per-ticket query | MET | same | 0 matches |
+
+**HEADs at check: ZET `306a59d`, MET `17112a9`.** Every post-dispatch commit in
+either repo is that team's own self-found fix from the 08-14 addendum — the
+`Current state` reconcile and the stale Jira line. **That set is disjoint from
+the seven accepts.** The addendum was accurate and narrow; reading it as
+"the dispatches landed" would have been the error, and it was nearly made here.
+
+**The human approved all seven on 2026-08-14.** Approval is recorded; **nothing
+was applied and nothing was dispatched**, per this session's kickoff. Each team
+writes its own diffs under its own `retro:` prefix. **Not approved and still
+open:** the `charter.md` dispatch amendment (open 7, his file alone by its own
+line 3), MF-7, and the deny list of open 9.
+
+**One trap carried forward.** MET's MF-1b is two edits, not one — the number at
+`architect.md:103` and the executable assertion at `:106`. Apply one and
+`verify_docs.py` fails against MET's own accepted figure. **That is the
+executable-claims convention doing its job**, and it is the first time a
+convention this layer carried has been positioned to catch this layer's own
+proposal being applied carelessly.
+
+### Dispatch, 2026-08-14 — application run, and it went wrong in an instructive way
+
+**Fourth dispatch on verbal authorisation. `charter.md` open 7 still unamended.**
+Unlike the three before it, this one was authorised to *write*: the human had
+approved the seven accepted items, so `apply nothing yet` no longer applied.
+Edit/Write allowed, `git push` and `gh` denied at the tool layer.
+
+**zesty-eng-team was not dispatched.** Its working tree was dirty at check time —
+`docs/team-log.md` modified, a staged rename `tickets/studio-third-mode.md →
+tickets/4273-studio-third-mode.md`, and an untracked `tickets/4274-*` — live
+in-flight work from a concurrent session. **An application session committing in
+that tree could have swept a third party's staged work into a `retro:` commit.**
+Held for the human. This is the second time a concurrent ZET session has
+collided with a dispatch window; the first was `7a3679b` during the advisory.
+
+**mpulse-engage-team: 1 of 5 applied.** Three commits, `17112a9 → eb4280c`,
+nothing pushed. AF-3's tooling half is real and verified — `tools/gates.py`
+buckets CAUGHT by severity, reusing `reviewer.md`'s blocker/suggestion/nit rather
+than inventing a scale, untagged CAUGHT surfaced as `unspecified` rather than
+folded into blockers, exercised against a fixture worklog in a scratch tree.
+
+**The other four were blocked on writes to `.claude/agents/architect.md` and
+`.claude/commands/retro.md`, and the child session diagnosed the cause wrongly.**
+It reported the block as plausibly deliberate — *"in a repo built on 'the
+architect proposes, the Manager applies', the block may well be deliberate"* —
+and committed that reading into `docs/team-log.md` at `eb4280c`.
+
+**Checked, and it is false.** No deny rule anywhere covers `.claude/**`: not
+MET's `settings.json` (its denies are sibling repos, destructive git, and env
+reads), not its `settings.local.json`, not the user-level `~/.claude/settings*`,
+and there is no managed policy. `tools/**` and `docs/**` were writable in the
+same session under the same flags. **The block is harness behaviour around agent
+and command definitions in non-interactive mode, not a guard MET chose.** What
+the mechanism is exactly was not determined and is not asserted here.
+
+**Two findings, and the second is about this layer.**
+
+1. **The child session refused to route around a block it did not understand** —
+   no `git apply`, no permission widening — and said so. **That was correct and it
+   is the behaviour the guard-at-the-permission-layer candidate is supposed to
+   produce.** It then explained the block with a confident, plausible, unchecked
+   mechanism. **Right action, wrong reason, and the reason is what got committed.**
+2. **A dispatched session writes the child's log, and this layer cannot correct
+   what it puts there.** `eb4280c` is now in MET's append-only record asserting a
+   permission guard that does not exist. `meta/dispatch.md` § What this does not
+   solve does not cover this: the never-edit rule means **an error this layer's
+   dispatch induced can only be corrected by the child, and only if someone tells
+   it.** Every prior dispatch ended at a presentation, so no dispatch had ever
+   written to a child log before. **The first application dispatch produced the
+   first uncorrectable induced error.** Carry to review 001.
+
+**Also produced, and worth more than the applied diff:** MET's read path measures
+**1,056 lines against MF-1b's accepted 1,100 cap — 44 lines of headroom**, and
+`retro.md`/`architect.md` are not on the read path, so all five accepts are
+mutually compatible. And **AF-6 has an unverified precondition**: transcripts
+exist at `~/.claude/projects/<slug>/*.jsonl` but whether they carry per-message
+`usage` counts was not checked, and MET flagged that those are HIPAA-platform
+session logs — **the instruction must be scoped to numeric fields and forbid
+transcript content in a retro report.** Writing AF-6 before checking would be
+the verify-preconditions failure a fourth time; **this entry is where that gets
+stopped.**
+
+**And a fifth instance, committed by this session in the paragraph above before
+it was caught:** the broken `[[...]]` wikilink, reproduced *again*, two hundred
+lines after this same session recorded a supersession about it. **The habit
+survived the writing of the rule against it by one entry.** That is MF-1's
+additive ratchet in its smallest observable form, and it is recorded rather than
+silently fixed because the interesting fact is the recurrence, not the link.
+
+### zesty-eng-team, same day — and the dispatch mechanism's real defect
+
+**Prediction made before the run, per `patterns/predict-then-check`:** MF-1 edits
+`.claude/agents/architect.md`, the same file class the harness refused at MET, so
+it will block identically. **Confirmed.** The session stopped on the refusal,
+staged nothing, committed nothing, and — instructed explicitly not to — **did not
+speculate in its log about why.** MET's session, run without that instruction,
+committed a false explanation. **Same layer, same day, two children: the
+difference was one sentence in the dispatch prompt.** The prompt is load-bearing
+and `meta/dispatch.md` does not say so.
+
+**Then MF-4 could not proceed, and the reason is structural.** ZET could not find
+its own record of which targets it had accepted. Verified independently: the
+strings `MF-1`, `MF-4`, `carry-packet`, `meta layer` and `meta-architecture`
+appear **nowhere** in ZET's markdown, and `git log --all -S` across every ref
+returns nothing. `decision-log.md` records retro #3 in extraordinary detail — pass
+1, follow-through, reopened, pass 2, P2-1 through P2-6 — and **the meta packet's
+judging is absent from it entirely.**
+
+**The defect: a dispatch has no write-back.** The child judges, accepts, amends,
+rejects — and that decision is relayed to the human in chat and recorded *here*.
+**Nothing lands in the child's own record.** So the child cannot later act on its
+own decision, which is exactly what happened: ZET was asked to apply something it
+had agreed to and had no way to know what it had agreed to. **And this layer's
+copy was lossy** — `:782` says *"2 of 3 targets rejected"* and names none of them,
+so the decision existed in no reproducible form anywhere. It was in a transcript.
+
+**Recovered from `~/.claude/projects/`, and recorded here permanently so it cannot
+be lost again.** ZET's verdict, verbatim in substance:
+
+> **MF-4 — accept the convention, reject its target list.**
+> - **Typecheck baseline — rejected.** *"We deliberately removed the absolute
+>   number at `2fa7aed`… pinning it re-introduces exactly what we deleted on
+>   evidence."*
+> - **Metric denominator — rejected.** Already executable via `retro-metric.py`;
+>   a prose assertion beside it is redundant.
+> - **`decision-log`'s bot-behaviour claims — accepted.** *"Right, and cheap: one
+>   `gh api` call on `created_at == updated_at` would have caught `aa5a5f4`
+>   before `c2fa6be` had to."*
+> - **Plus a target the packet did not name, added by ZET:** the metric's
+>   definition across `charter.md` and `operating-rules.md` — *"the
+>   replication-drift failure we actually had. Two assertions, both sub-second."*
+
+**`HANDOFF.md`'s "two verify-blocks on targets it chose" was correct in count and
+useless in practice**, because it named neither. **A record that says a decision
+was made without saying what it was is not a record.** That is MF-4's own thesis
+turned on this layer for the second time.
+
+**Re-dispatched with the recovered decision: MF-4 applied.** `d8c9a49 →
+354359d`, two commits, not pushed. Three `**Verify.**` blocks — one in
+`decision-log.md`, two across `charter.md` and `operating-rules.md`.
+
+**The convention caught a defect in itself on its first application.** ZET ran
+every block before committing, and the pattern `claude-[a-z-]*` **matched the
+verify block's own quoted pattern text**, emitting a spurious line the stated
+expected output did not have. Fixed to `claude-[a-z][a-z-]*`. **A block committed
+unrun would have shipped broken on its first read** — which is precisely the
+claim MF-4 was carried on, demonstrated by the adopting system against the
+convention itself on day one.
+
+**A verification error of this layer's own, caught and worth keeping.** The check
+that MF-4 had landed grepped for `<!-- verify`, **MET's marker**. ZET adopted its
+own `**Verify.**` form, so the grep returned zero and the work looked absent.
+**This layer verified an adopting system using the proposing system's
+implementation detail** — the uniformity assumption `meta/architect.md` § 2
+explicitly forbids, committed by the layer that holds the rule. The diff settled
+it; the grep would have produced a false finding.
+
+**Tally: 2 of 7 applied.** ZET MF-4 and MET AF-3's tooling half. **The other five
+are one blocker, not five** — every one is an edit to `.claude/agents/*.md` or
+`.claude/commands/*.md`, refused by harness behaviour in non-interactive mode. No
+deny rule at any settings level accounts for it. **They need an interactive
+session, and that is the whole remaining task.**
+
+### The `.claude/**` block is harness-level, not a permission rule — and this layer stops here
+
+**Attempted, on the human's instruction: an explicitly scoped grant.**
+`--allowedTools "Edit(.claude/**)"`, chosen over
+`--dangerously-skip-permissions` so that MET's *real* denies — sibling-repo
+writes, force pushes, six protected-branch pushes, `.env` reads — stayed intact.
+**It was refused anyway.** Both `.claude/agents/architect.md` and
+`.claude/commands/retro.md` blocked exactly as before.
+
+**So the block is not a permission rule and cannot be lifted by an allowlist.**
+No deny exists at any settings level; an explicit allow does not override it. The
+only remaining lever is blanket bypass, **which would strip the guards MET
+deliberately configured in order to apply four proposals** — a worse trade than
+leaving them unapplied, and not this layer's call to make. **MF-1b, MF-2b, MF-8,
+AF-6 and ZET's MF-1 stay approved and unapplied. They need a human at a keyboard.**
+
+**ZET was not re-dispatched for MF-1.** The block is confirmed twice and the
+grant's failure is confirmed once; a third session would spend a window to
+reconfirm a known fact. **Recorded as a decision rather than an omission.**
+
+**AF-6 is answered, and this is the rule from this morning firing.** The session
+checked the precondition *before* writing the instruction, which is the first time
+in this log that has happened in the right order. Transcripts do carry usage:
+`type == "assistant"` records hold `message.usage` with `input_tokens`,
+`output_tokens`, `cache_read_input_tokens`, `cache_creation_input_tokens`. **Two
+limits any instruction must state, both found by checking rather than assuming:**
+
+- **Subagent usage is absent.** `isSidechain` is `false` on every record across
+  all 16 transcripts; `Agent` results carry no counts. **MET delegates by
+  default, so any figure is main-loop only — a floor, not a total.**
+- **Nothing keys a session to a ticket.** `gitBranch` tracks this repo and one
+  file spans `main`, `develop` and `release/1.120.0`. Attribution must come from
+  `timestamp` against the log and is approximate.
+
+**Had AF-6 been written when it was accepted, it would have specified a number
+that is a floor and called it a total.** The precondition rule paid for itself on
+its first application, one day after being written.
+
+**MET corrected its own false record: `b0517e5`,** appended below the original
+entry rather than rewriting it. Its own account is the best sentence this
+portfolio produced today: *"What I did was observe a refusal and reach for the
+most flattering explanation available — that the system was correctly stopping an
+agent from editing its own definition — then write it into a permanent log as a
+finding. The disproving observation was one `cat` away in a directory I had
+already run commands in."* **The induced error recorded above is closed**, and it
+was closed by the child, which is the only place it could be.
+
+**Found in passing and not touched:** `.claude/commands/retro.md:21` instructs the
+architect to produce its output *in* `.claude/agents/architect.md` — its own
+definition file, which it is forbidden elsewhere to edit. Reads as a wrong path
+rather than an intent. **MET flagged it for its own next retro; this layer has no
+business in it.**
+
+**Final tally for 2026-08-14: 2 of 7 applied**, five blocked on one cause that no
+amount of dispatching will clear.
+
+### Validation, end of 2026-08-14 — 7 of 7 applied, and one thing is not where it looks
+
+**All seven approved items are applied and verified by artifact.** Checked in the
+child repos, not taken from commit subjects.
+
+**zesty-eng-team — on `main`, synced to `origin/main`, done.**
+
+- **MF-4** — three `**Verify.**` blocks, `7ad292a`.
+- **MF-1** — `a86efed`. § Cuts is item 4 of the architect's Output at
+  `architect.md:85`, mandatory. **The two-state clause survived intact and is
+  stronger than what was carried:** *"Report an inert rule as inert; never count
+  it as unused, and never cut one on silence alone,"* with P4 and P7 cited from
+  `decision-log.md:409` as the live case. And `:92` closes the loop the packet
+  did not — *"an empty § Cuts is indistinguishable from a § Cuts nobody wrote,
+  which is the same two-state confusion one level up."* **ZET generalised its own
+  clause to the mechanism containing it.** That is better than the proposal.
+
+**mpulse-engage-team — all four applied, `verify_docs.py` 6/6 green.**
+
+- **MF-1b** — both edits made: `architect.md:103` reads 1,100 and the assertion at
+  `:106` tests `<= 1100`. **The trap this layer flagged did not fire.**
+- **MF-2b** — `retro.md:21` grades the previous cycle's `retro:` commits against
+  the window, with **nothing** as an allowed answer.
+- **MF-8** — `retro.md:33`, ratio with both raw numbers, explicitly not a verdict.
+- **AF-6** — `retro.md:35`. Numeric fields only, projected through a selector,
+  *"never by reading the files."* **And it re-measured rather than inheriting this
+  layer's figure:** 17 transcripts, 4,246 `isSidechain: false`, 1,914 absent, zero
+  `true` — against the 16 this log recorded. It writes the number with a `≥` and
+  states it is a main-loop floor. **The child corrected the layer's count while
+  applying the layer's proposal**, which is Claim IV's pattern arriving in its
+  mildest and most useful form.
+
+**But `origin/main` at MET is still `17112a9`.** Every commit from today — all
+ten, including AF-3 from the first dispatch — sits on
+`retro/002-apply-approved-proposals`, pushed as a branch and **not merged.**
+**MET's own convention has been straight-to-main**: every prior `retro:` commit is
+first-parent on `main`. So a reader of MET's `main` today sees a 1,300-line cap,
+no § Cuts grading step, no ratio, no context floor, and none of the AF-3 tooling.
+
+**Recorded as an observation, not a finding, and deliberately not acted on.**
+Whether that branch wants a PR or a fast-forward is MET's business and the
+human's; this layer does not merge in a child repo and does not have an opinion
+about the team's branching. **It is flagged only because "applied" and "on `main`"
+have come apart, and the next session reading either repo will assume they have
+not.**
+
+**Closing the day: 7 of 7 approved items applied, 2 by dispatch and 5 by the
+human at a keyboard.** The five this layer could not land were blocked by one
+harness behaviour, not by five judgments — and the two it did land were both
+improved by the child that applied them.

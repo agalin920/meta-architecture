@@ -40,7 +40,10 @@ architect's proposals — including rejection, which is information.
 
 ## Findings
 ### MF-n — <one line>
+**Class:** finding | spine question
 **Evidence:** <file, commit, or log line, in this repo or another>
+**Check run in the target repo:** <the command, and what it returned. Required for a
+finding. Omitted for a spine question, which has none by construction.>
 **Proposed:** <the smallest change that addresses it>
 **Why it is being carried:** <what this layer could see that the local architect could not>
 **Known weakness:** <n=1, untested, cost not yet measured — state it>
@@ -51,6 +54,12 @@ architect's proposals — including rejection, which is information.
 
 **Every finding carries its weakness.** A packet that arrives looking settled
 invites rubber-stamping, which is the failure the judging step exists to prevent.
+
+**Every finding carries its executed check, added 2026-08-14.** Of the eighteen
+items dispatched before that date, none carried one and eleven were rejected —
+ten of them for asserting something about the target repo's own mechanism that
+was never checked there. `meta/architect.md` § Output holds the rule. **An item
+with no check and no `spine question` label does not go.**
 
 ## The dispatch
 
