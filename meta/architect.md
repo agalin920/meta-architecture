@@ -216,6 +216,16 @@ exemption from the evidence bar, and the way this rule fails is by proposals
 arriving dressed as questions. If a packet ever carries more spine questions than
 findings, suspect the exemption before crediting the maturity.
 
+**The bar binds self-claims too, added 2026-08-15.** A claim this layer writes
+about itself, its harness, or its own mechanisms in its own log carries the
+same obligation as a finding dispatched to a child: the executed check and what
+it returned, or an explicit *unverified* label. The gap this closes is on the
+record: three self-claims failed in one afternoon on 2026-08-14 — two about a
+harness mechanism, one about a child's settings — each asserted without a
+check, by the same session that was writing the rule against exactly that for
+children. A refusal is evidence about a refusal and nothing else, and the log
+is where that discipline was weakest.
+
 **And the read-list is closed under disproof, which is why § Read is not wider.**
 If you can build a finding from what you are permitted to read but can only
 refute it from what you are not, you have manufactured an unfalsifiable finding.

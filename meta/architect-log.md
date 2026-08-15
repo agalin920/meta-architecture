@@ -1877,3 +1877,67 @@ the two feedback instruments as packet items with executed checks (ruling 4);
 judge the MET shadow-grants finding (`settings.local.json`, 71 lines including
 `Bash(git push *)`, invisible to retros — new, recorded in the inbox packet);
 and score this entry's own claims the way it scores everyone's.
+
+---
+
+## Architectural proposals AR-1 … AR-4 — 2026-08-15, on the human's instruction
+
+**Provenance:** the human reviewed the goal rulings of 2026-08-14, asked for
+this layer's architectural assessment of the agent systems themselves, and
+instructed all four suggestions applied. **Application respects the boundary:**
+AR-4 is this repo's and is applied directly below; AR-1 … AR-3 are child-repo
+changes and go by carry-packet — judged by each child on its own evidence,
+applied only by a session inside that repo. Every finding carries a check
+executed in the target repo this session.
+
+### AR-1 — the retro's judge is the party being judged (ZET, MET)
+
+The main session holds five jobs — dispatcher, judge, applier, metric
+reporter, and the subject of the retro — and `/retro` runs in that same
+working context. **Check, both repos:** `grep -ci "fresh session|cold
+session|new session" .claude/commands/retro.md` → **0 at MET, 0 at ZET.**
+Proposed: `/retro` requires a session that did none of the window's work.
+This is `independent-adversary` applied to the improvement loop's judging
+seat — SQ-3 structural question 3, moved from question to proposal. Packeted.
+
+### AR-2 — the boot ritual is compliance, not property (MET)
+
+`preflight.py` exists because the review gate once failed open and looked
+identical to passing — and it runs only where prose remembers to call it.
+**Check:** invocation sites: `take-ticket.md:11` only; hooks: `.claude/hooks`
+absent, `"hooks"` key present in neither settings file (0/0). Proposed: a
+SessionStart hook running preflight, fail-visible. The team's own strongest
+pattern — enforcement at the harness layer beats instruction — applied to its
+own boot. Packeted to MET only; ZET has no preflight script to hook and
+building one from here would be machinery-from-above.
+
+### AR-3 — knowledge accumulates off every path that gets read (MET; origin ZET)
+
+**Check at MET:** `knowledge/` holds 7 files; the read-path assertion lists 2
+(`platform.md`, `repo-map.md`); `test-suites-that-can-drop-a-live-db.md` is
+referenced exactly once outside itself (`definition-of-done.md:118`, a
+parenthetical). **Origin of the shape, verified at ZET:** `CLAUDE.md:18`
+already routes knowledge conditionally (*"read `knowledge/product.md` before
+any ticket that changes something a user sees"*). Proposed at MET: a routing
+manifest on the read path — condition → file — so knowledge grows off-path
+and loads on demand, resolving growth against the 1,100 cap. Carried in ZET's
+shape per dispatch rule 5; nothing proposed at ZET, which is cited as origin.
+
+### AR-4 — nothing binds this layer's claims about itself. Applied.
+
+The SQ-2 bar bound findings dispatched to children; three self-claims failed
+in one afternoon (2026-08-14) in this log with no check attached. **Applied
+2026-08-15 to `meta/architect.md` § Output:** self-claims carry the executed
+check or an explicit *unverified* label. This was the amendment the
+supersession entry deliberately deferred at one day's evidence; the human
+instructed it applied.
+
+### Dispatch
+
+Packets: `proposals/2026-08-15-mpulse-engage-team.md` (AR-1, AR-2, AR-3) and
+`proposals/2026-08-15-zesty-eng-team.md` (AR-1). **No MDT packet** — ruled
+low-cadence 2026-08-14; its standing wake-up item precedes any new proposal.
+Judging dispatched read-only from this layer, with `Edit`/`Write` on child
+paths denied at the settings layer — the first dispatch where the boundary
+holds as a property rather than a judgment. Application, if items survive
+judging, is a child-side session with the human's approval, per the charter.
