@@ -1761,3 +1761,51 @@ not.**
 human at a keyboard.** The five this layer could not land were blocked by one
 harness behaviour, not by five judgments — and the two it did land were both
 improved by the child that applied them.
+
+### Supersession — the harness-block finding was an asserted mechanism, and it was wrong
+
+**Two entries above are corrected. The log is append-only; this is the correction.**
+
+**1. The branch is merged.** MET's `origin/main` is now `cac4466`; PR #1 merged
+2026-08-15T00:25:07Z. The cap reads 1,100 with its assertion, and `retro.md`
+carries the grading step, the ratio and the context floor **on `main`**, not only
+on a branch. The observation that *"applied" and "on `main`" have come apart* is
+discharged. **It was never a stranded branch — MET had opened a PR, which this
+layer did not check before flagging it.**
+
+**2. The `.claude/**` finding is withdrawn.** This log states that the block is
+*"harness-level, not a permission rule"*, that *"an explicit allow does not
+override it"*, and that the five items *"need a human at a keyboard."*
+
+**MET's PR body reports all four landed on the first attempt, that the block did
+not recur, and that no config changed in between.** So the refusals were
+intermittent, or something about the session differed in a way nobody has
+identified. **A fixed, unliftable harness protection is not what was happening,
+and this layer asserted that it was — from two observed refusals, with no
+mechanism ever established.**
+
+**This is the third time today, and it is the failure this session ruled
+against.** SQ-2 was accepted precisely because ten of eleven rejected findings
+asserted a mechanism that was never checked. This layer then did it twice in the
+same afternoon — once about MET's settings, corrected within the hour, and once
+about the harness, corrected here — **after writing the rule.** MET's own sentence
+is the standard and this layer has now failed it three times: *"a refusal is
+evidence about a refusal and nothing else."*
+
+**What can be said, and it is much less:** on 2026-08-14 three non-interactive
+dispatches had writes to `.claude/agents/*.md` and `.claude/commands/*.md`
+refused, including one under an explicit `Edit(.claude/**)` grant; a later
+interactive session wrote both files without difficulty and no configuration
+changed between them. **The cause is unknown and no explanation is offered.**
+
+**Carry to review 001:** the SQ-2 bar as written binds *findings dispatched to a
+child*. **Nothing binds a claim this layer writes about itself in its own log**,
+which is where all three of today's failures landed. That gap is the obvious next
+amendment and it is deliberately not made here — it is one day's evidence, and
+this entry is exactly the sort of fresh, persuasive, self-generated case that
+`meta/architect.md` § 2 names as the moment the gate exists for.
+
+**Final state, 2026-08-14: 7 of 7 approved items applied and on `main` in both
+child repos.** ZET `main` synced; MET `main` synced at `cac4466`; this repo
+synced. **Open and untouched: `charter.md` on dispatch (open 7), MF-7, and this
+repo's absent deny list (open 9).**
