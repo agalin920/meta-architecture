@@ -1941,3 +1941,66 @@ Judging dispatched read-only from this layer, with `Edit`/`Write` on child
 paths denied at the settings layer — the first dispatch where the boundary
 holds as a property rather than a judgment. Application, if items survive
 judging, is a child-side session with the human's approval, per the charter.
+
+### AR dispatch record — 2026-08-15, same day. 1 of 4 survives, amended
+
+Judged read-only inside each child under the settings-layer write guard —
+the first dispatch where the boundary held as a property. Scoreboard:
+
+| Item | ZET | MET |
+|---|---|---|
+| AR-1 cold-seat retro | **Rejected** | **Rejected** |
+| AR-2 SessionStart preflight hook | not carried | **Rejected** |
+| AR-3 knowledge routing manifest | origin, not carried | **Accepted, amended** |
+
+**Both AR-1 rejections are evidence-grade and different.** ZET: pass 2 already
+caught the judging seat's own two false statements in practice; a cold judge
+cannot count metric #2 (Director findings arrive mostly in chat, which a
+fresh session never saw); the repo's proven failure class is wrong records,
+which a cold reader trusts *harder*. Re-entry condition recorded: a
+judge-applied false claim surviving both pass 2 and the Manager. MET: the
+five-jobs coupling was misdescribed — its retros already run as their own
+sessions distinct from the working sessions they judge (team-log shows it);
+the coupling is role-and-docs, which a fresh boot does not remove. Both
+courts, same statute: no evidence, no proposal; n=0 conceded in the packet.
+
+**AR-2 died on measurements this layer did not take.** MET ran `preflight.py`:
+**10.9 s wall, network-bound, 15+ GitHub API calls** — at every session boot,
+including `/standup` and `/timesheet`. Missed second invocation site
+(`architect.md:43`). And the mechanism claim was false: a SessionStart hook
+injects context; **it cannot block a session** — fail-loud was purchasable,
+fail-closed was not, and the packet sold fail-closed. Preflight's own
+docstring supplied the doctrine: a green banner reading as full coverage
+while the one non-scriptable capability stays unchecked is worse than none.
+Residue accepted as sensible: add preflight to `retro.md` §1's tool line.
+
+**AR-3 survived because it was the one item about a present, measurable
+defect** — and MET found it was *worse* than carried:
+`apollo-program-results.md` (135 lines) is referenced **nowhere**. Amendments,
+all correct: manifest ≈7 lines in `CLAUDE.md` (pointing at the existing
+`/timesheet` route rather than duplicating it); the verify block goes
+**off-path** in `architect.md` so it costs zero read-path lines; **sequenced
+after AF-3's approved doc half, which holds prior lien on the 44-line
+headroom**; the orphaned apollo file flagged to retro 002 as a cut candidate
+as well as a manifest row.
+
+**Packet errors, owned per AR-4 (each verified by the child):** AR-1's
+five-jobs description was false at MET; AR-2's enforcement claim was false;
+and the packet cited "MET rejected MF-2" — **a fact that exists only in this
+layer's log.** MET searched its own record and found nothing, because the
+001a judging predated the write-back lesson. The dispatch write-back defect
+has now produced its predicted second failure: this layer cited a child's
+decision *to that child* and the child could not verify it.
+
+**Claim IV, fifth consecutive hit.** The audited parties out-verified the
+auditor again — timed the script, found the second call site, found the
+fully-orphaned file, caught the false mechanism claim. The one survivor was
+the one finding grounded in a measured present defect rather than a
+structural argument. The lesson is now beyond dispute for review 001:
+**structural arguments from this layer lose; measured defects survive.**
+
+**Pending the human's approval:** one MET application session — AF-3's doc
+half first, then AR-3 as amended, `retro:` commits, its own session. ZET's
+counter-diff (a step-5 line counting judge-applied items later disproven)
+and MET's retro-§1 preflight line are each team's own retro material, not
+this layer's to press.
