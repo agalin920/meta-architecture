@@ -205,7 +205,7 @@ drift** (`047dd6b`, D-018 and D-019). The open question is now whether it runs
 | | |
 |---|---|
 | **Domain** | Engineering delivery on DPI — 4 repos under `dpi/`, Jira project `PDEV` |
-| **Status** | `active` |
+| **Status** | `active` — **low-cadence, by decision** (human, 2026-08-14): runs when DPI work arrives; quiet windows are not misses |
 | **Loop** | Slash commands — same six as its sibling |
 | **Cadence** | Per ticket, Manager-driven |
 | **Architect** | `.claude/agents/architect.md`, at `/retro` |
@@ -215,6 +215,16 @@ drift** (`047dd6b`, D-018 and D-019). The open question is now whether it runs
 | **First commit** | 2026-08-10 · 1 commit · no ticket run yet |
 
 **Derived from zesty-eng-team**, same as its sibling, same caveat.
+
+**Ruled 2026-08-14 by the human: the quiet is deliberate.** DPI gets little
+work by the shape of his job, not by neglect — the exact ambiguity
+`meta/architect.md` § 1 says this layer cannot resolve alone, now resolved.
+Do not read low commit counts here as a cadence miss. **Standing wake-up
+item:** the first session that opens this repo fixes the four command files
+still routing Jira through the dead MCP — `take-ticket.md:10` carries a false
+PHI-sanitization claim (evidence in
+`inbox/2026-08-14-goal-refinement-and-children-state.md` DF-1) — before any
+`/take-ticket` runs.
 
 **The one thing here that is genuinely new to the portfolio:** documenting the
 product is a *gate*, not a byproduct (`docs/decision-log.md` D-003). DPI has no

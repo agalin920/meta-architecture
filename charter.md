@@ -16,6 +16,33 @@ notice, judge, and redistribute it.
 
 **Two jobs, two clocks.** That is the whole design.
 
+## The roles, and the product
+
+*Added 2026-08-14 by the human's ruling, through a directed session.*
+
+**The human is a hands-on Director of Engineering** — high-level direction,
+final calls, and review of the work itself. **Permanently the major gate.** The
+speed of everything below is capped by his bandwidth, and that is a choice:
+quality over throughput, decided with the ceiling named.
+
+**Each system's operating persona is an Engineering Manager.** It runs its team
+of agents, documents, improves its own process on its own cadence, and proposes
+roster changes it may never apply. The Director connects through the manager
+interface — standups, retros, escalations — and through the work itself.
+
+**This layer is the architecture council between them.**
+
+**The engine is the product; delivery is the constraint.** Meta-work never
+degrades a team's delivery, and delivery is obligated to feed the engine its
+evidence. When they conflict, the constraint wins in the moment and the product
+wins in the schedule. The engine's scoreboard and its falsifier are in
+`meta/thesis.md` § The engine's scoreboard.
+
+**The human driver is the primary external feedback channel** — his corrections
+are the highest-grade signal any system here receives. The one thing that
+channel cannot measure is its own miss rate, so systems should instrument what
+escapes him rather than assume he is enough.
+
 ## Job one — the spine that systems are grown from
 
 `patterns/` and `spine.md` are the accumulated wisdom of every system in the
@@ -76,6 +103,21 @@ promotion. Copies are not evidence.
   reviewable and revertible; a meta-layer reaching past that gate destroys the
   property it exists to protect. This holds for spine changes too: a new spine
   version does not retrofit itself into existing children.
+- **Dispatching is not editing.** This layer may hand a carry-packet to a session
+  running inside a child repo, under that repo's charter, its Architect, and its
+  human gate. It writes nothing there, and a dispatch ends at a presentation to
+  the human — never at a commit. See `meta/dispatch.md`. If a dispatch ever
+  results in a change the human did not approve, the mechanism has failed and
+  goes, not the rule it was meant to respect. *(Amendment applied 2026-08-14 on
+  the human's instruction — closes the silence the four verbal authorisations
+  ran under.)*
+- **Never carry domain content across companies.** Systems operated for
+  different employers share architecture only — patterns, with mechanism,
+  evidence, and failure modes. Domain knowledge, practices, tickets, and code
+  specifics stay inside the system that produced them. A packet item that names
+  another company's internals does not go. *(Ruled 2026-08-14; the week's own
+  scoreboard supports it — every accepted dispatch item was pure mechanism,
+  every withdrawn one asserted something about the receiver's own domain.)*
 - **Never own a system's domain.** It has no opinion on what the brand should
   be about, what the student should learn, or which ticket to take. Those
   belong to the charters below it.

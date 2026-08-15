@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "deny": [
+      "Edit(../**)",
+      "Write(../**)",
+      "Edit(../personal-university/**)",
+      "Write(../personal-university/**)",
+      "Edit(../brand-system/**)",
+      "Write(../brand-system/**)",
+      "Edit(../media-log/**)",
+      "Write(../media-log/**)",
+      "Edit(../zestyio/**)",
+      "Write(../zestyio/**)",
+      "Edit(../mpulsemobile/**)",
+      "Write(../mpulsemobile/**)",
+      "Bash(git -C ../* commit*)",
+      "Bash(git -C ../* push*)",
+      "Bash(git -C ../* merge*)",
+      "Bash(git -C ../* reset*)",
+      "Bash(git -C ../* rebase*)",
+      "Bash(git -C ../* apply*)"
+    ]
+  }
+}

@@ -1809,3 +1809,71 @@ this entry is exactly the sort of fresh, persuasive, self-generated case that
 child repos.** ZET `main` synced; MET `main` synced at `cac4466`; this repo
 synced. **Open and untouched: `charter.md` on dispatch (open 7), MF-7, and this
 repo's absent deny list (open 9).**
+
+---
+
+## Rulings on the goal — 2026-08-14, interactive session with the human
+
+**Provenance:** not a review; the numbered clock is untouched. The human asked
+for a holistic assessment of this layer and the two mPulse children against his
+stated goal, then answered a structured interrogation of the vision question by
+question. **Every ruling below is his; this session held the pen** — including
+in `charter.md`, on his explicit instruction, which is the file's own authority
+exercised through a scribe and is recorded here so the diff is not misread as
+agent overreach. Input packet:
+`inbox/2026-08-14-goal-refinement-and-children-state.md` (findings there carry
+their executed checks).
+
+### The eight rulings
+
+1. **The engine is the product; delivery is the constraint.** Written into
+   `charter.md` § The roles, and the product. Conflicts: constraint wins in the
+   moment, product wins in the schedule.
+2. **Earned autonomy, scoped small.** Internal change-classes (process tweaks,
+   knowledge files) may graduate from pre-approval to post-hoc review on
+   evidence — the human's own approval history is the evidence. Work product,
+   roster changes, and final calls never graduate. **Review 001 defines the
+   classes and the graduation bar.**
+3. **The engine's scoreboard: births, promotions, transfer yield**, with a
+   two-quarter falsifier, accepted by the human in writing. Now in
+   `meta/thesis.md` § The engine's scoreboard.
+4. **The human driver is the primary external feedback channel**, with the
+   miss-rate clause and its two instruments (escape tracking, calibration
+   sample). Recorded as a `proposed` candidate in `patterns/README.md`. The
+   instruments are **review 001 packet material**, not dispatched today.
+5. **The sharing bridge is this layer, architecture-only cargo.** AF-5's peer
+   channel is **rejected across companies** — decision logs carry company
+   specifics. It remains available in principle for the same-company mPulse
+   pair, moot while MDT is low-cadence. Boundary written into `charter.md` and
+   `meta/dispatch.md` rule 6. Cadence stays quarterly with the human flag as
+   the fast path.
+6. **Hands-on Director, permanently the major gate.** The bandwidth ceiling is
+   accepted as the cost of quality, with the ceiling named in the charter.
+7. **No birth is forced.** The two-quarter clock runs; a toy system counts for
+   nothing. If no real domain surfaces, the falsifier fires honestly.
+8. **MDT is `active — low-cadence, by decision`.** The quiet is deliberate —
+   claim III's neglect-vs-deprioritisation ambiguity, resolved by asking, which
+   is what `meta/architect.md` § 1 prescribes. Registry updated, with a
+   standing wake-up item: fix the four command files routing Jira through the
+   dead MCP (DF-1, false PHI-sanitization claim at `take-ticket.md:10`) before
+   any `/take-ticket` runs.
+
+### Also closed today
+
+- **Open 7 closed.** The dispatch amendment is applied to `charter.md` as
+  drafted; `meta/dispatch.md`'s draft section now records the application.
+- **Open 9 closed.** `.claude/settings.json` created with a deny list: `Edit`
+  and `Write` on `../**` and each child path by name (both verbs per path —
+  the `Write(...)` form is known-inert alone), plus best-effort `Bash(git -C
+  ../* <write-verb>*)` lines. **The Bash patterns are untested against the
+  harness matcher and may be inert; the Edit denies are the load-bearing
+  guard.** Applied by the human's explicit instruction, which answers the
+  wrong-hand-on-the-switch objection recorded at the SQ rulings.
+
+### Carried to review 001, in addition to its standing agenda
+
+Define the earned-autonomy change-classes and graduation bar (ruling 2); carry
+the two feedback instruments as packet items with executed checks (ruling 4);
+judge the MET shadow-grants finding (`settings.local.json`, 71 lines including
+`Bash(git push *)`, invisible to retros — new, recorded in the inbox packet);
+and score this entry's own claims the way it scores everyone's.

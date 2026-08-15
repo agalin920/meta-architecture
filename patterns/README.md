@@ -195,6 +195,32 @@ things that were true and not otherwise recoverable". If it produced filler, thi
 becomes a `retired` entry with the reasoning, which is worth as much as a `proven`
 one.
 
+## Candidate recorded 2026-08-14 — the human driver as primary feedback
+
+**The human driver is the primary external feedback channel.** Stated by the
+human, 2026-08-14, as the abstraction behind every system here: the agents
+produce, the human corrects, and the corrections are the highest-grade signal
+the system receives. The evidence is real — ZET's Director findings per ticket,
+MDT's mandatory `## Manager findings` heading, MET's 129→30-line scope
+correction — and the pattern is currently implicit in every system and stated
+in none.
+
+**Its failure mode, which is the load-bearing half:** a feedback channel that
+is also the approver and the bottleneck **cannot measure its own miss rate.**
+What the human catches is logged; what he misses is counted by nowhere. The
+honest form of the pattern therefore requires instrumenting what escapes him:
+
+- **Escape tracking** — defects surfacing later (bug tickets, incidents,
+  reverts) traced to the originating PR. MET's preferred escape-rate metric is
+  this instrument; it currently has no feed.
+- **A calibration sample** — one team PR per quarter reviewed by a second
+  human, findings diffed against the driver's. Predict-then-check aimed at the
+  reviewer.
+
+Status: `proposed`. Present implicitly everywhere, instrumented nowhere. It
+enters the catalog proper when one system builds either instrument and it
+produces a datapoint.
+
 ## Candidates recorded at review 001a, 2026-08-13
 
 Five, from the two engineering teams. **None promoted. `spine.md` untouched.**

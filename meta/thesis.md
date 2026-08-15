@@ -156,7 +156,31 @@ Then the audit is redundant and should be cut to a spot check.
 
 ---
 
-## What this layer is *not* claiming
+## The engine's scoreboard — added 2026-08-14, on the human's ruling
+
+The human ruled that **the engine is the product and delivery is the
+constraint** (`charter.md` § The roles, and the product). A product needs a
+metric, and "findings a local Architect could not have made" is an auditor's
+metric, not an engine's. The engine is judged on three numbers:
+
+1. **Births** — systems grown from `spine.md`, not copied. For each, whether it
+   reached competence faster than a cold start would have. This is claim I's
+   test, and it stands at zero.
+2. **Promotions** — patterns reaching `proven` under the independence bar: two
+   or more independent adopters plus evidence of a changed outcome. Zero under
+   the current bar. This is what "knowledge grew" means here — not more lines,
+   more load-bearing verified mechanism inherited by default.
+3. **Transfer yield** — of the patterns the bridge carries, how many are
+   accepted *and later measurably change an outcome at the receiver*.
+   Acceptance alone is vanity; five items were accepted in the week of
+   2026-08-14 and none has produced a datapoint.
+
+**The falsifier, accepted by the human in writing:** two consecutive quarters
+with zero births and zero promotions means the engine is not an engine — it is
+an audit-and-hygiene function for the existing teams, which is a smaller and
+still legitimate claim, and the thesis gets rewritten to it rather than
+carried on hope. No birth is forced to beat the clock: a toy system generates
+no honest feedback and counts for nothing.
 
 - **Not that the systems should converge further.** Divergence where domains
   genuinely differ is correct. A catalog that pushes uniformity is worse than no

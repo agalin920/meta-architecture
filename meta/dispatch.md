@@ -95,6 +95,12 @@ the same loss as editing the repo directly, arrived at more slowly.
    is being carried to another, dispatch to the *inventor* first if the finding
    also proposes a change there. A pattern being carried outward while its origin
    is still being revised produces two divergent versions and no lineage.
+6. **No domain content crosses companies.** Added 2026-08-14, ruled by the
+   human, now in `charter.md`. Between systems operated for different employers
+   a packet carries architecture only — mechanism, origin, evidence, failure
+   modes. Domain knowledge, practices, tickets, code specifics, and anything
+   company-identifying stay in the system that produced them. Same-company
+   siblings (the two mPulse teams) are exempt from this rule and only this one.
 
 ## What this does not solve
 
@@ -105,19 +111,9 @@ and something else should.
 
 ---
 
-# Charter amendment, for the human
+# Charter amendment — applied 2026-08-14
 
-**`charter.md` is the human's alone to edit.** The Meta-Architect may propose this
-and may not apply it. Suggested wording, to be added under § What it must never
-do, after the *never edit a child repo* bullet:
-
-> **Dispatching is not editing.** This layer may hand a carry-packet to a session
-> running inside a child repo, under that repo's charter, its Architect, and its
-> human gate. It writes nothing there, and a dispatch ends at a presentation to
-> the human — never at a commit. See `meta/dispatch.md`. If a dispatch ever
-> results in a change the human did not approve, the mechanism has failed and
-> goes, not the rule it was meant to respect.
-
-**The amendment is worth making explicitly rather than reading dispatch as
-already permitted.** The current wording bans editing and is silent on dispatch,
-and silence is how a boundary erodes without anyone deciding to move it.
+The amendment drafted here was applied to `charter.md` on 2026-08-14, on the
+human's explicit instruction in an interactive session (this closes HANDOFF
+open 7). The session held the pen; the decision was his. The wording landed as
+drafted, under § What it must never do.

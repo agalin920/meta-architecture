@@ -16,16 +16,19 @@ layer taking on ceremony it does not need, which is a named failure mode in
 ## Current
 
 ```yaml
-status: review 001a run 2026-08-13 — scoped to the two engineering teams
+status: goal rulings recorded 2026-08-14 — eight decisions by the human,
+             see the final architect-log entry. Charter amended (roles/product,
+             dispatch, company boundary). Deny list applied. Opens 7 and 9 closed
 last_review: 001a (scoped, 2026-08-13). 000 was the founding entry
-next_review: 001 — full portfolio, six systems. Undischarged; 001a did not
-             cover it and its first job is unchanged
-registry_changed: 2026-08-10 — two systems added
-purpose_changed: 2026-08-10 — generative half made explicit, kill condition
-             removed. Not a review. See below.
-dispatched: 2026-08-13 — both packets, MET then ZET. Child repos verified
-             unchanged. 5 accepted, 5 rejected. Nothing applied anywhere;
-             the approvals are the human's. See Open 7.
+next_review: 001 — full portfolio, six systems. Undischarged. New agenda from
+             the rulings: earned-autonomy change-classes, the two feedback
+             instruments, the MET shadow-grants finding
+registry_changed: 2026-08-14 — MDT ruled active/low-cadence by decision
+purpose_changed: 2026-08-14 — engine is the product, delivery the constraint;
+             hands-on Director permanently the gate; scoreboard + falsifier
+             in meta/thesis.md. By the human, through a directed session
+dispatched: 2026-08-14 — all seven approved items applied and on main in both
+             child repos. Nothing pending dispatch
 ```
 
 ## What this layer is now
@@ -132,8 +135,10 @@ day. Full record in [`meta/architect-log.md`](meta/architect-log.md) review 000.
    **Review 001a came in at five of eight cross-system** — better, and the three
    local ones are the three child inventions this layer *carried* rather than
    found. Carrying is a service, not an insight. Read it that way too.
-7. **`charter.md` is still silent on dispatch, and both packets have now been
-   dispatched anyway** — on the human's explicit verbal instruction, 2026-08-13,
+7. ~~**`charter.md` is still silent on dispatch**~~ **Closed 2026-08-14: the
+   amendment is applied to `charter.md` as drafted, on the human's explicit
+   instruction through a directed session.** Original item kept below for
+   history: **both packets had been dispatched anyway** — on the human's explicit verbal instruction, 2026-08-13,
    MET first per rule 5. **Both child repos verified unchanged afterwards**
    (`889bf4f`, `6d43727`, clean trees); writes were denied at the tool layer, not
    merely asked against. Outcomes are in `meta/architect-log.md` § dispatch record.
@@ -150,7 +155,12 @@ day. Full record in [`meta/architect-log.md`](meta/architect-log.md) review 000.
    One instance is not "review after review", so it stands. **A second at ZET
    retro #4 means the audit-the-Architects job should be cut to a spot check**,
    as `meta/thesis.md` itself says. Do not read past this at review 002.
-9. **This repo has no permission guard of any kind.**
+9. ~~**This repo has no permission guard of any kind.**~~ **Closed 2026-08-14:
+   `.claude/settings.json` created with `Edit`/`Write` denies on `../**` and
+   every child path (both verbs per path), plus best-effort `Bash(git -C ../*
+   <verb>*)` lines — the Bash patterns are untested against the matcher and
+   may be inert; the Edit denies are the load-bearing guard. Applied on the
+   human's explicit instruction.** Original item kept for history:
    `.claude/settings.local.json` carries **no `deny` key** — `permissions`
    contains only `allow`, 21 entries, including **`Bash(git push *)`
    unrestricted.** Nothing prevents a Meta-Architect session writing to a child
@@ -193,7 +203,19 @@ day. Full record in [`meta/architect-log.md`](meta/architect-log.md) review 000.
 
 ## Next action
 
-**Three things are due, and none of them is a review.**
+**Updated 2026-08-14 after the goal rulings** (final architect-log entry —
+read it first; it supersedes much of what follows). Still open, in order:
+**MF-7 evolved** — the human ruled he *is* the external feedback; what remains
+is instrumenting his miss rate (escape tracking + calibration sample), which is
+review 001 packet material. **MDT's wake-up item** — DF-1's Jira/PHI fix,
+standing in `systems.md`. **Review 001** — quarterly, undischarged, agenda now
+includes the earned-autonomy classes and the MET shadow-grants finding.
+**A birth** — no domain yet, none forced; the two-quarter falsifier clock in
+`meta/thesis.md` started 2026-08-14.
+
+The record below is the pre-ruling state, kept for history.
+
+**Three things were due, and none of them is a review.**
 
 1. ~~**Approve or decline the five accepted proposals.**~~ **Approved by the human
    on 2026-08-14. Still unapplied — this is now an execution item, not a decision
