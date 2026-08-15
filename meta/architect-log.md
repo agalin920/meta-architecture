@@ -2004,3 +2004,24 @@ half first, then AR-3 as amended, `retro:` commits, its own session. ZET's
 counter-diff (a step-5 line counting judge-applied items later disproven)
 and MET's retro-§1 preflight line are each team's own retro material, not
 this layer's to press.
+
+### AR application attempt — 2026-08-15. Writes refused non-interactively; designs settled read-only
+
+Two dispatched application runs at MET. The first died on a CLI parsing fault
+before any session ran. The second ran, was refused on writes, **stopped and
+reported the refusal factually with no speculation** — the one-sentence
+instruction earning its keep a second time. No cause is asserted; the pattern
+matches 2026-08-14 (non-interactive refused, interactive later succeeded, no
+config change identified) and that observation is all this entry claims.
+
+Before the refusal it settled both designs against ground truth and corrected
+this layer's spec: **AF-3's doc half is two edits** (`take-ticket.md` format
+line *and* `architect.md` headline buckets, per MET `team-log.md:70`) — the
+packet had carried one. Full application spec appended to
+`proposals/2026-08-15-mpulse-engage-team.md`; read-path lands ≈1,072/1,100.
+**Needs an interactive session at MET; nothing else remains.**
+
+Also confirmed by the harness itself during the failed first run: `Write(...)`
+deny rules are inert and only `Edit(path)` binds — upgrading MET's audit note
+and this repo's own deny-list pairing from inference to stated harness
+behaviour.

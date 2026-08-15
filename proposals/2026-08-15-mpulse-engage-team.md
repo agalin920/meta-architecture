@@ -78,3 +78,49 @@ Whether the preflight subset for a SessionStart hook should include the
 GitHub/Jira reachability checks (network latency per session) or only the
 local ones; and what the right manifest conditions are — both are
 domain-operational calls.
+
+---
+
+# Application spec — settled 2026-08-15 by a dispatched session, read-only
+
+Writes were refused non-interactively (fact recorded; cause unasserted). The
+designs below were verified against ground truth before the refusal and are
+ready for an interactive session to apply verbatim. Read-path arithmetic:
+current 1,056; both items ≈ +16; lands ≈1,072 against the 1,100 cap.
+
+**ITEM 1 — AF-3 doc half, and it is TWO edits, not one** (per
+`docs/team-log.md:70`): (a) `take-ticket.md` gate-line format — severity slot
+sits between result and em-dash, matching `gates.py:64-69`'s regex exactly:
+`- [gate] <gate-id> PASS|CAUGHT|SKIP|BLOCKED [blocker|suggestion|nit] — <note>`
+plus ~3 lines of prose (severity required on CAUGHT; untagged buckets as
+`unspecified`) and a 2-line example. (b) `architect.md`'s headline metric
+gains the severity buckets. Do not clear the team log's `unapplied` block
+until both halves are in.
+
+**ITEM 2a — manifest**: 7-line list at the end of CLAUDE.md's routing
+section: apollo Program/Survey Results → `knowledge/apollo-program-results.md`;
+release/deployment (INFRA) → `knowledge/release-deployment-tickets.md`; SBOM →
+`knowledge/sbom-dependency-tickets.md`; env config / test suites →
+`knowledge/test-suites-that-can-drop-a-live-db.md`; timesheets → `/timesheet`
+(which already routes to `tempo-time-tracking.md`).
+
+**ITEM 2b — verify block**, off-path in `.claude/agents/architect.md`,
+drafted POSIX-safe with a sentinel so a failure names the orphan:
+
+```
+<!-- verify id=knowledge-files-are-reachable
+cmd: for f in knowledge/*.md; do b=`basename "$f"`; grep -qF "$b" CLAUDE.md .claude/commands/*.md || printf "%s " "$b"; done; echo END
+expect: END
+-->
+```
+
+Run it only after 2a lands (it fails by design before the manifest exists).
+
+**ITEM 2c** — flag `knowledge/apollo-program-results.md` (135 lines,
+referenced nowhere pre-manifest, confirmed) as a retro-002 cut candidate, in
+the team-log entry.
+
+**Then:** `python3 tools/verify_docs.py` all green (7 assertions incl. the
+new one); read-path assertion returns `within`; team-log session entry per
+the write-back rule; `retro:` commits, staged by name (`.mcp.json` has a
+pre-existing uncommitted change that is not this work's); no push.
