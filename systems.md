@@ -37,7 +37,7 @@ the two freshest entries sit next to four that are four days stale._
 | **Metric** | Mastery vs later review performance; school calibration error; `hard` vs `trivial` friction ratio |
 | **Theory** | `meta/thesis.md` — five capacities, four named falsifiers |
 | **Handoff** | `NEXT-SESSION.md`, regenerated each session |
-| **First commit** | 2026-08-08 · **24 commits** as of 2026-08-10, latest that same day · 5 sessions run at last count |
+| **First commit** | 2026-08-08 · **31 commits** as of 2026-08-18 · 5 sessions run at last count · **not opened by this layer since 2026-08-13** |
 
 The most architecturally complete system in the portfolio and the source of most
 of the catalog. The only one with a falsifiable theory of what it produces.
@@ -60,7 +60,7 @@ resolved.
 | **Metric** | CI-reviewer blockers per PR; Director findings per ticket — both with a named `unmeasured` category |
 | **Theory** | None. `docs/decision-log.md` records rationale per decision, which is not the same thing |
 | **Handoff** | `tickets/<issue#>-<slug>.md` written at every pipeline step + `docs/team-log.md` current-state header |
-| **First commit** | 2026-08-08 · **138 commits** as of 2026-08-13 · real PRs shipped · **3 retros run** (08-08, 08-09, 08-13) |
+| **First commit** | 2026-08-08 · **196 commits** as of 2026-08-18 · real PRs shipped · **5 retros run** (08-08, 08-09, 08-13, 08-14, 08-18) |
 
 By far the most operationally exercised system, and the only one that has
 survived contact with an external world that pushes back. Source of the honest
@@ -81,7 +81,15 @@ findings at all — **three retros had scored that gate 0.00 against a true 0.83
 on n=6.** Six of retro #3's 13 applied changes came from pass 2. Its retirement
 test is retro #4 and has not returned.
 
-**Open:** **zero applied rules retired**, across 138 commits and three retros
+**Its retirement test has now returned twice, and it survives.** At retro #4 and
+again at retro #5 the second pass produced material findings — at #5 it corrected
+the headline metric 1.50 → 2.00, found a counting defect running the opposite
+way, and **caught pass 1 proposing to delete a standing blocker that is true.**
+The test *"nothing material two retros running"* is, in that team's own words,
+*"nowhere near met."* It remains a **one-adopter** mechanism: mpulse-engage-team
+has declined it twice, both times on its own evidence.
+
+**Closed 2026-08-18:** ~~zero applied rules retired~~, across 138 commits and three retros
 (+155/−47 on instruction files, every deletion a replacement or renumbering).
 And **no overhead tripwire** — `overhead-ceiling` is `proven` and this system is
 ❌. Both were carried in `proposals/2026-08-13-zesty-eng-team.md`, **dispatched
@@ -109,10 +117,10 @@ converging this.
 | **Loop** | Slash commands — `/take-ticket`, `/review-pr`, `/address-feedback`, `/triage`, `/standup`, `/retro` |
 | **Cadence** | Per ticket, Manager-driven |
 | **Architect** | `.claude/agents/architect.md`, at `/retro` |
-| **Metric** | External-reviewer blockers per PR (humans, Optibot, Copilot); routing errors |
+| **Metric** | External-reviewer blockers per PR (humans, Optibot, Copilot); routing errors; escape rate, bucketed. **Both denominator cuts reported when they disagree**, and context cost stated as a floor |
 | **Theory** | None. `docs/decision-log.md` records rationale per decision, which is not the same thing |
 | **Handoff** | `tickets/PDEV-####-<slug>.md` written at every pipeline step + `docs/team-log.md` current-state header |
-| **First commit** | 2026-08-10 · **51 commits** as of 2026-08-13 · **5 PDEV + 1 INFRA ticket, 7 PRs, 1 retro** (retro 001, 08-13) |
+| **First commit** | 2026-08-10 · **103 commits** as of 2026-08-18 · **7 PRs + 5 more in the 08-15→08-17 window, 2 retros** (001 on 08-13, 002 on 08-18) |
 
 **Derived, not independently arrived at.** Structure adapted directly from
 zesty-eng-team on 2026-08-10. See the note in `patterns/README.md` — its column
@@ -212,19 +220,43 @@ drift** (`047dd6b`, D-018 and D-019). The open question is now whether it runs
 | **Metric** | External-reviewer blockers per PR; **did `knowledge/dpi.md` grow, and is any of it filler or wrong** |
 | **Theory** | None |
 | **Handoff** | `tickets/PDEV-####-<slug>.md` + `docs/team-log.md` current-state header |
-| **First commit** | 2026-08-10 · 1 commit · no ticket run yet |
+| **First commit** | 2026-08-10 · **14 commits** as of 2026-08-18 · onboarding kit + local-setup work · **0 retros, ever** |
 
 **Derived from zesty-eng-team**, same as its sibling, same caveat.
 
 **Ruled 2026-08-14 by the human: the quiet is deliberate.** DPI gets little
 work by the shape of his job, not by neglect — the exact ambiguity
 `meta/architect.md` § 1 says this layer cannot resolve alone, now resolved.
-Do not read low commit counts here as a cadence miss. **Standing wake-up
-item:** the first session that opens this repo fixes the four command files
-still routing Jira through the dead MCP — `take-ticket.md:10` carries a false
-PHI-sanitization claim (evidence in
-`inbox/2026-08-14-goal-refinement-and-children-state.md` DF-1) — before any
-`/take-ticket` runs.
+Do not read low commit counts here as a cadence miss.
+
+**The standing wake-up item is DISCHARGED, verified 2026-08-18.** It read: *the
+first session that opens this repo fixes the four command files still routing
+Jira through the dead MCP — `take-ticket.md:10` carries a false PHI-sanitization
+claim (DF-1) — before any `/take-ticket` runs.* It was fixed at `7888bb3`
+(2026-08-14), before this layer next looked.
+
+> **Check, executed 2026-08-18 in `../mpulsemobile/mpulse-dpi-team`:**
+> `grep -rn -i "mcp|sanitiz|jira" .claude/commands/*.md` → `take-ticket.md:10`,
+> `review-pr.md:19`, `triage.md:10` and `standup.md:12` **all** route through
+> `python3 tools/jira.py` and each says *"not the `jira` MCP server"*. The false
+> claim at `take-ticket.md:10` is gone and `:17` now carries the true one:
+> **"Nothing sanitizes this output."**
+
+**So MDT is eligible for proposals again**, for the first time since the
+2026-08-14 low-cadence ruling. Its wake-up item no longer precedes anything.
+
+**Two things about it are worth a review's attention, and neither is a cadence
+miss.** First: **it has run zero retros in its entire history**
+(`git log --all --oneline | grep -ci retro` → `0`, checked 2026-08-18), so its
+Architect is the only one in the portfolio that has never executed and its
+knowledge-gate candidate in `patterns/README.md` **cannot be graded** — the
+grading step does not exist. Second: it states the PHI-sanitizer fact in **four
+places** (`operating-rules.md:13`, `team-log.md:116`, `CLAUDE.md:53`,
+`take-ticket.md:17`), with three further command files pointing at
+`operating-rules.md § PHI`. The copies agree today, checked. It is a
+safety-critical claim on a HIPAA platform held in four copies in the one repo
+with no retro to catch drift — the exposure both sibling teams got burned by on
+2026-08-18. See `patterns/single-source-claims.md`.
 
 **The one thing here that is genuinely new to the portfolio:** documenting the
 product is a *gate*, not a byproduct (`docs/decision-log.md` D-003). DPI has no
@@ -258,7 +290,7 @@ identified failure mode — `provisional` at best, and it should not enter
 | **Metric** | Receipts ratio; resonance over reach; human-originated items per window; Critic anyone-else count |
 | **Theory** | None. A risk table with tripwires, which is failure modes rather than falsifiers |
 | **Handoff** | **None.** `pipeline.md` item states imply progress but nothing records mid-cycle position |
-| **First commit** | 2026-08-09 · **7 commits** as of 2026-08-10 · Session Zero run reduced; 16 pipeline items, 5 decisions logged |
+| **First commit** | 2026-08-09 · **10 commits** as of 2026-08-18 · Session Zero run reduced; 16 pipeline items, 5 decisions logged · **not opened by this layer since 2026-08-13** |
 
 Youngest system. One day old at first registry entry — **do not read low commit
 count as stalling yet.**
@@ -283,7 +315,7 @@ the first Meta-Architect log entry.
 | **Architect** | None, correctly |
 | **Metric** | None needed |
 | **Handoff** | The CSV is the state |
-| **First commit** | 2026-08-08 · 18 commits |
+| **First commit** | 2026-08-08 · **18 commits**, unchanged since 2026-08-09 — correct for a dataset |
 
 **Registered so it stops reading as a gap.** It is a dataset with a spec and a
 human gate on spec changes — the spine's degenerate case, and evidence the
@@ -305,10 +337,10 @@ enum nobody uses. That is a ten-minute read, not a review.
 | **Loop** | None, deliberately. A review is not a loop |
 | **Cadence** | Quarterly, never more often than the fastest child Architect |
 | **Architect** | `meta/architect.md` — it reviews itself, which is the known weak point |
-| **Metric** | Findings a local Architect could not have made. Review 000: 2 of 5 |
+| **Metric** | Superseded 2026-08-14 by the engine's scoreboard (`meta/thesis.md`): **births 0, promotions 1, transfer yield 4 of 7.** The old auditor's metric — findings a local Architect could not have made — was 2 of 5 at review 000 and 5 of 8 at 001a |
 | **Theory** | `meta/thesis.md` — three claims, four falsifiers |
 | **Handoff** | `HANDOFF.md`, cold-start only — see the note in that file |
-| **First commit** | 2026-08-09 · no review run yet |
+| **First commit** | 2026-08-09 · **17 commits** · **one scoped review (001a, 08-13)**; review 001 undischarged. Three scoped reads of the same two children (08-13, 08-14, 08-18) — see the cadence note in `meta/architect-log.md` |
 
 **Listed in its own registry on purpose.** A layer exempt from its own catalog
 is precisely the thing it would flag in a child, and the entry it is missing is
@@ -322,6 +354,74 @@ metric with an `unmeasured` category, no named failure-mode table. **All three
 are probably correct absences** for something that runs four times a year and
 produces only findings — but they are absences, and review 001 should say so
 rather than leaving the layer unassessed.
+
+---
+
+## zesty-webengine-team
+
+| | |
+|---|---|
+| **Domain** | Engineering delivery on `zesty-io/webengine` — one repo, PHP, GitHub issues |
+| **Status** | `active` — **founded 2026-08-19, nothing exercised yet** |
+| **Loop** | Slash commands — `/take-ticket`, `/review-pr`, `/standup`, `/retro` |
+| **Cadence** | Per ticket, Maintainer-driven |
+| **Architect** | `.claude/agents/architect.md`, at `/retro`. **Never run** |
+| **Metric** | Blockers per PR from reviewers the team does not control; Maintainer findings per ticket. Five named `unmeasured` categories from day one |
+| **Theory** | None, correctly. A system that does work does not need a thesis |
+| **Handoff** | `tickets/<issue#>-<slug>.md` written at every step + `docs/team-log.md` current-state header |
+| **First commit** | 2026-08-19 · 1 commit · **0 tickets, 0 retros** |
+
+**THE PORTFOLIO'S FIRST BIRTH. Grown from `spine.md`, not copied.** Every prior
+system is either one of the founding four or a derived copy, which is why claim I
+of `meta/thesis.md` has had zero evidence since the layer was created.
+
+**The `†` discount does not apply and neither does the `carried` case.** This
+system was derived from the spine's reasoning by a session that read it as a
+resource. **What it is not yet is evidence for claim I** — that requires reaching
+competence, and it has run zero tickets.
+
+**Three things it did that its would-be parent does not**, each traceable to
+deriving from reasoning rather than copying a file:
+
+- **`unmeasured` categories tuned to its own domain**, present at founding: base
+  branch not `master` (no CI, no bot), CI failing network-shaped against the ~10
+  live staging origins the integration suite depends on, no external review
+  recorded, PR closed unmerged, bot skipped a draft. A copy would have inherited
+  zesty-eng-team's categories, which describe a different repo.
+- **The metric identifies external reviewers structurally** — *not the PR author,
+  no team marker* — rather than by handle. Forced by the human's instruction that
+  no personal name enter the repo, and **the constraint produced a better rule
+  than the parent's.** Machine-asserted (`no-hardcoded-human-identity`).
+- **It starts on the correct GitHub endpoint.** `gh pr view --comments` cannot
+  return inline review comments; that mistake scored zesty-eng-team's review gate
+  **0.00 for three consecutive cycles.** Written into `knowledge/ci-and-review.md`
+  as a rule rather than rediscovered.
+
+**Its human gate is not Andres.** First system in the portfolio where the person
+approving the work did not design the system and is doing the engineering too.
+`docs/charter.md` § Who the Maintainer is states the consequence rather than
+leaving it to be discovered: the Maintainer's corrections are the highest-grade
+signal the loop receives, and a cycle with none is recorded `unmeasured`, not
+clean.
+
+**What review 001 should actually look at**, and it is not whether the founding
+documents are good:
+
+1. **Did its first retro cut most of what the spine talked it into?** Several of
+   its rules are predictions made before anything went wrong. **A large first-retro
+   § Cuts is evidence the spine over-specifies** — evidence about the spine, not
+   about the child.
+2. **Did the birth cost more than it returned?** It took materially longer than a
+   copy. Claim I says that buys faster competence. Nobody has measured it.
+3. **Does the gate hold when the gatekeeper is not the designer?** Two consecutive
+   cycles with zero Maintainer findings is the tripwire, and it is the one this
+   system is most likely to trip.
+
+**Repository ownership is deliberate and temporary:** it lives under `agalin920`
+so it can be handed over, and the Maintainer clones it. **That means the charter's
+owner and the repo's owner are different people at founding**, which is a real gap
+in the `charter-as-constitution` pattern that no existing system has hit. Review
+001 should decide whether the pattern needs amending or whether handover closes it.
 
 ## Not in the portfolio
 
@@ -342,3 +442,39 @@ it.
 It does matter to the portfolio in exactly one way: both mPulse teams
 deliberately diverge from it, and both accept drift as a cost. That is recorded
 against those systems, not as an entry of its own.
+
+
+---
+
+## Distribution, measured 2026-08-18
+
+Counted with `git log --oneline | wc -l` per repo, not derived from prior
+figures. **Two numbers in an earlier draft of this file were derived by adding a
+window count to a stale total and both were wrong** (ZET 181 vs a true 196, MET
+92 vs 103) — recorded because it is the same defect both engineering teams spent
+their retros on, appearing here.
+
+| System | Total commits | Since 2026-08-14 | Last commit |
+|---|---|---|---|
+| zesty-eng-team | 196 | 43 | 2026-08-18 |
+| mpulse-engage-team | 103 | 41 | 2026-08-18 |
+| mpulse-dpi-team | 14 | 9 | 2026-08-18 |
+| personal-university | 31 | 1 | 2026-08-18 |
+| brand-system | 10 | 3 | 2026-08-16 |
+| media-log | 18 | 0 | 2026-08-09 |
+| **meta-architecture** | 17 | 3 | 2026-08-15 |
+| zesty-webengine-team | 1 | 1 | 2026-08-19 · **founded** |
+
+**84 of the 101 commits since 2026-08-14 are in the two mPulse/Zesty delivery teams**, and
+those are the two repos this layer has now read three times running. **That is
+attention being followed, not audited** — `meta/architect.md` § 1 says the shape
+over time is the signal, and the shape has been the same shape three times.
+
+**What this table cannot tell you**, and must not be read as telling you: whether
+personal-university's 1 commit and brand-system's 3 are misses or deliberate.
+There is no stated capacity here — it was cut on 2026-08-09 and must not be
+reintroduced — so *"they slipped"* and *"they were deprioritised"* look identical
+from this layer. **mpulse-dpi-team is the one case where the ambiguity is
+resolved**, by the human's ruling of 2026-08-14, and it resolved to deliberate.
+The other two are open questions for review 001 and are questions for the human,
+not findings.

@@ -40,21 +40,28 @@ meta/
 | System | Domain | Status | Architect |
 |---|---|---|---|
 | [personal-university](../personal-university) | Broad classical education | `active` | every 10 sessions |
-| [zesty-eng-team](../zestyio/zesty-eng-team) | Engineering delivery — `manager-ui` | `active` | every retro |
-| [mpulse-engage-team](../mpulsemobile/mpulse-engage-team) | Engineering delivery — mPulse Engage, ~30 repos | `active` | every retro |
-| [mpulse-dpi-team](../mpulsemobile/mpulse-dpi-team) | Engineering delivery — DPI, 4 repos | `active` | every retro |
+| [zesty-eng-team](../zestyio/zesty-eng-team) | Engineering delivery — `manager-ui` | `active` | every retro · **5 run** |
+| [mpulse-engage-team](../mpulsemobile/mpulse-engage-team) | Engineering delivery — mPulse Engage, ~30 repos | `active` | every retro · **2 run** |
+| [mpulse-dpi-team](../mpulsemobile/mpulse-dpi-team) | Engineering delivery — DPI, 4 repos | `active`, low-cadence | every retro · **never run** |
 | [brand-system](../brand-system) | Public presence | `active` | every 4 weeks |
 | [media-log](../media-log) | Media database | `dataset` | none, correctly |
+| [zesty-webengine-team](../zestyio/zesty-webengine-team) | Engineering delivery — `zesty-io/webengine` | `active` | every retro · **never run** |
 
 Details in [`systems.md`](systems.md).
 
-**Three of the six are the same system.** The two mPulse teams were copied from
-zesty-eng-team on 2026-08-10, not grown independently from the spine. That is a
+**The portfolio's first birth landed 2026-08-19.** `zesty-webengine-team` was
+**grown from `spine.md`**, not copied — the first time that has happened, and the
+only route by which claim I of `meta/thesis.md` ever gets evidence. It has run
+zero tickets, so the count has moved and the claim has not.
+
+**Three of the previous six are the same system.** The two mPulse teams were
+copied from zesty-eng-team on 2026-08-10, not grown independently from the
+spine. That is a
 fact about the evidence base, not a criticism of the copies — see the note on
 the adoption matrix in [`patterns/README.md`](patterns/README.md). Copies never
 count toward promotion.
 
-Relative links assume everything sits under `~/dev/`, where all seven repos are
+Relative links assume everything sits under `~/dev/`, where all eight repos are
 checked out as of 2026-08-10.
 
 ## The rules
@@ -65,8 +72,11 @@ checked out as of 2026-08-10.
    on a single human gate for being reviewable and revertible, and a meta-layer
    that routes around it destroys the property it exists to protect.
 2. **The spine changes on evidence, not on interest.** Only `proven` patterns
-   are default inheritance, and derived copies never count toward promotion.
-   Premature evolution is the failure mode this design invites.
+   are default inheritance. **Derived copies never count toward promotion, and
+   neither does a pattern this layer dispatched into a system** — that third
+   case was named on 2026-08-18 after it turned out a carry reads as independent
+   under the old wording, which would let this layer promote its own proposals
+   into the spine. Premature evolution is the failure mode this design invites.
 3. **The evolutionary clock stays under 1% of the portfolio's time.** Pulling
    from the spine doesn't count — that isn't overhead, it's the point.
 
@@ -89,6 +99,11 @@ claude "Read meta/architect.md and run a review."
 Quarterly, or when something feels structurally wrong across systems. It
 proposes; you carry proposals to the child Architect; that system's own gate
 still applies.
+
+**Review 001 is undischarged and is the next thing this layer should do.** As of
+2026-08-18 it has read the same two engineering repos three times running while
+four systems went unexamined — the failure mode named in `charter.md`, caught in
+the act and recorded in `HANDOFF.md`. A fourth scoped read is not the work.
 
 Then [`HANDOFF.md`](HANDOFF.md) for where things actually stand and what is
 open.

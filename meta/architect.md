@@ -94,8 +94,22 @@ goes stale, and a stale catalog is worse than none because it reads as verified.
 
 - **Promotion.** A pattern that has crossed its evidence bar since last review.
   Apply the gate in `patterns/README.md` literally, including the independence
-  requirement. **Copies never count.** If a pattern is at `provisional` with
-  three adopters and two of them are derived, it has one piece of evidence.
+  requirement. **Copies never count, and neither do carries.** If a pattern is at
+  `provisional` with three adopters and two of them are derived, it has one piece
+  of evidence.
+
+  **The carry case was added 2026-08-18 and it is the one aimed at you.** A
+  pattern that arrived in a child because *you dispatched it there* is not that
+  child arriving at it. Under the old wording it read as independent — it was not
+  a copied repo, and it appeared in a system that did not invent it, which is
+  what a second adopter looks like. **That would let this layer promote its own
+  proposals into the spine by carrying them:** propose, dispatch, count the
+  acceptance, promote, and it becomes default inheritance for every system built
+  afterwards with nobody having arrived at it twice. Before counting any adopter,
+  ask which of the three routes it came by, and say so in the log. A carry is
+  real evidence that a pattern **transfers** — it survived a child Architect
+  judging it on that child's own evidence — and that is a different claim from
+  the one `proven` makes.
 - **Retirement.** A pattern that was adopted and did not work. **This is the most
   valuable entry type and the one most likely to go unwritten.** Mark it
   `retired` with the evidence, so it does not get independently reinvented.

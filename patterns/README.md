@@ -23,10 +23,15 @@ pattern with one adopter is `provisional` no matter how good it looks.
 | `proven` | **Two or more independent adopters, plus evidence it changed an outcome** | Yes |
 | `retired` | Tried and cut. **Kept, with why** — so it is not reinvented | No |
 
-**Independent** means grown separately, not copied. A system derived from another
-inherits its patterns as a package and provides no evidence that anyone would
-have arrived at them again. Two adopters where one is a copy of the other is
-**one** piece of evidence.
+**Independent** means grown separately, not copied **and not carried**. A system
+derived from another inherits its patterns as a package and provides no evidence
+that anyone would have arrived at them again. Two adopters where one is a copy of
+the other is **one** piece of evidence.
+
+**Nor does a pattern this layer dispatched into a system count as that system
+arriving at it.** That third route was unnamed until 2026-08-18 and, unnamed, it
+read as independent — which would let this layer promote its own proposals into
+the spine by carrying them. See § The third case: `carried`.
 
 **Evidence it changed an outcome** means something observable in a log, a metric,
 a commit, or a decision record — not that the pattern is present and the system
@@ -61,14 +66,23 @@ MET = mpulse-engage-team · MDT = mpulse-dpi-team
 | [Named failure modes with tripwires](named-failure-modes.md) | `proven` | ✅ | ⚠️ | ✅ | ❌ | ✅ | ⚠️ | ⚠️ |
 | [Falsifiable thesis](falsifiable-thesis.md) | `provisional` | ✅ | ❌ | ❌ | n/a | ✅ | ❌ | ❌ |
 | [Untrusted input boundary](untrusted-input.md) | `proven` | n/a | ✅ | ✅ | n/a | n/a | ✅ | ✅ |
-| [Overhead ceiling](overhead-ceiling.md) | `proven` | ✅ | ❌ | ⚠️ | n/a | ✅ | ✅‡ | ❌ |
+| [Overhead ceiling](overhead-ceiling.md) | `proven` | ✅ | ❌ | ⚠️ | n/a | ✅ | ✅ | ❌ |
 | [Knowledge layer vs event log](knowledge-vs-log.md) | `provisional` | ⚠️ | ✅ | ❌ | n/a | n/a | ✅ | ✅ |
-| [Honest metric](honest-metric.md) | `provisional` | ❌ | ✅ | ❌ | n/a | ⚠️ | ✅‡ | ⚠️ |
+| [Honest metric](honest-metric.md) | `proven` | ❌ | ✅ | ❌ | n/a | ⚠️ | ✅ | ⚠️ |
 | [Cadence defence](cadence-defence.md) | `provisional` | ⚠️ | ❌ | ✅ | n/a | n/a | ❌ | ❌ |
 | [Predict-then-check](predict-then-check.md) | `provisional` | ⚠️ | ❌ | ❌ | n/a | ❌ | ❌ | ❌ |
+| [Single-source claims](single-source-claims.md) | `provisional` | ? | ✅ | ? | n/a | ⚠️ | ✅ | ❌ |
 
 ✅ adopted · ⚠️ partial · ❌ missing · n/a doesn't apply to this domain ·
-**‡ present but has never fired** — see below
+**‡ present but has never fired** — see below · **? not checked** in the session
+that last touched the row
+
+**`?` was added 2026-08-18** and it is not decoration. A ❌ asserts a pattern is
+absent, which is a claim about a repo, which under `meta/architect.md` § Output
+requires a check. The 2026-08-18 scoped read covered ZET, MET and MDT and did
+**not** open personal-university or brand-system. Marking those two ❌ on
+single-source claims would have been an unchecked assertion wearing a verified
+mark, which is the failure this whole column exists to prevent.
 
 **MA gained ✅ on named failure modes on 2026-08-10**, when `charter.md` was
 rewritten with three named failures and their tripwires. Previously ❌.
@@ -85,12 +99,36 @@ the repo rather than the record:
   **by name**, and `docs/team-log.md:360` reports it as excluded. That is the
   `unmeasured` discipline, independently re-derived — see below.
 
+**Both MET ‡ marks were cleared on 2026-08-18, on measurement.** The
+distinction below is unchanged and still load-bearing; these two cells simply
+stopped qualifying.
+
+- **Overhead ceiling ✅‡ → ✅.** The read-path cap **bound for the first time**.
+  MET retro 002 landed at **1,082 lines against a 1,100 cap** (from 1,098), and
+  the cut that made room — a 37-line block moved out of `knowledge/platform.md`
+  behind a routing row — is reported by that team as the one that *"paid for
+  everything else."* The pruning half of the pattern, which the pattern file
+  says matters more than the cap, is what fired. `tools/gates.py` also produced
+  its first datapoint and it was a falsification of its own coverage claim: it
+  reported gate lines *"across 8 ticket worklog(s)"* when **all 27 come from
+  one**; the header now reads "1 of 8".
+  > **Check, 2026-08-18:** `python3 tools/verify_docs.py` → `9/9 passed`,
+  > including `ok   read-path-budget   .claude/agents/architect.md:107`.
+- **Honest metric ✅‡ → ✅**, and promoted to `proven`. Evidence in
+  [`honest-metric.md`](honest-metric.md) § Promoted 2026-08-18.
+
 **‡ means present and never fired**, and it is a separate mark because the
-distinction was being lost. The read-path cap is 1,300 against a current 1,056:
-**it has never bound anything.** `tools/gates.py` reports **12 of 12 declared
-gates unrecorded**. Both instruments exist; neither has produced a datapoint.
-**The matrix records presence. The promotion gate requires effect.** A ✅‡ is
-evidence for the first column and none at all for the second.
+distinction was being lost. **The matrix records presence. The promotion gate
+requires effect.** A ✅‡ is evidence for the first column and none at all for the
+second.
+
+*The figures that earned the mark, as of review 001a (2026-08-13) and superseded
+by the entry above: the read-path cap was 1,300 against a current 1,056, so it
+had never bound anything, and `tools/gates.py` reported 12 of 12 declared gates
+unrecorded. Both are now false — the cap is 1,100 against 1,082 and has bound,
+and `gates.py` has 27 recorded lines. Kept here dated rather than deleted,
+because the mark only means something if you can see what it looked like when it
+applied.*
 
 **† MET and MDT are derived columns and prove nothing *by default*.** Both were
 adapted directly from zesty-eng-team on 2026-08-10. Their ✅ marks record that the
@@ -143,12 +181,82 @@ hole in the bar:
 Here the record existed before anyone knew it would be needed, which is the only
 reason the exception is safe to grant.
 
-**What the ruling does not do: it does not promote anything.** `honest-metric`
-stays `provisional`, and the reason it stays changed — from *one independent
+## The third case: `carried` — adoption through this layer's own dispatch
+
+Added 2026-08-18. The bar above has two cases — **independent invention**, and
+**copy-as-package** — and it turns out there is a third that neither covers: a
+pattern that arrived at a system because **this layer dispatched it there.**
+
+Under the wording as it stood, a carried adoption reads as independent. It was
+not grown from a copied repo, so the `†` discount does not apply; it appeared
+in a system that did not invent it, which is what a second adopter looks like.
+
+**That is a hole, and it is now live rather than hypothetical.**
+`executable-claims` is the instance. It was invented at mpulse-engage-team
+(`tools/verify_docs.py`, recorded as a candidate at review 001a). zesty-eng-team
+now has it — three `**Verify.**` blocks — and it has them because **this layer
+dispatched MF-4 to that repo.** Two adopters, and the second one is this
+layer's own proposal coming back to it as evidence.
+
+> **Check, executed 2026-08-18 in `../zestyio/zesty-eng-team`:**
+> `grep -rn "Verify\." docs/ .claude/ CLAUDE.md` → blocks at
+> `docs/charter.md:44` and `docs/operating-rules.md:56`; provenance stated in
+> that repo's own record at `docs/decision-log.md:531`, headed *"Retro #4, MF-4"*.
+
+**If carried adoptions count as independent evidence, this layer can promote its
+own proposals into the spine by dispatching them.** Propose, carry, count the
+acceptance as a second adopter, promote, and the pattern becomes default
+inheritance for every system built afterwards — with no system having arrived at
+it twice. Every step of that is currently permitted by the gate.
+
+**The third status, and the asymmetry that makes it not merely another
+discount:**
+
+| Route | Counts toward `proven`? | What it *is* evidence of |
+|---|---|---|
+| **Independent** — grown separately | **Yes** | Two systems met the same problem and both built this |
+| **Copied** (`†`) — inherited as a package | **No** | Nothing. The pattern came with the repo |
+| **Carried** — dispatched from this layer | **No** | **That the pattern transfers** — which a copy is *not* evidence of, and which is a real and separate thing worth recording |
+
+A carried adoption is genuinely informative: it means a pattern survived being
+judged by a child Architect on that child's own evidence, in a repo that did not
+invent it. Given this layer's dispatch record — **eighteen items, eleven
+rejections**, and AR-1 rejected at both teams on grounds neither shared — an
+acceptance is not a rubber stamp. **It is just not the thing `proven` measures.**
+`proven` asks whether anyone would have arrived here again. A carry answers a
+different question, and the two were being conflated because there was no word
+for the second one.
+
+**Mark carried adoptions in the matrix with the pattern's own origin note**, and
+say who carried it and when, the way `†` is marked. Where a carried adoption
+later produces a *diagnosis the receiver made itself* — as MET did with
+`honest-metric` — the documentary exception above applies on its own terms and
+the adoption stops being merely carried.
+
+**What this changes retroactively: nothing, checked.** `honest-metric`'s
+promotion on 2026-08-18 rests on ZET (invention) and MET (independent
+re-derivation, ruled at 001a on the documentary test). **Neither is a carry.**
+The other `proven` statuses predate all of this and are still awaiting the
+re-audit that is review 001's first job.
+
+**What the ruling did not do: it did not promote anything.** `honest-metric`
+stayed `provisional`, and the reason it stayed changed — from *one independent
 adopter* to *two independent adopters, neither remedy measured.* **Two
 independent diagnoses of the same fault, with two different remedies, is strong
 evidence the fault is real and no evidence that either remedy works.** That is
-what review 002 has to look for.
+what review 002 had to look for.
+
+> **Discharged 2026-08-18, and the answer was yes.** Both remedies were
+> exercised in the window 2026-08-15 → 08-18 and both changed an already-published
+> number: ZET's script returned a silent false 0.00 that the discipline caught
+> and corrected to 2.00 (FLOOR, n=2), inverting the reported trend from flat to
+> rising; MET reported **both** cuts of its headline (1/4 in-window, 5/5
+> including a straddling PR), refused to pick, and wrote its context cost as a
+> floor with the reason. **`honest-metric` is `proven` as of 2026-08-18** —
+> evidence and executed checks in [`honest-metric.md`](honest-metric.md)
+> § Promoted 2026-08-18. This is the portfolio's **first promotion under the
+> independence bar**, and `meta/thesis.md` § The engine's scoreboard is updated
+> from zero accordingly.
 
 **The founding four are weaker evidence than they look.** They were built by one
 person over two days. That is one derivation repeated, not four independent ones
@@ -229,10 +337,33 @@ Ranked by evidence so you can stop reading where the evidence stops.
 | Candidate | Origin | Adopters | Evidence it changed an outcome | Status |
 |---|---|---|---|---|
 | **An adversary on the improvement loop** | ZET `ac65e24` | 1 | **Yes** — corrected a metric wrong for three cycles; caught two false statements pre-commit | `provisional` |
-| **Grade the previous cycle's proposals** | ZET `decision-log.md:487` | 1 | **Yes** — P8 falsified after four further instances, replaced by `1646f8b` | `provisional` |
+| **Grade the previous cycle's proposals** | ZET `decision-log.md:487` | 1 + 1 **carried** | **Yes** — P8 falsified after four further instances, replaced by `1646f8b` | `provisional` |
 | **Gate instrumentation** | MET `tools/gates.py` | 1 | **No** — 12/12 declared gates unrecorded | `proposed` |
-| **Executable claims** | MET `tools/verify_docs.py` | 1 | Partial — 6 assertions pinned on facts that had drifted; no cycle has run against it | `proposed` |
+| **Executable claims** | MET `tools/verify_docs.py` | 1 + 1 **carried** | Partial — 6 assertions pinned on facts that had drifted; no cycle has run against it | `proposed` |
 | **Read-path budget** | MET `verify_docs.py` | 1 | **No** — 1,300 against a current 1,056; it has never bound | `proposed` |
+
+**Updated 2026-08-18** against ZET retro #5 and MET retro 002. The table above is
+the 001a state; the adopter counts now carry the `carried` distinction added that
+day. What the two retros returned, candidate by candidate:
+
+| Candidate | What changed | Status now |
+|---|---|---|
+| **An adversary on the improvement loop** | Retirement test run a **second** time and nowhere near met. ZET's pass 2 corrected the headline metric 1.50 → 2.00, found a counting defect cutting the opposite way, **caught pass 1 proposing to delete a blocker that is true**, and caught pass 1's P3 proposing a rule the team had already written and already ignored | `provisional` — **still one adopter.** MET has now rejected it twice on its own evidence (n=27 coverage check at 001a; AR-1 at 2026-08-15) |
+| **Grade the previous cycle's proposals** | **Ran at MET** — grades committed at `0f92b45` *before* the architect was dispatched. Also ran at ZET, producing the strongest grade in either repo: MF-4's blocks were *"correctly built, pointed at the wrong claims"* | `provisional` — the second adopter is **carried** (MF-2b), so it is one independent adopter still |
+| **Gate instrumentation** | **First datapoint, and it falsified its own coverage claim.** `gates.py` reported gate lines *"across 8 ticket worklog(s)"*; all 27 come from one. Header corrected to "1 of 8" | `proposed` → **`provisional`.** An instrument whose first output is a correction to itself has fired |
+| **Executable claims** | MET 7/7 → **9/9**, and the new `team-preamble-copies-agree` assertion caught real drift no retro had noticed. ZET's three blocks all ran and all passed — **inert**, and the two claims that died in the window both had the shape and neither carried a block | `proposed` → **`provisional`.** Second adopter is **carried** (MF-4). The ZET grade is the more useful half: it is evidence about *aiming*, not about the mechanism |
+| **Read-path budget** | **Bound for the first time.** Cap 1,300 → 1,100 (carried as MF-1b); read path 1,098 → 1,082; the cut that made room is the one MET says *"paid for everything else"*; and D-021 records the budget **reversing a cut** two prior passes had wanted | `proposed` → **`provisional`**, and the strongest of the three. It is the only one that changed a decision rather than a document |
+
+**None promoted, and `spine.md` is untouched.** Three moved `proposed` →
+`provisional` on first datapoints. Every one of them is single-adopter once the
+`carried` column is applied honestly, which is the whole reason that column was
+added the same day.
+
+**The one graduation is `single-source-claims`** — recorded 2026-08-18 as a full
+catalog entry rather than a candidate, because unlike every row above it arrived
+with **two independent adopters and neither was carried.** It is still
+`provisional`, deliberately, at a few hours old. See
+[`single-source-claims.md`](single-source-claims.md).
 
 **Two have real evidence and three do not**, and all five are one adopter.
 Recording them with their origin and cost is the whole job here. **Promoting any
@@ -270,10 +401,48 @@ the instance has evidence. **A second adopter that has no counting defect would 
 adopting the argument, not the result.** MET took the one-line coverage question
 from ZET's step 3 instead, at zero per-ticket cost.
 
+> **Withdrawn 2026-08-18 as stated. The narrowing was this layer's and it was
+> wrong.** ZET retro #5's pass 2 produced two catches, and **neither is a
+> counting defect**: pass 1's mandatory § Cuts proposed deleting a standing
+> blocker that is **true** — it had checked the half already fixed and asserted
+> the half it had not checked — and pass 1's P3 proposed adding a rule
+> `docs/operating-rules.md` § Automation **had carried verbatim since the bot
+> landed**, and which had produced no action on either PR it applied to. A
+> second pass that catches *"you are proposing a rule you already wrote and
+> already ignored"* is not a broken-query detector. The structural argument has
+> content the instance did not show, and this layer narrowed it to the instance
+> on one cycle's evidence.
+>
+> **What does not change: the candidate stays `provisional` at one adopter.**
+> The withdrawal makes the argument stronger, and an argument is what MET has
+> twice declined — on its own evidence both times, which is the outcome this
+> mechanism is supposed to produce. Do not read a withdrawn narrowing as a
+> reason to press it a third time.
+
 **Not a candidate: mandatory subtraction.** Zero adopters — it is a *gap*, not an
 invention. Across 138 + 51 commits and four retros, **no system in the portfolio
 has ever retired an applied rule** (+155/−47 and +209/−21 on instruction files;
 every deletion verified as a replacement or a renumbering).
+
+> **Superseded 2026-08-18. The gap closed, and it closed because this layer's
+> own proposal landed.** MF-1 — the mandatory § Cuts section, carried to ZET in
+> MET's shape — is live at `.claude/agents/architect.md:85` with the two-state
+> clause at `:92` (*"'Nothing should be cut this cycle' is a valid return, and
+> it must be stated rather than left blank"*). At retro #5 it **fired and
+> produced three cuts**, one of which was factually wrong and was caught by
+> pass 2 — which that team correctly reads as an argument for keeping both
+> mechanisms, not for cutting either. Separately,
+> `docs/definition-of-done.md:85` was **deleted rather than reworded**, a
+> genuine retirement of a live rule on the grounds that its content already
+> lived in `operating-rules.md` § Standing authorizations.
+>
+> **Checked 2026-08-18 in `../zestyio/zesty-eng-team`:**
+> `grep -n "Cuts" .claude/agents/architect.md` → lines **85** and **92**.
+> `git show a2a4f6e --stat` → `docs/definition-of-done.md | 1 -`.
+>
+> The original sentence stands as a description of the portfolio **through
+> 2026-08-14**, and is worth keeping in that form: it is the observation that
+> produced the fix.
 
 **Corrected after both packets were judged, 2026-08-13.** This layer originally
 recorded the cause as *the question going unasked*. **That is true of one system

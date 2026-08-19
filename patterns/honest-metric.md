@@ -1,18 +1,27 @@
 # Honest metric
 
-**Status:** `provisional` — **two independent adopters, neither remedy measured**
+**Status:** `proven` — **promoted 2026-08-18. Two independent adopters, both
+remedies measured, both changed a reported number.**
 **Invented in:** zesty-eng-team
 **Independently re-derived in:** mpulse-engage-team (2026-08-13, review 001a)
 **Missing from:** personal-university, brand-system
 
-**Why it is still `provisional` at two independent adopters.** The independence
-half of the bar is now met: mpulse-engage-team inherited this metric *with the
-flaw*, diagnosed the fault from its own failure, and built a different remedy —
-see `README.md` § The independence bar and copies that re-derive. **The other
-half is not met.** Neither remedy has changed a measured number yet: ZET's
-`retro-metric.py` is one day old and MET's escape rate has never been reported
-once. **Two independent diagnoses of the same fault with two different remedies
-is strong evidence the fault is real and no evidence that either remedy works.**
+**Superseded 2026-08-18.** This file previously read *"`provisional` — two
+independent adopters, neither remedy measured"*, and explained that **two
+independent diagnoses of the same fault with two different remedies is strong
+evidence the fault is real and no evidence that either remedy works.** That
+reasoning was correct and its condition has now been met. Both remedies ran in
+the window 2026-08-15 → 08-18 and both changed a figure that had already been
+reported. Evidence below, under § Promoted 2026-08-18.
+
+**What the promotion does and does not do.** It moves this pattern into default
+inheritance for systems grown after 2026-08-18. It does **not** retrofit into
+any existing child, and it does **not** change `spine.md`, which already carries
+the load-bearing half under § Where systems are expected to differ — *"what does
+not vary is honesty about what is not being measured."* The spine wording was
+checked against this promotion and needs no edit; recording that check is the
+point, because a promotion that silently rewrites the spine is the churn
+`patterns/README.md` warns about.
 
 ## The pattern
 
@@ -93,8 +102,77 @@ off."*
 
 **Neither inherited the other's fix, and the two remedies are not the same
 pattern.** One makes the count honest; the other changes what is counted. That
-they converged on the *fault* and diverged on the *remedy* is why this is still
-`provisional`.
+they converged on the *fault* and diverged on the *remedy* was the reason this
+stayed `provisional` through 2026-08-18 — **and, once both remedies were
+measured, the reason the promotion means anything: the fault is
+remedy-independent.** See § Promoted 2026-08-18.
+
+*(This paragraph ended `...is why this is still provisional` until 2026-08-18.
+It was left behind by the promotion edit and caught in the same session that
+recorded `single-source-claims`. Two copies of a status, one updated. The
+pattern does not exempt the catalog.)*
+
+
+### Promoted 2026-08-18 — both remedies measured, in the same window
+
+Review 001a left exactly one condition for this pattern and named who had to
+check it: *"Two independent diagnoses of the same fault, with two different
+remedies, is strong evidence the fault is real and no evidence that either
+remedy works. **That is what review 002 has to look for.**"* Both remedies were
+exercised on 2026-08-18, independently, and each changed a number that had
+already been published.
+
+**zesty-eng-team — the instrument was wrong four ways and the discipline caught
+it.** `tools/retro-metric.py --since 2026-08-14` returned **0.00 on n=1**, and
+returned it silently: `team_prs()` filters on the `<!-- zesty-eng-team -->`
+**body** marker, and #4275 — the window's largest PR at +972/−191 across 16
+files — carries no such marker. Forcing the PR list gave 1.50/PR. A second pass
+then found a third auto-reviewer finding that had landed after the first pass
+ran. **Final: 2.00 per PR, reported as a FLOOR on n=2**, against 1.17 on n=6 at
+retro #3. The published conclusion inverted — *flat* became *rising* — and the
+`unmeasured` category grew a second condition it did not have: a PR **closed
+unmerged** now flags, where #4279 had previously scored indistinguishable from
+clean on a metric defined as findings per PR from reviewers the team does not
+control.
+
+> **Check, executed 2026-08-18 in `../zestyio/zesty-eng-team`:**
+> `git log --oneline --follow -- tools/retro-metric.py` → **two commits only**,
+> `404932e` (2026-08-13, the script) and `ca472bf` (2026-08-18, the four
+> counting defects). `grep -n UNMEASURED tools/retro-metric.py` → **lines 168,
+> 174, 291**; none present before `ca472bf`.
+
+**mpulse-engage-team — the discipline applied to a boundary it could not
+resolve.** Retro 002 reported **both** cuts of its headline and refused to pick
+one: 1 blocker per 4 PRs opened in-window, or 5 per 5 counting `apollo#4981`,
+whose review landed seven hours before the window opened. Neither is obviously
+the honest cut, so both are on the record and the boundary rule is deferred to
+retro 003. The window's context cost is written as a floor, `≥1,356,714` output
+tokens, **with the reason for the floor stated** — subagent usage is absent from
+the transcripts and this team delegates implementation by default. Its architect
+argued for `≥1,482,595` on a different treatment of one straddling session;
+**both figures are recorded and neither is called wrong.**
+
+> **Check, executed 2026-08-18 in `../mpulsemobile/mpulse-engage-team`:**
+> `.claude/commands/retro.md:49` carries the floor instruction with its own
+> measurement (*"`isSidechain` is never true — measured 2026-08-14 across 17
+> transcripts: 4,246 `false`, 1,914 absent, zero `true`"*) and requires the
+> figure be written with a `≥`. `.claude/agents/architect.md:54` — *"A zero with
+> no reviewer configured is not a zero. **Release PRs are excluded from the
+> denominator** (D-019) and their blockers reported separately."*
+
+**The two remedies stayed different, and that is the finding.** One makes the
+count honest; the other changes what is counted and what gets reported alongside
+it. Review 001a held this apart as the reason the pattern could not promote.
+It is now the reason the promotion is worth something: **the fault is
+remedy-independent.** Two systems that diagnosed the same fault built unlike
+instruments, and both instruments produced a corrected public number rather
+than a more careful paragraph about deriving one.
+
+**What is still not evidence.** MET's preferred metric — escape rate — has now
+been reported once, bucketed (14 CAUGHT: 7 blocker, 7 suggestion, 0 nit, 0
+unspecified), but it still has no feed from defects surfacing *after* release.
+The promotion rests on the `unmeasured`-and-floors discipline, which both
+systems exercised, not on escape rate, which one system has reported once.
 
 ## Adoption notes
 

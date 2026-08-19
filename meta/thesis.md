@@ -165,15 +165,71 @@ metric, not an engine's. The engine is judged on three numbers:
 
 1. **Births** — systems grown from `spine.md`, not copied. For each, whether it
    reached competence faster than a cold start would have. This is claim I's
-   test, and it stands at zero.
+   test. **It stands at one, as of 2026-08-19: `zesty-webengine-team`.**
+
+   *Was zero from founding until 2026-08-19.* **The count moved; the claim did
+   not.** Claim I is that a system grown from the spine reaches competence faster
+   than a cold start, and competence is measured in delivered tickets, not in
+   founding documents. This system has run **zero tickets and zero retros**. What
+   the birth establishes is only that the generative clock can turn at all —
+   which had never been demonstrated, since every prior system was either one of
+   the founding four or a copy.
+
+   **What to look for at review 001, and what would count against claim I:** the
+   birth cost materially more than a copy would have, and several of its rules
+   are predictions rather than observations. **If its first retro cuts most of
+   what the spine talked it into, the spine over-specified**, and that is
+   evidence about claim I rather than about the child. Do not let the fact that
+   the birth happened stand in for the claim the birth was supposed to test.
 2. **Promotions** — patterns reaching `proven` under the independence bar: two
-   or more independent adopters plus evidence of a changed outcome. Zero under
-   the current bar. This is what "knowledge grew" means here — not more lines,
-   more load-bearing verified mechanism inherited by default.
+   or more independent adopters plus evidence of a changed outcome. **One, as of
+   2026-08-18: `honest-metric`.** This is what "knowledge grew" means here — not
+   more lines, more load-bearing verified mechanism inherited by default.
+
+   *Was zero at the ruling on 2026-08-14. The promotion discharged a condition
+   review 001a had written down in advance and assigned to review 002 — both
+   remedies measured, in the same window, at two independent adopters. It did
+   **not** change `spine.md`, which already carried the load-bearing half.
+   Evidence and executed checks: `patterns/honest-metric.md` § Promoted
+   2026-08-18. **Counted honestly, this is one promotion of a pattern the
+   portfolio already had everywhere it mattered** — it moves default inheritance
+   for systems grown after this date, and no existing child changes.*
 3. **Transfer yield** — of the patterns the bridge carries, how many are
    accepted *and later measurably change an outcome at the receiver*.
    Acceptance alone is vanity; five items were accepted in the week of
-   2026-08-14 and none has produced a datapoint.
+   2026-08-14 and none had produced a datapoint at the time of the ruling.
+
+   **Updated 2026-08-18: four of the seven carried items have now produced a
+   datapoint at the receiver, and one changed a decision.** Verified in the
+   target repos, not read off this log:
+   - **MF-1b, read-path cap 1,300 → 1,100 (MET).** The cap **bound**: retro 002
+     landed at 1,082 and had to cut to fit. **D-021 records the budget reversing
+     a cut** two prior passes had wanted — a 135-line knowledge file kept on
+     measurement. *This is the only carried item that changed a decision rather
+     than a document.*
+   - **MF-1, mandatory § Cuts (ZET).** Fired at retro #5, produced three cuts,
+     and closed the portfolio-wide gap `patterns/README.md` had recorded as
+     *"no system has ever retired an applied rule."*
+   - **MF-2b, grade the previous cycle (MET).** Ran; grades committed at
+     `0f92b45` before the architect was dispatched.
+   - **MF-8 / AF-6 (MET).** Produced the overhead ratio (4 PRs merged against 0
+     retro output) and the first context-cost figure (≥1,356,714 output tokens,
+     stated as a floor with its reason).
+   - **AR-3, knowledge routing manifest (MET).** Applied; the off-path assertion
+     `knowledge-files-are-reachable` runs green in `verify_docs`, and the
+     orphaned file it surfaced was measured and kept.
+   - **MF-4, `**Verify.**` blocks (ZET).** Applied and **inert** — all three ran
+     and passed, and ZET's own grade is the sharpest thing either retro returned:
+     *"the two claims that did die this window both had the shape MF-4 targets
+     and neither carried a block. Correctly built, pointed at the wrong claims."*
+     Counted as transferred-and-not-yet-yielding, not as a win.
+
+   **The pattern in the yield is worth more than the count.** The items that
+   produced datapoints are the ones that instrument a number or force a trade;
+   the one that is inert is the one that asked a session to remember to do
+   something. That is the same result AR-1 through AR-4 returned on 2026-08-15
+   — *structural arguments lose, measured defects survive* — arriving now from
+   the receiving side.
 
 **The falsifier, accepted by the human in writing:** two consecutive quarters
 with zero births and zero promotions means the engine is not an engine — it is
@@ -181,6 +237,23 @@ an audit-and-hygiene function for the existing teams, which is a smaller and
 still legitimate claim, and the thesis gets rewritten to it rather than
 carried on hope. No birth is forced to beat the clock: a toy system generates
 no honest feedback and counts for nothing.
+
+**Clock status, 2026-08-19.** The two-quarter clock started 2026-08-14. Quarter
+one now has **one promotion and one birth**, so the falsifier cannot fire on this
+quarter and both clocks have turned once.
+
+**Do not read that as the thesis being safe.** The promotion is of a pattern both
+engineering teams already ran, and the birth has delivered nothing yet. **Two
+counters moved; neither claim has been tested.** The falsifier was written
+against a portfolio that produced *nothing* — it does not discriminate between a
+system that works and a system that merely emits artifacts on schedule.
+
+**That is a weakness in the falsifier, not a result, and it is now on the record
+where review 001 has to deal with it.** A sharper form would require a birth to
+reach some stated competence bar rather than merely to exist. Drafting that bar
+before `zesty-webengine-team` has run a ticket is the honest sequence — writing
+it afterwards, against results already in hand, would be choosing the target
+after the shot.
 
 - **Not that the systems should converge further.** Divergence where domains
   genuinely differ is correct. A catalog that pushes uniformity is worse than no

@@ -2025,3 +2025,400 @@ Also confirmed by the harness itself during the failed first run: `Write(...)`
 deny rules are inert and only `Edit(path)` binds — upgrading MET's audit note
 and this repo's own deny-list pairing from inference to stated harness
 behaviour.
+
+---
+
+## Scoped read of two child retros — 2026-08-18. **Not review 001.**
+
+**Provenance:** the human ran retros at zesty-eng-team (#5) and
+mpulse-engage-team (002) on 2026-08-18 and asked this layer whether anything in
+them was worth pulling into the spine. Scoped read on human flag, same
+instrument as 001a. **It does not discharge review 001**, which is quarterly,
+undischarged, and still owes the portfolio a six-system pass.
+
+### The cadence problem, stated first because it is the one nobody else can say
+
+**This is the third consecutive read of the same two repos** — 08-13 (001a),
+08-14 (goal rulings and AR-1…AR-4), and now 08-18. `HANDOFF.md` carried the
+warning in advance and it was written against exactly two: *"Two scoped reviews
+in a row on the same two repos would be this layer following attention instead
+of auditing it, which is the inverse of its job and would look like productivity
+the whole way down."* **This makes three, and it looked like productivity the
+whole way down.**
+
+Measured distribution since 2026-08-14 (`git log --oneline | wc -l` per repo,
+full table in `systems.md`): **84 of 100 commits are in the two engineering
+teams.** Reading them is reading where the work is. Four of six systems are now
+unexamined for the third time running, and personal-university (1 commit) and
+brand-system (3) remain the ambiguity this layer is explicitly barred from
+resolving alone.
+
+**Do not read this entry as evidence the layer is working.** It found real
+things, and it found them in the two repos that generate their own findings at a
+higher rate than this layer reads them.
+
+### Findings
+
+**F-1 — `honest-metric` is `proven`. The portfolio's first promotion under the
+independence bar.** Review 001a wrote the condition down in advance and assigned
+it: *"Two independent diagnoses of the same fault, with two different remedies,
+is strong evidence the fault is real and no evidence that either remedy works.
+That is what review 002 has to look for."* Both remedies ran in the window and
+both changed an already-published number.
+
+- **ZET** — `retro-metric.py --since 2026-08-14` returned **0.00 on n=1**,
+  silently false: `team_prs()` filters on a body marker that #4275 (+972/−191,
+  16 files) does not carry. Corrected to 1.50; a second pass found a third
+  finding that landed after pass 1 ran → **2.00/PR reported as a FLOOR on n=2**,
+  against 1.17 on n=6. **The published trend inverted, flat → rising.**
+  `UNMEASURED` gained a second condition: a PR closed unmerged now flags, where
+  #4279 had scored indistinguishable from clean.
+  > **Check:** `git log --oneline --follow -- tools/retro-metric.py` → two
+  > commits, `404932e` (08-13) and `ca472bf` (08-18). `grep -n UNMEASURED` →
+  > 168, 174, 291; absent before `ca472bf`.
+- **MET** — reported **both** cuts of its headline (1 per 4 in-window, 5 per 5
+  counting a PR whose review predates the window), refused to pick, and deferred
+  the boundary rule to retro 003. Context cost written as `≥1,356,714` output
+  tokens **with the reason for the floor stated**; its architect argued
+  `≥1,482,595` on a different boundary and both are on the record.
+  > **Check:** `.claude/commands/retro.md:49` carries the floor rule with its
+  > own measurement (17 transcripts: 4,246 `isSidechain=false`, 1,914 absent,
+  > zero `true`). `.claude/agents/architect.md:54` — *"A zero with no reviewer
+  > configured is not a zero."*
+
+Applied to `patterns/honest-metric.md` and the matrix. **`spine.md` unchanged**,
+and that is a decision rather than an omission: the spine already carries the
+load-bearing half under § Where systems are expected to differ. Recorded because
+a promotion that quietly rewrites the spine is the churn the catalog warns about.
+
+**F-2 — `single-source-claims`, and it is the first catalog entry this layer did
+not carry.** A claim duplicated across N files is a claim with N places to be
+wrong, and correction operates on whichever copy it found. **Derived
+independently at both teams on 2026-08-18. Neither instance came from here.**
+
+- **ZET `a2a4f6e`** — `839508b` struck the *"token lacks `workflow` scope"*
+  claim in two files on 08-17 and left it live in **eight**, including all four
+  agent preambles. The surviving copies **kept executing**: the claim became a
+  plan's item 5, which displaced one line of YAML into a 106-line script the
+  Director rejected. A concurrent session had pushed to `.github/workflows/`
+  successfully twenty minutes earlier. Remedy: a grep-every-copy rule, and
+  `definition-of-done.md:85` **deleted rather than reworded**.
+- **MET `c265813` / `0705c2d`** — the `TEAM-PREAMBLE`, duplicated across four
+  agent files on purpose, had drifted; `architect.md` lost the worklog clause.
+  Nothing was looking, because `/retro` §6 covers the **write** path (change all
+  four together) and not the **drift** path. Remedy: a shasum assertion,
+  `team-preamble-copies-agree`.
+  > **Check:** `python3 tools/verify_docs.py` → `9/9 passed`, including that
+  > assertion at `.claude/agents/architect.md:115`.
+
+Recorded as a full pattern at `provisional` with a retirement test named now
+rather than later. **It clears the arithmetic promotion bar on the day it was
+found and is being held anyway** — `charter.md` names the fresh-idea-from-a-live-
+project failure mode and this is one, at a few hours old.
+
+**Applied to this repo, and the result is the unexciting one.** The three
+adoption tests are duplicated across `spine.md` and `patterns/README.md`; *"never
+edit a child repo"* appears in five files. **Diffed: the copies agree in
+substance**, the variation is phrasing. The exposure is structural and
+unrealised, and inflating it would have been the easier write-up.
+
+**One realised instance, caught mid-edit.** The status reason *"neither remedy
+measured"* lived in three places. The promotion edit updated the header and left
+`honest-metric.md` reading *"is why this is still `provisional`"* four paragraphs
+later. **N copies, one updated, on the first try, in the file being edited to
+record the pattern.** Fixed, and left annotated rather than silently corrected.
+
+**F-3 — the promotion gate has a third case and it is a self-dealing hole.** The
+bar knows **independent invention** and **copy-as-package**. It does not know
+**carried** — a pattern that arrived because this layer dispatched it. Under the
+wording as it stood, a carry read as independent.
+
+**This is live, not hypothetical.** `executable-claims` was invented at MET
+(`verify_docs.py`). ZET now has it — three `**Verify.**` blocks — **because this
+layer dispatched MF-4 there.** Two adopters, and the second is this layer's own
+proposal returning to it as evidence.
+
+> **Check:** ZET blocks at `docs/charter.md:44` and `docs/operating-rules.md:56`;
+> provenance in that repo's own record at `docs/decision-log.md:531`, headed
+> *"Retro #4, MF-4"*.
+
+**If carried adoptions count as independent, this layer can promote its own
+proposals into the spine by dispatching them** — propose, carry, count the
+acceptance, promote, and it becomes default inheritance for every system built
+afterwards with no system having arrived at it twice. Every step is currently
+permitted.
+
+Applied to `patterns/README.md` § The third case. **The asymmetry is why this is
+not merely another `†` discount:** a carry *is* evidence the pattern transfers —
+it survived a child Architect judging it on that child's own evidence, and given
+eighteen dispatched items and eleven rejections that is not a rubber stamp. It is
+just not what `proven` measures. **Retroactive effect, checked: none.**
+`honest-metric` rests on invention plus documentary re-derivation; neither leg is
+a carry.
+
+**F-4 — withdrawn: this layer's narrowing of the improvement-loop adversary.**
+001a wrote that its demonstrated value was *"finding one specific broken query,
+not having a second pass"*, and that a second adopter without a counting defect
+*"would be adopting the argument, not the result."* **Retro #5 falsifies that as
+stated.** Pass 2's two catches were a § Cuts proposing to delete a standing
+blocker that is **true**, and a P3 proposing a rule `operating-rules.md`
+§ Automation **had carried verbatim since the bot landed** and which had produced
+no action on either PR it applied to. Neither is a counting defect.
+
+**The candidate does not move.** Still one adopter; MET has declined it twice on
+its own evidence. A withdrawn narrowing is not a reason to press it a third time.
+
+**F-5 — both teams dated their retros a day into the future, independently.**
+ZET's decision-log heads retro #5 **2026-08-19**; MET's team-log heads retro 002
+**2026-08-19**. Every commit in both is `2026-08-18 23:0x -0700`. They took UTC
+timestamps off the `gh` API (`2026-08-19T05:51:30Z` = 22:51 PDT) and wrote them
+as local log dates.
+
+> **Check:** `git log -1 --format='%ai' 300c5d9` → `2026-08-18 23:10:09 -0700`
+> against `decision-log.md:594` heading `2026-08-19`. Same for MET `f8cb105` →
+> `2026-08-18 23:21:18 -0700` against `team-log.md:152`.
+
+**It matters because both teams window metrics by date** — ZET's `--since`, and
+MET's metric 2, which retro #5 already found has *"7 bullets carrying no date at
+all."* A log dated a day ahead of its commits puts the window boundary and the
+log's own dates silently one day apart. **Cross-system by construction: each team
+sees one timezone.** Not packeted — see § Dispatch.
+
+**F-6 — mpulse-dpi-team's standing wake-up item is discharged, and nobody told
+this layer.** `systems.md` carried it as blocking any new proposal. It was fixed
+at `7888bb3` on **2026-08-14**, four days before this read.
+
+> **Check:** all four command files route through `python3 tools/jira.py` and
+> each says *"not the `jira` MCP server"*. `take-ticket.md:10`'s false
+> PHI-sanitization claim is gone; `:17` now reads **"Nothing sanitizes this
+> output."**
+
+**MDT is eligible for proposals again.** Two things about it belong on review
+001's agenda and neither is a cadence miss: it has run **zero retros ever**
+(`git log --all --oneline | grep -ci retro` → `0`), which means its Architect has
+never executed *and* the knowledge-gate candidate in `patterns/README.md` cannot
+be graded because the grading step does not exist; and it holds the
+PHI-sanitizer fact in **four copies** on a HIPAA platform, in the one repo with
+no retro to catch the drift its two siblings were burned by the same week. The
+copies agree today, checked.
+
+### § 5 — audit of this layer's own past proposals
+
+**Everything recorded as harness-blocked has since landed.** `HANDOFF.md` still
+listed seven items as pending execution in its Next-action section while its own
+header said they were applied. Both cannot be true; the header was right.
+Verified item by item in the target repos:
+
+| Item | Where it lives now | Did it do anything |
+|---|---|---|
+| ZET MF-1 § Cuts | `.claude/agents/architect.md:85`, two-state clause `:92` | **Fired** — three cuts at retro #5, one factually wrong and caught by pass 2 |
+| ZET MF-4 Verify blocks | `docs/charter.md:44`, `operating-rules.md:56` | Ran, passed, **inert** — see below |
+| MET MF-1b cap 1,100 | `architect.md:105`, asserted `:107` | **Bound** — 1,098 → 1,082; **D-021 reversed a cut** on the measurement |
+| MET MF-2b grade last cycle | `retro.md:19` | Ran — grades committed at `0f92b45` before dispatch |
+| MET MF-8 overhead ratio | `retro.md:33` | 4 PRs merged against 0 retro output |
+| MET AF-6 context cost | `retro.md:35` | ≥1,356,714 output tokens, numeric fields only |
+| **AR-3** routing manifest | MET `CLAUDE.md:55-60`, assertion off-path `architect.md:126` | **Reversed a decision** — the orphan it surfaced was measured and **kept** (D-021) |
+
+**MF-4's grade is the sharpest thing either retro returned, and it is against
+us.** All three blocks ran and passed. **The two claims that actually died in the
+window — the SSH signing key and the `workflow` scope — both had exactly the
+shape MF-4 targets, and neither carried a block.** ZET's own words: *"Correctly
+built, pointed at the wrong claims."* A mechanism can be right and aimed wrong,
+and the aiming is the part this layer proposed.
+
+**Transfer yield is now 4 of 7 producing a datapoint, one of them changing a
+decision** — updated in `meta/thesis.md` § The engine's scoreboard, which stood
+at zero. **The pattern in the yield matters more than the count: the items that
+instrument a number or force a trade produced datapoints; the item that asked a
+session to remember something is the inert one.** That is *structural arguments
+lose, measured defects survive* — the AR-1…AR-4 result of 2026-08-15 — arriving
+from the receiving side this time.
+
+### Falsifier check
+
+Run because an unchecked falsifier is the same as no falsifier, not because
+anything looked shaky.
+
+- **Claim I (the spine generates).** Untouched and untested. **Births: zero.**
+  The two-quarter clock started 2026-08-14. Quarter one has one promotion and no
+  births, so the falsifier cannot fire this quarter — **and that is not the
+  thesis being safe.** The evolutionary clock produced its first result; the
+  generative one has still never run.
+- **Claim III (findings a local Architect could not make).** This read produced
+  six findings. **F-3 and F-5 are unavailable from inside any child** — the
+  self-dealing gate hole requires seeing the dispatch record, and the UTC slip
+  requires seeing two timezones at once. **F-1, F-2, F-4 and F-6 were all
+  available locally**, and F-2 in particular was *found* locally, twice, by the
+  two teams. **This layer carried it; it did not find it.** Four of six is a
+  worse ratio than 001a's five of eight.
+- **Claim IV (Architects' self-audits need auditing).** **Sixth consecutive
+  hit, and this time it is not close.** ZET graded its own MF-4 as inert and
+  then produced the corollary that condemns it. MET committed its grades
+  *before* dispatching its architect so the grader could not launder them. Both
+  teams out-verified this layer again, and this session's own two derived commit
+  counts (ZET 181, MET 92) were **both wrong against a measured 196 and 103** —
+  caught only by running the command instead of adding to a stale total. **The
+  thesis says a second consecutive accurate self-audit means the audit job gets
+  cut to a spot check. This is the sixth.** Review 001 should cut it, and this
+  layer should stop reporting the hit as if it were news.
+
+### Dispatch
+
+**Nothing dispatched. Deliberately.**
+
+Five of the six findings are either this layer's own bookkeeping (F-1, F-3, F-4)
+or things the children found themselves and this layer merely carried (F-2, F-6).
+Sending those back would be *"carrying is a service, not an insight"* run as a
+packet. **F-5, the UTC date slip, is the only genuinely new item with a target**,
+and it is two lines; it should ride along with the next real packet rather than
+justify one of its own.
+
+**The record on structural packets is now unambiguous** — eighteen items, eleven
+rejections, AR-1 rejected at both teams on different evidence, and the one
+survivor was the one grounded in a measured present defect. **This layer's own
+best output this session was a promotion, two withdrawals and a hole in its own
+gate.** None of that is a child's problem.
+
+---
+
+## Birth — `zesty-webengine-team`, 2026-08-19. The first one
+
+**Provenance:** the human asked for a system for a colleague who works on
+`zesty-io/webengine`, and asked whether to build it for that repo or make it
+service-agnostic. Built on his instruction. **This is a generative-clock entry,
+not a review.**
+
+### The count moved. The claim did not.
+
+**Births: 0 → 1.** Every prior system in this portfolio is one of the founding
+four or a copy of one, which is why claim I has had zero evidence since this
+layer was created.
+
+**What the birth establishes is only that the generative clock can turn.** Claim
+I says a system grown from `spine.md` reaches competence faster than a cold
+start. Competence is delivered tickets. **This system has run zero tickets and
+zero retros.** Do not let the fact that a birth happened stand in for the claim
+the birth was supposed to test — that substitution is available and it is exactly
+the kind of thing this layer exists to refuse.
+
+**A weakness in the falsifier, surfaced by satisfying it.** The two-quarter clock
+fires on *zero births and zero promotions*. Quarter one now has one of each, so
+it cannot fire — **and neither claim has been tested.** The falsifier was written
+against a portfolio producing nothing; it does not discriminate between a system
+that works and a system that emits artifacts on schedule. Recorded in
+`meta/thesis.md`, with the note that a sharper form must be drafted **before**
+this child delivers anything, not after. Writing the bar against results already
+in hand is choosing the target after the shot.
+
+### The design question, and the answer
+
+**Asked:** build it for webengine specifically, or service-agnostic so it can be
+pointed anywhere?
+
+**Answered: single-target, no routing step.** The reasoning is the catalog's first
+adoption test applied literally — routing exists at `mpulse-engage-team` because
+*building the right thing in the wrong service throws the work away* across ~30
+repos, and **that failure mode does not exist for one repo.** A routing step here
+is a per-session tax against nothing.
+
+**The distinction that settled it, and it is worth carrying:** WebEngine work
+genuinely spans Fastly, Cloud Run, the CMS instance and a Next.js app — but that
+is **knowledge breadth, not routing breadth.** Nobody is deciding which repo a
+ticket belongs to. The answer to knowledge breadth is a fat knowledge layer; the
+answer to routing breadth is a routing step. Conflating them would have bought
+the wrong machinery.
+
+**And the choice is asymmetric**, which is what made it safe: adding routing later
+is a manifest and one question. Recovering depth a generic system never collected
+is not.
+
+### Preconditions verified before anything was written
+
+Per § Output — no claim about a target without an executed check. All against
+`zesty-io/webengine`, 2026-08-19.
+
+- **`ci.yml` can fail, and the first reading said it could not.** Both suites
+  carry `continue-on-error: true`, which reads as a gate that cannot bite. A
+  final `Fail if any suite failed` step decides the build. **This layer nearly
+  shipped the opposite claim into a founding document**, and caught it only by
+  reading past line 40. Recorded because it is the third self-check to fire in
+  two days.
+- **The integration suite runs against ~10 live staging origins.** A red build is
+  not always a bad diff. Became an `unmeasured` category at founding rather than
+  a retro-3 discovery.
+- **`claude-auto-review` fires on `[opened, synchronize, reopened,
+  ready_for_review]`** — so it does **not** have the defect `zesty-eng-team` fixed
+  at `4f9fdff` the day before, where a reviewer wired to `opened` alone let a
+  whole upgrade PR through with no runtime QA.
+- **It reads inline comments from `repos/…/pulls/N/comments`.** The endpoint
+  `gh pr view --comments` cannot reach, and the one that scored ZET's gate
+  **0.00 for three cycles against a true 0.83.** Written into the new repo as a
+  rule.
+- **A human reviews 6 of the last 20 PRs.** Better than MET, which had zero human
+  reviews and empty `requested_reviewers` on every PR. The metric shape works
+  here on day one.
+
+### Three things the child does that its would-be parent does not
+
+Each traceable to deriving from reasoning rather than copying a file. **This is
+the only evidence available this early about whether the spine is worth
+anything**, and it is weak evidence — it says the derivation produced differences,
+not that the differences are right.
+
+1. **`unmeasured` categories tuned to its own domain**, five of them, at
+   founding. A copy would have inherited ZET's categories, which describe a
+   different repo. **This is the exact defect the two mPulse copies have** — both
+   lost the category whose reason was not visible on the surface.
+2. **The metric identifies external reviewers structurally** — *not the PR
+   author, no team marker* — rather than by handle. **Forced by a constraint, and
+   the constraint produced a better rule than the parent has.** The human
+   instructed that no personal name enter the repo; keying on structure instead
+   of identity survives people joining, leaving and renaming, which ZET's
+   handle-aware approach does not.
+3. **Four machine assertions**, all local, none touching the network — MET's
+   `verify_docs` shape, with MET's own rejection of a network-backed assertion
+   (15 GitHub round-trips, flaky) applied as a design constraint rather than
+   rediscovered.
+
+**The assertion `no-hardcoded-human-identity` failed on its first run by matching
+its own text** — `single-source-claims`' named failure mode, on the day after it
+was recorded, in the first system built after it. Fixed by breaking the literal;
+the failure is documented in place rather than smoothed away.
+
+### What was deliberately not built
+
+No gate instrumentation, no state-reconciliation tooling, no routing step, no
+falsifiable thesis, no `/triage`. **The spine defaults every "should we add one?"
+to no**, and a system with zero tickets has earned nothing. Naming the absences is
+the point — a later reader should be able to tell a decision from an oversight.
+
+### A gap in `charter-as-constitution` that no existing system has hit
+
+The charter is *"the Maintainer's alone to edit"*, and **at founding the repo
+lives under a different person's GitHub account** — deliberately, so it can be
+handed over. So the charter's owner and the repo's owner are different people, and
+the pattern has nothing to say about it.
+
+Also new: **this is the first system whose human gate did not design it and is
+doing the engineering too.** Every other system's gate is the person who built the
+loop. `docs/charter.md` § Who the Maintainer is states the consequence rather than
+leaving it to be found — the Maintainer's corrections are the loop's highest-grade
+signal, and a cycle with none is recorded `unmeasured`, not clean.
+
+Both go to review 001. **Neither is dispatchable as a finding** — they are
+questions about the spine, labelled as such.
+
+### What review 001 must look at, and it is not the founding documents
+
+1. **Did its first retro cut most of what the spine talked it into?** Several
+   rules there are predictions made before anything went wrong. **A large first
+   § Cuts is evidence the spine over-specifies** — about the spine, not the child.
+2. **Did the birth cost more than it returned?** It took materially longer than a
+   copy would have. That is precisely what claim I says buys faster competence,
+   and nobody has measured it.
+3. **Does the gate hold when the gatekeeper is not the designer?** Two consecutive
+   cycles with zero Maintainer findings is the tripwire this system is most likely
+   to trip.
+
+**Nothing was dispatched and no child was edited.** The new repo is not a child
+being proposed to; it is a system being grown, which is the other clock.
