@@ -137,6 +137,31 @@ in a way neither file records, in which case the fix is to record it.
 
 ---
 
+## Precondition, checked before dispatching — read this first
+
+**`brand-system` has uncommitted work in flight and it is not this layer's.**
+
+> **Check, executed 2026-08-22:** `git -C ../brand-system status --porcelain` →
+> **8 modified files** — `CYCLE-STATE.md`, `ledger.md`, `pipeline.md`,
+> `positioning.md`, `progress/critic-log.md`, `voice/voice-feedback.md`, and the
+> draft and `.mdx` for item 0017. **All eight were last written 2026-08-16**, six
+> days before this packet, against a last commit of `ff11586` on the same day.
+
+**Nothing in that repo was touched by the session that wrote this packet** — it
+was opened read-only, with `git grep` and `dig`, and its working tree is exactly
+as its own last session left it.
+
+**Do not dispatch into this state without resolving it first.** `CYCLE-STATE.md`
+is among the modified files, which means the receiving session's own handoff
+record is mid-write; a packet arriving on top of that would be judged against a
+state neither file describes. **Ask Andres whether the 08-16 cycle is finished
+before the packet goes in**, and if it is not, the packet waits — BF-1's timing
+argument is measured in the weeks before `site/` deploys, not in days.
+
+**This check exists because the layer has been wrong this way before**: a
+cross-system finding can be correct in the abstract and false about the repo it
+was aimed at. Verify in the target, not from here.
+
 ## What was deliberately not carried
 
 **Nothing about `site/`, the voice, the pipeline, or the cadence.** This layer
