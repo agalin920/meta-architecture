@@ -423,6 +423,111 @@ owner and the repo's owner are different people at founding**, which is a real g
 in the `charter-as-constitution` pattern that no existing system has hit. Review
 001 should decide whether the pattern needs amending or whether handover closes it.
 
+---
+
+## galind-team
+
+| | |
+|---|---|
+| **Domain** | Building **Galind** — an agent-native backend suite — from a strategy brief to a shipped product |
+| **Status** | `active` — **founded 2026-08-22, nothing built** |
+| **Loop** | Slash commands — `/decide`, `/take-item`, `/review`, `/standup`, `/retro` |
+| **Cadence** | Per work item, Director-driven. `/retro` every third item **or on the F1 tripwire**, whichever comes first |
+| **Architect** | `.claude/agents/architect.md`, at `/retro`. **Never run** |
+| **Metric** | Director findings per work item; **machine share** (system commits ÷ system + product). Six named `unmeasured` categories, including the Director's own miss rate |
+| **Theory** | `docs/thesis.md` — three claims, each with falsifiers. **Correctly has one**: this system claims an outcome rather than only doing work |
+| **Handoff** | `tickets/<id>-<slug>.md` written at every step + `docs/team-log.md` current-state header + `HANDOFF.md` |
+| **First commit** | 2026-08-22 · 1 commit (`00e59c6`) · **0 work items, 0 retros, 0 product repos** |
+
+**THE PORTFOLIO'S SECOND BIRTH, three days after the first.** Grown from
+`spine.md`, not copied. Full entry in `meta/architect-log.md`.
+
+**It is a harder test of claim I than `zesty-webengine-team` was**, and the reason
+is structural rather than a matter of quality. That birth landed in the
+portfolio's best-populated domain — engineering delivery on an existing repo —
+where a copy of `zesty-eng-team` was a live alternative and two siblings existed
+to check it against. **This one has no sibling.** No tracker, no product, no
+external reviewer, no user, and its first job is deciding what to build. The
+spine had to carry the whole load unaided.
+
+**The product is deliberately not in the repo.** `~/dev/galind/galind-team` is the
+system; `~/dev/galind/galind-<module>` repos are subjects and **none exists yet**,
+by its `D-007`. The separation was ruled structural, not conventional: it is what
+makes the machine/product ratio observable at all.
+
+**Three things it does that no existing system does:**
+
+- **`tools/ledger.py` — a named failure mode with a real corpse behind it.** F1 is
+  *building the machine instead of the product*, and unlike every other instance
+  of that name in the portfolio it is not a prediction. There was a **previous
+  `galind`** — an agent-run company on the Agent SDK whose stated first mission
+  was to discover its own product, now a backup tarball, whose own README reads
+  *"We built the machine before deciding what it makes — on purpose."*
+  (`../brand-system/inventory.md:46`, `:144`, `:155`, checked 2026-08-22.) The
+  script counts system commits against product commits, or days elapsed while no
+  product repo exists.
+
+  **`zesty-webengine-team` independently invented a ratio of the same family**
+  four days earlier — *a cycle where `retro:` commits outnumber merged PRs*
+  (`docs/charter.md:87`, checked 2026-08-22) — and neither system read the other.
+  **They are not the same instrument.** WET counts inside one repo, because it
+  operates on a product that already exists. This one counts across repos, and
+  has a second mode counting days elapsed with no product repo at all, because
+  its product does not exist. **One measures a team drifting from work it has;
+  the other measures a team never starting.** Two independent adopters, zero
+  fired tripwires — a promotion-gate candidate for review 001, not a pattern.
+- **The independent adversary runs against strategy proposals, not only diffs.**
+  Its reasoning is that a proposal becomes a ruling and rulings are what the
+  product is — the same generalisation `patterns/README.md` records as an open
+  spine question, arrived at independently and pointed at a different output. One
+  agent with two modes, not a second agent (`D-006`); the spine's default of *no*
+  held.
+- **A gate whose irreversibles are not code-shaped** — money, DNS, publishing,
+  credentials, and **sending email to a real address**, named first among the
+  technical items because sending reputation damages permanently. `curl` and
+  `wget` are denied at the permission layer on the stated reasoning that a send
+  is an HTTP POST while reading the web goes through `WebFetch`.
+
+**Two founding cuts, and they are the more interesting half.** It declined a
+`proven` pattern (`overhead-ceiling`, on test 1 — nothing has grown to cap) and a
+`provisional` one (executable claims, on test 2 — with ten docs and zero cycles,
+reading them is cheaper), **both with recorded triggers to revisit.** **`zesty-webengine-team` adopted both of them at founding** — a 900-line
+read-path cap asserted by its own `tools/verify_docs.py` (checked 2026-08-22).
+**So the two spine-grown births made opposite calls on the same two mechanisms,
+four days apart, without reading each other.** That is the first sign the spine is
+being *read* rather than complied with, and it bears directly on claim I's second
+falsifier. Which call was right is not knowable yet; review 001 should grade both
+against their first retros, and *each was right locally* is a legitimate outcome
+that would be evidence the three tests work.
+
+**What review 001 should look at, and it is not the founding documents:**
+
+1. **The size of its first `§ Cuts`.** Every rule in it is a prediction made
+   before a work item ran. A large cut is evidence the spine **over-specifies** —
+   about the spine, not the child. Same test the first birth is under.
+2. **Whether the F1 tripwire fired on its own founder.** `ledger.py` reports
+   `0 / 14` days and `1 / 25` commits at founding. If it spends its first
+   fortnight improving itself, the detector it invented caught its own author,
+   and the spine grew a machine that produces machines.
+3. **Whether the two cuts were reversed at retro 1.** Immediate adoption of what
+   it declined would mean the declines were performed discipline rather than
+   exercised discipline.
+
+**Its gate is Andres, who is also the product owner and the only user.** Unlike
+`zesty-webengine-team` — where the gate is someone who did not design the system —
+here the gate designed it, owns the domain, and is the sole source of feedback.
+Its charter names that as F4 and records a cycle with zero Director corrections as
+`unmeasured` rather than clean. **Two of the eight systems now state a
+gate-shaped failure mode, from opposite causes**, which is a question for the
+spine and not a defect in either.
+
+**Open:** `galind.io` is claimed by two systems. Andres ruled 2026-08-22 that the
+product takes it and `brand-system` moves; **the ruling has not been executed** and
+is carried in `proposals/2026-08-22-brand-system.md`. `brand-system` uses the
+string as its own name in three files, so it is a rename and not a DNS change.
+Registered here because a decision made and not executed is what gets
+rediscovered as a surprise.
+
 ## Not in the portfolio
 
 `manager-ui` and `studio-bridge` are product repos that zesty-eng-team operates

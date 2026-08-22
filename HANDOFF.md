@@ -16,21 +16,27 @@ layer taking on ceremony it does not need, which is a named failure mode in
 ## Current
 
 ```yaml
-status: BOTH CLOCKS TURNED for the first time, 2026-08-18/19.
-             Evolutionary: honest-metric promoted to `proven` — the portfolio's
-             first promotion. Generative: zesty-webengine-team GROWN FROM THE
-             SPINE — the portfolio's first birth. Neither claim is tested by
-             either event; read the caveats before repeating the headline
+status: BOTH CLOCKS TURNED, 2026-08-18/19, and the generative one turned
+             AGAIN on 08-22. Evolutionary: honest-metric promoted to `proven` —
+             the first promotion. Generative: TWO births, zesty-webengine-team
+             and galind-team, both grown from the spine. NO claim is tested by
+             any of it — the three counters moved and nothing was delivered.
+             Read the caveats before repeating the headline
 last_review: 001a (scoped, 2026-08-13). 000 was founding. The 08-14 rulings, the
              08-15 AR proposals and the 08-18 scoped read are entries, not reviews
-next_review: 001 — full portfolio, now SEVEN systems. STILL UNDISCHARGED, and now
-             overdue in a way that has a name: see the cadence warning below
-promotions:  1 (honest-metric, 2026-08-18). Births: 1 (zesty-webengine-team,
-             2026-08-19, zero tickets run). Transfer yield: 4 of 7
+next_review: 001 — full portfolio, now EIGHT systems. STILL UNDISCHARGED. Two
+             systems have been founded since it came due; see the cadence
+             warning below, which the second birth makes worse, not better
+promotions:  1 (honest-metric, 2026-08-18). Births: 2 — zesty-webengine-team
+             (08-19) and galind-team (08-22). BOTH have delivered nothing.
+             Transfer yield: 4 of 7
 registry:    systems.md refreshed 2026-08-18 with MEASURED commit counts and a
              distribution table. MDT's standing wake-up item is DISCHARGED
 dispatched:  nothing since 2026-08-15. All seven 08-14 items and AR-3 have landed
              in the children and are verified there
+pending:     proposals/2026-08-22-brand-system.md is WRITTEN AND NOT DISPATCHED.
+             It carries a human ruling (galind.io moves to the product), which
+             no packet has ever done before — read its § Standing first
 ```
 
 ## Read this before you do anything: the cadence warning has fired
@@ -96,9 +102,15 @@ Not a review. A restatement of purpose by the human, applied to the documents.
 
 ## What exists
 
-The portfolio is **eight repos**: seven systems plus this layer, all under
-`agalin920`, all checked out under `~/dev/`. **`zesty-webengine-team` was added
-2026-08-19 — the first system grown from `spine.md` rather than copied.**
+The portfolio is **nine repos**: eight systems plus this layer, all checked out
+under `~/dev/`. **Two were grown from `spine.md` rather than copied** —
+`zesty-webengine-team` on 2026-08-19 and `galind-team` on 2026-08-22.
+
+**`galind-team` is the first system that is not under `agalin920` yet**, because
+it has no remote at all: `gh repo create` is denied at its own permission layer
+and creating one is Andres's call. It lives at `~/dev/galind/galind-team`,
+alongside the `galind-*` product repos it will build — **which are subjects, not
+systems, and none of which exists yet.**
 
 Two systems were added on 2026-08-10 — `mpulse-engage-team` and `mpulse-dpi-team`,
 both **copied from zesty-eng-team, not grown from the spine**. That distinction is
@@ -201,6 +213,24 @@ deleted — a closed item with its evidence is worth as much as an open one.
     **MDT is eligible for proposals again.**
 12. ~~**`charter.md` silent on dispatch.**~~ **Closed 2026-08-14**, amendment
     applied on the human's explicit instruction.
+13. **A carry-packet is written and undispatched, and it is a new kind.**
+    `proposals/2026-08-22-brand-system.md`. **BF-1 carries a human ruling rather
+    than a proposal** — Andres ruled that Galind takes `galind.io` and
+    `brand-system` moves — which no packet has done before. The mechanism was
+    built for proposals a child Architect may reject on its own evidence, and
+    that is not the standing of a ruling by the person who is also that system's
+    gate. **The packet splits it explicitly** — the ruling is settled, the name,
+    host, timing and file-by-file approach are `brand-system`'s alone — and the
+    failure mode is that the settled half bleeds into the rest. **Grade it as a
+    first attempt at a form this layer has no precedent for**, and if the split
+    does not hold in practice, the finding is about `meta/dispatch.md`, not about
+    the packet.
+
+    **The timing is the reason it was not held for review 001.**
+    `dig +short galind.io A` returns empty — registered, not deployed — so the
+    cost of the move is at its permanent minimum today and rises the day
+    `brand-system/site/` ships. BF-2 in the same packet is an ordinary finding
+    with no authority.
 
 ## Decisions that constrain the next session
 
@@ -235,12 +265,27 @@ deleted — a closed item with its evidence is worth as much as an open one.
 
 **Review 001. Or nothing.**
 
-**Unchanged by the birth, and the birth is the reason to say so explicitly.**
-Growing `zesty-webengine-team` was the generative clock, which has no cadence and
-blocks nothing. It does not discharge review 001, it does not reset the cadence
-warning, and *"we just built something, let's review"* is the named failure mode
-wearing a new coat. What it does do is **add a seventh system to review 001's
-scope** and put two new spine questions on its agenda (see below).
+**Unchanged by either birth, and the second birth is the reason to say so
+harder.** Growing `zesty-webengine-team` and `galind-team` was the generative
+clock, which has no cadence and blocks nothing. Neither discharges review 001,
+neither resets the cadence warning, and *"we just built something, let's review"*
+is the named failure mode wearing a new coat. What they do is **take review 001's
+scope to eight systems** and put new questions on its agenda (see below).
+
+**And there is now a shape worth naming.** Two systems founded in four days,
+while the review that came due on 2026-08-13 stayed undischarged, and nothing
+delivered by either. The generative clock is deliberately uncadenced because
+*pulling from the spine costs nothing and should block nothing* — but *"costs
+nothing"* was an argument about the child, not about this layer's attention, and
+founding a system is the most enjoyable thing this repo does. **`charter.md`
+names "building the system instead of using it" as a failure mode and gives it
+the 1% ceiling as a tripwire, which does not apply here** — the ceiling exempts
+generative work by design.
+
+That exemption was written when the count was zero. **Whether it still holds at
+two-in-four-days is a question for review 001**, and it is raised here rather
+than answered, because answering it in the same session that did the founding
+would be the least trustworthy possible moment to decide.
 
 The reason is in the cadence warning at the top of this file: three consecutive reads of the same two repos, 84 of 100
 commits in those two repos, four systems unexamined three times running. **A
@@ -262,7 +307,7 @@ When 001 runs, it has an agenda it did not have before, in rough priority:
    (open 2).
 5. **`single-source-claims`' retirement test** (open 6), if a cycle has run at
    either origin system by then.
-6. **The two spine questions the birth raised**, neither dispatchable, both
+6. **The spine questions the two births raised**, none dispatchable, all
    labelled as questions rather than proposals:
    - **`charter-as-constitution` has no account of a charter whose owner is not
      the repo's owner.** At founding, `zesty-webengine-team` lives under one
@@ -271,24 +316,52 @@ When 001 runs, it has an agenda it did not have before, in rough priority:
    - **Every system's human gate until now designed the system it gates.** This
      one's did not, and is doing the engineering as well. The spine assumes a
      level of correction it has no way to check.
+   - **Two systems now name a gate-shaped failure mode, from opposite causes.**
+     `zesty-webengine-team`'s gate did not design it; `galind-team`'s designed it,
+     owns the domain, and is the only user. Both concluded that a cycle with zero
+     corrections is `unmeasured` rather than clean, **independently and four days
+     apart.** Two independent adopters is what the promotion gate asks for; zero
+     cycles have run at either, which is what it also asks for. Worth a row in the
+     catalog as a candidate, not a promotion.
+   - **`independent-adversary` has now been generalised twice, to two different
+     outputs.** `zesty-eng-team` pointed it at the retro; `galind-team` pointed it
+     at strategy proposals, on the reasoning that a proposal becomes a ruling. The
+     catalog already carries *"every system read the spine's wording as the work
+     pipeline"* as an open question. **Two independent generalisations is
+     evidence the wording, not the pattern, is what is wrong.**
+   - **Does the generative clock's exemption from the overhead ceiling survive
+     two births in four days?** See § Next action.
 7. **Draft a sharper falsifier for the engine, before the new child delivers
    anything.** The current one fires on zero births and zero promotions; quarter
    one now has one of each and **neither claim has been tested.** Writing the bar
    after results are in hand is choosing the target after the shot.
 
-**The birth happened on 2026-08-19 and it was grown, not copied.**
-`zesty-webengine-team`, targeting `zesty-io/webengine`, for a colleague who is
-its Maintainer. It is the first time the generative clock has ever turned.
+**Two births now, on 2026-08-19 and 2026-08-22, and both were grown rather than
+copied.** `zesty-webengine-team`, targeting `zesty-io/webengine`, for a colleague
+who is its Maintainer. And `galind-team`, at `~/dev/galind/galind-team`, building
+**Galind** — an agent-native backend suite — from a strategy brief.
 
-**Do not repeat that as a result.** It has run zero tickets and zero retros.
+**The second one is the harder test of claim I and the more uncomfortable data
+point about this layer.** It has no sibling to copy from and no existing product,
+so the spine carried the load unaided; it is also the first system to record
+*declining* a `proven` pattern on the catalog's three tests, with a trigger. And
+it arrived **three days after the first**, which is the part to sit with: the
+generative clock has no cadence by design, and *"no cadence"* and *"as fast as
+enthusiasm allows"* are indistinguishable from inside. **Two births in four days,
+zero delivered work between them, while review 001 stayed undischarged.**
+
+**Do not repeat either as a result.** Between them they have run zero tickets,
+zero work items and zero retros.
 Claim I says a spine-grown system reaches competence *faster than a cold start*,
 and competence is delivered tickets. The count moved; the claim did not. The full
 entry in `meta/architect-log.md` names what would count against claim I — chiefly
 **a large first-retro § Cuts, which would be evidence the spine over-specifies.**
 
 **If another domain appears, grow it the same way.** Copying is the path of least
-resistance and 2026-08-10 demonstrated that twice.
+resistance and 2026-08-10 demonstrated that twice. **And then ask whether the
+domain appeared or whether it was gone looking for** — that question did not need
+asking at one birth and does at two.
 
 ```bash
-claude "Read meta/architect.md and run review 001. Full portfolio, seven systems."
+claude "Read meta/architect.md and run review 001. Full portfolio, eight systems."
 ```

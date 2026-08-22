@@ -165,7 +165,36 @@ metric, not an engine's. The engine is judged on three numbers:
 
 1. **Births** — systems grown from `spine.md`, not copied. For each, whether it
    reached competence faster than a cold start would have. This is claim I's
-   test. **It stands at one, as of 2026-08-19: `zesty-webengine-team`.**
+   test. **It stands at two: `zesty-webengine-team` (2026-08-19) and
+   `galind-team` (2026-08-22).**
+
+   **The second birth does not double the evidence. It doubles the count and
+   leaves the evidence at zero**, and that belongs in the same breath because two
+   is the number at which a run starts to look like a result. Neither system has
+   delivered anything.
+
+   *What the second one adds that the first could not.* `zesty-webengine-team`
+   was grown in the portfolio's best-populated domain, where copying
+   `zesty-eng-team` was a live alternative and two siblings existed to check the
+   result against. **`galind-team` has no sibling** — no tracker, no existing
+   product, no external reviewer, no user, and its first job is deciding what to
+   build. The spine carried the whole load unaided, which is a cleaner test of
+   claim I and a harder one to grade, since there is nothing to compare the
+   output against. **It is also the first birth to record *declining* a `proven`
+   pattern on the catalog's own three tests** (`overhead-ceiling`, on test 1 —
+   nothing has grown to cap) with a trigger to revisit.
+
+   **And the first birth adopted that same pattern**, four days earlier — a
+   900-line read-path cap, machine-asserted (`../zestyio/zesty-webengine-team/docs/charter.md:94`,
+   checked 2026-08-22). Neither read the other; both read the catalog. **Two
+   opposed, reasoned calls on the same pattern is the cleanest evidence this
+   portfolio has against claim I's second falsifier** — *the spine is read and
+   then routinely ignored at instantiation, which means it is documentation
+   rather than inheritance.* It is being read.
+
+   **It says nothing about the first falsifier**, which is the one that matters:
+   whether spine-grown systems are actually *better*. Reading is not competence,
+   and neither system has delivered anything.
 
    *Was zero from founding until 2026-08-19.* **The count moved; the claim did
    not.** Claim I is that a system grown from the spine reaches competence faster
@@ -238,13 +267,16 @@ still legitimate claim, and the thesis gets rewritten to it rather than
 carried on hope. No birth is forced to beat the clock: a toy system generates
 no honest feedback and counts for nothing.
 
-**Clock status, 2026-08-19.** The two-quarter clock started 2026-08-14. Quarter
-one now has **one promotion and one birth**, so the falsifier cannot fire on this
-quarter and both clocks have turned once.
+**Clock status, 2026-08-22.** The two-quarter clock started 2026-08-14. Quarter
+one now has **one promotion and two births**, so the falsifier cannot fire on this
+quarter and both clocks have turned.
 
-**Do not read that as the thesis being safe.** The promotion is of a pattern both
-engineering teams already ran, and the birth has delivered nothing yet. **Two
-counters moved; neither claim has been tested.** The falsifier was written
+**Do not read that as the thesis being safe, and read the second birth as making
+the falsifier's known weakness worse rather than better.** The promotion is of a
+pattern both engineering teams already ran, and **both** births have delivered
+nothing. **Three counters moved; neither claim has been tested.** A falsifier that
+fires only on zero cannot tell a portfolio that works from one emitting founding
+documents at an accelerating rate — and the rate is now accelerating. The falsifier was written
 against a portfolio that produced *nothing* — it does not discriminate between a
 system that works and a system that merely emits artifacts on schedule.
 

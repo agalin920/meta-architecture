@@ -2422,3 +2422,207 @@ questions about the spine, labelled as such.
 
 **Nothing was dispatched and no child was edited.** The new repo is not a child
 being proposed to; it is a system being grown, which is the other clock.
+
+---
+
+## Birth — `galind-team`, 2026-08-22. The second one
+
+**The generative clock, three days after it first turned.** Not a review, not
+review 001, and it does not discharge it. `~/dev/galind/galind-team`, grown from
+`spine.md` read as a resource. Founded at `00e59c6`, one commit.
+
+**Domain: build Galind** — an agent-native backend suite — from a strategy brief
+to a shipped product. Andres is the Director, the product owner, and the gate.
+
+### Why this one is not the delivery shape, and why that matters to claim I
+
+`zesty-webengine-team` was the first birth and it landed in the portfolio's
+best-populated domain: engineering delivery on an existing repo. Its founding
+could be checked against two siblings doing nearly the same job. **This one has
+no sibling.** No tracker, no existing product, no external reviewer, no user, and
+its first job is deciding what to build rather than building it.
+
+That makes it a **better test of claim I than the first birth was**, for a reason
+worth writing down before any result is in: a copy of `zesty-eng-team` here would
+have been visibly absurd, so the birth was not a choice between growing and
+copying — it was a case where the spine had to carry the whole load unaided. If a
+spine read as a resource is worth anything over starting cold, this is where the
+difference shows.
+
+**It has built nothing. The count moves to two; claim I is untested at two, as it
+was at one.**
+
+### Three things it did that no existing system does
+
+- **`tools/ledger.py` — a machine/product commit ratio, as failure mode F1's
+  detector.** Every other system in the portfolio operates on a product that
+  already exists, so *building the machine instead of the product* is a risk
+  they name and cannot instrument. This one is building its own product from
+  zero, which is the condition under which that failure is invisible from the
+  inside — refining the machine produces commits and momentum. Separating the
+  system repo from the product repos is what makes the ratio observable at all,
+  and it is why that separation was ruled structural rather than conventional
+  (its `D-002`).
+
+  **Its local evidence is unusually strong for a founding mechanism**, which is
+  rare and should be noted: there *was* a previous `galind` — an agent-run
+  company on the Agent SDK whose first mission was to discover its own product.
+  It is a backup tarball now.
+
+  > **Check, executed 2026-08-22 in `../brand-system`:**
+  > `git grep -n galind inventory.md` → `:46` *"an agent-run organization ... whose
+  > stated first mission is to discover its own product"*; `:144` quotes that
+  > repo's own README — *"We built the machine before deciding what it makes — on
+  > purpose."*; `:155` files it under half-finished ideas.
+
+  A named failure mode with a real corpse behind it is a different object from
+  one predicted at founding, and this is the first in the portfolio.
+
+- **The adversary runs against strategy proposals, not only diffs.**
+  `patterns/README.md` records as an open spine question that *every system read
+  `independent-adversary` as applying to the work pipeline, and the retro
+  produces self-modifications, which is the highest-blast-radius output.* This
+  system generalised it a second way on its own: its highest-blast-radius output
+  is a **strategy proposal**, because a proposal becomes a ruling and rulings are
+  what the product is. One agent, two modes (its `D-006`), rather than a second
+  agent — the spine's default of *no* held.
+
+- **A gate whose irreversibles are not code-shaped.** Money, DNS, publishing,
+  credentials, and **sending email to a real address** — named first among the
+  technical items because sending reputation damages permanently and cannot be
+  bought back. No other system in the portfolio has an irreversible with that
+  property. `curl` and `wget` are denied at the permission layer on the stated
+  reasoning that a send is an HTTP POST and reading the web goes through
+  `WebFetch`.
+
+### Two founding cuts, and they are the more interesting half
+
+It declined two catalog mechanisms **with reasons and triggers**, rather than
+taking the inheritance:
+
+| Declined | Test it failed | Trigger to revisit |
+|---|---|---|
+| Read-path cap (`overhead-ceiling`, `proven`) | 1 — no growth to cap; a cap that never binds is the `‡` mark | boot path > 800 lines |
+| Executable claims (`provisional`, MET) | 2 — with ten docs and zero cycles, reading them is cheaper | first number appearing in two files with two values |
+
+**This is what "read the spine as a resource" is supposed to look like** and it is
+the first time a birth has recorded declining a `proven` pattern on the catalog's
+own three tests. Whether the refusals were right is a question for its first
+retro. Recorded now so the answer is checkable later.
+
+### What would count against claim I here
+
+Same shape as the first birth, different specifics:
+
+1. **A large first `§ Cuts`.** Its founding rules are predictions; the charter and
+   the commands were written before a single work item ran. A big first cut is
+   evidence the spine over-specifies — **about the spine, not the child.**
+2. **The F1 tripwire firing on its own founder.** `tools/ledger.py` reports
+   `0 / 14` days and `1 / 25` commits. If this system spends its first fortnight
+   improving itself, the spine grew a machine that produces machines, and the
+   detector it invented will have caught its own author.
+3. **The two cuts being reversed at retro 1.** If it immediately adopts what it
+   declined, the declines were a founding session performing discipline rather
+   than exercising it.
+
+### A finding for a different child, and it is a ruling rather than a proposal
+
+**`galind.io` belongs to two systems.** `brand-system` holds it; Galind now wants
+it. Andres ruled 2026-08-22 that **the product takes the domain and the personal
+brand moves.**
+
+> **Check, executed 2026-08-22 in `../brand-system`:** `git grep -l "galind\.io"`
+> → **16 tracked files.** `README.md:1` is `# Brand System — galind.io`;
+> `site/src/pages/index.astro:14` is `<h1>galind.io</h1>`;
+> `site/src/layouts/Base.astro:10` is `const siteName = 'galind.io'`. **The string
+> is that system's name, not merely its host.**
+>
+> `dig +short galind.io A` → *(empty)*. `dig +short galind.io NS` →
+> `dns1.registrar-servers.com.`, `dns2.registrar-servers.com.` **Registered, not
+> deployed.** `pipeline.md:40` and `progress/traction.md:40` are schema examples,
+> not published items — nothing is live.
+
+**The cost of this move is at its permanent minimum today and rises the day that
+site ships.** That is the whole reason it is worth carrying now rather than at
+review 001.
+
+Carried to `proposals/2026-08-22-brand-system.md`. **The decision is the human's
+and is not in question; the execution is that system's Architect's**, and the
+packet says so — a rename of a system's identity is not a find-and-replace, and
+this layer has no standing to say what the brand should be called instead. That
+is `charter.md` § Never own a system's domain, and it is the line this packet is
+most likely to cross if written carelessly.
+
+**Nothing in `brand-system` was edited and no child was touched.** The new repo is
+not a child being proposed to — it is a system being grown, which is the other
+clock. **Review 001 remains undischarged and now has an eighth system in scope.**
+
+
+### Checked against the first birth, and it corrects this entry
+
+Written after the sections above, on checking `zesty-webengine-team` rather than
+assuming. **Two claims made higher up needed narrowing and one finding got
+stronger.**
+
+> **Check, executed 2026-08-22 in `../zestyio/zesty-webengine-team`:**
+> `git grep -n -i "read path|overhead|budget"` → `docs/charter.md:94` sets a
+> **900-line per-session read-path tripwire**, asserted by `tools/verify_docs.py`
+> (`.claude/agents/architect.md:101`, `id=read-path-budget`); `git ls-files` →
+> `tools/verify_docs.py` present. Its `docs/decision-log.md` records six
+> decisions and **declines no catalog pattern** — D-002's rejection is a design
+> alternative (a service-agnostic system), not a pattern from `patterns/`.
+
+**1. The two births made opposite calls on the same two mechanisms, four days
+apart.** `zesty-webengine-team` **adopted** the read-path cap and executable
+claims at founding; `galind-team` **declined both**, on tests 1 and 2, with
+triggers. Neither read the other — `galind-team`'s session read `spine.md` and
+`patterns/`, not its sibling.
+
+**That is more interesting than either call.** It is the first evidence that the
+spine-as-a-resource is being *read* rather than *complied with*: the same catalog,
+four days apart, produced two different answers, each justified against the
+domain in front of it. Claim I's second falsifier is *"the spine is read and then
+routinely ignored at instantiation, which means it is documentation rather than
+inheritance."* **Two opposed, reasoned adoptions is the cleanest evidence against
+that falsifier the portfolio has.**
+
+**Which of the two was right is not knowable yet and must not be guessed.** The
+divergence is real and both are defensible: WET targets an existing PHP repo with
+a live product and inherited a domain where read paths are known to grow;
+`galind-team` has ten documents and no product. **Review 001 should grade both
+against their first retros**, and the honest outcome may be that each was right
+locally, which would be evidence the three tests work.
+
+**2. The claim that no existing system instruments meta-work-versus-product is
+too strong, and the truth is better.** `zesty-webengine-team` names as its own
+failure mode 1: *"The team improves itself instead of shipping"*, with the
+tripwire **a cycle where `retro:` commits outnumber merged PRs** (`docs/charter.md:87`).
+
+**So both spine-grown births independently invented a ratio between improvement
+work and delivered work, as the tripwire for their first named failure mode.**
+Neither copied; nothing in `spine.md` or `patterns/` specifies a ratio, and
+`overhead-ceiling` as catalogued is a *read-path line cap*, which is a different
+object.
+
+**They are not the same instrument and the difference is the domain.** WET counts
+commit prefixes against merged PRs **inside one repo**, because it operates on a
+product that already exists and its own repo is the only place meta-work lands.
+`galind-team` counts **across repos** — system against product — because its
+product does not exist yet, which is also why its detector has a second mode that
+counts *days elapsed with no product repo at all*. **One measures a team drifting
+from work it already has; the other measures a team never starting.**
+
+**This is a promotion-gate candidate and it is not a promotion.** Two adopters,
+independent by the bar's own test — grown separately, neither copied, neither
+carried, since this layer dispatched nothing to either. What it does not have is
+**evidence it changed an outcome**: WET has run zero retros and `galind-team` has
+run zero of anything, so neither tripwire has fired. Under
+`patterns/README.md` that is `provisional` at best and the row should say so.
+
+**Recorded here rather than in `patterns/`, deliberately.** Adding a catalog entry
+in the same session that founded one of its two adopters is premature evolution
+in the form `charter.md` names — *a fresh idea from a live project is the most
+persuasive thing that will ever cross this layer's desk.* **Review 001 decides
+whether it becomes a row.** The name it should be filed under, if it does:
+**improvement-versus-delivery ratio**, distinct from `overhead-ceiling`, which
+caps a read path rather than comparing two streams of work.

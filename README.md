@@ -46,23 +46,36 @@ meta/
 | [brand-system](../brand-system) | Public presence | `active` | every 4 weeks |
 | [media-log](../media-log) | Media database | `dataset` | none, correctly |
 | [zesty-webengine-team](../zestyio/zesty-webengine-team) | Engineering delivery — `zesty-io/webengine` | `active` | every retro · **never run** |
+| [galind-team](../galind/galind-team) | Building **Galind**, an agent-native backend suite | `active` | every 3rd item · **never run** |
 
 Details in [`systems.md`](systems.md).
 
-**The portfolio's first birth landed 2026-08-19.** `zesty-webengine-team` was
-**grown from `spine.md`**, not copied — the first time that has happened, and the
-only route by which claim I of `meta/thesis.md` ever gets evidence. It has run
-zero tickets, so the count has moved and the claim has not.
+**Two births, three days apart.** `zesty-webengine-team` (2026-08-19) and
+`galind-team` (2026-08-22) were both **grown from `spine.md`**, not copied — the
+first two times that has happened, and the only route by which claim I of
+[`meta/thesis.md`](meta/thesis.md) ever gets evidence. **Between them they have
+run zero tickets and shipped nothing, so the count has moved twice and the claim
+has not moved at all.**
 
-**Three of the previous six are the same system.** The two mPulse teams were
+The second is the harder test, for a structural reason rather than a matter of
+quality. The first landed in this portfolio's best-populated domain — engineering
+delivery on an existing repo — where copying `zesty-eng-team` was a live
+alternative and two siblings existed to check it against. **`galind-team` has no
+sibling**: no tracker, no existing product, no external reviewer, no user, and its
+first job is deciding what to build rather than building it. The spine had to
+carry the whole load unaided.
+
+**Three of the founding six are the same system.** The two mPulse teams were
 copied from zesty-eng-team on 2026-08-10, not grown independently from the
 spine. That is a
 fact about the evidence base, not a criticism of the copies — see the note on
 the adoption matrix in [`patterns/README.md`](patterns/README.md). Copies never
 count toward promotion.
 
-Relative links assume everything sits under `~/dev/`, where all eight repos are
-checked out as of 2026-08-10.
+Relative links assume everything sits under `~/dev/`, where all nine repos are
+checked out. `galind-team` sits under `~/dev/galind/` alongside the
+`galind-*` product repos it builds — **which are subjects, not systems**, and
+none of which exists yet.
 
 ## The rules
 
