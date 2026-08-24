@@ -2626,3 +2626,235 @@ persuasive thing that will ever cross this layer's desk.* **Review 001 decides
 whether it becomes a row.** The name it should be filed under, if it does:
 **improvement-versus-delivery ratio**, distinct from `overhead-ceiling`, which
 caps a read path rather than comparing two streams of work.
+
+---
+
+## Birth — `the-debrief`, 2026-08-24. The third one, and the layer built this one itself
+
+**Provenance:** Andres handed over a project proposal — *The Debrief of Human
+Knowledge*, draft v0.2 — and asked for a repo to run it from, grown from the
+spine. **Generative-clock entry. Not review 001 and it does not discharge it.**
+
+`~/dev/the-debrief`, founded at `1e143f2`, two commits, 23 files, 2,631 lines.
+No git remote; `gh repo create` denied at its own permission layer, so creating
+one is Andres's call. Same as the second birth.
+
+**Domain:** build an interactive, data-driven site presenting every discovery,
+invention, work and mind that changed what humanity knew — chronological,
+geographically anchored, Neolithic to now. The corpus is the product.
+
+### Births 0 → 3 in six days, and this one is worth less as evidence than either predecessor
+
+**Say this before anything else, because everything below is downstream of it.**
+
+The first two births were run by sessions that had not read each other. **This
+one was run from inside this layer, by a session that had read `spine.md`,
+`patterns/`, both prior birth entries in full, and both children's founding
+decisions.**
+
+**That makes every choice it shares with a sibling a `carried` adoption, not
+convergence, and it produces zero evidence for claim I.** Three are labelled as
+carries in the child's own `docs/decision-log.md`, at founding, rather than left
+for this layer to catch later:
+
+- **`D-006`** — the improvement-versus-delivery ratio. **This is the one that
+  matters upstream.** The 2026-08-22 entry recorded WET's and `galind-team`'s
+  independent inventions as a promotion-gate candidate for review 001. **A reader
+  of `~/dev/the-debrief` will find a third instance and it must not be counted.**
+  The child says so in its own log; recorded here too, because the miscount would
+  happen at review 001 and not in the child.
+- **`D-005`** — declining a read-path cap with a stated trigger. Same call
+  `galind-team` made four days earlier, and this session had read that decision.
+  The opposed-calls evidence recorded on 2026-08-22 does not gain a third vote.
+- The shape of the permission-layer denial list.
+
+**What is still worth something** is the part no sibling could have supplied,
+because no sibling has this domain. That is § The gate that cannot scale, below.
+
+**Claim I remains untested at three births**, as it was at one and at two. **The
+falsifier's weakness, recorded on 08-19, has now compounded:** the two-quarter
+clock fires on zero births and zero promotions, and quarter one holds three
+births and one promotion with nothing delivered anywhere. **A birth count is not
+a result and this layer is now producing them faster than its children produce
+work.** That is the sharper form the 08-19 entry said must be drafted before a
+child delivers anything, and it is still not drafted. It is now overdue.
+
+### Preconditions verified before anything was written
+
+Per § Output — no claim about a target without an executed check.
+
+**1. The closest sibling is `personal-university`, and it is organised the
+opposite way on purpose.**
+
+> **Check, executed 2026-08-24 in `../personal-university`:**
+> `sed -n '1,12p' curriculum/history.md` → *"Organized by mechanism, not by
+> chronology. A period is taught because it is the clearest available instance of
+> a causal mechanism, not because it comes next. **No survey courses.**"*
+> `sed -n '1,14p' progress/connections.md` → *"**A connection handed over is a
+> nice sentence he'll forget.** One produced unaided under pressure demonstrates
+> the capacity instead of describing it."*
+> `git ls-files | grep -E '\.json$|^data/|\.csv$'` → **no output.**
+> `git ls-files reference/atlas/ | wc -l` → `15` — concept inventories, no dates.
+
+**Three things fall out of that check, and the first one settled the birth.**
+
+- **There is no corpus to reuse.** PU holds concept inventories and curriculum
+  maps, not dated entries. The new system starts from zero either way.
+- **It is not a duplicate and it is not a subject of PU.** PU runs a teaching
+  loop against one student; this runs a corpus-construction loop against a public
+  artifact. Different output, different gate load, different failure modes.
+- **The two systems disagree about pedagogy, in writing, over overlapping subject
+  matter, under one owner.** See below.
+
+**2. Tooling.** `python3 --version` → `Python 3.14.5`; `node --version` →
+`v22.21.1`. Both present. The brief specified a Node validation script; the child
+ruled Python with no dependencies at all (`D-004`), on the reasoning that the
+site is static and a zero-dependency corpus tool has no version that stops
+running because an ecosystem moved. **A deviation from the brief, recorded as a
+ruling and annotated into `docs/brief.md` rather than applied silently** — which
+is the convention `galind-team` established for briefs and the one thing this
+birth copied deliberately.
+
+### The gate that cannot scale — a gap in `human-gate` that no system has hit
+
+**This is the finding of the birth and it is about the pattern, not the child.**
+
+Every system in this portfolio rests on a single human gate, and in all nine the
+gate's volume fits a person: a diff, a ticket, a draft, a weekly pipeline, a CSV
+row. **This one will hold thousands of factual claims about human history and has
+one reviewer.** Andres cannot verify 2,000 entries and never will be able to.
+
+`patterns/human-gate.md` is about **irreversibility**. It has nothing to say
+about **unreviewable volume**, and the two failure modes are different: here the
+git history is perfectly revertible and the gate still fails, because a gate
+asked to approve more than it can read approves it anyway.
+
+**And the consequence is worse than in a delivery system.** A rubber-stamped
+ticket ships a bug someone reports. A rubber-stamped corpus ships a confidently
+wrong public artifact whose entire pedagogical claim is that the reader builds a
+structure from it — so a false anchor produces a false structure the reader
+trusts. The child's charter states that reasoning rather than leaving it to be
+discovered.
+
+**What it built instead, and it is a bet, not a solution:** the gate is on the
+**slice**, not the entry, and the independent adversary **nominates the gate
+sample** — 8 to 12 entries weighted toward what it could not confirm, what it
+contested and lost, every manufactured question, every link it judged added-to-
+connect, plus one or two it is confident about, unlabelled. The Director reads
+those.
+
+**The bet is that a person reading ten worst-case entries catches more than the
+same person skimming three hundred.** It is written down as `D-002` so it can be
+graded, and the grading instrument is specific: **did the Director's findings
+come from inside the sample or outside it.** Outside means the adversary weights
+the wrong things and the sample is worse than random.
+
+**This is a spine question, not a dispatchable finding.** No existing child has
+the condition, so there is nothing to check in anyone's repo. Labelled as one.
+**Review 001 should decide whether `human-gate` needs a volume clause**, and it
+now has a live instance to decide against rather than a hypothetical.
+
+### A cross-system disagreement, available at founding, and not this layer's to settle
+
+`personal-university` and `the-debrief` are both Andres's, cover overlapping
+subject matter, and **hold opposite positions on the mechanism they both rest
+on.** The quotes are in § Preconditions above.
+
+The new system's central feature — trace mode, walking `builds_on` back to the
+trunk — **hands the reader the connections.** Its sibling refuses survey ordering
+on principle and holds that handed-over connections do not stick.
+
+**Neither is dispatched to and neither is corrected.** `charter.md` § Never own a
+system's domain: this layer has no opinion on what the student should learn or
+how, and a packet telling PU that its pedagogy is wrong would be that rule
+breaking. What was done instead: **the tension is written into the new system's
+own thesis, against claim C2, with both quotes and the check that produced
+them**, and its Architect is instructed to treat the tension quietly disappearing
+from that file as a finding.
+
+**Registered here as a question for review 001.** The honest positions available
+are that the two serve different purposes — a map you consult versus a capacity
+you build — or that one of them is wrong about how knowledge sticks. **This layer
+is positioned to notice it and not to answer it**, and the distinction is the
+whole of what it is allowed to do here.
+
+### Three things the child does that no sibling does, each forced by the domain
+
+1. **The gate sample.** Above. The only one of the three that is a genuinely new
+   mechanism rather than a new application.
+2. **`verification` as a first-class field the product must render.** The
+   `honest-metric` `unmeasured` discipline pushed **out of the log and into the
+   artifact**: `verified` / `contested` / `unverified`, where `unverified` is a
+   legal shippable value and the charter forbids implying a confidence that was
+   not earned. Every prior instance of that pattern keeps its honesty in a metric
+   section a reader never sees. **This is the first time it is a user-visible
+   property of the output**, and `src/README.md` names the design that would
+   quietly break it — a marker easy to miss.
+3. **A coverage floor rather than a proportion.** The brief asked for an
+   anti-Eurocentrism audit. **A proportion is satisfiable by deleting European
+   entries**, which improves the number and the corpus not at all; a per-region
+   minimum entry count can only be met by research. The child also names what the
+   instrument cannot do — it counts regions in a declared vocabulary, so a
+   tradition nobody thought of reads as absent and the audit reports clean either
+   way — and files that under `unmeasured` instead of pretending.
+
+### The detector falsified itself on day one, and that is the second time
+
+`tools/audit.py ledger` reported the founding commit as `commits touching
+data|src = 1`, on the strength of `data/README.md` and `src/README.md` — two
+files that *describe* the product and are not it. Corrected to count
+`data/**/*.json` and non-README files under `src/`; the honest reading for a
+founding day is `0 product, 1 machinery`.
+
+> **Check, 2026-08-24, in `~/dev/the-debrief`:** `python3 tools/audit.py
+> selftest` → `18/18 selftest cases passed`. `python3 tools/audit.py corpus` →
+> `0 entries · 0 stop, 0 note`. `python3 tools/audit.py ledger` → `0 product,
+> 1 machinery, last data commit never`.
+
+**This is the same shape as `mpulse-engage-team`'s `gates.py`**, whose first
+datapoint was a falsification of its own coverage claim (*"across 8 ticket
+worklogs"* when all 27 came from one), and as WET's `no-hardcoded-human-identity`
+assertion failing on its own text. **Three instruments now, in three systems,
+whose first real run corrected their author rather than their target.** That is
+worth a catalog line at review 001 — the value of a machine assertion may be
+mostly in what it says about the person who wrote it, on the first run, and that
+is not what any of the three was built for.
+
+### What was deliberately not built
+
+No `/decide` command (an open question stops `/slice` instead), no second agent
+for the retro's adversary, no read-path cap, no seed entries, no renderer, no
+`package.json`, no dependency of any kind. **The spine defaults every "should we
+add one?" to no**, and a system with zero entries has earned nothing.
+
+**Zero corpus entries is the deliberate one and it has a second reason.** The
+brief's Phase 0 is ~20 seed entries; those are the first `/slice`, not part of
+founding. **A founding session sitting in the meta layer writing corpus content
+would be this layer doing a child's domain work**, which is the line `charter.md`
+draws hardest. The consequence — an untested validator — was handled with an
+in-memory `selftest` rather than by admitting content through the back door.
+
+### What review 001 must look at
+
+1. **Do not count `the-debrief` as a third adopter of the ratio family.** It is
+   carried, it says so, and this entry says so. The promotion-gate candidate
+   still stands at two.
+2. **Does `human-gate` need a volume clause?** There is now a live instance and a
+   named bet (`D-002`) with a grading instrument. This is the birth's one real
+   contribution to the spine and it is a question, not a proposal.
+3. **The first `§ Cuts`.** Same test as both prior births, and **this one should
+   be the largest** — the founding session had the most prior material to be
+   talked into over-specifying by. Seven named failure modes before a single
+   entry was drafted is a lot of prediction.
+4. **Whether `verification` drifted to `verified` under volume.** The child names
+   this as the founding bet most likely to fail silently. It is the one to check
+   without being asked.
+5. **The layer's own birth rate.** Three births in six days, review 001
+   undischarged since 2026-08-13, and the generative clock exempt from the 1%
+   ceiling by an exemption written when the count was zero. **The 08-22 entry
+   raised this at two. It is worse at three and this session is the one that made
+   it worse.**
+
+**Nothing was dispatched and no child was edited.** `personal-university` was
+read and not touched. The new repo is not a child being proposed to — it is a
+system being grown, which is the other clock.

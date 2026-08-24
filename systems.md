@@ -528,6 +528,114 @@ string as its own name in three files, so it is a rename and not a DNS change.
 Registered here because a decision made and not executed is what gets
 rediscovered as a surprise.
 
+---
+
+## the-debrief
+
+| | |
+|---|---|
+| **Domain** | Building **The Debrief** — an interactive corpus of every discovery, invention, work and mind that changed what humanity knew, chronological and geographically anchored |
+| **Status** | `active` — **founded 2026-08-24, zero entries** |
+| **Loop** | Slash commands — `/slice`, `/verify`, `/standup`, `/retro` |
+| **Cadence** | Per slice, Director-driven. `/retro` every third slice **or on the F1 or F2 tripwire**, whichever comes first |
+| **Architect** | `.claude/agents/architect.md`, at `/retro`. **Never run** |
+| **Metric** | Entries shipped and rejected per slice; adversary findings and downgrade rate; **Director findings, and whether they came from inside the gate sample or outside it**. Six named `unmeasured` categories, the first of which is the project's entire point |
+| **Theory** | `docs/thesis.md` — three claims, each with observable falsifiers, plus a § stating what the system structurally cannot test |
+| **Handoff** | `slices/<NNN>-<slug>.md` written at every step + `docs/project-log.md` current-state header + `HANDOFF.md` |
+| **First commit** | 2026-08-24 · **2 commits** · **0 slices, 0 retros, 0 entries, no site** |
+
+**THE PORTFOLIO'S THIRD BIRTH, two days after the second and five after the
+first.** Grown from `spine.md`, not copied. Full entry in `meta/architect-log.md`.
+
+**It is worth less as evidence than either predecessor and it says so itself.**
+The first two births were run by sessions that had not read each other. **This one
+was run from inside this layer**, by a session that had read the spine, the
+catalog, both prior birth entries and both children's founding decisions. Every
+choice it shares with a sibling is a **`carried` adoption**. Three are labelled as
+carries in its own `docs/decision-log.md` at founding.
+
+**The one that matters here:** its `tools/audit.py ledger` is a third instance of
+the improvement-versus-delivery ratio family. **It must not be counted as a third
+adopter** — the promotion-gate candidate recorded on 2026-08-22 still stands at
+two independent inventions. Its `D-006` says so; so does the log entry; so does
+this row.
+
+**The gap it opened, and it is the reason the birth was worth running:** this is
+**the first system in the portfolio whose human gate cannot scale with its
+output.** Every other gate reviews a diff, a ticket, a draft, a pipeline, a CSV
+row — volume that fits a person. This one will hold thousands of factual claims
+about human history and has one reviewer.
+
+`patterns/human-gate.md` is about **irreversibility** and is silent on
+**unreviewable volume**, which is a different failure: the history is perfectly
+revertible and the gate fails anyway, because a gate asked to approve more than it
+can read approves it. **The consequence is worse than in a delivery system** — a
+rubber-stamped corpus ships a confidently wrong artifact whose whole pedagogical
+claim is that the reader builds a structure from it.
+
+**Its answer is a bet, written down as `D-002` so it can be graded:** the gate is
+on the *slice*, and the independent adversary **nominates the gate sample** — 8 to
+12 entries weighted toward what it could not confirm, contested and lost, marked
+manufactured, or judged a link of convenience, plus one or two it is confident
+about, unlabelled. The grading instrument is specific: **did the Director's
+findings come from inside the sample or outside it.**
+
+**Two more things no sibling does**, both forced by the domain:
+
+- **`verification` is a first-class field the product must render.** The
+  `honest-metric` `unmeasured` discipline pushed **out of the log and into the
+  artifact** — `verified` / `contested` / `unverified`, with `unverified`
+  shippable and the charter forbidding any implication of unearned confidence.
+  Every prior instance of that pattern keeps its honesty in a metric section
+  nobody outside the system reads. **First time it is a user-visible property of
+  the output.**
+- **A coverage floor rather than a proportion.** A proportion is satisfiable by
+  deleting European entries, which improves the number and the corpus not at all.
+  It also names what the instrument cannot do — it counts regions in a declared
+  vocabulary, so unexamined traditions read as absent and the audit reports clean
+  — and files that under `unmeasured`.
+
+**A cross-system disagreement, found at founding and deliberately not settled.**
+`personal-university` covers overlapping subject matter and holds the opposite
+position on the mechanism both rest on.
+
+> **Check, 2026-08-24 in `../personal-university`:** `curriculum/history.md:5` —
+> *"Organized by mechanism, not by chronology... No survey courses."*
+> `progress/connections.md:8` — *"A connection handed over is a nice sentence
+> he'll forget."* `git ls-files | grep -E '\.json$|^data/|\.csv$'` → **no
+> output** — no corpus to reuse, and not a duplicate.
+
+The new system is a chronological survey whose headline feature hands the reader
+the connections. **Nothing was dispatched to `personal-university` and it was not
+corrected** — `charter.md` § Never own a system's domain. The tension is written
+into the new system's own thesis with both quotes, and its Architect is told to
+treat the tension quietly vanishing from that file as a finding. **Review 001
+decides whether it is two purposes or one error.**
+
+**Its detector falsified itself on day one**, the third instrument in the
+portfolio to do so: the ledger counted the founding commit as product work on the
+strength of `data/README.md` and `src/README.md`. Corrected, recorded, not
+smoothed away.
+
+> **Check, 2026-08-24:** `python3 tools/audit.py selftest` → `18/18 passed`;
+> `corpus` → `0 entries · 0 stop, 0 note`; `ledger` → `0 product, 1 machinery`.
+
+**Founded with zero corpus entries, deliberately and for two reasons.** Founding a
+system is not doing its work — and **a session sitting in this layer writing
+corpus content would be the meta layer doing a child's domain work.** The
+consequence, an untested validator, was handled with an in-memory `selftest`
+rather than by admitting content through the back door.
+
+**No git remote**, same as `galind-team`; `gh repo create` denied at its own
+permission layer, so creating one is Andres's call.
+
+**Its gate is Andres**, who is also the editorial owner and the only reader.
+**Three of ten systems now state a gate-shaped failure mode, from three different
+causes** — a gate who did not design the system (`zesty-webengine-team`), a gate
+who is also the only user (`galind-team`), and a gate who cannot read the output
+(this one). That is a question for `patterns/human-gate.md` and not a defect in
+any of the three.
+
 ## Not in the portfolio
 
 `manager-ui` and `studio-bridge` are product repos that zesty-eng-team operates
