@@ -636,6 +636,71 @@ who is also the only user (`galind-team`), and a gate who cannot read the output
 (this one). That is a question for `patterns/human-gate.md` and not a defect in
 any of the three.
 
+## resale-desk
+
+| | |
+|---|---|
+| **Domain** | What second-hand goods are worth, both directions — appraising Vinted listings to flip or to keep, and drafting the listings that sell what Andres owns |
+| **Status** | `active` — **founded 2026-08-29, zero units, zero pounds** |
+| **Loop** | Slash commands — `/source`, `/list`, `/settle`, `/standup`, `/retro` |
+| **Cadence** | **Every tenth resolved unit, or any charter tripwire.** Deliberately not a calendar — the unit of learning is a resolved trade and time does not produce those |
+| **Architect** | `.claude/agents/architect.md`, at `/retro`. **Never run** |
+| **Metric** | Realized margin per resolved unit, and appraisal error (predicted sale against realized gross), reported signed in both directions. `flip` and `keep` never averaged (D-009). `unmeasured`: Andres's hours, and any unit missing an observed fee |
+| **Theory** | `docs/thesis.md` — four claims, each with a falsifier, plus a § on the structural condition that forced two control groups |
+| **Handoff** | `desk/events.jsonl` (append-only, the fact) + `desk.py state` (derived) + `HANDOFF.md` (narrative, forbidden from restating a computed number) |
+| **First commit** | 2026-08-29 · **2 commits, 21 files, 1,802 lines** · 0 candidates, 0 units, 0 listings, 0 retros |
+
+**THE PORTFOLIO'S FOURTH BIRTH, in eleven days.** Grown from `spine.md`. Full
+entry in `meta/architect-log.md`, which leads with the birth rate rather than
+with the system, because at four that is the larger fact.
+
+**Worth as little as the third for claim I, for the same reason** — run from
+inside this layer by a session that had read the spine, the catalog and all three
+prior birth entries. Three founding decisions are labelled `carried` in its own
+`docs/decision-log.md` (D-005 dependency-free Python, D-007 no read-path cap with
+a trigger, D-012 zero content at founding).
+
+**It declined to build a fourth ratio detector, on purpose** (`D-006`). It has the
+failure mode and three siblings have the instrument. It was cut because a fourth
+instance, built by a session that had read all three, would put a data point that
+looks like convergence into the exact promotion-gate decision where a miscount
+does damage. **That is a child being designed around this layer's measurement
+problem, and whether that is discipline or contamination is a question for review
+001.**
+
+**The gap it opens, and the reason the birth was worth running: this is the first
+system whose charter contains clauses the human does not own.** Rules 1 and 2 —
+never transact, never publish — are quoted verbatim from Vinted's stated
+conditions of access, retrieved 2026-08-29, not authored by Andres.
+
+`patterns/charter-as-constitution.md` rests on a charter being **the fixed point
+the system is measured against, human-owned, changeable only by him.** Here part
+of that fixed point belongs to a third party, **can change without notice, and no
+ruling by Andres can amend it.** He cannot decide that Vinted permits automated
+purchases. That is a different failure from the two already on the record — a gate
+who did not design the system (`zesty-webengine-team`) and a gate who cannot read
+the output (`the-debrief`) — and it is the first one where the charter itself has
+an owner outside the portfolio.
+
+**And it is the first system whose feedback is censored.** It only ever observes
+the outcome of what Andres actually bought; a flip it passed on sells to someone
+else and the desk never learns. False positives are measurable, **false negatives
+are structurally invisible**, and a desk under that condition gets steadily more
+timid while every number it reports improves. Its answer is two control groups
+built at founding — a decline sample with re-check dates, and one blind unlabelled
+control item per session (`D-011`). Both cost Andres a step per session and both
+are on tripwires for that reason.
+
+**No git remote, and the reason is not the sibling convention.** `desk/events.jsonl`
+will hold what he paid for things and what he earns doing this. That is personal
+financial history, and a private remote is still a copy on someone else's disk.
+
+**Facebook Marketplace was in the founding ask and is out of scope**, on a check
+rather than a judgment: `facebook.com/robots.txt` is `Disallow: /` with no
+exception for `/marketplace`, behind authentication. The trigger that would open
+it is stated (`D-003`) and the manual path — Andres pasting listings himself — is
+available today and is not the desk fetching anything.
+
 ## Not in the portfolio
 
 `manager-ui` and `studio-bridge` are product repos that zesty-eng-team operates

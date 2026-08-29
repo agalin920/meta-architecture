@@ -2858,3 +2858,261 @@ in-memory `selftest` rather than by admitting content through the back door.
 **Nothing was dispatched and no child was edited.** `personal-university` was
 read and not touched. The new repo is not a child being proposed to — it is a
 system being grown, which is the other clock.
+
+---
+
+## Birth — `resale-desk`, 2026-08-29. The fourth one, and the birth rate is now the finding
+
+**Provenance:** Andres asked for a repo grown from the spine to go through sites
+like Vinted and Facebook — primarily Vinted — to find things he would like or
+flipping opportunities, and, added mid-session, **to be responsible for selling
+his items and making the listings.** Generative-clock entry. **Not review 001 and
+it does not discharge it.**
+
+`~/dev/resale-desk`, founded at `7384c70`, two commits, 21 files, 1,802 lines.
+No git remote.
+
+### Births 0 → 4 in eleven days. Say this before the system
+
+**The 08-22 entry raised the birth rate at two. The 08-24 entry said it was worse
+at three and that the session writing it was the one that made it worse. This is
+four, and the same session type wrote all three sentences.**
+
+The state of the two clocks as of today:
+
+| | |
+|---|---|
+| Births | **4** — 08-19, 08-22, 08-24, 08-29 |
+| Promotions | 1 (`honest-metric`, 08-18) |
+| Review 001 | **undischarged since 2026-08-13**, sixteen days |
+| Delivered by any of the four births | **nothing** |
+| Sharper falsifier for claim I, called **overdue** on 08-24 | **still not drafted** |
+
+**The generative clock is exempt from the 1% overhead ceiling, and that exemption
+was written when the birth count was zero.** It is now the only clock running.
+`charter.md` § Named failure modes calls *building the system instead of using
+it* the failure this design invites and names the 1% ceiling as its tripwire —
+and the activity that has consumed this layer for eleven days is the activity
+that tripwire cannot see.
+
+**This is not a reason the birth should not have happened.** Andres asked for it;
+the generative clock is on demand by design; and pulling from the spine is
+explicitly not overhead. **It is a reason review 001 cannot keep being the thing
+that happens after the next birth.** Recorded here for the fourth time by the
+fourth session that had the option of just writing the system up.
+
+### What this one is worth as evidence: the same as the third, which is nothing
+
+Run from inside this layer, by a session that had read `spine.md`, all of
+`patterns/`, and all three prior birth entries in full. **Every choice it shares
+with a sibling is `carried`.** Three are labelled as such in the child's own
+`docs/decision-log.md` at founding — `D-005` (dependency-free Python 3, from
+`the-debrief` D-004), `D-007` (no read-path cap, with a trigger — the call
+`galind-team` and `the-debrief` both made), `D-012` (zero domain content at
+founding).
+
+**Claim I remains untested at four births, as it was at one, two and three.**
+
+### Preconditions verified before anything was designed, and they changed the design
+
+Per § Output — no claim about a target without an executed check. The target here
+is not a repo; it is two companies' stated conditions of access.
+
+> **Check, executed 2026-08-29:** `curl https://www.vinted.co.uk/robots.txt` →
+> a `TRANSACTIONAL GOVERNANCE` block: *"Automated agents, bots, or AI systems are
+> NOT permitted to: Create, register, or manage user accounts. Add items to carts
+> or make purchases. Perform checkouts, payments, or transactions on behalf of
+> humans. Engage in any activity that simulates a customer interaction. These
+> restrictions apply to all automated systems, regardless of intent."* Plus an
+> `ENFORCEMENT NOTICE` naming blocking and legal referral. `User-agent: *` is
+> `Allow: /` with `Content-Signal: ai-train=no, search=yes, **ai-input=yes**`;
+> `User-agent: ClaudeBot` is `Disallow: /` with `ai-input=no`.
+>
+> `curl https://www.facebook.com/robots.txt` → `User-agent: *` / `Disallow: /`,
+> **no exception for `/marketplace`**, and the content is behind authentication.
+
+**Three consequences, each a founding ruling rather than a design preference.**
+
+- **Facebook is out of scope** (`D-001`), with the trigger that would open it
+  (`D-003`) and the observation that Andres pasting Marketplace listings himself
+  is available today and is not the desk fetching anything.
+- **The desk never transacts and never publishes** (`D-002`). It judges and
+  drafts; he buys, posts, prices and ships.
+- **Candidates arrive through channels he operates**, and the reading grey zone —
+  `ai-input=yes` for `*`, `Disallow: /` for `ClaudeBot`, a ToS forbidding
+  automated access without authorisation, no public API — is **named in the child
+  rather than resolved in our favour** (`D-004`). The constraint is volume and the
+  asset at risk is his selling account, not a lawsuit.
+
+**The second half of the ask is what makes the system falsifiable, and it arrived
+by accident.** A buy-side-only desk would have had to score its own calls against
+its own later estimates. Owning the sale means a flip resolves at a real number —
+bought at, listed at, sold for, days live. **The request that looked like scope
+creep closed the loop.**
+
+### The gap: the first charter in the portfolio with clauses the human does not own
+
+**This is the finding of the birth and it is about the pattern, not the child.**
+
+`patterns/charter-as-constitution.md` rests on the charter being **human-owned,
+the fixed point the system is measured against, changeable only by him and never
+by the agent.** In nine systems that has held exactly.
+
+**Here, charter rules 1 and 2 are quoted verbatim from Vinted.** Andres did not
+author them, he cannot amend them by ruling, and **they can change without
+notifying anyone in this portfolio.** He cannot decide that Vinted permits
+automated purchases any more than the agent can.
+
+Three things follow, and none has an answer in the pattern file:
+
+- **A fixed point that moves.** The charter's own § The access rules carries a
+  retrieval date and an instruction to re-check, which is an admission that part
+  of the constitution has a staleness clock. No other charter here needs one.
+- **A gate that cannot ratify.** The human gate works because the human can
+  approve or refuse. On these clauses he can only comply.
+- **Silent divergence.** If Vinted rewrites that block, the child's charter is
+  wrong and nothing in the system notices. The tripwire the child has (F7,
+  *any fetch Andres did not initiate; any 429 or block page*) catches enforcement,
+  not a change in terms.
+
+**This is a spine question, not a dispatchable finding.** No existing child has
+the condition — every other system's subject is a repo, a corpus, a curriculum,
+or a brand the human controls. **Review 001 should decide whether
+`charter-as-constitution` needs an account of externally-owned clauses**, and it
+now has a live instance rather than a hypothetical.
+
+**It is the third gate-shaped gap in four births**, from a fourth distinct cause:
+a gate who did not design the system (`zesty-webengine-team`), a gate who is the
+only user (`galind-team`), a gate who cannot read the output (`the-debrief`), and
+now a gate who does not own part of the constitution. **Four births, four
+different holes in the same two patterns. That is either the spine's most
+productive area or the area where a founding session most reliably manufactures a
+question, and review 001 should decide which.**
+
+### The second spine question: the first system whose feedback is censored
+
+Every other system in this portfolio observes the outcome of everything it does.
+A ticket not taken still sits in the backlog; a draft not shipped can still be
+read.
+
+**This desk only ever learns what happened to the items Andres bought.** A flip it
+passed on sells to someone else at a price that proves the pass was wrong, and by
+default that fact never arrives. **The false-positive rate is measurable and the
+false-negative rate is structurally invisible** — so the desk can get steadily
+more timid, buy only certainties, and watch every number it reports improve while
+it makes less money.
+
+Its answer is two control groups, both built at founding (`D-011`): a **decline
+sample** of up to five passes per session with a recorded prediction and a
+re-check date, and **one blind unlabelled control item** per session so a keep
+hit-rate has something to be a rate against.
+
+**What this suggests upstream, offered as a question and not as a pattern:**
+`predict-then-check` is `provisional`, invented at `personal-university`, and
+**half of it was already cut for costing the human too much per cycle.** This is
+the first condition in the portfolio that needs a *third* half — a prediction on
+the road **not** taken. Whether that generalises is not something one system with
+zero data can establish, and the child says so in its own thesis.
+
+**The honest risk, stated in the child:** both control groups cost Andres a step
+per session, and the catalog's own most useful entry is a prediction mechanism
+that died of exactly that. If the decline sample is what he stops doing, that is
+the finding and it is evidence for the existing catalog entry, not against it.
+
+### The cut that is more interesting than anything built
+
+**`D-006` — the improvement-versus-delivery ratio detector was considered and
+declined.** The desk has the failure mode. Three siblings have the instrument.
+Building a fourth was the obvious move and the child wrote down why it did not:
+
+> a fourth instance built by a session that had read all three would add a data
+> point that looks like convergence and is not, into the exact decision where the
+> miscount would do damage.
+
+**That is a child being designed around this layer's measurement problem, and it
+should not be recorded as unambiguously good.** The generous reading is that the
+08-24 entry's warning worked — it said a reader would find a third instance and
+must not count it, and the next session declined to create a fourth. The
+uncharitable reading is that **the births are no longer independent samples of
+what the spine produces; they are being shaped by what this layer needs to
+measure.** A child that omits a mechanism it would otherwise have built, to
+protect an upstream statistic, has had its architecture set from above.
+
+**Review 001 should treat that as a question about the layer, not a credit to
+it.** F5's tripwire in the child counts domain events instead — three sessions
+with no buy and no listing drafted — which is cheaper and measures trades rather
+than commits.
+
+### Two founding-day corrections, both self-inflicted, both caught by a command
+
+**1. The read-path claim was wrong by 210 lines.** `CLAUDE.md` and the decision
+log both stated ≈620; the check returned **410**, and the cap trigger written
+against the estimate was 900 — **a ceiling that could not have bound anything**,
+which is the exact failure this catalog already records against
+`mpulse-engage-team`'s 1,300-line cap at review 001a. Corrected to 410 with the
+trigger cut to 650, recorded in the child's own log rather than silently edited,
+and committed separately.
+
+**This is § Output's self-claim bar breaking in a session run by this layer** —
+an assertion about a repo, written without running the command that settles it,
+by the founding session of a system whose charter rule 4 is *never price without
+evidence*. Recorded because AR-4 exists precisely for this and the gap it closed
+was this layer's own log.
+
+**2. The selftest failed on its first run.** `fold: one record per id` expected 5
+against a fixture holding 4 ids. **The tool was right and the author's arithmetic
+was wrong.** This is a weaker instance than the three already on the record — the
+defect was in the test's expectation, not a falsification of the instrument's own
+claim about its target — and it is recorded at that strength and not inflated to
+join them.
+
+> **Checks, 2026-08-29, in `~/dev/resale-desk`:** `python3 tools/desk.py selftest`
+> → `19/19 selftest cases passed`. `python3 tools/desk.py state` → `0 event(s)`,
+> every figure zero, no tripwires fired, and the output says in its own words that
+> the zeros are because nothing has happened rather than because anything is going
+> well.
+
+### What was deliberately not built
+
+No fee model (`D-010` — a fee constant is a claim about another company that goes
+stale silently and keeps producing confident margins). No confidence score, no
+blended profit figure, no estimated profit on a held unit, no scheduled fetch of
+any kind, no crawler, no browser automation, no candidates, no units, no listings,
+and **no pricing knowledge** — `docs/pricing.md` holds method and says, in the
+file, that it is empty because nothing has been observed and that filling it from
+what a model already believes about resale is the failure charter rule 4 exists to
+stop.
+
+**The permission layer enforces the charter rather than restating it.**
+`.claude/settings.json` denies every browser-automation MCP surface, the
+scheduler, `CronCreate`/`CronDelete`, `curl`, `wget`, `crontab` and `launchctl`.
+Charter rules 1 and 2 forbid transacting and publishing; the denials remove the
+tools that could. **That is the first child in the portfolio where a permission
+list maps clause-by-clause onto charter prohibitions**, and it is worth a look at
+review 001 as a cheap general technique.
+
+### What review 001 must look at
+
+1. **The birth rate, and this time as an agenda item rather than a closing
+   paragraph.** Four births, eleven days, one promotion, nothing delivered,
+   review 001 sixteen days undischarged, and the sharper claim-I falsifier called
+   overdue on 08-24 still undrafted. **The fourth session to record this.**
+2. **Does `charter-as-constitution` need an account of externally-owned
+   clauses?** Live instance, with a staleness clock and a gate that can only
+   comply. Also the fourth distinct gate-shaped gap in four births — decide
+   whether that pattern area is productive or whether founding sessions
+   manufacture questions there.
+3. **Does `predict-then-check` have a third half — a prediction on the road not
+   taken?** One system, zero data. The thing to watch is whether Andres keeps
+   recording the decline sample, and the catalog already predicts he will not.
+4. **`D-006`, and whether it is discipline or contamination.** A child declined a
+   mechanism to protect an upstream statistic. That is this layer shaping its own
+   evidence base by other means and it should be judged as such.
+5. **The first `§ Cuts`.** Same test as all three prior births. `docs/pricing.md`
+   being empty at twenty resolved units would be a defect; being full of brand
+   opinions with no resolved unit behind them would be a worse one, and the child
+   names both.
+
+**Nothing was dispatched and no child was edited.** No sibling repo was read for
+this birth beyond `the-debrief`'s file layout and permission list, and nothing was
+written to any of them.

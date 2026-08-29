@@ -16,27 +16,39 @@ layer taking on ceremony it does not need, which is a named failure mode in
 ## Current
 
 ```yaml
-status: BOTH CLOCKS TURNED, 2026-08-18/19, and the generative one turned
-             AGAIN on 08-22. Evolutionary: honest-metric promoted to `proven` —
-             the first promotion. Generative: TWO births, zesty-webengine-team
-             and galind-team, both grown from the spine. NO claim is tested by
-             any of it — the three counters moved and nothing was delivered.
-             Read the caveats before repeating the headline
+status: THE GENERATIVE CLOCK IS THE ONLY ONE RUNNING. Four births in eleven
+             days — zesty-webengine-team (08-19), galind-team (08-22),
+             the-debrief (08-24), resale-desk (08-29) — against one promotion
+             (honest-metric, 08-18) and nothing delivered by any of the four.
+             The last two were run from inside this layer, so every choice they
+             share with a sibling is `carried` and NONE of it tests claim I.
+             Read the caveats before repeating any counter as a result
 last_review: 001a (scoped, 2026-08-13). 000 was founding. The 08-14 rulings, the
-             08-15 AR proposals and the 08-18 scoped read are entries, not reviews
-next_review: 001 — full portfolio, now EIGHT systems. STILL UNDISCHARGED. Two
-             systems have been founded since it came due; see the cadence
-             warning below, which the second birth makes worse, not better
-promotions:  1 (honest-metric, 2026-08-18). Births: 2 — zesty-webengine-team
-             (08-19) and galind-team (08-22). BOTH have delivered nothing.
-             Transfer yield: 4 of 7
-registry:    systems.md refreshed 2026-08-18 with MEASURED commit counts and a
-             distribution table. MDT's standing wake-up item is DISCHARGED
+             08-15 AR proposals, the 08-18 scoped read and the four birth
+             entries are entries, not reviews
+next_review: 001 — full portfolio, now ELEVEN systems. STILL UNDISCHARGED,
+             sixteen days. FOUR systems have been founded since it came due.
+             Every birth entry since the second has said this and it has not
+             changed the order of work once. The birth rate is an agenda item
+             for 001, not a closing paragraph
+promotions:  1 (honest-metric, 2026-08-18). Births: 4. Transfer yield: 4 of 7.
+             The SHARPER FALSIFIER FOR CLAIM I was called overdue on 08-24 and
+             is STILL NOT DRAFTED — the two-quarter clock fires on zero births
+             and zero promotions, and quarter one holds four births, one
+             promotion, and no delivery anywhere
+registry:    systems.md refreshed 2026-08-18 with MEASURED commit counts; the
+             distribution table is STALE (pre-dates all four births) and its
+             refresh is a review-001 job, not a between-times edit
 dispatched:  nothing since 2026-08-15. All seven 08-14 items and AR-3 have landed
              in the children and are verified there
 pending:     proposals/2026-08-22-brand-system.md is WRITTEN AND NOT DISPATCHED.
              It carries a human ruling (galind.io moves to the product), which
              no packet has ever done before — read its § Standing first
+carries:     DO NOT COUNT AS CONVERGENCE. The improvement-vs-delivery ratio
+             family stands at TWO independent inventions (WET, galind-team).
+             the-debrief D-006 is a carried third. resale-desk DECLINED to build
+             a fourth and said why — see its D-006, which is itself a question
+             about this layer shaping its own evidence base
 ```
 
 ## Read this before you do anything: the cadence warning has fired
@@ -102,15 +114,22 @@ Not a review. A restatement of purpose by the human, applied to the documents.
 
 ## What exists
 
-The portfolio is **nine repos**: eight systems plus this layer, all checked out
-under `~/dev/`. **Two were grown from `spine.md` rather than copied** —
-`zesty-webengine-team` on 2026-08-19 and `galind-team` on 2026-08-22.
+The portfolio is **eleven repos**: ten systems plus this layer, all checked out
+under `~/dev/`. **Four were grown from `spine.md` rather than copied** —
+`zesty-webengine-team` (2026-08-19), `galind-team` (08-22), `the-debrief` (08-24)
+and `resale-desk` (08-29). **The last two were grown by sessions running inside
+this layer**, which is why their agreement with a sibling is `carried` and proves
+nothing.
 
-**`galind-team` is the first system that is not under `agalin920` yet**, because
-it has no remote at all: `gh repo create` is denied at its own permission layer
-and creating one is Andres's call. It lives at `~/dev/galind/galind-team`,
-alongside the `galind-*` product repos it will build — **which are subjects, not
-systems, and none of which exists yet.**
+**Three systems have no remote at all** — `galind-team`, `the-debrief` and
+`resale-desk`; creating one is Andres's call in each case. `resale-desk` is the
+one with a reason of its own beyond the permission layer: its event log will hold
+what he paid for things and what he earns reselling them, and a private remote is
+still a copy on someone else's disk.
+
+`galind-team` lives at `~/dev/galind/galind-team`, alongside the `galind-*`
+product repos it will build — **which are subjects, not systems, and none of
+which exists yet.**
 
 Two systems were added on 2026-08-10 — `mpulse-engage-team` and `mpulse-dpi-team`,
 both **copied from zesty-eng-team, not grown from the spine**. That distinction is
