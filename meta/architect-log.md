@@ -3116,3 +3116,84 @@ review 001 as a cheap general technique.
 **Nothing was dispatched and no child was edited.** No sibling repo was read for
 this birth beyond `the-debrief`'s file layout and permission list, and nothing was
 written to any of them.
+
+### Same-day amendment at `resale-desk`, 2026-08-29 — and a partial withdrawal of the finding above
+
+**Hours after founding, Andres overturned three of its founding rulings.** The
+desk now drives his signed-in Chrome on both markets and posts his sell listings
+(`D-016`, `D-017`, `D-018`). The child's charter was **not** edited by the
+session; the amendment is staged at `docs/charter.PROPOSED.md` for him to apply.
+
+**This is the first time in the portfolio a founding ruling has been reversed by
+the human on the same day**, and it is worth more than the birth entry above.
+
+### The finding about `charter-as-constitution` is weaker than I wrote it
+
+Six hours ago this log recorded *"the first charter in the portfolio with clauses
+the human does not own"* — rules quoted from Vinted, unamendable by his ruling.
+
+**He amended them by ruling.** The clauses were never externally owned. What was
+externally authored was a *fact* — Vinted's stated conditions of access — and the
+founding session converted that fact into a **prohibition** on its own authority,
+then described the result as something the owner could not change. He changed it
+in one sentence.
+
+**What survives, narrower and still real:** a charter can contain clauses whose
+*premises* are owned outside the portfolio and can change without notice. The
+staleness clock is real; the retrieval date in that charter is doing real work.
+**What does not survive is the claim that the human cannot amend them.** He can,
+because what he is deciding is not what Vinted permits but **what risk his own
+accounts carry** — and that was always his.
+
+**Recorded as a withdrawal rather than an edit**, per § Output. Review 001 should
+read the narrowed version, and should treat *"the fourth gate-shaped gap in four
+births"* as three-and-a-half.
+
+### The uncomfortable half, and it is about how this layer runs births
+
+**The founding session read a `robots.txt` and turned it into a constitutional
+prohibition without asking the owner whether he wanted to be bound by it.** It
+had the precondition check — that part was right and is unchanged. What it did
+with the result was substitute its own risk appetite for his, in his own repo,
+about his own accounts, and then write the substitution into the one file it is
+not allowed to edit afterwards.
+
+**That is not a rule this layer has. It is a habit.** `charter.md` § Never own a
+system's domain says this layer has no opinion on what the brand should be about
+or which ticket to take. **What risk Andres will carry on his own Vinted account
+is the same kind of thing**, and a founding session is exactly where it is
+easiest to miss, because the constraint arrives wearing the clothes of a verified
+external fact.
+
+**Four births, all four run from inside this layer or by sessions that had read
+it.** Review 001 should ask what else in the four founding charters is a
+precondition check that quietly became a prohibition. The candidates are visible:
+`the-debrief`'s gate sample size, `galind-team`'s test allowlist, this desk's
+original rules 1 through 3.
+
+**What the child did right, and it is the reason this is recoverable:** the
+prohibition was written *with its source quoted and dated*, so the moment the
+owner disagreed, exactly what he was overruling was legible. A paraphrased rule
+would have been argued about instead of amended.
+
+### What the amendment kept, unprompted, against the direction of the change
+
+Recorded because a session told "yes, full scope" that returns *only* the
+expansion has stopped doing its job:
+
+- **Buying stays forbidden.** The desk got a browser, not a wallet.
+- **Publication is confirmed per listing**, no standing approval, because the
+  check is whether *this* copy matches *this* item.
+- **The scheduler stays denied**, and is now the load-bearing denial — an
+  attended session at human pace is the only defensible version, and it is the
+  only version a permission layer can still enforce.
+- **Nothing is disguised.** No proxy rotation, no UA spoofing, no CAPTCHA
+  solving; a bot-check ends the session.
+- **Facebook is read-only**, asymmetric to Vinted on purpose: the credential at
+  stake is his personal account.
+
+**`F8` is new** — injection through a marketplace surface in a session that can
+act. One instance is a finding. **That failure mode did not exist in this
+portfolio before today**, because no prior system read attacker-controlled text
+while holding live credentials, and it is the item on this page most likely to
+matter to a sibling later.

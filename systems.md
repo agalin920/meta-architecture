@@ -668,7 +668,25 @@ does damage. **That is a child being designed around this layer's measurement
 problem, and whether that is discipline or contamination is a question for review
 001.**
 
-**The gap it opens, and the reason the birth was worth running: this is the first
+**AMENDED THE SAME DAY.** Andres ruled that the desk drives his signed-in Chrome
+on both markets and posts his sell listings (`D-016`, `D-017`, `D-018`); Facebook
+is in scope, read-only. **The first founding ruling in the portfolio reversed by
+the human on the day it was made.** The charter was not edited by the session —
+the amendment is staged at `docs/charter.PROPOSED.md` for him.
+
+**That reversal narrows the finding below and the narrowed form is the one to
+read.** See `meta/architect-log.md` § Same-day amendment for the withdrawal. The
+short version: the clauses were never externally owned. A precondition check
+became a constitutional prohibition on the founding session's own authority, and
+what Andres actually amended was **whose risk appetite governs his own accounts**
+— which was always his. What survives is narrower: a charter can rest on premises
+owned outside the portfolio, which go stale without notice.
+
+**`F8` is the portfolio's first injection-with-credentials failure mode** — the
+desk now reads attacker-controlled marketplace text while holding a live session.
+One instance is a finding. No prior system had the condition.
+
+**The gap it opens, as originally written and now narrowed: this is the first
 system whose charter contains clauses the human does not own.** Rules 1 and 2 —
 never transact, never publish — are quoted verbatim from Vinted's stated
 conditions of access, retrieved 2026-08-29, not authored by Andres.
