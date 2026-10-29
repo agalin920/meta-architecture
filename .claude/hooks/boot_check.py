@@ -73,6 +73,12 @@ def locks(root):
     if bad:
         return ("LOCK BROKEN: " + ", ".join(bad) +
                 " changed outside Andres's relock. Tell Andres before anything else.")
+    listed = [l.split(None, 1)[1].strip() for l in spec.splitlines()
+              if l.strip() and not l.startswith("#")] + ["scoreboard/lock.sha256"]
+    dirty = [l[3:] for l in sh(["git", "status", "--porcelain", "--"] + listed, root).splitlines() if l.strip()]
+    if dirty:
+        return ("LOCKED FILES CHANGED, NOT COMMITTED: " + ", ".join(dirty) +
+                ". Hashes match, but only a relock should touch these. Ask Andres whose edit it is.")
     return f"Locks intact ({n} files)."
 
 
