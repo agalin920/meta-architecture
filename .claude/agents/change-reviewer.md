@@ -55,7 +55,7 @@ Exactly one, first line:
 
 - `LAND` — routine and clearly beneficial, or maintenance that loses nothing.
 - `ESCALATE` — you are unsure, or it touches anything in check 5. It goes to
-  Andres under "Waiting on Andres" in state.md, with your reasoning.
+  Andres under "Waiting on Andres: system" in HANDOFF.md, with your reasoning.
 - `REJECT` — wrong, unsupported, duplicates an existing rule, or loses a fact.
   Say what would make it landable. If the change is sound but no current
   measure can see its effect, say so: the session may write a scoreboard

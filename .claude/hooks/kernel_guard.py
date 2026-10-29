@@ -143,7 +143,7 @@ def main():
         hit = is_locked_file(path, root) if path else None
         if hit:
             deny(f"{hit} is locked. Andres owns it; agents cannot change it. "
-                 f"If it needs to change, put the proposal under 'Waiting on Andres' in state.md.")
+                 f"If it needs to change, write a proposal (docs/loop.md § Proposing a charter or scoreboard change).")
         sys.exit(0)
 
     if tool == "Bash":

@@ -21,7 +21,11 @@ request, in all four repos (fast-forward; nothing on the remotes was overwritten
   app), plus this repo's boot.
 - **Falsifier checks:** 2027-01-31 and 2027-03-31 (`meta/thesis.md`).
 
-## Waiting on Andres
+## Waiting on Andres: system
+
+Nothing waiting.
+
+## Waiting on Andres: work
 
 - Commit or leave the side projects' uncommitted work. Much of their measured
   evidence lives only there (`systems.md`).

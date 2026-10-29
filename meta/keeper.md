@@ -63,18 +63,20 @@ own `change-reviewer`. A change that would weaken a kernel guard goes to Andres.
 ## 6. Roll up what is waiting on Andres
 
 Every run, rewrite the section `## Waiting on Andres — from the systems` in
-`HANDOFF.md` from scratch. For each core system, list:
+`HANDOFF.md` from scratch. **System-level only.** For each core system, list:
 
+- `LOCK BROKEN`, first and loudest, if any boot check printed it;
 - each open proposal in `log/pending/S-*.md`: its id, kind, one-sentence change,
   and "approve: `scoreboard/apply S-NNN` in that repo";
-- the count of other items under its `## Waiting on Andres`, with the oldest
-  one in a line;
-- `LOCK BROKEN`, first and loudest, if any boot check printed it.
+- each item under its `## Waiting on Andres: system` (escalated self-changes,
+  anything about the locks);
+- one count line for its work list: "N work items, K older than 14 days". Give
+  only the count, never the items. Work items belong to that system's session.
 
-If anything is listed, send Andres **one** push notification: how many items
-are waiting, and the single most important one. Send nothing in a week where
-nothing is waiting. The roll-up only reports; deciding stays with Andres, in
-the system concerned.
+If anything system-level is listed, send Andres **one** push notification: how
+many system items are waiting, and the single most important one. Never push
+for work items alone, and send nothing in a quiet week. The roll-up only
+reports; deciding stays with Andres, in the system concerned.
 
 ## 7. Keep this layer's own kernel
 

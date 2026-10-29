@@ -145,13 +145,34 @@ def due_changes(root):
     return due
 
 
-def waiting(root):
-    text = read(os.path.join(root, "HANDOFF.md")) or ""
-    m = re.search(r"^## Waiting on Andres\s*\n(.*?)(?=^## |\Z)", text, re.S | re.M)
-    if not m:
-        return 0
-    return sum(1 for l in m.group(1).splitlines() if l.startswith(("- ", "* ")))
+WAIT = re.compile(r"^## Waiting on Andres(?::\s*(system|work))?\s*\n(.*?)(?=^## |\Z)", re.S | re.M)
+FULL_DATE = re.compile(r"\b(\d{4}-\d{2}-\d{2})\b")
 
+
+def waiting(root):
+    """Items waiting on Andres, split by kind.
+
+    system: proposals, escalated self-changes, broken locks; what the design is about.
+    work:   merges, approvals, product or security calls; the outside-world gates.
+    An old unsplit "## Waiting on Andres" section counts as work.
+    """
+    text = read(os.path.join(root, "HANDOFF.md")) or ""
+    out = {"system": [], "work": []}
+    for m in WAIT.finditer(text):
+        out[m.group(1) or "work"] += [l for l in m.group(2).splitlines() if l.startswith(("- ", "* "))]
+    return out
+
+
+def freshness(items, today, days=14):
+    """Count work items with no date, and items whose latest date is over `days` old."""
+    stale = undated = 0
+    for item in items:
+        dates = [dt.date.fromisoformat(d) for d in FULL_DATE.findall(item)]
+        if not dates:
+            undated += 1
+        elif (today - max(dates)).days > days:
+            stale += 1
+    return stale, undated
 
 def proposals(root):
     """Open charter/scoreboard proposals (log/pending/S-NNN.md) for Andres."""
@@ -208,8 +229,16 @@ def main():
     if due:
         lines.append("Self-changes due a verdict (run `python3 scoreboard/verdicts.py`): " + ", ".join(due))
     w = waiting(root)
-    if w:
-        lines.append(f"Waiting on Andres: {w} item(s) in current state. Mention them when he arrives.")
+    if w["system"]:
+        lines.append(f"Waiting on Andres, system: {len(w['system'])}. Lead with these when he arrives.")
+    if w["work"]:
+        stale, undated = freshness(w["work"], dt.date.today())
+        msg = f"Waiting on Andres, work: {len(w['work'])}"
+        if stale:
+            msg += f"; {stale} older than 14 days, re-check them (docs/loop.md § Keeping work items fresh)"
+        if undated:
+            msg += f"; {undated} undated, date them"
+        lines.append(msg + ".")
     props, over = proposals(root)
     if props:
         lines.append("Proposals for Andres (he approves with `scoreboard/apply S-NNN` in his terminal): " + "; ".join(props))

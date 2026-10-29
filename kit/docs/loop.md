@@ -100,9 +100,40 @@ condensing of knowledge.
      entry. Fill in the `commit:` sha in a follow-up memory commit. Write a
      `change` event.
    - `ESCALATE`: save the diff to `log/pending/C-NNN.patch`, restore the
-     files, and add one line under "Waiting on Andres" in `state.md`.
+     files, and add one line under `## Waiting on Andres: system` in `state.md`.
    - `REJECT`: restore the files. Write a `lesson` event if the rejection
      taught something.
+
+## Waiting on Andres: two lists
+
+`state.md` keeps two lists, because they need different things from him.
+
+- **`## Waiting on Andres: system`**: charter or scoreboard proposals (S-NNN),
+  self-changes the change reviewer escalated (C-NNN), and anything about the
+  locks. These are about how the system works. Every session leads with them,
+  and the weekly roll-up and its push notification carry them.
+- **`## Waiting on Andres: work`**: merges, approvals, product questions,
+  security or production calls, credentials. Each needs him because it is an
+  outside-world gate, not because of the system. Put them in front of him in the
+  session where the work is, and in `/what-changed`.
+
+Every item starts with the date it was raised (`- 2026-10-29 — …`). Write an
+`escalation` event when you add one.
+
+## Keeping work items fresh
+
+When the boot check says work items are older than 14 days, re-check each
+against its source (GitHub, Jira, the repo) before new work:
+
+- **Resolved** (merged, closed, answered): remove it and write a `decision`
+  event saying how it resolved.
+- **Still open**: keep it, append `(re-checked <date>)`, and raise it with Andres
+  once in this session.
+- **Open for over 30 days and raised at least twice with no answer**: move it out
+  of the list into a `decision` event ("parked: <item>, raised <dates>"), and
+  tell him in one line that it is parked. The event log keeps it, so nothing is
+  lost. Security and patient-data items are never parked; they stay until he
+  answers.
 
 ## Proposing a charter or scoreboard change
 
@@ -127,7 +158,7 @@ seen by any measure, or a hard line no longer fits the work.
 
    Then write `log/pending/S-NNN.patch`: the exact diff to the locked files, made
    with `git diff` against a scratch copy. Never apply it here.
-3. Add one line under `## Waiting on Andres` in `state.md`:
+3. Add one line under `## Waiting on Andres: system` in `state.md`:
    `- S-NNN (scoreboard): <one sentence> — log/pending/S-NNN.md`.
    Write an `escalation` event and commit memory.
 4. Andres decides:
