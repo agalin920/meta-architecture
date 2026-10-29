@@ -29,8 +29,6 @@ Nothing waiting.
 
 - 2026-10-28 — Commit or leave the side projects' uncommitted work. Much of their
   measured evidence lives only there (`systems.md`). Not urgent.
-- 2026-10-29 — Approve the "Weekly lessons review" run's tools in the app (and stop
-  the old "Colony DNA harvest" run), so the Monday runs don't pause on prompts.
 
 ## Waiting on Andres — from the systems
 
