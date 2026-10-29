@@ -28,8 +28,22 @@ exchange domain content.
 | **mpulse-dpi-team** | `../mpulsemobile/mpulse-dpi-team` | Ticket in, reviewable PR out, on the DPI product | S1–S4 + G1, GitHub + tracker (structure-only reads) | 2026-10-28, branch `colony-migration` |
 
 The two mPulse teams were copied from zesty-eng-team on 2026-08-10, not grown
-independently. Their baselines are recorded in each repo at
-`scoreboard/baseline-2026-10-28.json`.
+independently.
+
+**Baselines**, window 2026-08-29 → 10-28. Each is computed by its own repo's
+`scoreboard/score.py` and locked at `scoreboard/baseline-2026-10-28.json`.
+
+| | S1 escapes/PR | S2 outside findings/PR | S3 Andres corrections/PR | S4 escalations/unit | G1 merged PRs/week | Boot lines |
+|---|---|---|---|---|---|---|
+| zesty-eng-team | 0.00 (n=7) | 2.82 | 1.65 | n/a | 1.98 | 2,120 → 586 |
+| mpulse-engage-team | 0.23 (n=22) | 2.12 | 0.79 | n/a | 6.65 | ~6,600 → 700 |
+| mpulse-dpi-team | 0.17 (n=6) | 2.73 | 0.55 | n/a | 6.4 | 3,127 → 639 |
+
+**Read the systems against their own baselines, not against each other.**
+- Definitions differ per system: each system's `scoreboard/definitions.md`
+  names its sources and its definition breaks.
+- S1 counts only PRs merged by 09-28.
+- S4 had no instrument before the migration.
 
 ## Side projects (dormant, not modified)
 
