@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Rollback: judge every self-change whose window has closed.
+Verdicts: read every self-change whose window has closed, as evidence.
 
 Each self-change in CHANGELOG.md carries a machine line:
     <!-- claim: S2 down; landed: 2026-10-29; commit: abc1234 -->
@@ -11,30 +11,40 @@ and a human line:
 A change's window closes at the later of 14 days or 5 merged team PRs after it
 landed, and never later than 30 days. Then the named score over the window is
 compared with the same-length window before the change, and `n` is printed for
-both:
+both. Changes are kept by default (Andres, 2026-10-29): at a few merged PRs a
+week, a change that does nothing reads "helped" or "worse" about 40% of the
+time each, so these numbers are evidence the system reads, never an automatic
+rollback.
 
     insufficient data  either window has n < 5      -> keep open; the window extends,
                                                         up to a 60-day hard cap, then
-                                                        it is judged on what there is
+                                                        it is kept as "unproven"
     helped     moved >= 10% in the claimed direction -> keep; playbook candidate
-    worse      moved >= 10% the other way            -> revert; lesson `retired`
-    no effect  moved less than 10% either way        -> revert; lesson "no measured
-                                                        effect" (retryable, not retired)
+    no effect  moved less than 10% either way        -> keep as "unproven"; lesson "no
+                                                        measured effect" (retryable)
+    looks worse moved >= 10% the other way           -> uncertain at this n; nothing
+                                                        happens automatically. The system
+                                                        decides on its own judgement and
+                                                        records a `decision` event saying why
+
+A change is undone only for clear harm: an escape (S1) traced to it, Andres
+saying it made things worse, or the system's own judgement (docs/loop.md).
+
+S1 and S4 are guardrails and cannot be claimed. S1 (escapes) only counts PRs
+merged 30+ days ago, so no 14-30 day window can see it move; the escape
+tripwire in docs/loop.md watches it. S4 (escalations) is the gaming path: the
+easy way to look better is to ask Andres less. For every judged change both are
+printed over the same windows, beside the claimed measure, as counter-metrics.
 
 Lack of data is never "no effect". Other changes claiming the same measure in an
 overlapping window are listed: the credit (or blame) is shared. Kept changes
-over 60 days old are listed once for a re-read on the longer window, flagged if
-the measure has turned worse since.
+over 60 days old are listed once for a re-read on the longer window.
 
 Maintenance changes claim `maintenance none` and are never judged on score.
 They list the files they touched; a behaviour file among them (CLAUDE.md,
 docs/, .claude/commands, .claude/agents) gets a note for the reviewer.
-S1 (escapes) cannot be a claim: it only counts PRs merged 30+ days ago, so no
-14-30 day window can ever see it move. Claim a leading measure; S1 is watched
-by the escape tripwire in docs/loop.md instead.
-This script only reports; the loop applies the verdict (git revert of the one
-commit, confirmed by the change-reviewer) and records it. It is locked: a
-system cannot soften its own rollback.
+This script only reports; the loop weighs the verdict and records it. It is
+locked: a system cannot soften its own ruler.
 
 Usage: python3 scoreboard/verdicts.py [--all]
 """
@@ -50,6 +60,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import score  # noqa: E402  (per-system: compute(since, until) -> {measure: {value, n}}, merged_prs(since, until))
 
 MIN_DAYS, MIN_PRS, MAX_DAYS, HARD_CAP, MIN_N, MIN_REL, REREAD_DAYS = 14, 5, 30, 60, 5, 0.10, 60
+GUARDRAILS = {   # never claimable; printed beside every judged claim
+    "S1": "no 14-30 day window can see it move (it counts PRs merged 30+ days ago)",
+    "S4": "claiming fewer escalations is the gaming path: the easy way to look better is to ask Andres less",
+}
 BEHAVIOUR = ("CLAUDE.md", "docs/", ".claude/commands", ".claude/agents")
 ENTRY = re.compile(r"^## (C-\d+)\s*·?\s*(.*)$")
 CLAIM = re.compile(r"<!--\s*claim:\s*(\S+)\s+(up|down|none)\s*;\s*landed:\s*(\d{4}-\d{2}-\d{2})(.*?)-->")
@@ -122,14 +136,40 @@ def compare(measure, direction, b, a):
     return "no effect", rel
 
 
+def windows(ch, start, end):
+    """Every measure before and after the change: the claim and its guardrails come from the same windows."""
+    return score.compute(start, ch["landed"]), score.compute(ch["landed"], end)
+
+
 def measure_at(ch, start, end):
-    before = score.compute(start, ch["landed"]).get(ch["measure"], {})
-    after = score.compute(ch["landed"], end).get(ch["measure"], {})
-    return before, after
+    before, after = windows(ch, start, end)
+    return before.get(ch["measure"], {}), after.get(ch["measure"], {})
+
+
+def guardrails(ch, ctx):
+    """S1 and S4 over the same windows as the claim: counter-metrics, read beside it."""
+    start, end, before_all, after_all = ctx
+    out = []
+    for g in GUARDRAILS:
+        if g not in before_all and g not in after_all:
+            out.append(f"{g} not measured here")
+            continue
+        b, a = before_all.get(g) or {}, after_all.get(g) or {}
+        bv, av = b.get("value"), a.get("value")
+        s = f"{g} {bv} (n={b.get('n') or 0}) -> {av} (n={a.get('n') or 0})"
+        if bv is None or av is None:
+            s += " (no reading yet: S1 lags 30 days)" if g == "S1" else " (no reading)"
+        else:
+            moved, rel = compare(g, "down", bv, av)
+            pct = "from 0" if rel == float("inf") else f"{rel:+.0%}"
+            s += {"worse": f", {pct}: MOVED THE WRONG WAY, weigh it", "helped": f", {pct}",
+                  "no effect": " (within 10%)"}[moved]
+        out.append(s)
+    return f"    guardrails over the same windows ({start}..{ch['landed']}..{end}): " + "; ".join(out)
 
 
 def judge(ch, end, today):
-    """(verdict, why). Extends the window when either side has n < MIN_N."""
+    """(verdict, why, ctx). Extends the window when either side has n < MIN_N."""
     floor = getattr(score, "INSTRUMENT_SINCE", {}).get(ch["measure"])
     hard = ch["landed"] + dt.timedelta(days=HARD_CAP)
     while True:
@@ -139,26 +179,27 @@ def judge(ch, end, today):
         if floor and start < floor:
             start = floor
             if (ch["landed"] - start).days < 7:
-                return "too early", f"fewer than 7 days of {ch['measure']} before the change on the current instrument"
-        before, after = measure_at(ch, start, end)
+                return "too early", f"fewer than 7 days of {ch['measure']} before the change on the current instrument", None
+        before_all, after_all = windows(ch, start, end)
+        before, after = before_all.get(ch["measure"], {}), after_all.get(ch["measure"], {})
         b, a = before.get("value"), after.get("value")
         nb, na = before.get("n") or 0, after.get("n") or 0
         nums = f"{ch['measure']} {b} (n={nb}) -> {a} (n={na}), window {start}..{ch['landed']}..{end}"
         if (nb < MIN_N or na < MIN_N or a is None or b is None) and end < min(today, hard):
             end = min(today, hard)      # extend, then look again
             continue
+        ctx = (start, end, before_all, after_all)
         if nb < MIN_N or na < MIN_N or a is None or b is None:
             if end < hard:
                 return "insufficient data", f"{nums}; n < {MIN_N} on a side. Leave it open and set its Verdict to " \
-                                            f"`open (extended to {hard}: insufficient data)`"
-            if a is None or b is None:
-                return "insufficient data", f"{nums}; still no data at the {HARD_CAP}-day cap. The measure cannot see " \
-                                            "this change: record `unjudged: insufficient data` and consider a " \
-                                            "scoreboard proposal (docs/loop.md)"
-            nums += f" (judged at the {HARD_CAP}-day cap on n < {MIN_N})"
+                                            f"`open (extended to {hard}: insufficient data)`", ctx
+            blind = " The measure may not see this change: consider a scoreboard proposal (docs/loop.md)." \
+                if a is None or b is None else ""
+            return "unproven", f"{nums}; still n < {MIN_N} on a side at the {HARD_CAP}-day cap. Keep it and set " \
+                               f"its Verdict to `unproven: insufficient data (<numbers>)`.{blind}", ctx
         verdict, rel = compare(ch["measure"], ch["direction"], b, a)
         pct = "n/a" if rel == float("inf") else f"{rel:+.0%}"
-        return verdict, f"{nums}; change {pct}, claimed {ch['direction']}, threshold {MIN_REL:.0%}"
+        return verdict, f"{nums}; change {pct}, claimed {ch['direction']}, threshold {MIN_REL:.0%}", ctx
 
 
 def window_of(ch):
@@ -198,7 +239,8 @@ def reread(ch, today):
     if a is None or b is None:
         return f"{ch['id']}: RE-READ (kept {span.days} days) — no data on the longer window ({nums})"
     verdict, rel = compare(ch["measure"], ch["direction"], b, a)
-    flag = "TURNED WORSE since it was kept — take it to the change-reviewer" if verdict == "worse" else f"now reads {verdict}"
+    flag = ("now LOOKS WORSE on the longer window: evidence for your own judgement; whatever you decide, "
+            "write a `decision` event saying why") if verdict == "worse" else f"now reads {verdict}"
     return (f"{ch['id']}: RE-READ (kept {span.days} days) — {nums}: {flag}. "
             f"Append `re-read {today}: <result>` to its Verdict so it is listed once.")
 
@@ -215,7 +257,8 @@ def main():
         verdict_line = str(ch.get("verdict", ""))
         v = verdict_line.lower()
         if not v.startswith("open"):
-            if v.startswith(("helped", "kept")) and ch.get("direction") in ("up", "down") and "re-read" not in v \
+            if v.startswith(("helped", "kept", "unproven", "looks worse")) and ch.get("direction") in ("up", "down") \
+                    and "re-read" not in v \
                     and (today - ch["landed"]).days > REREAD_DAYS:
                 due += 1
                 print(reread(ch, today))
@@ -225,8 +268,9 @@ def main():
         if "measure" not in ch:
             print(f"{ch['id']}: OPEN but has no claim line; fix the entry")
             continue
-        if ch["measure"] == "S1":
-            print(f"{ch['id']}: claims S1, which no window can judge; re-claim a leading measure")
+        if ch["measure"] in GUARDRAILS:
+            print(f"{ch['id']}: claims {ch['measure']}, a guardrail that cannot be claimed: {GUARDRAILS[ch['measure']]}. "
+                  "Re-claim a leading measure")
             continue
         if ch["direction"] == "none":
             print(maintenance(ch))
@@ -240,7 +284,7 @@ def main():
         if ext and today < dt.date.fromisoformat(ext.group(1)):
             end = today
         due += 1
-        verdict, why = judge(ch, end, today)
+        verdict, why, ctx = judge(ch, end, today)
         shared = overlaps(ch, every)
         share = f" Credit is shared with {', '.join(shared)} (same measure, overlapping window)." if shared else ""
         if verdict == "too early":
@@ -248,16 +292,20 @@ def main():
             continue
         if verdict == "insufficient data":
             print(f"{ch['id']}: INSUFFICIENT DATA — {why}.{share}")
-            continue
-        if verdict == "helped":
-            action = "keep; add to lessons.md as a playbook candidate"
+        elif verdict == "unproven":
+            print(f"{ch['id']}: UNPROVEN (insufficient data at the cap) — {why}{share}")
+        elif verdict == "helped":
+            print(f"{ch['id']}: HELPED — {why} — keep; add to lessons.md as a playbook candidate.{share}")
         elif verdict == "worse":
-            action = (f"revert: git revert {commit_of(ch)} (confirm with change-reviewer first); "
-                      "lesson status `retired`, with the reason")
+            print(f"{ch['id']}: LOOKS WORSE (uncertain at this n) — {why} — nothing happens automatically. "
+                  f"Weigh it with the guardrails below and decide, on your own judgement, whether it stays; "
+                  f"write a `decision` event (ref {ch['id']}) with your reasoning, then set its Verdict "
+                  f"(docs/loop.md § Applying a verdict). Its commit: {commit_of(ch)}.{share}")
         else:
-            action = (f"revert: git revert {commit_of(ch)} (confirm with change-reviewer first); "
-                      "lesson status \"no measured effect\": retryable, not retired")
-        print(f"{ch['id']}: {verdict.upper()} — {why} — {action}.{share}")
+            print(f"{ch['id']}: NO EFFECT — {why} — keep it as unproven: set its Verdict to "
+                  f"`unproven: no effect (<numbers>)` and record the lesson with status \"no measured effect\" "
+                  f"(retryable, not retired).{share}")
+        print(guardrails(ch, ctx))
     if not due and not args.all:
         print("No self-change is due a verdict.")
 

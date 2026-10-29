@@ -6,6 +6,9 @@ Two outcomes besides allow (Andres ruled 2026-10-29):
 
   deny  flatly refused, even with his approval in the moment:
         - writes to locked files (any spelling, any case);
+        - writes to log/raw/, the raw evidence S3 is counted from (Andres's
+          prompts). The prompt_log hook writes it through Python, not a tool,
+          so it is unaffected; sessions may read it, never edit it;
         - running scoreboard/apply or scoreboard/relock, or applying a
           log/pending/S-* patch (those are his, in his own terminal);
         - an agent-posted GitHub body without this system's marker. That one is
@@ -57,6 +60,8 @@ EDIT_ROOTS = [os.path.join(DEV, p) for p in (
 # -----------------------------------------------------------------------------
 
 HOME_LOCKED = [os.path.expanduser("~/.claude/settings.json")]
+# Evidence written only by hooks: sessions read it, never write it (Andres, 2026-10-29).
+RAW = ["log/raw/"]
 
 # A command that names a locked path is allowed only if it shows none of these.
 WRITE_SIGNS = re.compile(
@@ -121,13 +126,13 @@ def project_dir(payload):
 
 def locked_abs(root):
     paths = [os.path.realpath(os.path.join(root, p)) for p in LOCKED]
-    return paths + [os.path.realpath(p) for p in HOME_LOCKED]
+    return paths + [os.path.realpath(p) for p in HOME_LOCKED] + [os.path.realpath(os.path.join(root, p)) for p in RAW]
 
 
 def is_locked_file(path, root):
     # Compare case-folded: macOS filesystems are case-insensitive, so CHARTER.md is charter.md.
     target = os.path.realpath(os.path.join(root, os.path.expanduser(path))).casefold()
-    for lp, rel in zip(locked_abs(root), LOCKED + HOME_LOCKED):
+    for lp, rel in zip(locked_abs(root), LOCKED + HOME_LOCKED + RAW):
         lp = lp.casefold()
         if rel.endswith("/"):
             if target == lp or target.startswith(lp.rstrip("/") + "/"):
@@ -140,7 +145,7 @@ def is_locked_file(path, root):
 def names_locked(cmd):
     cmd = cmd.casefold()
     hits = []
-    for rel in LOCKED + ["~/.claude/settings.json", ".claude/settings"]:
+    for rel in LOCKED + RAW + ["~/.claude/settings.json", ".claude/settings"]:
         key = rel.rstrip("/").casefold()
         base = os.path.basename(key)
         # Bare file names count too (a session may have cd'd), but only
@@ -316,6 +321,9 @@ def main():
             deny("From meta-architecture, edits are allowed only here and in the three core systems. "
                  "Side projects, datasets and product repos are not this layer's to change.")
         hit = is_locked_file(path, root) if path else None
+        if hit in RAW:
+            deny(f"{hit} is raw evidence written only by a hook (Andres's prompts; S3 is counted from it). "
+                 f"Sessions may read it, never edit it.")
         if hit:
             deny(f"{hit} is locked. Andres owns it; agents cannot change it. "
                  f"If it needs to change, write a proposal (docs/loop.md § Proposing a charter or scoreboard change).")
@@ -333,6 +341,9 @@ def main():
                  "in his own terminal. Leave the proposal under 'Waiting on Andres'.")
         hits = names_locked(cmd)
         if hits and not READ_OK.search(cmd) and WRITE_SIGNS.search(cmd):
+            if set(hits) <= set(RAW):
+                deny("This command names log/raw/ and looks like it could write. log/raw/ is raw evidence "
+                     "written only by a hook (S3 is counted from it); read it with the Read tool, cat, grep, tail or jq, never edit it.")
             deny(f"This command touches a locked path ({', '.join(sorted(set(hits)))}) and looks like it "
                  f"could write. Locked files are Andres's. Reading them with cat/grep/git log is fine.")
         check_marker(cmd, root)

@@ -1,5 +1,6 @@
 {
   "_comment": "meta-architecture: kernel locks (deny), outside-world actions (ask, Andres approves in the moment), side projects and datasets (deny). Edits to product repos are refused by the guard's EDIT_ROOTS rule, so no product repo is named here (public repo). Previous versions: archive/.claude/settings.json and git history.",
+  "autoMemoryEnabled": false,
   "permissions": {
     "deny": [
       "Edit(charter.md)",

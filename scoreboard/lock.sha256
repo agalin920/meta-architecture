@@ -1,16 +1,16 @@
-# Hashes of locked files. Re-hashed 2026-10-29 for kit v2 (Andres-approved relock); afterwards only by scoreboard/relock. Do not edit by hand.
+# Hashes of locked files. Written by scoreboard/relock on 2026-10-29. Do not edit by hand.
 0b077774675a65605ac2546e04d9a78d32dbf50e7d8ba1010698a96ef53aac5b  charter.md
 9a9401e32f2afa95088b6a4179756085b000d1fa61992a4ab709d232656638d4  scoreboard/definitions.md
 c89134f497732438e68de2730e7154dc23ac68ee9ac79d497adb1ec75c67b00b  scoreboard/score.py
-26cad712af47070bf5d922061262662904beb6d99a638b8cf00ea863d597ca58  scoreboard/verdicts.py
+e51767cea725e9626c512277419b07554982b69ff6b2774f2dd78be921fb9945  scoreboard/verdicts.py
 b590750170ccd94d2efabb08283260ab6c1a1c78cde6ee1141b4876ac92c6561  scoreboard/relock
 8d34646cacbdffafb55f20dd7490dd21642365681d77e6adbd8caad05cac1c94  scoreboard/apply
-72ea1a74339dc6456ab8a9c6e8757fcb086bd9f074f35315087736c201bd1741  .claude/settings.json
-c1a57920b564874e99761c46b383790f86a7a5fbc8ca7cea39a05effe3f27197  .claude/hooks/kernel_guard.py
-16822d5a11869e17439599568103aef0585c8de3e91bfd3edbeee63a4844ac35  .claude/hooks/boot_check.py
+320b18771200143a62622ddfead150d0175d18a15f0e81560cfc3922164bda6e  .claude/settings.json
+f4b06af18ceec8660ced02dd6066954e031380129d144788d25b32c70913f5f8  .claude/hooks/kernel_guard.py
+201465aca655640b5fa8a115453b8e5d4e1db2ad893c6925a07c77cfa794872e  .claude/hooks/boot_check.py
 15be1499242e832012e0a20172ce7c53a6100684757dd7e2acd2389c18840499  .claude/hooks/stop_check.py
 4e309cb5e5e41af00138c1bb1e138373aa94e7ec349d60f6a0fe14005c5f4fd3  .claude/hooks/spawn_log.py
 09e87de8286d82b19cfe24b91abe0e71960e9a5669c9810a5c612c06c7246aeb  .claude/hooks/prompt_log.py
 929c72bca3fe7453961408d7a4db61f3c4b8e2e9a34a25d144a26912f4fbc446  .claude/hooks/session_live.py
-905a4b849b10d6f603c4e5f5d7d30289940824d56e30da221fdec40bf0855233  .claude/agents/change-reviewer.md
+e8d18a137c304bab50780ee3416e7d19ff8cb9a6b0c769205ea4940452750d50  .claude/agents/change-reviewer.md
 482aef69f27fa54d861b45ced832620b6214a960280ed20c0841df833b1824e2  scoreboard/baseline-2026-10-28.json
