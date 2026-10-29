@@ -1,5 +1,6 @@
 {
-  "_comment": "Merge into each system's .claude/settings.json. Keep every existing deny rule; these are added, never substituted. SYSTEM paths are relative to the repo root.",
+  "_comment": "Merge into each system's .claude/settings.json. SYSTEM paths are relative to the repo root. kernel_guard.py is the main enforcement; these rules are the harness's fallback if the hook fails.",
+  "_comment_deny_vs_ask": "deny = flatly refused, even with approval: only locks, secrets, patient data and sibling systems. ask = a permission prompt Andres approves in the moment: every outside-world act (merges, pushes to protected branches, force/--all/--mirror/delete pushes, gh api merges). When rolling this out, a system MOVES its old outside-world deny rules (gh pr merge, force pushes, protected-branch pushes, gh api merge) to ask, and keeps in deny only its lock, secret, patient-data and sibling-system rules. The bare `git push` form leaves out the system's own default branch (main), because pushing its own main is how memory reaches the remote; a system whose own branch is not main adjusts that.",
   "permissions": {
     "deny": [
       "Edit(docs/charter.md)",
@@ -9,10 +10,104 @@
       "Edit(.claude/settings.local.json)",
       "Edit(.claude/agents/change-reviewer.md)",
       "Edit(~/.claude/settings.json)",
-      "Bash(scoreboard/relock*)",
-      "Bash(./scoreboard/relock*)",
-      "Bash(scoreboard/apply*)",
-      "Bash(./scoreboard/apply*)"
+      "Write(docs/charter.md)",
+      "Write(scoreboard/**)",
+      "Write(.claude/hooks/**)",
+      "Write(.claude/settings.json)",
+      "Write(.claude/settings.local.json)",
+      "Write(.claude/agents/change-reviewer.md)",
+      "Write(~/.claude/settings.json)",
+      "Bash(*scoreboard/apply*)",
+      "Bash(*scoreboard/relock*)",
+      "Bash(*./relock*)"
+    ],
+    "ask": [
+      "Bash(gh pr merge*)",
+      "Bash(gh api *merge*)",
+      "Bash(git push *--force*)",
+      "Bash(git push * -f*)",
+      "Bash(git push *--mirror*)",
+      "Bash(git push *--all*)",
+      "Bash(git push *--delete*)",
+      "Bash(git push * -d *)",
+      "Bash(git -C * push *--force*)",
+      "Bash(git -C * push * -f*)",
+      "Bash(git -C * push *--mirror*)",
+      "Bash(git -C * push *--all*)",
+      "Bash(git -C * push *--delete*)",
+      "Bash(git -C * push * -d *)",
+      "Bash(git -C ../* push * main)",
+      "Bash(git -C ../* push * main *)",
+      "Bash(git -C ../* push *:main)",
+      "Bash(git -C ../* push *:main *)",
+      "Bash(git -C ../* push * master)",
+      "Bash(git -C ../* push * master *)",
+      "Bash(git -C ../* push *:master)",
+      "Bash(git -C ../* push *:master *)",
+      "Bash(git -C ../* push * develop)",
+      "Bash(git -C ../* push * develop *)",
+      "Bash(git -C ../* push *:develop)",
+      "Bash(git -C ../* push *:develop *)",
+      "Bash(git -C ../* push * dev)",
+      "Bash(git -C ../* push * dev *)",
+      "Bash(git -C ../* push *:dev)",
+      "Bash(git -C ../* push *:dev *)",
+      "Bash(git -C ../* push * stage)",
+      "Bash(git -C ../* push * stage *)",
+      "Bash(git -C ../* push *:stage)",
+      "Bash(git -C ../* push *:stage *)",
+      "Bash(git -C ../* push * beta)",
+      "Bash(git -C ../* push * beta *)",
+      "Bash(git -C ../* push *:beta)",
+      "Bash(git -C ../* push *:beta *)",
+      "Bash(git -C ../* push * stable)",
+      "Bash(git -C ../* push * stable *)",
+      "Bash(git -C ../* push *:stable)",
+      "Bash(git -C ../* push *:stable *)",
+      "Bash(git -C ../* push * production)",
+      "Bash(git -C ../* push * production *)",
+      "Bash(git -C ../* push *:production)",
+      "Bash(git -C ../* push *:production *)",
+      "Bash(git -C ../* push * release/*)",
+      "Bash(git -C ../* push * release/* *)",
+      "Bash(git -C ../* push *:release/*)",
+      "Bash(git -C ../* push *:release/* *)",
+      "Bash(git push * master)",
+      "Bash(git push * master *)",
+      "Bash(git push *:master)",
+      "Bash(git push *:master *)",
+      "Bash(git push * develop)",
+      "Bash(git push * develop *)",
+      "Bash(git push *:develop)",
+      "Bash(git push *:develop *)",
+      "Bash(git push * dev)",
+      "Bash(git push * dev *)",
+      "Bash(git push *:dev)",
+      "Bash(git push *:dev *)",
+      "Bash(git push * stage)",
+      "Bash(git push * stage *)",
+      "Bash(git push *:stage)",
+      "Bash(git push *:stage *)",
+      "Bash(git push * beta)",
+      "Bash(git push * beta *)",
+      "Bash(git push *:beta)",
+      "Bash(git push *:beta *)",
+      "Bash(git push * stable)",
+      "Bash(git push * stable *)",
+      "Bash(git push *:stable)",
+      "Bash(git push *:stable *)",
+      "Bash(git push * production)",
+      "Bash(git push * production *)",
+      "Bash(git push *:production)",
+      "Bash(git push *:production *)",
+      "Bash(git push * release/*)",
+      "Bash(git push * release/* *)",
+      "Bash(git push *:release/*)",
+      "Bash(git push *:release/* *)",
+      "Bash(curl -X DELETE*)",
+      "Bash(curl -X PURGE*)",
+      "Bash(curl * -X DELETE*)",
+      "Bash(curl * -X PURGE*)"
     ]
   },
   "hooks": {
@@ -22,6 +117,30 @@
           {
             "type": "command",
             "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/boot_check.py\""
+          },
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/session_live.py\""
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/session_live.py\""
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/prompt_log.py\""
           }
         ]
       }
@@ -33,6 +152,17 @@
           {
             "type": "command",
             "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/kernel_guard.py\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Task|Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/spawn_log.py\""
           }
         ]
       }

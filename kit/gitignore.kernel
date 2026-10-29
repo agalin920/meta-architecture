@@ -1,0 +1,7 @@
+# Append to each system's .gitignore.
+# Raw prompts may hold sensitive text (patient data at mPulse). The loop reads
+# them to classify corrections; they are never committed.
+log/raw/
+# Live-session markers (one per open session); local by nature.
+log/.live/
+__pycache__/

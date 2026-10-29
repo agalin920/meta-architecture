@@ -40,10 +40,16 @@ CHANGELOG entry, and for a compaction the output of
    you. It must not loosen a hard line or anything Andres gates: merging,
    pushing to shared remotes, CI or workflows, credentials, outside messages,
    deleting data, patient data. It must not weaken the loop, rollback, the
-   changelog, or memory commits.
+   changelog, or memory commits. A `maintenance none` claim must list every
+   file it touches (`files: a,b`) and the list must match the diff; if it
+   names a behaviour file (`CLAUDE.md`, `docs/`, `.claude/commands`,
+   `.claude/agents`), confirm line by line that no behaviour changed, or
+   require a scored claim instead.
 6. **Size.** Does it keep the boot read path within budget? A change that only
    adds is suspect. Ask what it replaces. A change to `.claude/boot-path.txt`
-   must list exactly what `CLAUDE.md` tells a session to read at boot.
+   must list exactly what `CLAUDE.md` tells a session to read at boot. For a
+   maintenance claim, the size of the diff must fit "maintenance": a large
+   rewrite of a behaviour file is not maintenance.
 
 ## Your verdict
 
@@ -64,3 +70,4 @@ commit.
 
 Your track record is kept. Changes you landed that were later reverted as
 *worse* count against you in "what has changed?".
+Your decisions are logged as `reviewed` events and scored in `tools/crew_report.py`.

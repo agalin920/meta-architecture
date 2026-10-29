@@ -18,5 +18,6 @@ block so the scripts skip them:
     - **Verdict:** open
 ```
 
-Maintenance changes claim `<!-- claim: maintenance none; landed: … -->`. S1
-cannot be claimed (see `docs/loop.md`).
+Maintenance changes claim `<!-- claim: maintenance none; landed: …; files: a,b -->`,
+listing every file they touch. S1 cannot be claimed (see `docs/loop.md`). The
+landing commit's sha goes in as `; commit: <sha>` after `landed:`.
