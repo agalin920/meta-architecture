@@ -1,122 +1,59 @@
-# Meta-Architecture
+# meta-architecture
 
-The layer that agent-run systems are **grown from**, and that **learns back**
-from what they become.
+The DNA of a colony of self-evolving, agent-run systems, and the layer that
+keeps it.
 
-Every system in this portfolio was seeded from a shared spine. Each then runs
-its own loop, adapts to its own domain, and improves itself on its own cadence.
-They diverge. Most of that divergence is local and correct. Some of it belongs
-back in the spine, where every system built afterwards inherits it — and this
-repo is the only thing positioned to notice, judge, and carry it.
+Each system gets four things:
 
-**Two jobs, two clocks.**
+- a **purpose**;
+- a **shared memory**;
+- an **honest way to know when it is winning**;
+- **freedom to reshape itself**, including how it learns.
 
-| | Generative | Evolutionary |
-|---|---|---|
-| **What** | New systems are grown from the spine | Proven divergence is carried back into the spine |
-| **Clock** | On demand. No cadence | Quarterly, never faster than the fastest child Architect |
-| **Why that speed** | Pulling costs nothing and should block nothing | A spine change reaches every future system; it needs evidence, and evidence accumulates slowly |
-| **Read** | [`spine.md`](spine.md) | [`meta/architect.md`](meta/architect.md) |
+There are no managers, standups or retros. The right specialists and ways of
+working emerge on their own. Every system's hard-won lessons are written back
+into the DNA, so every new system starts smarter, but only lessons whose
+real-world results held up in more than one system get in.
 
-**Divergence is cheap and local; convergence is expensive and deliberate.** Fast
-outward, slow and selective on the way back in. That asymmetry is the design.
+The full reasoning, and Andres's rulings, are in [`REDESIGN.md`](REDESIGN.md)
+(2026-10-28).
 
 ## What's here
 
 ```
-spine.md                what a new system inherits — start here if you're building
-patterns/               the catalog: evidence, origin, adoption, failure modes
-charter.md              what this layer is for — the human's alone to edit
-systems.md              the registry: domain, cadence, metric, status
-HANDOFF.md              state of play for a cold session
-meta/
-  thesis.md             why a layer above is worth anything, with falsifiers
-  architect.md          the review procedure — the evolutionary clock
-  architect-log.md      findings, proposals, and whether they landed
+dna.md            what every system is built from: the kernel, lesson statuses,
+                  the DNA rule, the harvest. Start here if you are building
+dna/lessons/      every lesson, with status and evidence: founding, candidate,
+                  proven, retired
+dna/trials.md     lessons being tried in a second system
+kit/              working implementations of the kernel's mechanism (locks,
+                  boot and stop checks, rollback, reviewer, the loop) to copy
+charter.md        this layer's purpose and hard lines. Andres's; locked
+systems.md        the registry: 3 core systems, 6 dormant side projects
+scoreboard/       this layer's own scoreboard. Locked
+CHANGELOG.md      how this layer has changed itself, and whether it helped
+HANDOFF.md        current state, including what is waiting on Andres
+meta/keeper.md    the DNA-keeping procedure (weekly, and at boot)
+meta/thesis.md    why this should work, and what would prove it wrong
+meta/record.md    every lesson, ruling and result from before the redesign
+archive/          everything that came before, verbatim; MAPPING.md says where it went
+design/phase-1.md the approved design for the migration
 ```
 
 ## The systems
 
-| System | Domain | Status | Architect |
-|---|---|---|---|
-| [personal-university](../personal-university) | Broad classical education | `active` | every 10 sessions |
-| [zesty-eng-team](../zestyio/zesty-eng-team) | Engineering delivery — `manager-ui` | `active` | every retro · **5 run** |
-| [mpulse-engage-team](../mpulsemobile/mpulse-engage-team) | Engineering delivery — mPulse Engage, ~30 repos | `active` | every retro · **2 run** |
-| [mpulse-dpi-team](../mpulsemobile/mpulse-dpi-team) | Engineering delivery — DPI, 4 repos | `active`, low-cadence | every retro · **never run** |
-| [brand-system](../brand-system) | Public presence | `active` | every 4 weeks |
-| [media-log](../media-log) | Media database | `dataset` | none, correctly |
-| [zesty-webengine-team](../zestyio/zesty-webengine-team) | Engineering delivery — `zesty-io/webengine` | `active` | every retro · **never run** |
-| [galind-team](../galind/galind-team) | Building **Galind**, an agent-native backend suite | `active` | every 3rd item · **never run** |
+| System | Status |
+|---|---|
+| [zesty-eng-team](../zestyio/zesty-eng-team) | core, `active` |
+| [mpulse-engage-team](../mpulsemobile/mpulse-engage-team) | core, `active` |
+| [mpulse-dpi-team](../mpulsemobile/mpulse-dpi-team) | core, `active` |
+| personal-university, brand-system, galind-team, the-debrief, resale-desk, zesty-webengine-team | side projects, `dormant` |
+| media-log | `dataset` |
 
-Details in [`systems.md`](systems.md).
+Details in [`systems.md`](systems.md). Relative links assume everything sits
+under `~/dev/`.
 
-**Two births, three days apart.** `zesty-webengine-team` (2026-08-19) and
-`galind-team` (2026-08-22) were both **grown from `spine.md`**, not copied — the
-first two times that has happened, and the only route by which claim I of
-[`meta/thesis.md`](meta/thesis.md) ever gets evidence. **Between them they have
-run zero tickets and shipped nothing, so the count has moved twice and the claim
-has not moved at all.**
+## Using it
 
-The second is the harder test, for a structural reason rather than a matter of
-quality. The first landed in this portfolio's best-populated domain — engineering
-delivery on an existing repo — where copying `zesty-eng-team` was a live
-alternative and two siblings existed to check it against. **`galind-team` has no
-sibling**: no tracker, no existing product, no external reviewer, no user, and its
-first job is deciding what to build rather than building it. The spine had to
-carry the whole load unaided.
-
-**Three of the founding six are the same system.** The two mPulse teams were
-copied from zesty-eng-team on 2026-08-10, not grown independently from the
-spine. That is a
-fact about the evidence base, not a criticism of the copies — see the note on
-the adoption matrix in [`patterns/README.md`](patterns/README.md). Copies never
-count toward promotion.
-
-Relative links assume everything sits under `~/dev/`, where all nine repos are
-checked out. `galind-team` sits under `~/dev/galind/` alongside the
-`galind-*` product repos it builds — **which are subjects, not systems**, and
-none of which exists yet.
-
-## The rules
-
-1. **Never edit a child repo.** Findings go to that system's Architect; the
-   human carries them. This holds for spine changes too — a new spine version
-   does not retrofit itself into existing children. Every system below depends
-   on a single human gate for being reviewable and revertible, and a meta-layer
-   that routes around it destroys the property it exists to protect.
-2. **The spine changes on evidence, not on interest.** Only `proven` patterns
-   are default inheritance. **Derived copies never count toward promotion, and
-   neither does a pattern this layer dispatched into a system** — that third
-   case was named on 2026-08-18 after it turned out a carry reads as independent
-   under the old wording, which would let this layer promote its own proposals
-   into the spine. Premature evolution is the failure mode this design invites.
-3. **The evolutionary clock stays under 1% of the portfolio's time.** Pulling
-   from the spine doesn't count — that isn't overhead, it's the point.
-
-## Building something new
-
-Read [`spine.md`](spine.md). It states what every system inherits, where systems
-are expected to differ, and the three tests before adopting any pattern.
-
-It is a resource, not a procedure — deliberately. There is no scaffold command
-and no checklist, because a procedure would pin the portfolio to the
-capabilities of whatever wrote it. Take the reasoning and build what your domain
-actually needs.
-
-## Running a review
-
-```bash
-claude "Read meta/architect.md and run a review."
-```
-
-Quarterly, or when something feels structurally wrong across systems. It
-proposes; you carry proposals to the child Architect; that system's own gate
-still applies.
-
-**Review 001 is undischarged and is the next thing this layer should do.** As of
-2026-08-18 it has read the same two engineering repos three times running while
-four systems went unexamined — the failure mode named in `charter.md`, caught in
-the act and recorded in `HANDOFF.md`. A fourth scoped read is not the work.
-
-Then [`HANDOFF.md`](HANDOFF.md) for where things actually stand and what is
-open.
+Open a session here and say what you want, or ask "what has changed?".
+The harvest runs itself every Monday.
