@@ -42,7 +42,8 @@ CHANGELOG entry, and for a compaction the output of
    deleting data, patient data. It must not weaken the loop, rollback, the
    changelog, or memory commits.
 6. **Size.** Does it keep the boot read path within budget? A change that only
-   adds is suspect. Ask what it replaces.
+   adds is suspect. Ask what it replaces. A change to `.claude/boot-path.txt`
+   must list exactly what `CLAUDE.md` tells a session to read at boot.
 
 ## Your verdict
 

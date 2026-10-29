@@ -15,7 +15,10 @@ compared with the same-length window before the change:
     worse      moved the other way                   -> revert
     no effect  did not move, or there is no data     -> revert
 
-Maintenance changes claim `none` and are never judged on score.
+Maintenance changes claim `maintenance none` and are never judged on score.
+S1 (escapes) cannot be a claim: it only counts PRs merged 30+ days ago, so no
+14-30 day window can ever see it move. Claim a leading measure; S1 is watched
+by the escape tripwire in docs/loop.md instead.
 This script only reports; the loop applies the verdict (git revert of the one
 commit, confirmed by the change-reviewer) and records it. It is locked: a
 system cannot soften its own rollback.
@@ -106,6 +109,9 @@ def main():
             continue
         if "measure" not in ch:
             print(f"{ch['id']}: OPEN but has no claim line; fix the entry")
+            continue
+        if ch["measure"] == "S1":
+            print(f"{ch['id']}: claims S1, which no window can judge; re-claim a leading measure")
             continue
         if ch["direction"] == "none":
             print(f"{ch['id']}: maintenance; close it as 'kept (maintenance)'")

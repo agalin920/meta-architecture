@@ -69,6 +69,11 @@ It reads the window's events, scores and tickets, and proposes at most three
 self-changes, each with a claim. It must say what it would **cut**; "nothing
 should be cut, because…" is a valid answer, and silence is not.
 
+## Escape tripwire
+
+When an escape lands (S1 counts a new one), list every change that landed in
+the 30 days before that PR merged. The next deeper pass looks at them first.
+
 ## A self-change
 
 A self-change is anything that changes how the system behaves: `CLAUDE.md`,
@@ -77,7 +82,10 @@ condensing of knowledge.
 
 1. Make the edit in the working tree. Do not commit yet.
 2. Draft its CHANGELOG entry (format in `CHANGELOG.md`), with a claim: one
-   measure, one direction, or `none` for maintenance.
+   leading measure (S2, S3, S4, G1 or a health reading) and a direction, or
+   `maintenance none`. **S1 cannot be claimed.** Escapes only count once a PR
+   is 30 days old, so no window can see a change move them. S1 is watched by
+   the tripwire below.
 3. For a compaction, run `python3 tools/conservation_check.py` and move the
    original verbatim to `archive/` first.
 4. Hand the diff, the entry, and any check output to the **change-reviewer**

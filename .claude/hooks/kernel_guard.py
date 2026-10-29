@@ -51,7 +51,8 @@ WRITE_SIGNS = re.compile(
 
 # Reads and the kernel's own scripts that legitimately mention locked paths.
 READ_OK = re.compile(
-    r"^\s*(?:cd\s+\S+\s*&&\s*)?(?:/\S*/)?python3\s+(?:\./)?scoreboard/(?:score|verdicts)\.py\b[^;&|>]*$"
+    r"^\s*(?:cd\s+\S+\s*&&\s*)?(?:/\S*/)?python3\s+(?:\./)?"
+    r"(?:scoreboard/(?:score|verdicts)\.py|\.claude/hooks/boot_check\.py)\b(?![^;&|>]*--baseline)[^;&|>]*$"
 )
 
 GH_POST = re.compile(

@@ -46,7 +46,8 @@ CHANGELOG entry, and for a compaction the output of
    practices or regulators, or carries domain content from one company toward
    another. Lessons are mechanism only.
 7. **Size.** Does it keep the boot read path within budget? A change that only
-   adds is suspect. Ask what it replaces.
+   adds is suspect. Ask what it replaces. A change to `.claude/boot-path.txt`
+   must list exactly what `CLAUDE.md` tells a session to read at boot.
 
 ## Your verdict
 

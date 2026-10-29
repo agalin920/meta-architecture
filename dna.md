@@ -61,7 +61,8 @@ in the lessons catalog.
    later reverted as *worse* count against it.
 
 6. **Rollback.** Every self-change is one commit, tied to a changelog entry that
-   names the score it should move. Its window is **the later of 14 days or 5
+   names the leading score it should move (escapes are too slow to judge one
+   change; they have their own tripwire). Its window is **the later of 14 days or 5
    units, capped at 30 days**. If the score worsens, or does not move, the change
    is reverted and the failure is kept as a lesson. Reverting is cheap; carrying
    changes nobody checked is how "approved and had no effect" goes unnoticed.
