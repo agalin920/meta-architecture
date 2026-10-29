@@ -9,7 +9,7 @@ Andres asked "what has changed?". Answer across all systems, in plain language, 
 3. Read `CHANGELOG.md` here and in each core system, since the date under "Last asked" in `HANDOFF.md` (or the last 30 days).
 4. Write, in this order and nothing else:
    - **Waiting on you**: `HANDOFF.md` § Waiting on Andres: system, then § Waiting on Andres — from the systems, then the work list, each item with its date.
-   - **Per system**: one line per self-change, with its verdict so far (helped with numbers, reverted and why, or open and when it is due).
+   - **Per system**: one line per self-change, with its verdict so far (helped with numbers; unproven and kept; looks worse, with what the system decided and why; reverted for harm and the harm; or open and when it is due). *Looks worse* verdicts and reviewer CONCERNs landed anyway are information, not items waiting on Andres.
    - **The scores**: one line per system from M1, naming what is not measured where it matters.
    - **The playbook**: lessons collected, trials open, anything proven.
 5. Update "Last asked" in `HANDOFF.md` to today and commit it: `git -C . add HANDOFF.md && git -C . commit -m "memory: what-changed"`.

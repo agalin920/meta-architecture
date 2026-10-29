@@ -31,13 +31,13 @@ The types are:
 | `correction` | Andres corrected the work, in chat or on GitHub | `<class-slug> · <what he caught, where we should have caught it>` |
 | `escalation` | Something was routed to Andres | |
 | `change` | A self-change landed | |
-| `reviewed` | The change-reviewer decided, every time, REJECTs included (ref C-NNN) | `LAND\|ESCALATE\|REJECT · <one line>` |
+| `reviewed` | The change-reviewer gave its opinion, every time (ref C-NNN) | `LAND · <notes>`, `ESCALATE · <why>`, or `CONCERN · <its point> · landed anyway because <why>` (or `· not landed`) |
 | `verdict` | A verdict on a change | |
 | `revert` | A change was rolled back | |
 | `lesson` | A lesson worth keeping | |
 | `knowledge` | A fact in knowledge proved wrong | the fact, its age from `git blame`, what was true |
 | `env` | The boot check said instruction channels changed | which, and what changed |
-| `decision` | A decision, with its reason | |
+| `decision` | A decision, with its reason (for a `looks worse` verdict, ref C-NNN: kept or undone, and why) | |
 | `trial` | A playbook trial was taken up | |
 | `deep pass` | A deeper pass finished (ref `deep pass`) | what it found and what landed |
 
@@ -46,15 +46,22 @@ short slug the session chooses (`missed-edge-case`, `wrong-branch`); reuse an
 existing one when it fits (`python3 tools/crew_report.py --corrections` lists
 them). Recurrence of a class is what triggers a deeper pass.
 
+**Corrections are learning evidence, not a score** (Andres, 2026-10-29). S3
+counts Andres's follow-ups from the raw prompt log and from GitHub, never
+`correction` events, so there is no reason to under-log one: record every
+correction you see.
+
 Evidence the session does not write: `log/spawns-YYYY-MM.md` (every subagent
 spawn, by a hook, committed) and `log/raw/prompts-YYYY-MM.jsonl` (Andres's
-prompts, by a hook, gitignored because they can hold sensitive text).
+prompts, by a hook, gitignored because they can hold sensitive text). The guard refuses agent
+writes to `log/raw/`; S3 reads only the `time` and `session` of each line,
+never the text.
 
 The ref is the PR, ticket, or change id. A unit that spans several PRs takes
 its worklog slug as the ref, and is dated when its last PR merged or its last
 act happened. Corrections are `correction` events from 2026-10-29 on, not
-bullets under a worklog's old findings heading, which the scoreboard reads
-only for earlier dates. **The date is when it happened, not
+bullets under a worklog's old findings heading. The scoreboard reads those
+bullets only for earlier dates; from 2026-10-29 S3 counts follow-ups instead. **The date is when it happened, not
 when it was written.** A late entry still goes at the end of the file, carrying
 its true date, so scores count it in the right window.
 
@@ -108,6 +115,7 @@ is not. It ends with a `deep pass` event.
 
 When an escape lands (S1 counts a new one), list every change that landed in
 the 30 days before that PR merged. The next deeper pass looks at them first.
+An escape traced to a change is clear harm: revert it (§ Applying a verdict).
 
 ## A self-change
 
@@ -117,14 +125,17 @@ condensing of knowledge.
 
 1. Make the edit in the working tree. Do not commit yet.
 2. Draft its CHANGELOG entry (format in `CHANGELOG.md`), with a claim: one
-   leading measure (S2, S3, S4, G1 or a health reading) and a direction, or
-   `maintenance none; …; files: a,b` listing every file it touches. **S1 cannot be claimed.** Escapes only count once a PR
-   is 30 days old, so no window can see a change move them. S1 is watched by
-   the tripwire below.
+   leading measure (S2, S3, G1 or a health reading) and a direction, or
+   `maintenance none; …; files: a,b` listing every file it touches. **S1 and S4 cannot be claimed.** Escapes only count once a PR
+   is 30 days old, so no window can see a change move them; S1 is watched by
+   the tripwire below. Claiming fewer escalations (S4) is the gaming path: the easy
+   way to look better is to ask Andres less. `verdicts.py` prints both beside
+   every judged claim, as guardrails.
 3. For a compaction, run `python3 tools/conservation_check.py` and move the
    original verbatim to `archive/` first.
 4. Hand the diff, the entry, and any check output to the **change-reviewer**
-   agent. Write a `reviewed` event for its decision, whatever it is.
+   agent: a second opinion, not a gate. Write a `reviewed` event for what it
+   said, whatever it is.
    - `LAND`: commit only that change, as `evolve(C-NNN): <what>`, with the
      entry. Fill in the `commit:` sha in a follow-up memory commit. Write a
      `change` event.
@@ -134,8 +145,11 @@ condensing of knowledge.
      commits it as `evolve(C-NNN): <what>` with "approved by Andres" in the
      message, and writes a `reviewed` event (`LAND · approved by Andres`) and a
      `change` event.
-   - `REJECT`: restore the files. Write a `lesson` event if the rejection
-     taught something.
+   - `CONCERN`: the reviewer would not do it, and says why. Decide on your own
+     judgement. To land it anyway, write the `reviewed` event as
+     `CONCERN · <its point> · landed anyway because <your reason>` and land it
+     as for `LAND`. Otherwise write `CONCERN · <its point> · not landed`,
+     restore the files, and write a `lesson` event if it taught something.
 
 ## Waiting on Andres: two lists
 
@@ -143,7 +157,9 @@ condensing of knowledge.
 
 - **`## Waiting on Andres: system`**: charter or scoreboard proposals (S-NNN),
   self-changes the change reviewer escalated (C-NNN), and anything about the
-  locks. These are about how the system works. Every session leads with them,
+  locks. A `looks worse` verdict is not on this list: it is the system's own
+  call (§ Applying a verdict), shown in `/what-changed` and the weekly roll-up
+  as information. These are about how the system works. Every session leads with them,
   and the weekly roll-up and its push notification carry them.
 - **`## Waiting on Andres: work`**: merges, approvals, product questions,
   security or production calls, credentials. Each needs him because it is an
@@ -211,10 +227,20 @@ them. A diagnostic reading can be added the same way.
 | Verdict | What to do |
 |---|---|
 | `helped` | Set **Verdict** to `helped (<numbers>)`. Add the lesson to `lessons.md` as `candidate`, stated as mechanism only: no product, ticket, or company detail |
-| `worse` | Ask the change-reviewer to confirm. Then `git -C <repo> revert <commit>`, set **Verdict** to `reverted: worse (<numbers>)`, and add the lesson to `lessons.md` as `retired`, with the reason |
-| `no effect` | Revert the same way, set **Verdict** to `reverted: no effect (<numbers>)`, and record the lesson with status "no measured effect". It is retryable, not retired |
-| `insufficient data` | Leave it open; set **Verdict** to `open (extended to <date>: insufficient data)` as the script says |
-| re-read | A kept change over 60 days old is listed once. Append `re-read <date>: <result>` to its Verdict; if it turned worse, take it to the change-reviewer |
+| `no effect` | Keep it. Set **Verdict** to `unproven: no effect (<numbers>)` and record the lesson with status "no measured effect": retryable, not retired |
+| `insufficient data` | Leave it open; set **Verdict** to `open (extended to <date>: insufficient data)` as the script says. At the 60-day cap it reads `unproven`: set **Verdict** to `unproven: insufficient data (<numbers>)` and keep it |
+| `looks worse` | Uncertain at this n; nothing happens automatically. Read the numbers beside the S1 and S4 guardrails and what you know of the change, and decide whether it stays. Write a `decision` event (ref C-NNN) with your reasoning, then set **Verdict** to `looks worse, kept (<numbers>): <why>`, or revert it as below and set `reverted: looks worse (<numbers>): <why>`. The boot check lists a `looks worse` verdict with no `decision` event |
+| re-read | A kept change over 60 days old is listed once. Append `re-read <date>: <result>` to its Verdict; if it now looks worse, decide as for `looks worse` |
 
 Write a `verdict` event for each. `verdicts.py` names other changes on the same
 measure in an overlapping window; say in the Verdict that the credit is shared.
+
+**Changes are kept by default** (Andres, 2026-10-29). At a few merged PRs a
+week, a change that does nothing reads "helped" or "worse" about 40% of the
+time each, so the before/after numbers are evidence you read, never an
+automatic revert. A change is reverted only for **clear harm**: an escape (S1)
+traced to it, Andres saying it made things worse, or your own judgement
+recorded in a `decision` event. To revert, ask the change-reviewer to confirm
+the revert touches only that change's commit, then `git -C <repo> revert
+<commit>`, set **Verdict** to `reverted: <the harm> (<evidence>)`, add the
+lesson to `lessons.md` as `retired` with the reason, and write a `revert` event.

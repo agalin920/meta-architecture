@@ -33,7 +33,7 @@ independently.
 **Baselines**, window 2026-08-29 → 10-28. Each is computed by its own repo's
 `scoreboard/score.py` and locked at `scoreboard/baseline-2026-10-28.json`.
 
-| | S1 escapes/PR | S2 outside findings/PR | S3 Andres corrections/PR | S4 escalations/unit | G1 merged PRs/week | Boot lines |
+| | S1 escapes/PR | S2 outside findings/PR | S3 Andres follow-ups/PR | S4 escalations/unit | G1 merged PRs/week | Boot lines |
 |---|---|---|---|---|---|---|
 | zesty-eng-team | 0.00 (n=7) | 2.82 | 1.65 | n/a | 1.98 | 2,120 → 564 |
 | mpulse-engage-team | 0.23 (n=22) | 2.12 | 0.79 | n/a | 6.65 | ~6,600 → 695 |

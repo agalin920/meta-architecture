@@ -374,3 +374,31 @@ not do, and these questions for him:
 - Is zesty-webengine-team running somewhere this layer cannot see, or is it a
   dormant side project?
 - Anything else you could not resolve on your own.
+
+## Amendment 2026-10-29: trust over gates
+
+Andres's ruling, the day after the migration: "give the AI more trust and
+ability to evolve and do its own thing … not gated by humans." It amends
+§ 5 (reviewer, rollback) and § 8 question 4 (rollback triggers); everything
+else stands: locks, charters, outside-world asks, patient-data rules, the
+playbook flow, hooks.
+
+- **Keep by default.** At about two merged PRs a week the per-change verdict
+  is mostly noise: a change that does nothing reads "helped" or "worse" about
+  40% of the time each. Verdicts become evidence the system reads. *Helped*:
+  keep, playbook candidate. *No effect*, or insufficient data at the 60-day
+  cap: keep, "unproven". *Looks worse*: the system decides on its own
+  judgement and records a `decision` event; it is reported, not escalated.
+  A change is reverted only for clear harm: an escape traced to it, Andres
+  saying it made things worse, or the system's own judgement.
+- **Guardrails.** S1 (escapes) and S4 (escalations) cannot be claimed. Both are
+  printed beside every verdict, over the same windows, as counter-metrics.
+- **Reviewer as second opinion.** Decisions are `LAND`, `CONCERN` (the system
+  may land anyway and records why) and `ESCALATE`, which is kept for changes
+  that weaken a hard line or safety instruction, change how evidence is
+  recorded, or trace back to outside content. `REJECT` is gone.
+- **S3 is no longer self-graded.** It counts Andres's follow-ups per merged
+  PR: every prompt in a session after its first, from the hook-written prompt
+  log (time and session only), plus unmarked GitHub comments and untrailered
+  commits. `correction` events stay as learning evidence and are not scored.
+  Agents may not write the raw prompt log.

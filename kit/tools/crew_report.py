@@ -12,12 +12,17 @@ Reads, from log/:
                     confirmed  it confirmed what the session already believed
                     unused     its output was not used
                     wrong      its output was wrong and had to be corrected
-                `reviewed` events, one per change-reviewer decision:
-                    - 2026-10-30 15:00 | reviewed | C-004 | LAND · <one line>
+                `reviewed` events, one per change-reviewer opinion (LAND, CONCERN, ESCALATE;
+                REJECT only before 2026-10-29):
+                    - 2026-10-30 15:00 | reviewed | C-004 | LAND · <notes>
+                    - 2026-10-30 15:05 | reviewed | C-005 | CONCERN · <its point> · landed anyway because <why>
                 `correction` events with a class (for --corrections):
                     - 2026-10-30 16:00 | correction | <ref> | <class-slug> · <what he caught, where we should have>
-and CHANGELOG.md: entries whose Reviewer line said LAND and whose Verdict says
-reverted count against the reviewer.
+                Corrections are learning evidence, not a score: S3 counts Andres's
+                follow-ups from the raw prompt log and GitHub, never these events.
+and CHANGELOG.md: changes the reviewer LANDed that were later reverted for harm
+count against it; changes it raised a CONCERN on that were later reverted for
+harm count for it. A revert for "no effect" (the rule before 2026-10-29) is not harm.
 
 Every agent defined in .claude/agents/ is listed, including the ones never
 spawned. Undefined subagent types or names seen at least 3 times are listed as
@@ -38,7 +43,7 @@ from collections import defaultdict
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LINE = re.compile(r"^- (\d{4}-\d{2}-\d{2})(?:[ T]\d{1,2}:\d{2})?\s*\|\s*([^|]+?)\s*\|\s*([^|]*?)\s*\|\s?(.*)$")
 EFFECTS = ["changed", "confirmed", "unused", "wrong"]
-DECISIONS = ["LAND", "ESCALATE", "REJECT"]
+DECISIONS = ["LAND", "CONCERN", "ESCALATE", "REJECT"]   # REJECT: only in events before 2026-10-29
 # Built-in generic types: spawned for anything, so their count says nothing about a missing role.
 GENERIC = {"general-purpose", "fork", "claude", "explore", "plan", "claude-code-guide", "statusline-setup"}
 AD_HOC_MIN = 3
@@ -55,8 +60,9 @@ def lines(pattern, since, until):
                     yield day, m.group(2).strip().lower(), m.group(3).strip(), m.group(4).strip()
 
 
-def changelog_reverts():
-    """C-NNN entries the reviewer landed that were later reverted, with the verdict text."""
+def reviewer_record():
+    """(C-NNN, reviewer's word, verdict, scored) for entries whose outcome bears on the reviewer.
+    scored is "against" (it said LAND; reverted for harm), "for" (it said CONCERN; reverted for harm), or ""."""
     text = ""
     try:
         text = open(os.path.join(ROOT, "CHANGELOG.md"), encoding="utf-8").read()
@@ -69,8 +75,14 @@ def changelog_reverts():
             continue
         rev = re.search(r"^- \*\*Reviewer:\*\*\s*(.*)$", block, re.M)
         ver = re.search(r"^- \*\*Verdict:\*\*\s*(.*)$", block, re.M)
-        if rev and ver and "LAND" in rev.group(1) and ver.group(1).lower().startswith("reverted"):
-            out.append((cid, ver.group(1)[:90]))
+        if not (rev and ver):
+            continue
+        word = next((d for d in DECISIONS if rev.group(1).upper().startswith(d)), "LAND" if "LAND" in rev.group(1) else "?")
+        v = ver.group(1).lower()
+        harm = v.startswith("reverted") and "no effect" not in v
+        if harm or (word == "CONCERN" and v.startswith(("helped", "looks worse"))):
+            scored = ("against" if word == "LAND" else "for" if word == "CONCERN" else "") if harm else ""
+            out.append((cid, word, ver.group(1)[:90], scored))
     return out
 
 
@@ -170,12 +182,12 @@ def main():
     print(f"change-reviewer: {total} decision(s) logged as `reviewed` events: " +
           ", ".join(f"{k} {reviewed[k]}" for k in DECISIONS + ["?"] if reviewed.get(k)) if total else
           "change-reviewer: no `reviewed` events in this window.")
-    for cid, verdict in changelog_reverts():
-        worse = "worse" in verdict.lower()
-        print(f"  {cid}: it said LAND; later {verdict}{'  (counts against it)' if worse else ''}")
-    rejects = [row for row in reviewed_rows if row[2].upper().startswith("REJECT")]
-    for d, ref, text in rejects[-5:]:
-        print(f"  rejected {ref} on {d}: {text}")
+    for cid, word, verdict, scored in reviewer_record():
+        note = {"against": "  (counts against it)", "for": "  (its concern proved right: counts for it)"}.get(scored, "")
+        print(f"  {cid}: it said {word}; later {verdict}{note}")
+    concerns = [row for row in reviewed_rows if row[2].upper().startswith(("CONCERN", "REJECT"))]
+    for d, ref, text in concerns[-5:]:
+        print(f"  {ref} on {d}: {text}")
 
 
 if __name__ == "__main__":

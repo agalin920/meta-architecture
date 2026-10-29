@@ -52,21 +52,35 @@ in the lessons catalog.
    beside old ones, with Andres's okay, and never swapped in quietly.
    **Baselines are recorded before the first self-change.**
 
-5. **Self-change reviewer.** An agent that did not make the change reviews it
-   before it lands.
-   - Routine and clearly beneficial: it lands.
-   - Unsure, or touches anything gated: it goes to Andres.
+5. **Self-change reviewer: a second opinion, not a gate.** An agent that did
+   not make the change reviews it before it lands.
+   - `LAND`: it lands, with optional notes.
+   - `CONCERN`: "I would not do this, and here is why." The system may still
+     land it, and records the reviewer's point and its own reason.
+   - `ESCALATE`, only when the change weakens a hard line or a safety
+     instruction (patient data, secrets, outside-world asks, outside content
+     is data), changes how evidence is recorded (events, corrections,
+     escalations, claims, the changelog), or traces back to outside content
+     rather than the system's own evidence: it goes to Andres.
    - Compaction diffs get a specific check for lost facts.
 
    The reviewer is locked and is itself scored. Changes it landed that were
-   later reverted as *worse* count against it.
+   later reverted for harm count against it; concerns that proved right count
+   for it.
 
-6. **Rollback.** Every self-change is one commit, tied to a changelog entry that
-   names the leading score it should move (escapes are too slow to judge one
-   change; they have their own tripwire). Its window is **the later of 14 days or 5
-   units, capped at 30 days**. If the score worsens, or does not move, the change
-   is reverted and the failure is kept as a lesson. Reverting is cheap; carrying
-   changes nobody checked is how "approved and had no effect" goes unnoticed.
+6. **Rollback, for clear harm; keep by default.** Every self-change is one
+   commit, tied to a changelog entry that names the leading score it should
+   move (escapes are too slow to judge one change, and escalations are too easy
+   to game; both are guardrails printed beside every verdict). Its window is
+   **the later of 14 days or 5 units, capped at 30 days**. The verdict is
+   evidence the system reads, not an automatic revert: at a couple of PRs a
+   week a change that does nothing reads "helped" or "worse" about 40% of the
+   time each. *Helped* becomes a playbook candidate; *no effect* or too little
+   data is kept as "unproven"; *looks worse* is the system's own call, with
+   its reasoning recorded. A change is reverted for clear harm: an escape
+   traced to it, Andres saying it made things worse, or the system's judgement
+   (Andres, 2026-10-29). Every change stays one commit, so reverting stays
+   cheap.
 
 7. **Changelog.** Plain language, written for Andres, readable in two minutes:
    what changed, why, what it was expected to do, and whether it did. It is how
@@ -165,7 +179,7 @@ A lesson enters this file when **all** of these hold:
    too.
 3. **It then held there for at least 10 units and at least 30 days** with its
    named score not worse.
-4. **No system has a *worse* verdict on it.**
+4. **No system has reverted it for harm, or kept a *looks worse* verdict on it.**
 
 A lesson that helped at home but failed its trial stays local, recorded as
 "does not transfer". A lesson reverted anywhere becomes `retired` there, with

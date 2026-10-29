@@ -12,6 +12,8 @@ when something is due:
   - a deeper pass due, and why (units, a recurring correction class, a new
     escape, a measure worse than baseline);
   - self-changes due a verdict, and verdicts overdue past their cap;
+  - a `looks worse` verdict with no `decision` event saying why it was kept
+    or undone (the numbers are evidence; the call and its reasons are the system's);
   - the score snapshot (log/scores/) stale or broken, or more merged PRs than units;
   - instruction channels changed since log/env.sha256 (memory, settings, model);
   - what is waiting on Andres, aged from each item's first date;
@@ -205,6 +207,13 @@ def due_changes(root, today=None):
         elif (today - ch["landed"]).days >= 14:
             due.append(ch["id"])
     return due, overdue
+
+
+def undecided_worse(root, evs):
+    """Changes whose Verdict reads `looks worse` but have no `decision` event (ref C-NNN) giving the reasoning."""
+    decided = {e["ref"] for e in evs if e["type"] == "decision"}
+    return [ch["id"] for ch in changelog(root)
+            if "looks worse" in ch.get("verdict", "").lower() and ch["id"] not in decided]
 
 
 def snapshots(root):
@@ -466,6 +475,10 @@ def main():
     if overdue:
         lines.append("Verdicts OVERDUE, past their cap (judge them now with `python3 scoreboard/verdicts.py`): " +
                      ", ".join(overdue))
+    undecided = undecided_worse(root, evs)
+    if undecided:
+        lines.append("`looks worse` verdicts with no `decision` event giving your reasoning: " + ", ".join(undecided) +
+                     ". Decide whether each stays, and write one (docs/loop.md § Applying a verdict).")
     lines += snapshot_issues(evs, snaps, today)
     model = model_of(payload)
     changed = channel_changes(root, model)

@@ -60,6 +60,15 @@ CASES = [
     ("DENY", "gh api graphql -f query='mutation { addPullRequestReviewThreadReply(input:{body:\"hi\"}) { clientMutationId } }'"),
     ("allow", f"gh api graphql -f query='mutation {{ addPullRequestReviewThreadReply(input:{{body:\"{M} hi\"}}) {{ clientMutationId }} }}'"),
     ("allow", "gh pr view 5 --comments"),
+    # log/raw/ (raw evidence S3 is counted from): read, never write
+    ("DENY", "cp /tmp/x log/raw/prompts-2026-10.jsonl"),
+    ("DENY", "mv log/raw/prompts-2026-10.jsonl /tmp/p.jsonl"),
+    ("DENY", "python3 -c \"open('log/raw/prompts-2026-10.jsonl','w')\""),
+    ("DENY", "cd log/raw && rm -f prompts-2026-10.jsonl"),
+    ("DENY", "truncate -s 0 Log/RAW/prompts-2026-10.jsonl"),
+    ("DENY", "git -C . checkout -- log/raw"),
+    ("allow", "cat log/raw/prompts-2026-10.jsonl | wc -l"),
+    ("allow", "jq -r .session log/raw/prompts-2026-10.jsonl"),
     # locks (regressions)
     ("DENY", "git -C . checkout HEAD~1 -- docs/charter.md"),
     ("DENY", "echo x >> docs/charter.md"),

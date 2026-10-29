@@ -58,8 +58,9 @@ When a trial's verdict lands in the receiving system's changelog:
 
 - **Helped**: once it has held there for 10 units and 30 days with its score
   not worse, mark the lesson `proven`.
-- **Worse or no effect**: the lesson stays local. Mark it "does not transfer"
-  with the numbers.
+- **Looks worse, no effect, or unproven**: the lesson stays local. Mark it
+  "does not transfer" with the numbers. The receiving system may still keep
+  the change (changes are kept by default); that is its call, not a transfer.
 
 ## 5. Update the playbook (at most monthly)
 
@@ -78,6 +79,14 @@ Every run, rewrite the section `## Waiting on Andres — from the systems` in
   anything about the locks);
 - one count line for its work list: "N work items, K older than 14 days". Give
   only the count, never the items. Work items belong to that system's session.
+
+Then, under `## For information — from the systems` in `HANDOFF.md`
+(rewritten each run, never part of the push notification), list each change
+whose verdict read *looks worse* since the last review: system, C-NNN, the
+numbers, the S1 and S4 guardrails, and what the system decided and why (its
+`decision` event). A change the reviewer flagged `CONCERN` and the system
+landed anyway goes here too, with both reasons. These are the system's calls
+(Andres, 2026-10-29), not items waiting on him.
 
 If anything system-level is listed, send Andres **one** push notification: how
 many system items are waiting, and the single most important one. Never push

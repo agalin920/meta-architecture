@@ -3,8 +3,9 @@
 How this system has changed itself, written for Andres. Newest first.
 Each self-change is one commit, `evolve(C-NNN): …`. Its claim names the one
 measure (M1–M4) it should move. `scoreboard/verdicts.py` judges it once its
-window closes: the later of 14 days or 5 review runs, capped at 30 days. A
-change that did not help is reverted, and the failure is kept in `lessons/`.
+window closes: the later of 14 days or 5 review runs, capped at 30 days.
+Changes are kept by default: the verdict is evidence, and a change is reverted
+only for clear harm (Andres, 2026-10-29), with the failure kept in `lessons/`.
 M-entries record Andres's decisions; they are not self-changes.
 
 Entry format (keep it; the scripts parse it). Examples sit indented in a code
@@ -20,7 +21,24 @@ block so the scripts skip them:
 ```
 
 Maintenance changes claim `<!-- claim: maintenance none; landed: … -->`. S1
-cannot be claimed (see `docs/loop.md`).
+and S4 cannot be claimed in a core system (see `kit/docs/loop.md`).
+
+## M-003 · 2026-10-29 · Trust over gates: keep by default, reviewer as second opinion, S3 from follow-ups
+<!-- claim: maintenance none; landed: 2026-10-29 -->
+Not a self-change: Andres's ruling, "give the AI more trust and ability to
+evolve and do its own thing … not gated by humans". At about two merged PRs a
+week the per-change verdict is mostly noise: a change that does nothing reads
+"helped" or "worse" about 40% of the time each, and both "no effect" and
+"worse" reverted it, so useful changes were undone on a coin flip.
+
+- **What changed:**
+  - **Keep by default.** A verdict is evidence the system reads, never an automatic revert. *Helped* stays and becomes a playbook candidate. *No effect*, or too little data by the 60-day cap, stays as "unproven". *Looks worse* is the system's own call, recorded with its reasoning, and shown in "what has changed?" and the weekly roll-up as information, not as a request. A change is reverted only for clear harm: an escape traced to it, Andres saying it made things worse, or the system's own judgement.
+  - **Guardrails.** Escapes (S1) and escalations (S4) can no longer be claimed; claiming fewer escalations was the gaming path. Both are printed beside every verdict.
+  - **The change-reviewer is a second opinion.** It says LAND, CONCERN ("I would not, here is why"; the system may land anyway and records why) or ESCALATE. It escalates only a change that weakens a hard line or safety rule, changes how evidence is recorded, or traces back to outside content rather than the system's own evidence.
+  - **S3 stops being self-graded.** It now counts Andres's follow-ups per merged PR: follow-up prompts from the raw prompt log (time and session only, never the text) plus the GitHub signals as before. Correction notes the agents write stay as learning evidence but are no longer scored, so nothing rewards under-logging them. Agents can no longer edit the raw prompt log.
+  - **Kit 2.1** carries all of this. The locked half in each repo (charter line, scoreboard, hooks, reviewer) is staged for Andres to apply and relock in his own terminal.
+- **Why:** "give the AI more trust and ability to evolve and do its own thing … not gated by humans."
+- **Verdict:** n/a (decisions)
 
 ## M-002 · 2026-10-29 · Audits, kit v2: every evolvable part has evidence, a trigger and a verdict
 <!-- claim: maintenance none; landed: 2026-10-29 -->
