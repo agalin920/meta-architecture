@@ -498,7 +498,25 @@ free evolution after merge), any of these hold:
 It is checked again at **2027-03-31**. If (1) holds both times, the thesis gets
 rewritten, not carried on hope.
 
-## 7. Phase 0 record
+## 7. Andres's answers, 2026-10-28
+
+1. **zesty-webengine-team** is not a running system. The Zesty core system is
+   zesty-eng-team. Registry: `dormant`.
+2. **Weekly harvest task: yes.** It is created in the Claude desktop app's
+   scheduled tasks and stored at
+   `~/.claude/scheduled-tasks/dna-harvest/SKILL.md`. It runs while the app is
+   open, and catches up on next launch if the app was closed. Andres manages it
+   from the app's scheduled-tasks list (pause, edit, run now, delete), or by
+   asking any session.
+3. **Close the guard gaps: yes.**
+4. **The flagged PHI** was one stage test-member identifier in an engage
+   worklog. Ruled unneeded and removed from the current file on the engage
+   `colony-migration` branch (`5ccd655`). It remains in earlier history on
+   `origin/main`; no history was rewritten.
+5. **Architect log: archive verbatim.**
+6. **engage `skills/build-team`: keep as is**, rework later.
+
+## 8. Phase 0 record
 
 | Repo | Tag `pre-colony-2026-10` | Branch from | Snapshot commit |
 |---|---|---|---|
