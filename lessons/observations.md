@@ -33,6 +33,9 @@ Side-project refs are to the working tree on 2026-10-28; *(u)* = uncommitted.
 - A plan's blast radius was under-scoped (a shared workflow had 12 callers) — `mpulse-dpi-team` ticket worklog (I)
 - Unverified scripted edits can silently do nothing — `mpulse-dpi-team` ticket worklog (I)
 
+## From outside
+- Keep both sides of contested knowledge, each with a pointer to its source and what would settle it, instead of overwriting; only contested lines carry sources. Borrowed from a memory-layer product that surfaces contradictions in its synthesis. Dropped into each core system's `memory/intake/contested-knowledge.md` by Andres, 2026-10-29 (A)
+
 ## From the side projects
 - Log an empty result explicitly, or a skipped audit and an empty one look the same — `personal-university: meta/architect-log.md:914-916` (I)
 - Scores inherited from a prior system are a seeding defect; don't blame current graders for them — `personal-university: meta/architect-log.md:1144-1157` (I)
