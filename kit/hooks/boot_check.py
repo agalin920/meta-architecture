@@ -9,8 +9,9 @@ when something is due:
   - another live session in this repo (log/.live/, written by session_live.py);
   - memory that is not committed (an uncommitted log is not a log);
   - the boot read path against its budget;
+  - notes waiting in the intake folder (memory/intake/), for the next deeper pass;
   - a deeper pass due, and why (units, a recurring correction class, a new
-    escape, a measure worse than baseline);
+    escape, a measure worse than baseline, notes waiting in intake);
   - self-changes due a verdict, and verdicts overdue past their cap;
   - a `looks worse` verdict with no `decision` event saying why it was kept
     or undone (the numbers are evidence; the call and its reasons are the system's);
@@ -47,6 +48,8 @@ CHANGELOG = "CHANGELOG.md"
 DIRECTIONS = {"S1": "down", "S2": "down", "S3": "down", "S4": "down", "G1": "up"}
 ESCAPES = "S1"                             # the measure whose note counts escapes
 DEEP_UNITS, RECUR_DAYS, SNAPSHOT_DAYS, LIVE_HOURS, CAP_DAYS = 10, 30, 7, 6, 30
+INTAKE = "memory/intake/"                  # notes from outside the loop, waiting to be judged
+INTAKE_RULE = "docs/loop.md § Intake"
 # -----------------------------------------------------------------------------
 
 EVENT = re.compile(r"^- (\d{4}-\d{2}-\d{2})(?:[ T](\d{1,2}:\d{2}))?\s*\|\s*([^|]+?)\s*\|\s*([^|]*?)\s*\|\s?(.*)$")
@@ -248,8 +251,17 @@ def escape_count(text):
     return 1 if now else 0
 
 
-def deep_pass_due(evs, snaps):
-    """Reasons a deeper pass is due since the last `deep pass` event."""
+def intake(root):
+    """Notes waiting in the intake folder. Its README.md and dotfiles are not notes."""
+    d = os.path.join(root, INTAKE)
+    if not os.path.isdir(d):
+        return []
+    return sorted(n for n in os.listdir(d)
+                  if n != "README.md" and not n.startswith(".") and os.path.isfile(os.path.join(d, n)))
+
+
+def deep_pass_due(evs, snaps, notes=0):
+    """Reasons a deeper pass is due since the last `deep pass` event, plus any notes waiting in intake."""
     idx, last = -1, None
     for i, e in enumerate(evs):
         if e["type"] == "deep pass" or e["ref"].lower() == "deep pass":
@@ -280,6 +292,8 @@ def deep_pass_due(evs, snaps):
                  and (now > base if DIRECTIONS[k] == "down" else now < base)]
         if worse:
             why.append(f"worse than baseline in the {day} snapshot: {', '.join(worse)}")
+    if notes:
+        why.append(f"{notes} intake note{'s' if notes != 1 else ''} waiting in {INTAKE}")
     return why, last
 
 
@@ -466,7 +480,11 @@ def main():
     lines.append(f"Boot read path: {total}/{BOOT_BUDGET} lines.{over}" +
                  (f" Missing: {', '.join(missing)}" if missing else ""))
     snaps = snapshots(root)
-    why, last = deep_pass_due(evs, snaps)
+    notes = intake(root)
+    if notes:
+        lines.append(f"Intake: {len(notes)} note{'s' if len(notes) != 1 else ''} waiting in {INTAKE}; "
+                     f"process them in the next deeper pass ({INTAKE_RULE}).")
+    why, last = deep_pass_due(evs, snaps, len(notes))
     if why:
         lines.append(f"Deeper pass due (last: {last or 'never'}): " + "; ".join(why) + ". Run /evolve.")
     due, overdue = due_changes(root, today)

@@ -116,6 +116,21 @@ reports; deciding stays with Andres, in the system concerned.
 - Finish: write the `unit` event (what the review found), run the loop
   (`kit/docs/loop.md`), write the `loop` event, and commit.
 
+## 9. Intake
+
+`memory/intake/` holds notes from outside the loop: this layer's auto-memory
+notes, moved there when auto memory was turned off (Andres, 2026-10-29), and
+any note Andres drops there later. While one is waiting, the boot check says
+so and a deeper pass is due; the next review run or deeper pass, whichever
+comes first, processes them as `kit/docs/loop.md` § Deeper pass (Intake) says:
+check each file against the repos, then **fold** it into this layer's
+instructions or `lessons/` as a self-change (through the change-reviewer,
+citing `intake/<file>`), **keep** it in `meta/record.md`, or **set it aside**
+as no longer true. Most of these notes predate the redesign; set aside what
+the redesign retired. One `knowledge` event per file, then `git -C <repo> mv`
+it verbatim to `archive/intake-YYYY-MM-DD/`. Mechanism only, as in step 2:
+nothing employer-internal enters this repo from a note.
+
 ## What this layer may and may not do
 
 - **May** edit core systems directly when Andres runs it (ruling 9). Log it in

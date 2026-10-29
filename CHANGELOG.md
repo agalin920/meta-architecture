@@ -23,6 +23,20 @@ block so the scripts skip them:
 Maintenance changes claim `<!-- claim: maintenance none; landed: … -->`. S1
 and S4 cannot be claimed in a core system (see `kit/docs/loop.md`).
 
+## M-004 · 2026-10-29 · Auto memory off; its notes go to intake for the loop
+<!-- claim: maintenance none; landed: 2026-10-29 -->
+Not a self-change: Andres's decision. Claude Code's auto memory kept
+machine-local notes that loaded into every session, outside git and outside
+the loop, so nothing ever judged them.
+
+- **What changed:**
+  - **Auto memory off.** `"autoMemoryEnabled": false` is in `kit/settings.kernel.json`, and staged in each repo's locked `.claude/settings.json` for Andres to apply.
+  - **Intake.** Each repo has `memory/intake/`. The existing notes were copied there verbatim, neither imposed nor archived unread. The loop judges each one at the next deeper pass: fold it in as a self-change, keep it as knowledge, or set it aside, with a `knowledge` event, then archive it (`kit/docs/loop.md` § Deeper pass, `meta/keeper.md` § 9). Andres may drop notes there too.
+  - **Trigger.** The kit boot check prints how many notes are waiting and counts them as a reason a deeper pass is due (staged for the locked copies).
+  - **Public repo.** This layer's intake holds 7 of its 11 files; the rest stay machine-local because they carry employer-internal detail or a colleague's name.
+- **Why:** memory the loop cannot see is memory nothing can correct.
+- **Verdict:** n/a (decisions)
+
 ## M-003 · 2026-10-29 · Trust over gates: keep by default, reviewer as second opinion, S3 from follow-ups
 <!-- claim: maintenance none; landed: 2026-10-29 -->
 Not a self-change: Andres's ruling, "give the AI more trust and ability to

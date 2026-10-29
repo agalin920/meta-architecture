@@ -1,6 +1,8 @@
 {
   "_comment": "Merge into each system's .claude/settings.json. SYSTEM paths are relative to the repo root. kernel_guard.py is the main enforcement; these rules are the harness's fallback if the hook fails.",
   "_comment_deny_vs_ask": "deny = flatly refused, even with approval: only locks, secrets, patient data and sibling systems. ask = a permission prompt Andres approves in the moment: every outside-world act (merges, pushes to protected branches, force/--all/--mirror/delete pushes, gh api merges). When rolling this out, a system MOVES its old outside-world deny rules (gh pr merge, force pushes, protected-branch pushes, gh api merge) to ask, and keeps in deny only its lock, secret, patient-data and sibling-system rules. The bare `git push` form leaves out the system's own default branch (main), because pushing its own main is how memory reaches the remote; a system whose own branch is not main adjusts that.",
+  "_comment_auto_memory": "Auto memory stays off: machine-local notes loaded into every session sit outside git and outside the loop. Notes for the system go in memory/intake/, which the loop judges (docs/loop.md § Intake). Andres, 2026-10-29.",
+  "autoMemoryEnabled": false,
   "permissions": {
     "deny": [
       "Edit(docs/charter.md)",
