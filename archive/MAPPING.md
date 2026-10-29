@@ -15,23 +15,23 @@ every original is under `archive/`, verbatim (moved with `git mv` or copied befo
 | `meta/architect.md` | Moved verbatim: archive/meta/architect.md. Replaced by meta/keeper.md |
 | `meta/dispatch.md` | Moved verbatim: archive/meta/dispatch.md. Replaced by meta/keeper.md and dna/trials.md |
 | `meta/thesis.md` | Rewritten with a dated falsifier. Original verbatim: archive/meta/thesis.md; its results in meta/record.md |
-| `patterns/README.md` | Verbatim: archive/patterns/README.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/append-only-log.md` | Verbatim: archive/patterns/append-only-log.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/architect-on-cadence.md` | Verbatim: archive/patterns/architect-on-cadence.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/boot-ritual.md` | Verbatim: archive/patterns/boot-ritual.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/cadence-defence.md` | Verbatim: archive/patterns/cadence-defence.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/charter-as-constitution.md` | Verbatim: archive/patterns/charter-as-constitution.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/falsifiable-thesis.md` | Verbatim: archive/patterns/falsifiable-thesis.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/handoff-record.md` | Verbatim: archive/patterns/handoff-record.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/honest-metric.md` | Verbatim: archive/patterns/honest-metric.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/human-gate.md` | Verbatim: archive/patterns/human-gate.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/independent-adversary.md` | Verbatim: archive/patterns/independent-adversary.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/knowledge-vs-log.md` | Verbatim: archive/patterns/knowledge-vs-log.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/named-failure-modes.md` | Verbatim: archive/patterns/named-failure-modes.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/overhead-ceiling.md` | Verbatim: archive/patterns/overhead-ceiling.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/predict-then-check.md` | Verbatim: archive/patterns/predict-then-check.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/single-source-claims.md` | Verbatim: archive/patterns/single-source-claims.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
-| `patterns/untrusted-input.md` | Verbatim: archive/patterns/untrusted-input.md. Restructured into dna/lessons/ (see dna/lessons/README.md for the old → new map) |
+| `patterns/README.md` | Verbatim: archive/patterns/README.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/append-only-log.md` | Verbatim: archive/patterns/append-only-log.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/architect-on-cadence.md` | Verbatim: archive/patterns/architect-on-cadence.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/boot-ritual.md` | Verbatim: archive/patterns/boot-ritual.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/cadence-defence.md` | Verbatim: archive/patterns/cadence-defence.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/charter-as-constitution.md` | Verbatim: archive/patterns/charter-as-constitution.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/falsifiable-thesis.md` | Verbatim: archive/patterns/falsifiable-thesis.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/handoff-record.md` | Verbatim: archive/patterns/handoff-record.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/honest-metric.md` | Verbatim: archive/patterns/honest-metric.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/human-gate.md` | Verbatim: archive/patterns/human-gate.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/independent-adversary.md` | Verbatim: archive/patterns/independent-adversary.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/knowledge-vs-log.md` | Verbatim: archive/patterns/knowledge-vs-log.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/named-failure-modes.md` | Verbatim: archive/patterns/named-failure-modes.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/overhead-ceiling.md` | Verbatim: archive/patterns/overhead-ceiling.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/predict-then-check.md` | Verbatim: archive/patterns/predict-then-check.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/single-source-claims.md` | Verbatim: archive/patterns/single-source-claims.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
+| `patterns/untrusted-input.md` | Verbatim: archive/patterns/untrusted-input.md. Restructured into lessons/ (see lessons/README.md for the old → new map) |
 | `proposals/2026-08-13-mpulse-engage-team.md` | Moved verbatim: archive/proposals/2026-08-13-mpulse-engage-team.md |
 | `proposals/2026-08-13-zesty-eng-team.md` | Moved verbatim: archive/proposals/2026-08-13-zesty-eng-team.md |
 | `proposals/2026-08-14-mpulse-engage-team.md` | Moved verbatim: archive/proposals/2026-08-14-mpulse-engage-team.md |
