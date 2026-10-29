@@ -6,12 +6,12 @@ Maintained by the Meta-Architect. **Status is a decision, not an observation** �
 a system with no activity is `dormant` only if someone decided that. Otherwise
 it is `unreviewed`, and deciding is the Meta-Architect's job.
 
-_Last reconciled: 2026-08-13 — **partially, and unevenly.** Review 001a re-read
-`zesty-eng-team` and `mpulse-engage-team` against their repos and corrected both
-entries. **The other four entries were not read and still carry 2026-08-09/10
-claims.** A full reconcile is review 001's job. The distinction matters more than
-it did before: this file now mixes numbers verified on three different days, and
-the two freshest entries sit next to four that are four days stale._
+_Last reconciled: **2026-10-28, review 001 — every row**, against each repo's
+`git log --all` **and `git status`**. Earlier prose under each row is kept where
+still true and dated where not. **Six rows read `active — stopped, unruled`:**
+the system has not moved in 22+ days and the human has not yet ruled dormant or
+dead. That is `unreviewed` by this file's own vocabulary, labelled so the
+question stays visible until it is answered._
 
 ## Status vocabulary
 
@@ -30,14 +30,14 @@ the two freshest entries sit next to four that are four days stale._
 | | |
 |---|---|
 | **Domain** | Broad classical education for one student |
-| **Status** | `active` |
+| **Status** | `active — stopped, unruled` · last session 0015 on 2026-08-19, last commit 08-23 |
 | **Loop** | `agents/session-protocol.md` — plan → predict → teach → grade → log → commit, one turn |
 | **Cadence** | Per session, student-driven |
 | **Architect** | `agents/architect.md`, every 10 sessions |
 | **Metric** | Mastery vs later review performance; school calibration error; `hard` vs `trivial` friction ratio |
 | **Theory** | `meta/thesis.md` — five capacities, four named falsifiers |
 | **Handoff** | `NEXT-SESSION.md`, regenerated each session |
-| **First commit** | 2026-08-08 · **31 commits** as of 2026-08-18 · 5 sessions run at last count · **not opened by this layer since 2026-08-13** |
+| **First commit** | 2026-08-08 · **37 commits** (2026-10-28) · 15 sessions · **Architect ran 2026-08-19, five sessions overdue**, graded three of four prior proposals as ineffective (`c741049`) · nothing uncommitted |
 
 The most architecturally complete system in the portfolio and the source of most
 of the catalog. The only one with a falsifiable theory of what it produces.
@@ -60,7 +60,7 @@ resolved.
 | **Metric** | CI-reviewer blockers per PR; Director findings per ticket — both with a named `unmeasured` category |
 | **Theory** | None. `docs/decision-log.md` records rationale per decision, which is not the same thing |
 | **Handoff** | `tickets/<issue#>-<slug>.md` written at every pipeline step + `docs/team-log.md` current-state header |
-| **First commit** | 2026-08-08 · **196 commits** as of 2026-08-18 · real PRs shipped · **5 retros run** (08-08, 08-09, 08-13, 08-14, 08-18) |
+| **First commit** | 2026-08-08 · **568 commits** (2026-10-28) · **8 retros** — #6 08-27, #7 10-08, #8 10-28 in the 001 window, all Director-invoked; **no definition of when one is due** · comment marker kept at #8 for transcript-less attribution |
 
 By far the most operationally exercised system, and the only one that has
 survived contact with an external world that pushes back. Source of the honest
@@ -120,7 +120,7 @@ converging this.
 | **Metric** | External-reviewer blockers per PR (humans, Optibot, Copilot); routing errors; escape rate, bucketed. **Both denominator cuts reported when they disagree**, and context cost stated as a floor |
 | **Theory** | None. `docs/decision-log.md` records rationale per decision, which is not the same thing |
 | **Handoff** | `tickets/PDEV-####-<slug>.md` written at every pipeline step + `docs/team-log.md` current-state header |
-| **First commit** | 2026-08-10 · **103 commits** as of 2026-08-18 · **7 PRs + 5 more in the 08-15→08-17 window, 2 retros** (001 on 08-13, 002 on 08-18) |
+| **First commit** | 2026-08-10 · **631 commits** (2026-10-28) · **3 retros** — 003 on 10-28, **69 days after 002**, on branch `program-build-skill` (35 ahead of `origin/main`) · read-path cap breached 08-20 → 10-28 (1,477 / 1,100), now 1,030 · RETRO DUE line added at 003, `carried` |
 
 **Derived, not independently arrived at.** Structure adapted directly from
 zesty-eng-team on 2026-08-10. See the note in `patterns/README.md` — its column
@@ -220,7 +220,7 @@ drift** (`047dd6b`, D-018 and D-019). The open question is now whether it runs
 | **Metric** | External-reviewer blockers per PR; **did `knowledge/dpi.md` grow, and is any of it filler or wrong** |
 | **Theory** | None |
 | **Handoff** | `tickets/PDEV-####-<slug>.md` + `docs/team-log.md` current-state header |
-| **First commit** | 2026-08-10 · **14 commits** as of 2026-08-18 · onboarding kit + local-setup work · **0 retros, ever** |
+| **First commit** | 2026-08-10 · **62 commits** (2026-10-28) · **retro 1 ran 2026-10-28** (`0a4f4af`), first ever · 08-31 → 10-27 backlog committed only at that retro · fixed retro cadence **rejected** (P14) · comment marker cut (H9) |
 
 **Derived from zesty-eng-team**, same as its sibling, same caveat.
 
@@ -283,14 +283,14 @@ identified failure mode — `provisional` at best, and it should not enter
 | | |
 |---|---|
 | **Domain** | Public presence for galind.io — writing, projects, engagement |
-| **Status** | `active` |
+| **Status** | `active — stopped, unruled` · last commit 2026-08-16; **8 files uncommitted since 08-16; `origin/main` at 08-09, 3 commits never pushed** |
 | **Loop** | `agents/cycle-protocol.md` — orchestrate → execute → critique → gate → log → distribute → measure |
 | **Cadence** | Weekly |
 | **Architect** | `agents/architect.md`, every 4 weeks |
 | **Metric** | Receipts ratio; resonance over reach; human-originated items per window; Critic anyone-else count |
 | **Theory** | None. A risk table with tripwires, which is failure modes rather than falsifiers |
 | **Handoff** | **None.** `pipeline.md` item states imply progress but nothing records mid-cycle position |
-| **First commit** | 2026-08-09 · **10 commits** as of 2026-08-18 · Session Zero run reduced; 16 pipeline items, 5 decisions logged · **not opened by this layer since 2026-08-13** |
+| **First commit** | 2026-08-09 · **10 commits** (2026-10-28), none since 08-16 · **Architect never run in its history** (`meta/architect-log.md` holds only the format) · README still says Session Zero has not run (`README.md:38`) |
 
 Youngest system. One day old at first registry entry — **do not read low commit
 count as stalling yet.**
@@ -315,7 +315,7 @@ the first Meta-Architect log entry.
 | **Architect** | None, correctly |
 | **Metric** | None needed |
 | **Handoff** | The CSV is the state |
-| **First commit** | 2026-08-08 · **18 commits**, unchanged since 2026-08-09 — correct for a dataset |
+| **First commit** | 2026-08-08 · **32 commits** (2026-10-28), last 10-27 · **vocabulary clean**: 583 rows, `type` film/tv/youtube/book, no type–unit mismatch; a `video` type added 08-21 was replaced by `youtube` the next day and the spec updated — drift caught locally |
 
 **Registered so it stops reading as a gap.** It is a dataset with a spec and a
 human gate on spec changes — the spine's degenerate case, and evidence the
@@ -340,7 +340,7 @@ enum nobody uses. That is a ten-minute read, not a review.
 | **Metric** | Superseded 2026-08-14 by the engine's scoreboard (`meta/thesis.md`): **births 0, promotions 1, transfer yield 4 of 7.** The old auditor's metric — findings a local Architect could not have made — was 2 of 5 at review 000 and 5 of 8 at 001a |
 | **Theory** | `meta/thesis.md` — three claims, four falsifiers |
 | **Handoff** | `HANDOFF.md`, cold-start only — see the note in that file |
-| **First commit** | 2026-08-09 · **17 commits** · **one scoped review (001a, 08-13)**; review 001 undischarged. Three scoped reads of the same two children (08-13, 08-14, 08-18) — see the cadence note in `meta/architect-log.md` |
+| **First commit** | 2026-08-09 · **23 commits** · **review 001 run 2026-10-28**, 76 days late, all eleven repos; rulings pending with the human |
 
 **Listed in its own registry on purpose.** A layer exempt from its own catalog
 is precisely the thing it would flag in a child, and the entry it is missing is
@@ -362,14 +362,14 @@ rather than leaving the layer unassessed.
 | | |
 |---|---|
 | **Domain** | Engineering delivery on `zesty-io/webengine` — one repo, PHP, GitHub issues |
-| **Status** | `active` — **founded 2026-08-19, nothing exercised yet** |
+| **Status** | `active — stopped, unruled` · **founded 2026-08-19, never exercised** — `git ls-remote` equals local (`c3b080a`); whether the Maintainer runs a clone this layer cannot see is a question for the human |
 | **Loop** | Slash commands — `/take-ticket`, `/review-pr`, `/standup`, `/retro` |
 | **Cadence** | Per ticket, Maintainer-driven |
 | **Architect** | `.claude/agents/architect.md`, at `/retro`. **Never run** |
 | **Metric** | Blockers per PR from reviewers the team does not control; Maintainer findings per ticket. Five named `unmeasured` categories from day one |
 | **Theory** | None, correctly. A system that does work does not need a thesis |
 | **Handoff** | `tickets/<issue#>-<slug>.md` written at every step + `docs/team-log.md` current-state header |
-| **First commit** | 2026-08-19 · 1 commit · **0 tickets, 0 retros** |
+| **First commit** | 2026-08-19 · 1 commit (2026-10-28) · **0 tickets, 0 retros in 70 days** · **no definition of when a retro is due**, though grown from the spine |
 
 **THE PORTFOLIO'S FIRST BIRTH. Grown from `spine.md`, not copied.** Every prior
 system is either one of the founding four or a derived copy, which is why claim I
@@ -430,14 +430,14 @@ in the `charter-as-constitution` pattern that no existing system has hit. Review
 | | |
 |---|---|
 | **Domain** | Building **Galind** — an agent-native backend suite — from a strategy brief to a shipped product |
-| **Status** | `active` — **founded 2026-08-22, nothing built** |
+| **Status** | `active — stopped, unruled` · last touched 2026-08-23 · **ticket 001 and D-011 uncommitted; product repo `galind-email` has 24 files and no commits** |
 | **Loop** | Slash commands — `/decide`, `/take-item`, `/review`, `/standup`, `/retro` |
 | **Cadence** | Per work item, Director-driven. `/retro` every third item **or on the F1 tripwire**, whichever comes first |
 | **Architect** | `.claude/agents/architect.md`, at `/retro`. **Never run** |
 | **Metric** | Director findings per work item; **machine share** (system commits ÷ system + product). Six named `unmeasured` categories, including the Director's own miss rate |
 | **Theory** | `docs/thesis.md` — three claims, each with falsifiers. **Correctly has one**: this system claims an outcome rather than only doing work |
 | **Handoff** | `tickets/<id>-<slug>.md` written at every step + `docs/team-log.md` current-state header + `HANDOFF.md` |
-| **First commit** | 2026-08-22 · 1 commit (`00e59c6`) · **0 work items, 0 retros, 0 product repos** |
+| **First commit** | 2026-08-22 · 2 commits (2026-10-28) · **F1 tripwire firing** (`tools/ledger.py`: 2 system vs 0 product commits — partly because the product was never committed) · 0 retros |
 
 **THE PORTFOLIO'S SECOND BIRTH, three days after the first.** Grown from
 `spine.md`, not copied. Full entry in `meta/architect-log.md`.
@@ -535,14 +535,14 @@ rediscovered as a surprise.
 | | |
 |---|---|
 | **Domain** | Building **The Debrief** — an interactive corpus of every discovery, invention, work and mind that changed what humanity knew, chronological and geographically anchored |
-| **Status** | `active` — **founded 2026-08-24, zero entries** |
+| **Status** | `active — stopped, unruled` · last work 2026-10-06 · **46 files uncommitted** (+2,036 / −1,514) |
 | **Loop** | Slash commands — `/slice`, `/verify`, `/standup`, `/retro` |
 | **Cadence** | Per slice, Director-driven. `/retro` every third slice **or on the F1 or F2 tripwire**, whichever comes first |
 | **Architect** | `.claude/agents/architect.md`, at `/retro`. **Never run** |
 | **Metric** | Entries shipped and rejected per slice; adversary findings and downgrade rate; **Director findings, and whether they came from inside the gate sample or outside it**. Six named `unmeasured` categories, the first of which is the project's entire point |
 | **Theory** | `docs/thesis.md` — three claims, each with observable falsifiers, plus a § stating what the system structurally cannot test |
 | **Handoff** | `slices/<NNN>-<slug>.md` written at every step + `docs/project-log.md` current-state header + `HANDOFF.md` |
-| **First commit** | 2026-08-24 · **2 commits** · **0 slices, 0 retros, 0 entries, no site** |
+| **First commit** | 2026-08-24 · **4 commits** (2026-10-28) · **14 slices, 65 entries, 52 machine checks, a site** — the only birth to deliver · **0 retros, "eleven slices overdue" in its own state header** · F5 recorded: entries merged before the adversary ran |
 
 **THE PORTFOLIO'S THIRD BIRTH, two days after the second and five after the
 first.** Grown from `spine.md`, not copied. Full entry in `meta/architect-log.md`.
@@ -641,14 +641,14 @@ any of the three.
 | | |
 |---|---|
 | **Domain** | What second-hand goods are worth, both directions — appraising Vinted listings to flip or to keep, and drafting the listings that sell what Andres owns |
-| **Status** | `active` — **founded 2026-08-29, zero units, zero pounds** |
+| **Status** | `active — stopped, unruled` · ran 2026-08-29 → 08-31, nothing since · **charter amendment and 109 events uncommitted** |
 | **Loop** | Slash commands — `/source`, `/list`, `/settle`, `/standup`, `/retro` |
 | **Cadence** | **Every tenth resolved unit, or any charter tripwire.** Deliberately not a calendar — the unit of learning is a resolved trade and time does not produce those |
 | **Architect** | `.claude/agents/architect.md`, at `/retro`. **Never run** |
 | **Metric** | Realized margin per resolved unit, and appraisal error (predicted sale against realized gross), reported signed in both directions. `flip` and `keep` never averaged (D-009). `unmeasured`: Andres's hours, and any unit missing an observed fee |
 | **Theory** | `docs/thesis.md` — four claims, each with a falsifier, plus a § on the structural condition that forced two control groups |
 | **Handoff** | `desk/events.jsonl` (append-only, the fact) + `desk.py state` (derived) + `HANDOFF.md` (narrative, forbidden from restating a computed number) |
-| **First commit** | 2026-08-29 · **2 commits, 21 files, 1,802 lines** · 0 candidates, 0 units, 0 listings, 0 retros |
+| **First commit** | 2026-08-29 · 3 commits (2026-10-28) · 30 verdicts, 12 listings, **0 resolved** · `desk.py state` shows **F1 lit** and a negative `held, not listed -12` · 0 retros |
 
 **THE PORTFOLIO'S FOURTH BIRTH, in eleven days.** Grown from `spine.md`. Full
 entry in `meta/architect-log.md`, which leads with the birth rate rather than
@@ -742,35 +742,30 @@ against those systems, not as an entry of its own.
 
 ---
 
-## Distribution, measured 2026-08-18
+## Distribution, measured 2026-10-28 (review 001)
 
-Counted with `git log --oneline | wc -l` per repo, not derived from prior
-figures. **Two numbers in an earlier draft of this file were derived by adding a
-window count to a stale total and both were wrong** (ZET 181 vs a true 196, MET
-92 vs 103) — recorded because it is the same defect both engineering teams spent
-their retros on, appearing here.
+`git log --all --oneline` per repo, window 2026-08-19 → 10-28, plus
+`git status --porcelain`. **The uncommitted column is new and it is the reason
+the table changed shape:** four systems look idle in `git log` and are not.
 
-| System | Total commits | Since 2026-08-14 | Last commit |
-|---|---|---|---|
-| zesty-eng-team | 196 | 43 | 2026-08-18 |
-| mpulse-engage-team | 103 | 41 | 2026-08-18 |
-| mpulse-dpi-team | 14 | 9 | 2026-08-18 |
-| personal-university | 31 | 1 | 2026-08-18 |
-| brand-system | 10 | 3 | 2026-08-16 |
-| media-log | 18 | 0 | 2026-08-09 |
-| **meta-architecture** | 17 | 3 | 2026-08-15 |
-| zesty-webengine-team | 1 | 1 | 2026-08-19 · **founded** |
+| System | Total | Window | Prev (08-14→08-18) | Last commit | Uncommitted |
+|---|---|---|---|---|---|
+| mpulse-engage-team | 631 | 528 | 41 | 10-28 | 6 files; HEAD on a branch 35 ahead of main |
+| zesty-eng-team | 568 | 372 | 43 | 10-28 | 2 |
+| mpulse-dpi-team | 62 | 48 | 9 | 10-28 | 5 |
+| media-log | 32 | 14 | 0 | 10-27 | 0 |
+| personal-university | 37 | 6 | 1 | 08-23 | 0 |
+| **meta-architecture** | 23 | 6 | 3 | 08-29 | — |
+| the-debrief | 4 | 4 | — | 10-06 | **46 files** |
+| resale-desk | 3 | 3 | — | 08-29 | **4 files, 109 events** |
+| galind-team | 2 | 2 | — | 08-22 | **4 files + an uncommitted product repo** |
+| zesty-webengine-team | 1 | 1 | — | 08-19 | 0 |
+| brand-system | 10 | 0 | 3 | 08-16 | **8 files; 3 commits unpushed** |
 
-**84 of the 101 commits since 2026-08-14 are in the two mPulse/Zesty delivery teams**, and
-those are the two repos this layer has now read three times running. **That is
-attention being followed, not audited** — `meta/architect.md` § 1 says the shape
-over time is the signal, and the shape has been the same shape three times.
+**900 of 984 window commits (91%) are zesty-eng-team and mpulse-engage-team**,
+up from 83%. Every employer-driven system kept moving; every self-directed one
+stopped. **Which of those stops are deliberate is the human's to say** — see
+`HANDOFF.md` § Awaiting a ruling. Do not infer capacity from this table.
 
-**What this table cannot tell you**, and must not be read as telling you: whether
-personal-university's 1 commit and brand-system's 3 are misses or deliberate.
-There is no stated capacity here — it was cut on 2026-08-09 and must not be
-reintroduced — so *"they slipped"* and *"they were deprioritised"* look identical
-from this layer. **mpulse-dpi-team is the one case where the ambiguity is
-resolved**, by the human's ruling of 2026-08-14, and it resolved to deliberate.
-The other two are open questions for review 001 and are questions for the human,
-not findings.
+*Previous measurement (2026-08-18): ZET 196 / MET 103 / MDT 14 / PU 31 / BS 10 /
+ML 18 / MA 17 / WET 1. Superseded, kept for the shape over time.*

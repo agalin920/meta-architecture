@@ -3197,3 +3197,336 @@ act. One instance is a finding. **That failure mode did not exist in this
 portfolio before today**, because no prior system read attacker-controlled text
 while holding live credentials, and it is the item on this page most likely to
 matter to a sibling later.
+
+---
+
+## Review 001 — full portfolio, 2026-08-19 → 2026-10-28
+
+**The review `HANDOFF.md` has called undischarged since 2026-08-13**, run 76 days
+late. Eleven repos read: all ten registered systems and this one. Read-list per
+§ Read: charters, Architect logs, operating logs, `git log`. **Added this time:
+`git status` in every repo**, because § 1 below shows `git log` alone misreads
+four systems. No child repo was edited; one remote was cloned bare into the
+session scratchpad to read it (brand-system's), which touches nothing of the
+child's.
+
+**Presented to the human before commit. Nothing dispatched.**
+
+### 0. The `proven` re-audit — Open item 1, done first
+
+**Ten patterns carried `proven` from before the independence bar** (HANDOFF said
+eight; `grep -l 'Status:\*\* .proven' patterns/*.md` returns eleven files, one of
+which is `honest-metric`, promoted under the bar on 08-18). Each adopter was
+asked which of four routes it came by: **independent**, **copied** (`†`),
+**carried** (dispatched from here), or a route this audit had to name —
+**inherited**: a system grown from `spine.md` adopting what the spine lists as an
+invariant. That is the spine working, not anyone arriving at the pattern again.
+
+| Pattern | Adopters, by route | Independent derivations | Verdict |
+|---|---|---|---|
+| `charter-as-constitution` | PU, ZET, BS, ML, MA — the founding derivation; MET, MDT `†`; WET, galind inherited; debrief, resale inherited + carried | **1** | demote |
+| `boot-ritual` | same shape | **1** | demote |
+| `append-only-log` | same shape | **1** | demote |
+| `handoff-record` | ZET, PU founding; BS added 2026-08-09 by the human's own transfer (review 000); `†` | **1** | demote |
+| `independent-adversary` | PU, ZET — the file says *"independently"*; it is the same 48 hours; BS by transfer; `†`; births inherited | **1** | demote |
+| `human-gate` | founding; `†`; births inherited | **1** | demote |
+| `architect-on-cadence` | founding — and ZET's own log records it as carried over from an earlier project of the same person; `†`; births inherited | **1** | demote |
+| `named-failure-modes` | BS, PU founding; `†` partial; births inherited | **1** | demote |
+| `untrusted-input` | ZET; BS by the human's 08-09 transfer; `†` | **1** | demote |
+| `overhead-ceiling` | PU founding; **MET re-derived 2026-08-13** with its ❌ on the matrix since 08-10 — the documentary exception, same ruling that promoted `honest-metric` | **2** | **keeps `proven`** |
+
+> **Check, 2026-10-28:** the Evidence sections of all ten files cite only PU,
+> ZET, BS, ML (and MET for `overhead-ceiling`); none cites a birth or a
+> non-founding system as an independent adopter. `patterns/README.md` § The
+> independence bar records MET ❌ on `overhead-ceiling` before its 08-13 cap.
+
+**Nine of ten fail the bar.** Evidence of a changed outcome is not what is
+missing — several have it (ZET's reviewer on #3909; the-debrief's adversary
+catching two fabricated citations). **The second independent adopter is what is
+missing, in every case, and it cannot arrive by the route this layer built.**
+
+**That is the structural finding and it is bigger than the demotions.** Every
+spine-grown system inherits the invariants, so **no birth can ever be an
+independent adopter of one.** The births are evidence about the spine only
+through what they *decline* or *invent*. The only routes left to `proven` for a
+founding pattern are a copy's documented re-derivation of something it lacked —
+used twice, both by MET — or a system built without the spine. **The more
+systems the generative clock grows, the fewer independent tests of the spine
+exist.** Claim I and the promotion gate pull against each other, and neither
+document says so.
+
+**What demotion invalidates, and why it needs a ruling rather than an edit.**
+`charter.md` § The promotion gate and `spine.md` § What is inherited both say
+**only `proven` patterns are default inheritance.** Apply the demotions literally
+and default inheritance shrinks to `overhead-ceiling` and `honest-metric`, neither
+of which is in `spine.md`'s invariant list. That is a seven-item spine change on
+an audit, which is the churn claim II exists to stop. **Three options; the human
+rules, because the sentence that conflicts is in `charter.md`:**
+
+- **A — recommended.** A new catalog status, **`founding`**: in the spine on the
+  seed's authority, counts as **one** derivation, eligible for `proven` on a
+  second independent one. The nine move to it; `spine.md`'s list is unchanged and
+  its § What is inherited says what it rests on. `charter.md` § The promotion gate
+  needs one clause from the human: *"the spine's founding invariants and `proven`
+  patterns"*.
+- **B.** Demote to `provisional` and pull the seven from the spine. Literal, and
+  churn.
+- **C.** Grandfather them as `proven`. Fails the bar this layer wrote and repeated
+  in three files.
+
+**`overhead-ceiling` keeps its status with a new failure mode on the record.**
+MET's cap bound at 1,082 / 1,100 on 2026-08-18 and was **breached two days
+later, 1,477 at its widest, for 69 days**: *"Preflight reported all three on
+every ticket from 08-20 and each was deferred 'for the retro'"* (MET
+`docs/team-log.md`, retro 003, `1cae2cb`). **The tripwire fired every session and
+routed its remedy to a retro that nothing scheduled.** Retro 003 cut it to 1,030.
+The pattern works when a retro runs; § 1 is about why one did not.
+
+### 1. Distribution — observed only
+
+Window 2026-08-19 → 2026-10-28 (70 days). Previous: 2026-08-14 → 08-18. Counted
+with `git log --all --oneline --since=…` per repo, and `git status --porcelain`.
+
+| System | Total | Window | Prev | Last commit | **Uncommitted** | Architect runs in window |
+|---|---|---|---|---|---|---|
+| mpulse-engage-team | 631 | **528** | 41 | 10-28 | 6 files; HEAD on `program-build-skill`, 35 ahead of `origin/main` | 1 — retro 003, 69 days after 002 |
+| zesty-eng-team | 568 | **372** | 43 | 10-28 | 2 | **3** — #6 08-27, #7 10-08, #8 10-28 |
+| mpulse-dpi-team | 62 | 48 | 9 | 10-28 | 5; **08-31 → 10-27 backlog committed only at the retro** (`edfbb2f`) | 1 — first ever |
+| media-log | 32 | 14 | 0 | 10-27 | 0 | n/a |
+| personal-university | 37 | 6 | 1 | 08-23 | 0 | 1 — 08-19, five sessions overdue |
+| meta-architecture | 23 | 6 | 3 | 08-29 | — | 0 reviews, 4 birth entries |
+| the-debrief | 4 | 4 | — | 10-06 | **46 files, +2,036 / −1,514, dated 10-06** | 0 — *"eleven slices overdue"* |
+| resale-desk | 3 | 3 | — | 08-29 | **4 files incl. `charter.md` and 109 events, 08-29 → 08-31** | 0 |
+| galind-team | 2 | 2 | — | 08-22 | **4 files, 08-23; product repo `galind-email`: 24 files, `No commits yet`** | 0 |
+| zesty-webengine-team | 1 | 1 | — | 08-19 | 0 | 0 |
+| brand-system | 10 | **0** | 3 | 08-16 | **8 files, 08-16; `origin/main` at `c762f6c` (08-09) — 3 commits never pushed** | 0 — never, in its history |
+
+**ZET + MET: 900 of 984 window commits, 91%.** It was 84 of 101 (83%) last
+window. The shape held and sharpened.
+
+**Where the misses landed.** Every system whose work arrives from an employer
+kept running, and so did the dataset that costs a minute per row. **Every system
+whose work is self-directed stopped**: brand-system 08-16, personal-university
+08-23, galind-team 08-23, resale-desk 08-31, the-debrief 10-06, and
+zesty-webengine-team never started. **This layer cannot tell slipped from
+deprioritised and does not try** — the six are questions for the human below,
+not findings. What it can say, and no local Architect can: **the misses did not
+fall on the systems that matter least, they fell on every system without an
+outside forcing function**, which is claim III's prediction arriving in a form it
+did not specify.
+
+**Self-finding: § 1's method was blind to four systems.** `git log` reads the-debrief
+as 4 commits; it holds 65 entries across 14 slices and one commit of 20,632 lines.
+It reads galind-team as idle since 08-22; it started its product on 08-23. **Six
+of ten systems had operating-log state uncommitted at some point in the window**
+(the four above, MDT's eight-week backlog, ZET's retro #8 theme C). `meta/architect.md`
+§ 1 should say *`git log` and `git status`* — proposal M-3.
+
+**The generative clock stopped too.** No birth since 2026-08-29. `~/dev/living-universe`
+(first commit 2026-10-09) is present and unregistered; it has no `CLAUDE.md`, no
+agent files and no spine reference (`git ls-files`, checked) — **a human project,
+correctly not a system.**
+
+### 2. When is a retro due? — the question the parent brief raised
+
+> **Check, 2026-10-28:** `git grep -iE 'retro (is )?due|every (third|tenth|[0-9]+)|RETRO DUE'`
+> across `CLAUDE.md`, `.claude/`, `docs/`, `tools/` in the seven `/retro` systems.
+
+| System | Defines "due"? | What happened |
+|---|---|---|
+| zesty-eng-team | **No** | Three retros, all Director-invoked |
+| mpulse-engage-team | **Now yes, `carried`** — `state_check.py:377`, *> 30 days*, prints *"say so in the Orient summary"* | 69 days; the line is advisory |
+| mpulse-dpi-team | **No — rejected P14** on the Manager's low-cadence ruling | First retro at 79 days |
+| zesty-webengine-team | **No** — grown from the spine and still none | Never exercised |
+| galind-team | Yes — every third item **or F1** | **F1 firing now** (`tools/ledger.py` → *"A retro must open with this"*); no retro |
+| the-debrief | Yes — every third slice **or F1/F2** | **Eleven slices overdue, written in its own boot-read state header since at least 09-24**, retro input compiled 10-06, no retro |
+| resale-desk | Yes — tenth resolved unit **or any tripwire** | 0 resolved; `tools/desk.py state` → **`** F1` lit**; no retro |
+| personal-university | Yes — every 10 sessions | Ran at 15 |
+| brand-system | Yes — every 4 weeks | **Never run, 80 days old** |
+
+**The brief's diagnosis is half right and the half that is wrong matters.**
+Engage lacked a definition and went 69 days. **Every system that has a definition
+missed it as badly or worse** — and the-debrief is the decisive case: it
+*surfaced* the overdue retro in the file it reads at boot, for eleven slices, and
+the retro still did not run. **Defining due is not the fix and neither is
+surfacing it.** In every one of these systems `/retro` is invoked by the human,
+so the retro clock is the human's attention clock, and claim III already says
+what happens to that. **Engage's new line is the-debrief's mechanism; review 002
+should expect it to print and not fire**, and grade it on that. Recorded as a
+prediction, not a packet: a child is entitled to say come back when ours fails.
+
+**dpi's rejection of a fixed cadence is consistent with this rather than against
+it** — its stated reason is that the long window hurt because memory was
+uncommitted and the metric uncountable, which is a claim about what made the
+retro expensive, not about when it was due.
+
+### 3. The Architects
+
+| System | Ran? | Graded prior cycle against its logs? | Withdrew / struck? | Proposed a cut? |
+|---|---|---|---|---|
+| zesty-eng-team | 3 in window | **Yes, change by change** — *"`fe88312` fired and failed: run in 5 of 13+ sessions"* | Yes — struck two of its own team-log claims (`1d4f144`) | Yes — C1 retire two commands (held), C2 marker (rejected), C3 (accepted) |
+| mpulse-engage-team | 1, 69 days late | **Yes** — *"did nothing — P13, P14 (bug), P6, P7"* | Yes — ten drifts reconciled | Yes — C2 marker (held); P9 retired a pin |
+| mpulse-dpi-team | 1, first | n/a — nothing to grade; it graded the *window* instead | Yes — 8 stale facts struck with dates | Yes — P14 rejected; marker cut applied (H9) |
+| personal-university | 1, five sessions late | **Yes** — *"Three of four proposals approved 2026-08-11 did not produce their effect"* (`c741049`) | Yes | Yes — retired ambient input entirely (`02b2aa7`) |
+| brand-system | **Never** | — | — | — |
+| zesty-webengine-team, galind-team, the-debrief, resale-desk | **Never** | — | — | — |
+
+**Claim IV's falsifier has now been met a seventh time and this review acts on
+it.** Every Architect that ran graded itself accurately and harshly when checked
+against its own logs. **What § 3 found that no self-audit can is the other
+column: five of nine Architects have never run** — and an Architect that does not
+run writes nothing about not running. The-debrief and personal-university did
+record their own lateness, so the *noticing* is local; what is not local is that
+five systems' improvement loops are off at once. **Proposal M-2: cut § 3 to two
+questions — has it run, and one spot-check of a prior-cycle grade — and rewrite
+claim IV to the half that survived.**
+
+**Both mPulse teams dropped the team comment marker; zesty-eng-team kept it.**
+What the agreement is worth under the bar: **nothing as convergence.** Both are
+copies; both dropped it for the same shared reason (all three teams moved their
+metric to count by author — ZET `f1857a5` on 10-08, MDT `dd47585` today); and the
+two decisions were not independent — they ran the same afternoon under one parent
+session, and **each cites the other** (MDT `tickets/retro-1-held-edits.md:18`:
+*"If Engage has the same marker rule, the same evidence question applies
+there"*; MET's sibling note names C2 for dpi). **The one thing only this layer
+would check — did a copy drop a reason it could not see? — was answered locally.**
+ZET's reason for keeping it is that transcript-less sessions have no other
+attribution path; MDT recorded its own residual cost (*"address-feedback still
+treats unmarked `agalin920` comments as possible Manager feedback"*). Copies
+losing invisible reasons is the catalog's standing prediction; **this time the
+copy named the reason it was giving up.** Nothing to carry.
+
+**The knowledge-gate candidate (MDT D-003) can now be graded.** `knowledge/dpi.md`
+is 1,550 lines; the retro cut **9 lines** as restatement and corrected **8 stale
+facts** (`a2956f2`, `0a7ba7b`), and changed gate 9 from *append* to *maintain*
+(`444b364`). **The failure mode D-003 predicted — filler — was under 1%. The one it
+did not predict — appended facts going stale — was the real one.** Candidate →
+`provisional`, one adopter, with the remedy recorded.
+
+**A run of human-step cuts is now three long.** `budget.md` (2026-08-09), the
+student's prediction (08-09), and personal-university's ambient input (08-20,
+`02b2aa7`: *"he does not plan to mention what he consumes, so the mechanism will
+never fire"*). HANDOFF said watch it and raise it past n=2. **Each cut is correct
+on its merits, and the third one's reasoning is the best of the three** — a rule
+that cannot fire is worse than none. **The observation is only the run:** every
+mechanism in this portfolio that needed the human to do a recurring step has been
+cut, and § 2 says the retro is one. Raised, not proposed.
+
+### 4. Falsifiers
+
+- **Claim I — not testable yet, and § 0 explains part of why.** Four births:
+  zesty-webengine-team **0 tickets in 70 days**; galind-team started its product
+  and stopped the next day; resale-desk ran 3 days (30 verdicts, 12 listings, 0
+  resolved); **the-debrief delivered** — 14 slices, 65 entries, 52 machine checks,
+  an adversary that caught fabricated citations — and is the birth worth least as
+  evidence, having been grown from inside this layer. **Zero births have run a
+  first retro**, so the § Cuts test (*did the spine over-specify?*) has no
+  datapoint anywhere.
+- **The sharper engine falsifier — drafted now, and late.** HANDOFF said draft it
+  before a birth delivered; the-debrief has. **Draft, for the human to accept or
+  reject:** *a birth counts toward claim I only if, within 60 days of founding, it
+  has completed three units of its own work and run its first retro, and that
+  retro's § Cuts removes fewer than half its founding rules.* **It applies to
+  births after this date.** Grading the four existing births against it would be
+  choosing the target after the shot, so they are reported descriptively above;
+  for the record, none would pass.
+- **Claim II — not tested.** No spine change was made; the § 0 demotions are the
+  first proposed one, and option A is designed so the spine does not churn.
+- **Claim III — biting, for the first time with data.** The falsifier is *every
+  system meets its cadence*; six systems stopped and five Architects never ran.
+  The pattern of the misses (§ 1) is not visible from any child.
+- **Claim IV — falsified as stated, seventh consecutive hit.** Acted on: M-2.
+
+**Could a local Architect have made each finding?** § 0 no; § 1's
+forcing-function pattern no, the uncommitted-state count no; § 2 no (the-debrief's
+precedent is invisible to engage); § 3's "five never ran" no, the knowledge-gate
+grade **yes** (MDT made it); the marker verdict **yes** (MDT made it). **Five of
+seven not locally available**, after 2 of 6 at the 08-18 read. The scoped reads
+were the low point, which is what the cadence warning said they would be.
+
+### 5. Prior proposals — did they land?
+
+Nothing dispatched since 2026-08-15. Transfer yield re-checked at the receivers:
+
+- **MF-1b, MET read-path cap 1,100** — bound on 08-18, **breached 08-20 for 69
+  days**, recovered at retro 003 (1,477 → 1,030). **Downgraded from "changed a
+  decision" to "changed a decision once, then failed as a tripwire."**
+- **MF-2b, grade the previous cycle (MET)** — ran at retro 003, and harshly.
+  Yielding.
+- **MF-8 / AF-6, overhead ratio and context floor (MET)** — both reported at 003
+  (*"105 PRs, 48 worklogs vs 0 proposals"*; *"≥ 17.9M output tokens… main-loop
+  floor"*). Yielding.
+- **AR-3, knowledge routing (MET)** — fired: *"Five orphan knowledge files"*.
+  Yielding as a detector; **ignored for 69 days** for the same reason as MF-1b.
+- **MF-1, § Cuts (ZET)** — fired at #6, #7 and #8. Yielding.
+- **MF-4, `**Verify.**` blocks (ZET)** — still four blocks
+  (`git grep -c '\*\*Verify\.\*\*'` → charter 1, decision-log 2, operating-rules 1);
+  retro #8's stale-claim strikes came from re-deriving origin commits (`a706463`),
+  **not** from a block. **Unverified whether any block fired; still not yielding on
+  the evidence available.**
+- **F1, brand-system's stale README** — **still stale, 80 days**
+  (`README.md:38` *"Session Zero has not been run."*).
+- **`proposals/2026-08-22-brand-system.md`** — still undispatched. Its timing
+  argument still holds (`dig +short galind.io A` → empty, 2026-10-28). **Hold it**
+  until the human rules on brand-system's status; dispatching into a system with
+  eight uncommitted files and no pushed work since 08-09 is the wrong order.
+- **`single-source-claims` retirement test (Open 6)** — MET's `verify_docs`
+  **fired** on a drifted claim (the scheduler-count pin, 11 ≠ 10, retro 003). It
+  survives. MDT, which has no instrument, carries a known drifted preamble copy
+  into retro 2 by its own record. Consistent with the pattern; one cycle.
+
+### Proposals
+
+**To this layer, for the human's ruling — none applied:**
+
+- **M-1** — the § 0 demotions, option A: a `founding` status, nine patterns move
+  to it, `overhead-ceiling` keeps `proven` with the 69-day failure recorded.
+  **Needs one clause in `charter.md`, which is the human's alone.**
+- **M-2** — `meta/architect.md` § 3 cut to *has it run* plus one spot-check;
+  `meta/thesis.md` claim IV withdrawn as stated and rewritten to *an Architect
+  that does not run writes nothing about not running*.
+- **M-3** — `meta/architect.md` § 1 reads `git status` beside `git log`, and the
+  registry carries an *uncommitted* column.
+- **M-4** — the sharper engine falsifier above, into `meta/thesis.md`, for births
+  after acceptance.
+- **M-5** — `patterns/append-only-log.md` gains a failure mode: **an append-only
+  log that is not committed is neither append-only nor a log** (six of ten
+  systems in this window).
+
+**Carry-packets: none drafted, deliberately.** Every child-local finding here was
+already in that child's own record (the-debrief's overdue retro, galind's F1,
+dpi's drift, engage's PHI and branch state). The two that are not —
+resale-desk's `tools/desk.py state` printing **`held, not listed  -12`** (a
+negative count from its own derivation), and galind's ledger reading **100%
+machine** partly because the product's 24 files have never been committed —
+**belong to systems the human has not yet said are alive.** A packet into a
+system nobody is running is a document, not a dispatch.
+
+### For the human's ruling
+
+1. **M-1, and the `charter.md` clause it needs.**
+2. **Status of the six stopped systems — dormant (with a revisit date) or dead?**
+   brand-system, personal-university, galind-team, resale-desk, the-debrief,
+   zesty-webengine-team. Each is `active` in `systems.md` and none has been,
+   by its own record, for 22 to 73 days. **This layer does not assume neglect.**
+3. **Uncommitted work in four of them** — 46 files at the-debrief, a charter
+   amendment and 109 events at resale-desk, galind-team's ticket 001 plus an
+   uncommitted product repo, eight files at brand-system with three commits never
+   pushed. Commit, discard or leave is yours; nothing here touches them.
+4. **zesty-webengine-team's Maintainer** — whether the system was handed over and
+   is running in a clone this layer cannot see (`git ls-remote` = local, both
+   `c3b080a`), or was never picked up.
+5. **Whether the three retros of 2026-10-28 were briefed with shared content.**
+   This review classified engage's RETRO DUE line `carried` on the parent's word,
+   and treated the marker decisions as non-independent on the evidence of each
+   citing the other. Anything else the parent's briefs carried should be named so
+   it is not counted later.
+
+### Watching — review 002
+
+- **engage's RETRO DUE line**: predicted to print and not fire.
+- **First retro at any birth**, and the size of its § Cuts.
+- **`overhead-ceiling` at MET**: does 1,030 hold, and does the next breach wait
+  for a retro again.
+- **Whether the human's rulings on item 2 leave fewer systems than eleven.** A
+  retirement is the one proposal nothing else in the portfolio can make.

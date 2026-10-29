@@ -3,253 +3,116 @@
 Snapshot for whoever picks this up cold. Rewritten in place, never appended to.
 
 **This layer gets the cold-start half of the handoff pattern and not the
-write-during-work half.** Applying the pattern's own adoption test
-(`patterns/handoff-record.md`): a quarterly review runs in one sitting and its
-output *is* `meta/architect-log.md`, so there is no mid-work state to lose. A
-child system running a weekly cycle or a multi-day ticket is a different case and
-gets the full pattern. Do not add phase-boundary writes here — that would be the
-layer taking on ceremony it does not need, which is a named failure mode in
-`charter.md`.
+write-during-work half.** A quarterly review runs in one sitting and its output
+*is* `meta/architect-log.md`, so there is no mid-work state to lose. Do not add
+phase-boundary writes here — that would be the ceremony `charter.md` names as a
+failure mode.
 
 ---
 
 ## Current
 
 ```yaml
-status: THE GENERATIVE CLOCK IS THE ONLY ONE RUNNING. Four births in eleven
-             days — zesty-webengine-team (08-19), galind-team (08-22),
-             the-debrief (08-24), resale-desk (08-29) — against one promotion
-             (honest-metric, 08-18) and nothing delivered by any of the four.
-             The last two were run from inside this layer, so every choice they
-             share with a sibling is `carried` and NONE of it tests claim I.
-             Read the caveats before repeating any counter as a result
-last_review: 001a (scoped, 2026-08-13). 000 was founding. The 08-14 rulings, the
-             08-15 AR proposals, the 08-18 scoped read and the four birth
-             entries are entries, not reviews
-next_review: 001 — full portfolio, now ELEVEN systems. STILL UNDISCHARGED,
-             sixteen days. FOUR systems have been founded since it came due.
-             Every birth entry since the second has said this and it has not
-             changed the order of work once. The birth rate is an agenda item
-             for 001, not a closing paragraph
-promotions:  1 (honest-metric, 2026-08-18). Births: 4. Transfer yield: 4 of 7.
-             The SHARPER FALSIFIER FOR CLAIM I was called overdue on 08-24 and
-             is STILL NOT DRAFTED — the two-quarter clock fires on zero births
-             and zero promotions, and quarter one holds four births, one
-             promotion, and no delivery anywhere
-registry:    systems.md refreshed 2026-08-18 with MEASURED commit counts; the
-             distribution table is STALE (pre-dates all four births) and its
-             refresh is a review-001 job, not a between-times edit
-dispatched:  nothing since 2026-08-15. All seven 08-14 items and AR-3 have landed
-             in the children and are verified there
-pending:     proposals/2026-08-22-brand-system.md is WRITTEN AND NOT DISPATCHED.
-             It carries a human ruling (galind.io moves to the product), which
-             no packet has ever done before — read its § Standing first
-carries:     DO NOT COUNT AS CONVERGENCE. The improvement-vs-delivery ratio
-             family stands at TWO independent inventions (WET, galind-team).
-             the-debrief D-006 is a carried third. resale-desk DECLINED to build
-             a fourth and said why — see its D-006, which is itself a question
-             about this layer shaping its own evidence base
+status:      REVIEW 001 RAN 2026-10-28, 76 days late, all eleven repos. Its
+             rulings are PENDING WITH THE HUMAN — read § Awaiting a ruling
+             before doing anything else
+last_review: 001 (full, 2026-10-28). 001a was scoped (08-13). The 08-14
+             rulings, 08-15 AR proposals, 08-18 scoped read and the four
+             birth entries are entries, not reviews
+next_review: 002 — quarterly, so not before 2027-01. Earlier only on the
+             human's flag. Its agenda is § Watching in the 001 entry
+proven:      AUDITED. 9 of the 10 pre-bar `proven` patterns fail the
+             independence bar; overhead-ceiling and honest-metric pass. The
+             demotion is PROPOSED (M-1), not applied, because the sentence it
+             conflicts with is in charter.md
+promotions:  1 (honest-metric, 08-18). Births: 4, none since 08-29. Zero
+             births have run a first retro
+dispatched:  nothing since 2026-08-15. No packet drafted at 001, on purpose
+pending:     proposals/2026-08-22-brand-system.md — HOLD until brand-system's
+             status is ruled. galind.io still has no A record (checked 10-28)
 ```
 
-## Read this before you do anything: the cadence warning has fired
+## Read this first: what review 001 found
 
-**This layer has now read the same two repos three times running** — 001a
-(08-13), the goal rulings and AR proposals (08-14/08-15), and the scoped read
-(08-18). The previous version of this file warned against *two*:
+1. **No birth can ever be an independent adopter of a spine invariant.** A
+   system grown from `spine.md` *inherits* the invariants; that is the spine
+   working, not anyone arriving at them again. So the founding patterns can only
+   reach `proven` through a copy's documented re-derivation or a system built
+   without the spine. **The more the generative clock grows, the fewer
+   independent tests of the spine exist.** Neither the thesis nor the charter says
+   this yet.
+2. **Every self-directed system stopped; every employer-driven one kept going.**
+   91% of 984 window commits are zesty-eng-team and mpulse-engage-team.
+   brand-system, personal-university, galind-team, resale-desk, the-debrief and
+   zesty-webengine-team are all quiet 22–73 days. **Do not read that as neglect**
+   — it is item 2 below, for the human.
+3. **`git log` misread four systems.** Uncommitted state at the-debrief (46
+   files), resale-desk (charter + 109 events), galind-team (ticket 001 + an
+   uncommitted product repo), brand-system (8 files, 3 commits never pushed).
+   **Read `git status` as well, every review** (M-3).
+4. **Defining when a retro is due did not make one run, anywhere.** The-debrief
+   printed *"eleven slices overdue"* in its boot-read state and kept working.
+   `/retro` is human-invoked in every system, so the retro clock is the human's
+   attention clock. Engage's new RETRO DUE line (`carried`) is the same mechanism
+   — **expect it to print and not fire.**
+5. **Claim IV is done.** Seventh consecutive hit. What § 3 still catches that no
+   self-audit can: **five of nine Architects have never run.**
 
-> *"Two scoped reviews in a row on the same two repos would be this layer
-> following attention instead of auditing it, which is the inverse of its job and
-> would look like productivity the whole way down."*
+## Awaiting a ruling — the 001 entry, § For the human's ruling
 
-**It made three, and each one produced real findings**, which is exactly why it
-is hard to stop. Measured distribution since 2026-08-14: **84 of 100 commits are
-in zesty-eng-team and mpulse-engage-team.** Four of six systems were unexamined
-for the third consecutive time. personal-university (1 commit) and brand-system
-(3) have not been opened by this layer since 2026-08-13.
+1. **M-1**: the `founding` status, and one clause in `charter.md` § The promotion
+   gate. Until ruled, **the matrix still says `proven` for nine patterns that
+   fail the bar** — do not cite those statuses as evidence.
+2. **Dormant or dead** for the six quiet systems, each with a revisit date if
+   dormant. `systems.md` marks them `active — stopped, unruled` meanwhile.
+3. **The uncommitted work** in four systems. Never touch it from here.
+4. **zesty-webengine-team**: handed over and running elsewhere, or never picked
+   up.
+5. **What the parent briefs of the 2026-10-28 retros carried**, so nothing
+   carried is later counted as independent.
+6. **M-2, M-3, M-4, M-5** — this layer's own files; proposed, not applied.
 
-**The next thing this layer does should be review 001, or nothing.** A fourth
-scoped read of the engineering teams is the failure mode, not the work — however
-good the findings are, and they will be good, because those two repos generate
-findings faster than this layer reads them.
+## What this layer is
 
-## What this layer is now
-
-**Two jobs, two clocks.** This is the 2026-08-10 restatement and the most
-important thing to absorb before doing anything here.
-
-- **Generative, on demand.** New systems are grown from `spine.md`, read as a
-  resource. No cadence, no ceremony, no procedure — deliberately. A scaffold
-  script would freeze one model's understanding into the framework; a stated body
-  of reasoning gets better every time the reader does.
-- **Evolutionary, quarterly.** Proven divergence from the children is carried
-  back into the spine. Slow because evidence accumulates slowly, and because a
-  spine change reaches every system built afterwards.
-
-**Divergence is cheap and local; convergence is expensive and deliberate.**
-
-## What changed on 2026-08-10 (second entry that day)
-
-Not a review. A restatement of purpose by the human, applied to the documents.
-
-- **`spine.md` created** — the generative half, previously implicit in
-  `patterns/`. Names what every system inherits, where systems are expected to
-  differ, and that it is a resource rather than a procedure.
-- **`charter.md` rewritten** — two jobs and two clocks; three named failure modes
-  with tripwires; overhead ceiling now applies to the evolutionary clock only.
-- **The kill condition is removed.** It was correct for a pure observer and wrong
-  for the thing systems are grown from. What replaces it is a bar on action, not
-  existence: the spine does not change until the children have earned it.
-  Reasoning recorded in `charter.md` § On self-judgment and `meta/thesis.md`.
-- **The founding convergence claim is withdrawn as stated.** Four systems built
-  by one person in two days is one derivation repeated, not four independent
-  ones. The `†` skepticism applied to the mPulse copies applies to the original
-  four. The spine survives as a well-motivated hypothesis with no evidence yet —
-  see `meta/thesis.md` § The origin observation.
-- **`patterns/README.md` gained an explicit promotion gate** — `proven` now
-  requires two or more *independent* adopters plus evidence of a changed outcome.
-  **The existing `proven` statuses predate this bar and have not been re-audited
-  against it.**
-- **`meta/architect.md` gained § Steward the spine** and lost the instruction to
-  propose deleting the repo.
+**Two jobs, two clocks.** Generative, on demand: systems are grown from
+`spine.md`, read as a resource. Evolutionary, quarterly: proven divergence is
+carried back. **Divergence is cheap and local; convergence is expensive and
+deliberate.**
 
 ## What exists
 
-The portfolio is **eleven repos**: ten systems plus this layer, all checked out
-under `~/dev/`. **Four were grown from `spine.md` rather than copied** —
-`zesty-webengine-team` (2026-08-19), `galind-team` (08-22), `the-debrief` (08-24)
-and `resale-desk` (08-29). **The last two were grown by sessions running inside
-this layer**, which is why their agreement with a sibling is `carried` and proves
-nothing.
-
-**Three systems have no remote at all** — `galind-team`, `the-debrief` and
-`resale-desk`; creating one is Andres's call in each case. `resale-desk` is the
-one with a reason of its own beyond the permission layer: its event log will hold
-what he paid for things and what he earns reselling them, and a private remote is
-still a copy on someone else's disk.
-
-`galind-team` lives at `~/dev/galind/galind-team`, alongside the `galind-*`
-product repos it will build — **which are subjects, not systems, and none of
-which exists yet.**
-
-Two systems were added on 2026-08-10 — `mpulse-engage-team` and `mpulse-dpi-team`,
-both **copied from zesty-eng-team, not grown from the spine**. That distinction is
-load-bearing: see the `†` note on the adoption matrix. *(Was: "nothing about
-them has been assessed." **Superseded** — both were assessed at 001a, both have
-since run their own retros, and MET now holds patterns its parent lacks.)*
-
-**`personal-university` is PUBLIC. `meta-architecture` is now also PUBLIC.**
-Every other repo in the portfolio is private. **Both are public on purpose**,
-decided by the human on 2026-08-10 with the exposure named and accepted. *(Was:
-"whether either is deliberate is not recorded anywhere." **Superseded** — it is
-recorded, in § Decisions below, and re-opening it as a check is explicitly out
-of bounds.)*
-
-## What happened on 2026-08-09
-
-The layer was created, and three catalog patterns moved between systems the same
-day. Full record in [`meta/architect-log.md`](meta/architect-log.md) review 000.
-
-- **brand-system** gained the Critic (independent adversary), the untrusted-input
-  boundary, and `CYCLE-STATE.md` (handoff record).
-- **personal-university** cut the human half of predict-then-check, and moved its
-  handoff from write-at-close to write-during.
-- **This repo** cut `budget.md` before it was ever filled.
+Eleven repos under `~/dev/`: ten systems and this layer. Four births, all grown
+from the spine (08-19, 08-22, 08-24, 08-29); the last two were grown from inside
+this layer, so their agreement with any sibling is `carried`. Two copies of
+zesty-eng-team (`†`). **Three systems have no remote** — galind-team, the-debrief,
+resale-desk — and creating one is the human's call; resale-desk has its own
+reason not to. `personal-university` and `meta-architecture` are public on
+purpose. `~/dev/living-universe` is a human project, not a system, correctly
+unregistered.
 
 ## Open
 
-Renumbered and re-verified 2026-08-18. Closed items are struck rather than
-deleted — a closed item with its evidence is worth as much as an open one.
+Renumbered 2026-10-28. Closed items keep their evidence.
 
-1. **The `proven` statuses have not been audited against the independence bar.**
-   Eight patterns are `proven` on evidence from four systems now understood to be
-   one derivation repeated. **Review 001's first job, and it is a demotion
-   exercise.** Unchanged since 2026-08-10 and now the oldest open item here.
-   **Newly urgent:** the bar itself gained a third case on 2026-08-18
-   (`carried`), so the re-audit has one more question to ask of every row —
-   *did this adopter arrive at it, inherit it, or get it dispatched from here?*
-2. **F1 — brand-system's README is stale.** Says Session Zero has not been run;
-   the repo has 16 pipeline items, 5 logged decisions, and a reduced Session Zero
-   recorded in `positioning.md` on 2026-08-09. Proposed to that repo's Architect,
-   **still not applied, and this layer has not opened brand-system since
-   2026-08-13.** Do not re-verify it from here as a substitute for review 001.
-3. **The two feedback instruments remain unbuilt.** The human ruled on 2026-08-14
-   that he *is* the external feedback; what is unresolved is instrumenting his
-   miss rate — escape tracking (defects traced to the originating PR) and a
-   calibration sample (one PR per quarter reviewed by a second human).
-   **Partial movement:** MET reported a bucketed escape rate at retro 002 (14
-   caught: 7 blocker, 7 suggestion), **but it still has no feed from defects
-   surfacing after release**, which is the half that measures the human. Review
-   001 packet material.
-4. **The `carried` gate case is written but nothing has been re-audited against
-   it.** Added 2026-08-18 to `patterns/README.md` § The third case, because
-   `executable-claims` had quietly acquired a second adopter that was this
-   layer's own dispatched proposal. **Checked: it changes nothing retroactively**
-   — `honest-metric`'s promotion rests on invention plus documentary
-   re-derivation, neither a carry. Every other row is untested against it, which
-   is item 1.
-5. **mpulse-dpi-team has run zero retros, ever**
-   (`git log --all --oneline | grep -ci retro` → `0`, checked 2026-08-18). Its
-   Architect is the only one in the portfolio that has never executed, and the
-   knowledge-gate candidate in `patterns/README.md` **cannot be graded because
-   the grading step does not exist.** This is *not* a cadence miss — the human
-   ruled the quiet deliberate on 2026-08-14 — but "low cadence" and "the
-   improvement loop has never run" are different facts and only the first was
-   ruled on.
-6. **`single-source-claims` is at `provisional` on day-one evidence and has a
-   retirement test that has not returned.** If neither instrument catches a
-   drifted or struck-but-surviving claim by the end of the next full cycle at ZET
-   and MET, it is prose that made everyone feel careful. MET's shasum assertion
-   is the cheaper one to grade: it either fires or it does not.
-7. **Review 000 failed its own falsifier check** — three of five findings were
-   within reach of a local Architect. 001a came in at five of eight. **The
-   2026-08-18 scoped read came in at two of six**, and the two that were
-   genuinely unavailable locally are both about this layer's own machinery
-   (the gate hole, the two-timezone date slip). **The trend on claim III is
-   down, and it should be read as evidence about claim III rather than smoothed
-   over.**
-8. **Claim IV has taken six consecutive hits and the thesis says to act on two.**
-   `meta/thesis.md`: *"the Architects' self-audits turn out to be accurate and
-   self-critical when checked... Then the audit is redundant and should be cut to
-   a spot check."* Six. **Review 001 should cut § 3 Audit the Architects to a
-   spot check** and stop reporting the hit as news. This is the clearest
-   act-on-your-own-falsifier item in the file.
-9. ~~**This repo has no permission guard.**~~ **Closed 2026-08-14**,
-   `.claude/settings.json` with `Edit`/`Write` denies on `../**` and every child
-   path. **Held as a property since**: the 2026-08-15 AR dispatch was the first
-   run where the boundary held at the settings layer rather than by judgment.
-   Two known limits, both now confirmed by the harness rather than inferred:
-   `Write(...)` deny lines are inert and only `Edit(path)` binds, and
-   `Bash(git commit:*)` does not cover the `git -C . commit` form.
-10. ~~**Seven approved items pending application.**~~ **Closed 2026-08-18 — all
-    seven landed, plus AR-3, verified in the target repos.** This file previously
-    asserted both that they were applied (header) and that they were pending
-    (Next action). The header was right. Item-by-item table with locations and
-    effects is in the final `meta/architect-log.md` entry, § 5.
-11. ~~**mpulse-dpi-team's standing wake-up item.**~~ **Closed 2026-08-18 —
-    discharged at `7888bb3` on 2026-08-14**, four days before this layer looked.
-    All four command files route through `jira.py`; the false PHI-sanitization
-    claim at `take-ticket.md:10` is gone and `:17` now states the truth.
-    **MDT is eligible for proposals again.**
-12. ~~**`charter.md` silent on dispatch.**~~ **Closed 2026-08-14**, amendment
-    applied on the human's explicit instruction.
-13. **A carry-packet is written and undispatched, and it is a new kind.**
-    `proposals/2026-08-22-brand-system.md`. **BF-1 carries a human ruling rather
-    than a proposal** — Andres ruled that Galind takes `galind.io` and
-    `brand-system` moves — which no packet has done before. The mechanism was
-    built for proposals a child Architect may reject on its own evidence, and
-    that is not the standing of a ruling by the person who is also that system's
-    gate. **The packet splits it explicitly** — the ruling is settled, the name,
-    host, timing and file-by-file approach are `brand-system`'s alone — and the
-    failure mode is that the settled half bleeds into the rest. **Grade it as a
-    first attempt at a form this layer has no precedent for**, and if the split
-    does not hold in practice, the finding is about `meta/dispatch.md`, not about
-    the packet.
-
-    **The timing is the reason it was not held for review 001.**
-    `dig +short galind.io A` returns empty — registered, not deployed — so the
-    cost of the move is at its permanent minimum today and rises the day
-    `brand-system/site/` ships. BF-2 in the same packet is an ordinary finding
-    with no authority.
+1. ~~**The `proven` re-audit.**~~ **Done at 001** — result in § 0 of that entry;
+   application awaits M-1.
+2. **brand-system's README is stale** — `README.md:38`, 80 days. Its Architect has
+   never run, so nothing local will catch it.
+3. **The feedback instruments are still unbuilt.** MET reports an escape rate on
+   6 of 80 PRs; nothing anywhere measures what escapes the human after release.
+4. ~~**`carried` re-audit.**~~ **Done at 001**, together with item 1. It added a
+   fourth route, *inherited*.
+5. ~~**mpulse-dpi-team has never run a retro.**~~ **Closed 2026-10-28** — retro 1
+   ran, `0a4f4af`. Its knowledge-gate candidate is graded: filler under 1%,
+   staleness the real failure, gate changed from append to maintain.
+6. **`single-source-claims`** survived its first test at MET (an instrument fired
+   on a drifted claim). One cycle; keep `provisional`.
+7. **Claim III** — the trend reversed. 001 had five of seven findings out of
+   local reach, against two of six at the 08-18 scoped read.
+8. **Claim IV** — acted on in M-2, pending.
+9. ~~Permission guard~~, ~~seven pending items~~, ~~MDT wake-up item~~,
+   ~~dispatch silence~~ — closed earlier; evidence in the log.
+10. **The brand-system packet** is held, not withdrawn.
 
 ## Decisions that constrain the next session
 
@@ -274,113 +137,22 @@ deleted — a closed item with its evidence is worth as much as an open one.
   after the student prediction in personal-university. Both cuts were correct on
   their merits. **The Meta-Architect is the only thing positioned to see a *run*
   of these** — one cut is discipline, a pattern of them is comfort drift with
-  better prose. Watch it at review 001; do not raise it yet, at n=2.
+  better prose. **n=3 as of review 001**: personal-university retired ambient input on 2026-08-20 because the student will not do the step it depended on (`02b2aa7`). Raised in the 001 entry as an observation, not a proposal. Each cut is still correct on its merits.
 - **Never edit a child repo.** Findings go to that system's Architect and the
   human carries them. F2 and F3 were applied this way and it worked. This applies
   to spine changes: a promoted pattern changes what *future* systems inherit and
   does not retrofit itself into existing ones.
 
+- **Never carry domain content across companies.** Review 001 read the Zesty and
+  mPulse retros side by side and wrote only mechanism. Keep it that way.
+
 ## Next action
 
-**Review 001. Or nothing.**
-
-**Unchanged by either birth, and the second birth is the reason to say so
-harder.** Growing `zesty-webengine-team` and `galind-team` was the generative
-clock, which has no cadence and blocks nothing. Neither discharges review 001,
-neither resets the cadence warning, and *"we just built something, let's review"*
-is the named failure mode wearing a new coat. What they do is **take review 001's
-scope to eight systems** and put new questions on its agenda (see below).
-
-**And there is now a shape worth naming.** Two systems founded in four days,
-while the review that came due on 2026-08-13 stayed undischarged, and nothing
-delivered by either. The generative clock is deliberately uncadenced because
-*pulling from the spine costs nothing and should block nothing* — but *"costs
-nothing"* was an argument about the child, not about this layer's attention, and
-founding a system is the most enjoyable thing this repo does. **`charter.md`
-names "building the system instead of using it" as a failure mode and gives it
-the 1% ceiling as a tripwire, which does not apply here** — the ceiling exempts
-generative work by design.
-
-That exemption was written when the count was zero. **Whether it still holds at
-two-in-four-days is a question for review 001**, and it is raised here rather
-than answered, because answering it in the same session that did the founding
-would be the least trustworthy possible moment to decide.
-
-The reason is in the cadence warning at the top of this file: three consecutive reads of the same two repos, 84 of 100
-commits in those two repos, four systems unexamined three times running. **A
-fourth scoped read of the engineering teams would be the named failure mode
-executing itself, and it would produce good findings while doing it.**
-
-When 001 runs, it has an agenda it did not have before, in rough priority:
-
-1. **The `proven` re-audit** (open 1), now with the `carried` question added to
-   every row.
-2. **Cut § 3 Audit the Architects to a spot check** (open 8). Six consecutive
-   hits against a thesis that says act on two. This is the layer applying its own
-   falsifier to itself, which it has not yet done once.
-3. **The four unexamined systems** — personal-university, brand-system,
-   media-log, and mpulse-dpi-team's never-run Architect (open 5). Their
-   Architects are the four still unmeasured. **Where you cannot tell a miss from
-   a deliberate deprioritisation, ask the human. Do not assume the first.**
-4. **The feedback instruments** (open 3) and **brand-system's stale README**
-   (open 2).
-5. **`single-source-claims`' retirement test** (open 6), if a cycle has run at
-   either origin system by then.
-6. **The spine questions the two births raised**, none dispatchable, all
-   labelled as questions rather than proposals:
-   - **`charter-as-constitution` has no account of a charter whose owner is not
-     the repo's owner.** At founding, `zesty-webengine-team` lives under one
-     account and is charted for a different person. Does handover close this, or
-     does the pattern need amending?
-   - **Every system's human gate until now designed the system it gates.** This
-     one's did not, and is doing the engineering as well. The spine assumes a
-     level of correction it has no way to check.
-   - **Two systems now name a gate-shaped failure mode, from opposite causes.**
-     `zesty-webengine-team`'s gate did not design it; `galind-team`'s designed it,
-     owns the domain, and is the only user. Both concluded that a cycle with zero
-     corrections is `unmeasured` rather than clean, **independently and four days
-     apart.** Two independent adopters is what the promotion gate asks for; zero
-     cycles have run at either, which is what it also asks for. Worth a row in the
-     catalog as a candidate, not a promotion.
-   - **`independent-adversary` has now been generalised twice, to two different
-     outputs.** `zesty-eng-team` pointed it at the retro; `galind-team` pointed it
-     at strategy proposals, on the reasoning that a proposal becomes a ruling. The
-     catalog already carries *"every system read the spine's wording as the work
-     pipeline"* as an open question. **Two independent generalisations is
-     evidence the wording, not the pattern, is what is wrong.**
-   - **Does the generative clock's exemption from the overhead ceiling survive
-     two births in four days?** See § Next action.
-7. **Draft a sharper falsifier for the engine, before the new child delivers
-   anything.** The current one fires on zero births and zero promotions; quarter
-   one now has one of each and **neither claim has been tested.** Writing the bar
-   after results are in hand is choosing the target after the shot.
-
-**Two births now, on 2026-08-19 and 2026-08-22, and both were grown rather than
-copied.** `zesty-webengine-team`, targeting `zesty-io/webengine`, for a colleague
-who is its Maintainer. And `galind-team`, at `~/dev/galind/galind-team`, building
-**Galind** — an agent-native backend suite — from a strategy brief.
-
-**The second one is the harder test of claim I and the more uncomfortable data
-point about this layer.** It has no sibling to copy from and no existing product,
-so the spine carried the load unaided; it is also the first system to record
-*declining* a `proven` pattern on the catalog's three tests, with a trigger. And
-it arrived **three days after the first**, which is the part to sit with: the
-generative clock has no cadence by design, and *"no cadence"* and *"as fast as
-enthusiasm allows"* are indistinguishable from inside. **Two births in four days,
-zero delivered work between them, while review 001 stayed undischarged.**
-
-**Do not repeat either as a result.** Between them they have run zero tickets,
-zero work items and zero retros.
-Claim I says a spine-grown system reaches competence *faster than a cold start*,
-and competence is delivered tickets. The count moved; the claim did not. The full
-entry in `meta/architect-log.md` names what would count against claim I — chiefly
-**a large first-retro § Cuts, which would be evidence the spine over-specifies.**
-
-**If another domain appears, grow it the same way.** Copying is the path of least
-resistance and 2026-08-10 demonstrated that twice. **And then ask whether the
-domain appeared or whether it was gone looking for** — that question did not need
-asking at one birth and does at two.
+**Nothing until the human rules on the five items above.** Then apply what he
+approves to this layer's own files, refresh the matrix, and stop. **Review 002 is
+quarterly**; a scoped read of the two busy repos before it is the failure mode
+the old cadence warning named, and the warning still stands.
 
 ```bash
-claude "Read meta/architect.md and run review 001. Full portfolio, eight systems."
+claude "Read HANDOFF.md, apply the rulings recorded for review 001, and stop."
 ```
