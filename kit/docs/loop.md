@@ -34,7 +34,11 @@ The types are:
 | `decision` | A decision, with its reason |
 | `trial` | A DNA trial was taken up |
 
-The ref is the PR, ticket, or change id. **The date is when it happened, not
+The ref is the PR, ticket, or change id. A unit that spans several PRs takes
+its worklog slug as the ref, and is dated when its last PR merged or its last
+act happened. Corrections are `correction` events from 2026-10-29 on, not
+bullets under a worklog's old findings heading, which the scoreboard reads
+only for earlier dates. **The date is when it happened, not
 when it was written.** A late entry still goes at the end of the file, carrying
 its true date, so scores count it in the right window.
 

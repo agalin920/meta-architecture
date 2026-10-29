@@ -87,7 +87,15 @@ def window_end(ch, today):
 
 def judge(ch, end):
     span = end - ch["landed"]
-    before = score.compute(ch["landed"] - span, ch["landed"]).get(ch["measure"], {})
+    start = ch["landed"] - span
+    # A measure whose instrument changed (e.g. S3/S4 from 2026-10-29) is only
+    # compared against data from the same instrument.
+    floor = getattr(score, "INSTRUMENT_SINCE", {}).get(ch["measure"])
+    if floor and start < floor:
+        start = floor
+        if (ch["landed"] - start).days < 7:
+            return "too early", f"fewer than 7 days of {ch['measure']} before the change on the current instrument"
+    before = score.compute(start, ch["landed"]).get(ch["measure"], {})
     after = score.compute(ch["landed"], end).get(ch["measure"], {})
     b, a = before.get("value"), after.get("value")
     if a is None or b is None:
@@ -126,6 +134,9 @@ def main():
             continue
         due += 1
         verdict, why = judge(ch, end)
+        if verdict == "too early":
+            print(f"{ch['id']}: TOO EARLY — {why} — leave it open and re-judge later")
+            continue
         action = "keep; add to lessons.md as a DNA candidate" if verdict == "helped" \
             else f"revert: git revert {commit_of(ch)}  (confirm with change-reviewer first)"
         print(f"{ch['id']}: {verdict.upper()} — {why} — window {ch['landed']}..{end} — {action}")
