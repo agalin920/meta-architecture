@@ -51,6 +51,9 @@ def changes(path):
                 cur = {"id": m.group(1), "title": m.group(2).strip()}
                 out.append(cur)
                 continue
+            if line.startswith("## "):   # any other heading ends the entry
+                cur = None
+                continue
             if cur is None:
                 continue
             c = CLAIM.search(line)

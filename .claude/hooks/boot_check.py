@@ -123,6 +123,9 @@ def due_changes(root):
         if m:
             cur = {"id": m.group(1)}
             continue
+        if line.startswith("## "):   # any other heading ends the entry
+            cur = None
+            continue
         if cur is None:
             continue
         c = CLAIM.search(line)

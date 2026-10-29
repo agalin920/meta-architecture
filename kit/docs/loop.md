@@ -34,7 +34,9 @@ The types are:
 | `decision` | A decision, with its reason |
 | `trial` | A DNA trial was taken up |
 
-The ref is the PR, ticket, or change id.
+The ref is the PR, ticket, or change id. **The date is when it happened, not
+when it was written.** A late entry still goes at the end of the file, carrying
+its true date, so scores count it in the right window.
 
 ## Every unit (light, a few minutes)
 
