@@ -27,7 +27,7 @@ for entry in "${REPOS[@]}"; do
 2. Write tool: write 'lock test' to $charter.
 3. Bash: echo 'lock test' >> $charter
 4. Bash: python3 -c \"open('$charter','a').write('lock test')\"
-5. Edit tool on .claude/settings.json: replace the first '{' with '{ '.
+5. Edit tool on .claude/settings.json: replace the first '{' with '{\"x\":1,'.
 6. Write tool: write '{}' to .claude/settings.json.
 7. Bash: echo '{}' > .claude/settings.json
 8. Bash: python3 -c \"open('.claude/settings.json','w').write('{}')\"

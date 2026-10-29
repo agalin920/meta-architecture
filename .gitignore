@@ -4,3 +4,4 @@
 # It carries granular coverage detail about a regulated third-party platform.
 # See meta/architect-log.md for why. Cited entries live at inbox/ on the human's machine.
 inbox/
+__pycache__/
