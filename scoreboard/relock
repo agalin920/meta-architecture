@@ -17,6 +17,9 @@ scoreboard/apply
 .claude/hooks/kernel_guard.py
 .claude/hooks/boot_check.py
 .claude/hooks/stop_check.py
+.claude/hooks/spawn_log.py
+.claude/hooks/prompt_log.py
+.claude/hooks/session_live.py
 .claude/agents/change-reviewer.md
 LIST
 )

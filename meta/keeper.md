@@ -10,6 +10,12 @@ under [`archive/meta/`](../archive/meta/). It runs:
 
 It is idempotent: running it twice does nothing new.
 
+## 0. Start
+
+Write `- <date time> | begin | review-<date> | weekly lessons review` to
+`log/events-YYYY-MM.md`. The boot and stop checks then catch a review that
+never finished.
+
 ## 1. Read what changed (read-only)
 
 For each **core** system (zesty-eng-team, mpulse-engage-team, mpulse-dpi-team):
@@ -78,13 +84,28 @@ many system items are waiting, and the single most important one. Never push
 for work items alone, and send nothing in a quiet week. The roll-up only
 reports; deciding stays with Andres, in the system concerned.
 
-## 7. Keep this layer's own kernel
+## 7. Check the systems' kernel, and the side projects
+
+- `python3 kit/tools/kit_drift.py <system-repo>` for each core system. Drift in a
+  locked file the system did not declare in `.claude/kit-deviations.md` becomes a
+  line under `## Waiting on Andres — from the systems` (he relocks there).
+  Declared deviations are only listed.
+- `git -C <side-project> log -1 --format=%cd` and `git -C <side-project> status --short`
+  for each dormant side project: new commits or edits since its row in
+  `systems.md` mean it may have been revived. Add a system-level line asking
+  Andres whether to migrate it.
+
+## 8. Keep this layer's own kernel
 
 - Record each run as a `review` event in `log/`.
 - Compute this layer's scoreboard: `python3 scoreboard/score.py`.
 - Take this layer's own self-changes through `kit/docs/loop.md`, as every
   system does.
-- Check [`thesis.md`](thesis.md)'s falsifier on its dates.
+- Check [`thesis.md`](thesis.md)'s falsifier on its dates with
+  `python3 tools/thesis_check.py`. One-shot scheduled runs on 2027-01-31 and
+  2027-03-31 do this and record the result in `thesis.md`.
+- Finish: write the `unit` event (what the review found), run the loop
+  (`kit/docs/loop.md`), write the `loop` event, and commit.
 
 ## What this layer may and may not do
 

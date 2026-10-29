@@ -5,3 +5,5 @@
 # See archive/meta/architect-log.md for why. Cited entries live at inbox/ on the human's machine.
 inbox/
 __pycache__/
+log/raw/
+log/.live/

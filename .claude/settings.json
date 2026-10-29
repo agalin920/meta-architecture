@@ -1,5 +1,5 @@
 {
-  "_comment": "Rewritten 2026-10-28 (REDESIGN.md ruling 9): the blanket ../** deny is revoked so this layer may edit the core systems, logged and reversible. Side projects, datasets and every product, subject or shared-company repo stay denied. The kernel locks protect this layer's own charter, scoreboard, hooks, reviewer and settings. Previous file: archive/.claude/settings.json.",
+  "_comment": "meta-architecture: kernel locks (deny), outside-world actions (ask, Andres approves in the moment), side projects and datasets (deny). Edits to product repos are refused by the guard's EDIT_ROOTS rule, so no product repo is named here (public repo). Previous versions: archive/.claude/settings.json and git history.",
   "permissions": {
     "deny": [
       "Edit(charter.md)",
@@ -9,8 +9,16 @@
       "Edit(.claude/settings.local.json)",
       "Edit(.claude/agents/change-reviewer.md)",
       "Edit(~/.claude/settings.json)",
-      "Bash(scoreboard/relock*)",
-      "Bash(./scoreboard/relock*)",
+      "Write(charter.md)",
+      "Write(scoreboard/**)",
+      "Write(.claude/hooks/**)",
+      "Write(.claude/settings.json)",
+      "Write(.claude/settings.local.json)",
+      "Write(.claude/agents/change-reviewer.md)",
+      "Write(~/.claude/settings.json)",
+      "Bash(*scoreboard/apply*)",
+      "Bash(*scoreboard/relock*)",
+      "Bash(*./relock*)",
       "Edit(../personal-university/**)",
       "Edit(../brand-system/**)",
       "Edit(../media-log/**)",
@@ -18,82 +26,95 @@
       "Edit(../resale-desk/**)",
       "Edit(../galind/**)",
       "Edit(../living-universe/**)",
-      "Edit(../zestyio/zesty-webengine-team/**)",
-      "Edit(../zestyio/app-freestyle/**)",
-      "Edit(../zestyio/app-google-analytics-ga4/**)",
-      "Edit(../zestyio/app-sdk/**)",
-      "Edit(../zestyio/claude/**)",
-      "Edit(../zestyio/instances-api/**)",
-      "Edit(../zestyio/manager-ui/**)",
-      "Edit(../zestyio/manager-ui-wt/**)",
-      "Edit(../zestyio/material/**)",
-      "Edit(../zestyio/nextjs-app-starter/**)",
-      "Edit(../zestyio/nextjs-starter/**)",
-      "Edit(../zestyio/nextjs-v13-starter/**)",
-      "Edit(../zestyio/nextjs-v14-starter/**)",
-      "Edit(../zestyio/nextjs-website/**)",
-      "Edit(../zestyio/react-app-loader/**)",
-      "Edit(../zestyio/studio-bridge/**)",
-      "Edit(../zestyio/studio-bridge-wt/**)",
-      "Edit(../zestyio/website/**)",
-      "Edit(../zestyio/zesty-org/**)",
-      "Edit(../mpulsemobile/.claude/**)",
-      "Edit(../mpulsemobile/.worktrees/**)",
-      "Edit(../mpulsemobile/agentic-development-tools/**)",
-      "Edit(../mpulsemobile/agentic-product-development/**)",
-      "Edit(../mpulsemobile/agentic-product-development-rml-review/**)",
-      "Edit(../mpulsemobile/apollo/**)",
-      "Edit(../mpulsemobile/apollo-wt-25031/**)",
-      "Edit(../mpulsemobile/apollo-wt-qa-report/**)",
-      "Edit(../mpulsemobile/chaos/**)",
-      "Edit(../mpulsemobile/charites/**)",
-      "Edit(../mpulsemobile/command-center/**)",
-      "Edit(../mpulsemobile/content-service/**)",
-      "Edit(../mpulsemobile/devops-cicd/**)",
-      "Edit(../mpulsemobile/devops-cicd-comment-flagged/**)",
-      "Edit(../mpulsemobile/dpi/**)",
-      "Edit(../mpulsemobile/dpi_analytics_dbt/**)",
-      "Edit(../mpulsemobile/email-gateway/**)",
-      "Edit(../mpulsemobile/hermes/**)",
-      "Edit(../mpulsemobile/hxi-data-pipelines/**)",
-      "Edit(../mpulsemobile/inventory/**)",
-      "Edit(../mpulsemobile/ivr-dialer/**)",
-      "Edit(../mpulsemobile/ivr-gateway/**)",
-      "Edit(../mpulsemobile/launchpad/**)",
-      "Edit(../mpulsemobile/link-shorten-service/**)",
-      "Edit(../mpulsemobile/link-shorten-service-wt-verify/**)",
-      "Edit(../mpulsemobile/member-message-service/**)",
-      "Edit(../mpulsemobile/member-service-api/**)",
-      "Edit(../mpulsemobile/mobileweb-frontends/**)",
-      "Edit(../mpulsemobile/morpheus/**)",
-      "Edit(../mpulsemobile/mpulse-adr/**)",
-      "Edit(../mpulsemobile/mpulse-design-system/**)",
-      "Edit(../mpulsemobile/nlu-library/**)",
-      "Edit(../mpulsemobile/platform/**)",
-      "Edit(../mpulsemobile/platform-auth/**)",
-      "Edit(../mpulsemobile/platform-java/**)",
-      "Edit(../mpulsemobile/program-manager-apis/**)",
-      "Edit(../mpulsemobile/q3-planning/**)",
-      "Edit(../mpulsemobile/qa-automation/**)",
-      "Edit(../mpulsemobile/report-service/**)",
-      "Edit(../mpulsemobile/scheduler-service/**)",
-      "Edit(../mpulsemobile/sms-gateway/**)",
-      "Edit(../mpulsemobile/snowflake-load-testing/**)",
-      "Edit(../mpulsemobile/sso-service/**)",
-      "Edit(../mpulsemobile/web-experience-api/**)",
-      "Edit(../mpulsemobile/web-experience-api-wt-verify/**)",
-      "Edit(../mpulsemobile/web-experience-frontend/**)",
-      "Edit(../mpulsemobile/web-experience-frontend-wt-verify/**)",
-      "Bash(git -C ../* push*)",
-      "Bash(git -C ../* merge*)",
-      "Bash(git -C ../* reset*)",
-      "Bash(git -C ../* rebase*)",
-      "Bash(git push*)",
-      "Bash(git merge*)",
+      "Edit(../zestyio/zesty-webengine-team/**)"
+    ],
+    "ask": [
       "Bash(gh pr merge*)",
       "Bash(gh api *merge*)",
-      "Bash(scoreboard/apply*)",
-      "Bash(./scoreboard/apply*)"
+      "Bash(git push *--force*)",
+      "Bash(git push * -f*)",
+      "Bash(git push *--mirror*)",
+      "Bash(git push *--all*)",
+      "Bash(git push *--delete*)",
+      "Bash(git push * -d *)",
+      "Bash(git -C * push *--force*)",
+      "Bash(git -C * push * -f*)",
+      "Bash(git -C * push *--mirror*)",
+      "Bash(git -C * push *--all*)",
+      "Bash(git -C * push *--delete*)",
+      "Bash(git -C * push * -d *)",
+      "Bash(git -C ../* push * main)",
+      "Bash(git -C ../* push * main *)",
+      "Bash(git -C ../* push *:main)",
+      "Bash(git -C ../* push *:main *)",
+      "Bash(git -C ../* push * master)",
+      "Bash(git -C ../* push * master *)",
+      "Bash(git -C ../* push *:master)",
+      "Bash(git -C ../* push *:master *)",
+      "Bash(git -C ../* push * develop)",
+      "Bash(git -C ../* push * develop *)",
+      "Bash(git -C ../* push *:develop)",
+      "Bash(git -C ../* push *:develop *)",
+      "Bash(git -C ../* push * dev)",
+      "Bash(git -C ../* push * dev *)",
+      "Bash(git -C ../* push *:dev)",
+      "Bash(git -C ../* push *:dev *)",
+      "Bash(git -C ../* push * stage)",
+      "Bash(git -C ../* push * stage *)",
+      "Bash(git -C ../* push *:stage)",
+      "Bash(git -C ../* push *:stage *)",
+      "Bash(git -C ../* push * beta)",
+      "Bash(git -C ../* push * beta *)",
+      "Bash(git -C ../* push *:beta)",
+      "Bash(git -C ../* push *:beta *)",
+      "Bash(git -C ../* push * stable)",
+      "Bash(git -C ../* push * stable *)",
+      "Bash(git -C ../* push *:stable)",
+      "Bash(git -C ../* push *:stable *)",
+      "Bash(git -C ../* push * production)",
+      "Bash(git -C ../* push * production *)",
+      "Bash(git -C ../* push *:production)",
+      "Bash(git -C ../* push *:production *)",
+      "Bash(git -C ../* push * release/*)",
+      "Bash(git -C ../* push * release/* *)",
+      "Bash(git -C ../* push *:release/*)",
+      "Bash(git -C ../* push *:release/* *)",
+      "Bash(git push * master)",
+      "Bash(git push * master *)",
+      "Bash(git push *:master)",
+      "Bash(git push *:master *)",
+      "Bash(git push * develop)",
+      "Bash(git push * develop *)",
+      "Bash(git push *:develop)",
+      "Bash(git push *:develop *)",
+      "Bash(git push * dev)",
+      "Bash(git push * dev *)",
+      "Bash(git push *:dev)",
+      "Bash(git push *:dev *)",
+      "Bash(git push * stage)",
+      "Bash(git push * stage *)",
+      "Bash(git push *:stage)",
+      "Bash(git push *:stage *)",
+      "Bash(git push * beta)",
+      "Bash(git push * beta *)",
+      "Bash(git push *:beta)",
+      "Bash(git push *:beta *)",
+      "Bash(git push * stable)",
+      "Bash(git push * stable *)",
+      "Bash(git push *:stable)",
+      "Bash(git push *:stable *)",
+      "Bash(git push * production)",
+      "Bash(git push * production *)",
+      "Bash(git push *:production)",
+      "Bash(git push *:production *)",
+      "Bash(git push * release/*)",
+      "Bash(git push * release/* *)",
+      "Bash(git push *:release/*)",
+      "Bash(git push *:release/* *)",
+      "Bash(curl -X DELETE*)",
+      "Bash(curl -X PURGE*)",
+      "Bash(curl * -X DELETE*)",
+      "Bash(curl * -X PURGE*)"
     ]
   },
   "hooks": {
@@ -103,6 +124,30 @@
           {
             "type": "command",
             "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/boot_check.py\""
+          },
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/session_live.py\""
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/session_live.py\""
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/prompt_log.py\""
           }
         ]
       }
@@ -114,6 +159,17 @@
           {
             "type": "command",
             "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/kernel_guard.py\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Task|Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/spawn_log.py\""
           }
         ]
       }

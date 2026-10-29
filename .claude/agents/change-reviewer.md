@@ -40,14 +40,20 @@ CHANGELOG entry, and for a compaction the output of
    you. It must not loosen a hard line or anything Andres gates: merging,
    pushing to shared remotes, CI or workflows, credentials, outside messages,
    deleting data, patient data. It must not weaken the loop, rollback, the
-   changelog, or memory commits.
+   changelog, or memory commits. A `maintenance none` claim must list every
+   file it touches (`files: a,b`) and the list must match the diff; if it
+   names a behaviour file (`CLAUDE.md`, `docs/`, `.claude/commands`,
+   `.claude/agents`), confirm line by line that no behaviour changed, or
+   require a scored claim instead.
 6. **Public repo.** This repo is public. Reject anything that names an
    employer's tickets, PR numbers, tracker keys, products, repos, files,
    practices or regulators, or carries domain content from one company toward
    another. Lessons are mechanism only.
 7. **Size.** Does it keep the boot read path within budget? A change that only
    adds is suspect. Ask what it replaces. A change to `.claude/boot-path.txt`
-   must list exactly what `CLAUDE.md` tells a session to read at boot.
+   must list exactly what `CLAUDE.md` tells a session to read at boot. For a
+   maintenance claim, the size of the diff must fit "maintenance": a large
+   rewrite of a behaviour file is not maintenance.
 
 ## Your verdict
 
@@ -55,7 +61,7 @@ Exactly one, first line:
 
 - `LAND` — routine and clearly beneficial, or maintenance that loses nothing.
 - `ESCALATE` — you are unsure, or it touches anything in check 5. It goes to
-  Andres under "Waiting on Andres: system" in HANDOFF.md, with your reasoning.
+  Andres under "Waiting on Andres: system" in state.md, with your reasoning.
 - `REJECT` — wrong, unsupported, duplicates an existing rule, or loses a fact.
   Say what would make it landable. If the change is sound but no current
   measure can see its effect, say so: the session may write a scoreboard
@@ -68,3 +74,4 @@ commit.
 
 Your track record is kept. Changes you landed that were later reverted as
 *worse* count against you in "what has changed?".
+Your decisions are logged as `reviewed` events and scored in `tools/crew_report.py`.

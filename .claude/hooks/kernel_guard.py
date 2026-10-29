@@ -2,25 +2,37 @@
 """
 PreToolUse hook: the kernel's locks, enforced by the harness rather than prose.
 
-Two jobs:
-  1. LOCKS. Refuse any Edit/Write to a locked path, and any Bash command that
-     names a locked path and looks like it writes. Locked = the charter, the
-     scoreboard, the hooks, the reviewer, and the settings files.
-  2. MARKER. Refuse any agent-posted GitHub body (PR, comment, review, issue)
-     that lacks this system's marker. Andres posts from the same account, so
-     the marker is the only way the scoreboard can tell his words from ours.
+Two outcomes besides allow (Andres ruled 2026-10-29):
+
+  deny  flatly refused, even with his approval in the moment:
+        - writes to locked files (any spelling, any case);
+        - running scoreboard/apply or scoreboard/relock, or applying a
+          log/pending/S-* patch (those are his, in his own terminal);
+        - an agent-posted GitHub body without this system's marker. That one is
+          a correctness rule, not a gate: fix the body and retry.
+  ask   a permission prompt Andres approves in the moment (outside-world acts):
+        - pushes to another repo's protected branches;
+        - force, --all, --mirror and delete pushes, in any repo, this one included;
+        - gh pr merge; gh api writes to refs, contents, merges, branches,
+          releases or settings, and any DELETE; GraphQL mutations that merge,
+          close or move refs;
+        - curl PURGE/DELETE/POST/PUT to a non-localhost host;
+        - docker exec/run against a database container.
 
 This cannot stop every spelling of a write: a shell can always build a path the
 guard does not anticipate. scoreboard/lock.sha256 and the boot check are the
 tripwire for that case. Locks make tampering hard; the tripwire makes it loud.
 
-Configure the three constants below per system. This file is itself locked.
+Configure the constants below per system. This file is itself locked.
 """
 
 import json
 import os
+import fnmatch
 import re
+import subprocess
 import sys
+from urllib.parse import urlsplit
 
 # --- per-system configuration ------------------------------------------------
 SYSTEM = "meta-architecture"
@@ -33,6 +45,15 @@ LOCKED = [                                  # relative to the repo root
     ".claude/settings.local.json",
     ".claude/agents/change-reviewer.md",
 ]
+# Branches of OTHER repos this system must never push to (any spelling). Its own
+# repo is exempt (pushing its own main is how memory reaches the remote).
+PROTECTED = ["main", "master", "develop", "dev", "stage", "beta", "stable", "production", "release/*"]
+# meta-architecture only (declared in .claude/kit-deviations.md): file edits are
+# allowed in this repo and the three core systems, and nowhere else. This replaces
+# a list of every product repo by name, which a public repo should not carry.
+DEV = os.path.expanduser("~/dev")
+EDIT_ROOTS = [os.path.join(DEV, p) for p in (
+    "meta-architecture", "zestyio/zesty-eng-team", "mpulsemobile/mpulse-engage-team", "mpulsemobile/mpulse-dpi-team")]
 # -----------------------------------------------------------------------------
 
 HOME_LOCKED = [os.path.expanduser("~/.claude/settings.json")]
@@ -43,7 +64,7 @@ WRITE_SIGNS = re.compile(
       (?<![0-9&])>(?!\s*/dev/null)(?!&)     # redirection, except to /dev/null or fd dup
     | \btee\b | \bsed\s+(-[a-zA-Z]*\s+)*-[a-zA-Z]*i | \bperl\b.*\s-[a-zA-Z]*i
     | \b(mv|cp|rm|rmdir|ln|chmod|chown|chflags|touch|truncate|dd|install|rsync|unlink|patch|ed|ex|vi|vim|nano)\b
-    | \bgit\s+(checkout|restore|reset|rm|mv|apply|am|stash|clean|update-index|filter-branch|filter-repo|cherry-pick|merge|rebase|commit\s+.*--amend)\b
+    | \bgit\s+(?:-C\s+\S+\s+)*(checkout|restore|reset|rm|mv|apply|am|stash|clean|update-index|filter-branch|filter-repo|cherry-pick|merge|rebase|commit\s+.*--amend)\b
     | \b(python3?|node|ruby|perl|osascript|bash|sh|zsh|awk|deno|bun)\b
     """,
     re.VERBOSE,
@@ -52,7 +73,8 @@ WRITE_SIGNS = re.compile(
 # Reads and the kernel's own scripts that legitimately mention locked paths.
 READ_OK = re.compile(
     r"^\s*(?:cd\s+\S+\s*&&\s*)?(?:/\S*/)?python3\s+(?:\./)?"
-    r"(?:scoreboard/(?:score|verdicts)\.py|\.claude/hooks/boot_check\.py)\b(?![^;&|>]*--baseline)[^;&|>]*$"
+    r"(?:scoreboard/(?:score|verdicts)\.py|\.claude/hooks/boot_check\.py)\b(?![^;&|>]*--baseline)[^;&|>]*"
+    r"(?:>\s*log/scores/[\w.-]+\.txt\s*)?$"     # the loop saves score snapshots here
 )
 
 GH_POST = re.compile(
@@ -73,6 +95,26 @@ def deny(reason):
     sys.exit(0)
 
 
+ASKS = []
+
+
+def ask(reason):
+    """Outside-world act: Andres approves it in the moment. A deny found later still wins."""
+    ASKS.append(reason)
+
+
+def finish():
+    if ASKS:
+        print(json.dumps({
+            "hookSpecificOutput": {
+                "hookEventName": "PreToolUse",
+                "permissionDecision": "ask",
+                "permissionDecisionReason": " ".join(dict.fromkeys(ASKS)),
+            }
+        }))
+    sys.exit(0)
+
+
 def project_dir(payload):
     return os.environ.get("CLAUDE_PROJECT_DIR") or payload.get("cwd") or os.getcwd()
 
@@ -83,8 +125,10 @@ def locked_abs(root):
 
 
 def is_locked_file(path, root):
-    target = os.path.realpath(os.path.join(root, os.path.expanduser(path)))
+    # Compare case-folded: macOS filesystems are case-insensitive, so CHARTER.md is charter.md.
+    target = os.path.realpath(os.path.join(root, os.path.expanduser(path))).casefold()
     for lp, rel in zip(locked_abs(root), LOCKED + HOME_LOCKED):
+        lp = lp.casefold()
         if rel.endswith("/"):
             if target == lp or target.startswith(lp.rstrip("/") + "/"):
                 return rel
@@ -94,26 +138,152 @@ def is_locked_file(path, root):
 
 
 def names_locked(cmd):
+    cmd = cmd.casefold()
     hits = []
     for rel in LOCKED + ["~/.claude/settings.json", ".claude/settings"]:
-        key = rel.rstrip("/")
+        key = rel.rstrip("/").casefold()
         base = os.path.basename(key)
         # Bare file names count too (a session may have cd'd), but only
         # distinctive ones: "settings.json" alone is too common to lock.
         bare = "." in base and base != "settings.json" and base in cmd
         if key in cmd or bare:
             hits.append(rel)
-    if re.search(r"\brelock\b", cmd):
-        hits.append("scoreboard/relock")
     return hits
 
 
+def segments(cmd):
+    """Split a shell command into simple commands (good enough for a guard)."""
+    return [x for x in re.split(r"&&|\|\||[;|\n]|\$\(|`", cmd) if x.strip()]
+
+
+def runs_kernel_script(cmd):
+    """Is relock or apply being executed (not merely read), by any spelling?"""
+    wrappers = {"bash", "sh", "zsh", "exec", "env", "command", "nohup", "time", "sudo", "xargs", "source", "."}
+    for seg in segments(cmd):
+        toks = seg.strip().split()
+        while toks and (re.match(r"^\w+=", toks[0]) or toks[0] in wrappers or toks[0].startswith("-")):
+            toks = toks[1:]
+        if not toks:
+            continue
+        t = toks[0].strip("'\"")
+        base = os.path.basename(t)
+        if base == "relock" or (base == "apply" and "/" in t and ("scoreboard" in t or "scoreboard" in cmd)):
+            return base
+    return None
+
+
+def is_protected(branch):
+    b = branch.replace("refs/heads/", "").strip("'\"")
+    return any(fnmatch.fnmatch(b, p) for p in PROTECTED)
+
+
+def check_push(cmd, root):
+    """Force, mirror, all and delete pushes anywhere, and pushes to another repo's protected branches: ask."""
+    for seg in segments(cmd):
+        m = re.search(r"\bgit\b((?:\s+-[Cc]\s+\S+)*)\s+push\b(.*)$", seg)
+        if not m:
+            continue
+        args = m.group(2).split()
+        flags = [a for a in args if a.startswith("-")]
+        pos = [a for a in args if not a.startswith("-")]
+        if any(f in ("-f", "-d", "--all", "--mirror", "--delete", "--prune") or f.startswith("--force") for f in flags) \
+                or any(r.startswith(("+", ":")) for r in pos[1:]):
+            ask("A force, mirror, --all or delete push rewrites or removes history on a shared remote. "
+                "Andres approves it in the moment.")
+        cd = re.search(r"-C\s+(\S+)", m.group(1))
+        if cd:
+            d = cd.group(1)
+        else:
+            before = cmd[:cmd.find(seg)]
+            cds = re.findall(r"\bcd\s+(\S+)", before)
+            d = cds[-1] if cds else "."
+        d = os.path.realpath(os.path.join(root, os.path.expanduser(d.strip("'\""))))
+        if d == os.path.realpath(root):
+            continue                                  # this system's own repo
+        targets = [r.split(":")[-1] for r in pos[1:]]
+        if not targets:
+            try:
+                targets = [subprocess.run(["git", "-C", d, "rev-parse", "--abbrev-ref", "HEAD"],
+                                          capture_output=True, text=True, timeout=5).stdout.strip()]
+            except Exception:
+                targets = ["(unknown)"]
+        for t in targets:
+            if t in ("HEAD", "(unknown)", "") or is_protected(t):
+                ask(f"Pushing to '{t or '(unknown)'}' of {os.path.basename(d)}: protected branches of other repos "
+                    f"are Andres's to approve. A feature branch pushed by name needs no approval.")
+
+
+GH_WRITE_PATHS = re.compile(r"git/refs|/contents/|/merges\b|/merge\b|/branches/|/rulesets|/hooks|/collaborators|"
+                            r"/actions/|/environments|/deployments|/releases|/settings|/keys\b|/secrets|/pages\b")
+GQL_MOVES = re.compile(r"merge|deleteRef|updateRef|createRef|updateRefs|closePullRequest|closeIssue|reopen|delete|"
+                       r"dismiss|enablePullRequestAutoMerge|transfer|archive", re.I)
+
+
+def check_gh_writes(cmd):
+    """gh may read, comment and review freely. Merges, ref moves, content writes and deletes: ask."""
+    for seg in segments(cmd):
+        if re.search(r"\bgh\s+pr\s+merge\b", seg):
+            ask("gh pr merge ships code. Andres approves merges in the moment.")
+        if not re.search(r"\bgh\s+api\b", seg):
+            continue
+        if re.search(r"\bgraphql\b", seg) and re.search(r"\bmutation\b", seg, re.I):
+            if GQL_MOVES.search(seg):
+                ask("This GraphQL mutation merges, moves refs, closes or deletes. Andres approves it in the moment.")
+            continue
+        mm = re.search(r"(?:-X|--method)\s*=?\s*([A-Za-z]+)", seg)
+        method = mm.group(1).upper() if mm else (
+            "POST" if re.search(r"\s(-f|-F|--field|--raw-field|--input)\b", seg) else "GET")
+        if method == "GET":
+            continue
+        repo_settings = re.search(r"(?:^|\s)/?(?:repos/[^/\s]+/[^/\s]+|orgs/[^/\s]+)/?(?=\s|$)", seg)
+        if method == "DELETE" or GH_WRITE_PATHS.search(seg) or repo_settings:
+            ask("gh api writes to refs, contents, merges, branches, releases or settings, and any DELETE, "
+                "are Andres's to approve in the moment.")
+
+
+LOCAL_HOSTS = re.compile(r"^(?:localhost|127\.\d+\.\d+\.\d+|::1|0\.0\.0\.0|[\w.-]+\.(?:localhost|test))$", re.I)
+DB_SIGNS = re.compile(r"postgres|psql|pg_|mysql|maria|mongo|redis|\bdb\b|[-_]db\b|\bdb[-_]|database|sql|clickhouse|"
+                      r"cassandra|cockroach|elastic|opensearch|dynamo|couch|neo4j|influx", re.I)
+
+
+def curl_hosts(seg):
+    hosts = []
+    for tok in seg.split():
+        tok = tok.strip("'\"")
+        if "://" in tok:
+            hosts.append(urlsplit(tok).hostname or "")
+        elif re.match(r"^(?:localhost|[\w-]+(?:\.[\w-]+)*\.[A-Za-z]{2,}|\d+\.\d+\.\d+\.\d+)(?::\d+)?(?:/|$)", tok):
+            hosts.append(re.split(r"[:/]", tok)[0])
+    return hosts
+
+
+def check_outside_writes(cmd):
+    """curl writes to the outside world, and docker exec/run against databases: ask."""
+    for seg in segments(cmd):
+        if re.search(r"\bcurl\b", seg):
+            mm = re.search(r"(?:-X|--request)\s*=?\s*['\"]?([A-Za-z]+)", seg)
+            method = mm.group(1).upper() if mm else (
+                "POST" if re.search(r"\s(-d|--data[\w-]*|-F|--form|--json|-T|--upload-file)\b", seg) else "GET")
+            if method in ("PURGE", "DELETE", "POST", "PUT", "PATCH"):
+                hosts = curl_hosts(seg)
+                # No recognisable host (a $URL variable, say) counts as outside.
+                if not hosts or not all(LOCAL_HOSTS.match(h) for h in hosts):
+                    ask(f"curl {method} to a non-local host changes something in the outside world. "
+                        f"Andres approves it in the moment.")
+        if re.search(r"\bdocker(?:\s+compose|-compose)?\s+(?:container\s+)?(?:exec|run)\b", seg) and DB_SIGNS.search(seg):
+            ask("docker exec/run against a database container can change or read data Andres guards. "
+                "He approves it in the moment.")
+
+
 def check_marker(cmd, root):
-    if not GH_POST.search(cmd) or not BODY_SIGNS.search(cmd):
+    pr_create = re.search(r"\bgh\s+pr\s+create\b", cmd)
+    graphql_post = re.search(r"\bgh\s+api\s+graphql\b", cmd) and re.search(r"\bmutation\b", cmd, re.I) \
+        and re.search(r"\bbody\b", cmd)
+    if not pr_create and not graphql_post and (not GH_POST.search(cmd) or not BODY_SIGNS.search(cmd)):
         return
-    if cmd.startswith("gh api") and not re.search(r"(comments|reviews|issues|pulls|replies)", cmd):
+    if not pr_create and not graphql_post and cmd.startswith("gh api") and not re.search(r"(comments|reviews|issues|pulls|replies)", cmd):
         return
-    if re.search(r"\bgh\s+api\b", cmd) and not re.search(r"(-X\s*(POST|PATCH|PUT)|--method\s+(POST|PATCH|PUT)|\s-f\s|\s-F\s|--field|--raw-field|--input)", cmd):
+    if not graphql_post and re.search(r"\bgh\s+api\b", cmd) and not re.search(r"(-X\s*(POST|PATCH|PUT)|--method\s+(POST|PATCH|PUT)|\s-f\s|\s-F\s|--field|--raw-field|--input)", cmd):
         return
     if MARKER in cmd:
         return
@@ -140,6 +310,11 @@ def main():
 
     if tool in ("Edit", "Write", "MultiEdit", "NotebookEdit"):
         path = inp.get("file_path") or inp.get("notebook_path") or ""
+        target = os.path.realpath(os.path.join(root, os.path.expanduser(path))) if path else ""
+        if target and target.startswith(DEV + "/") and not any(
+                target == r or target.startswith(r + "/") for r in EDIT_ROOTS):
+            deny("From meta-architecture, edits are allowed only here and in the three core systems. "
+                 "Side projects, datasets and product repos are not this layer's to change.")
         hit = is_locked_file(path, root) if path else None
         if hit:
             deny(f"{hit} is locked. Andres owns it; agents cannot change it. "
@@ -148,10 +323,11 @@ def main():
 
     if tool == "Bash":
         cmd = inp.get("command", "")
-        if re.search(r"(^|[\s/;&|])relock\b", cmd):
+        ran = runs_kernel_script(cmd)
+        if ran == "relock":
             deny("scoreboard/relock is Andres's to run, in his own terminal. "
                  "A session that could relock could hide its own edit to a locked file.")
-        if re.search(r"(^|[\s;&|.])(\./)?scoreboard/apply\b", cmd) or (
+        if ran == "apply" or (
                 re.search(r"log/pending/S-\d+", cmd) and re.search(r"\b(git\s+(apply|am)|patch)\b", cmd)):
             deny("Applying a charter or scoreboard proposal is Andres's step: he runs scoreboard/apply S-NNN "
                  "in his own terminal. Leave the proposal under 'Waiting on Andres'.")
@@ -160,7 +336,10 @@ def main():
             deny(f"This command touches a locked path ({', '.join(sorted(set(hits)))}) and looks like it "
                  f"could write. Locked files are Andres's. Reading them with cat/grep/git log is fine.")
         check_marker(cmd, root)
-    sys.exit(0)
+        check_push(cmd, root)
+        check_gh_writes(cmd)
+        check_outside_writes(cmd)
+    finish()
 
 
 if __name__ == "__main__":
