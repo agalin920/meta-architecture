@@ -35,13 +35,37 @@ Nothing waiting.
 ## Waiting on Andres — from the systems
 
 Rewritten by every weekly lessons review (`meta/keeper.md` § 6). Last run:
-2026-10-29, the first review, run in a session at Andres's request.
+2026-10-29 09:30, the scheduled run. No `LOCK BROKEN`: every boot check printed
+"Locks intact". Kit drift: 0 undeclared in all three (`docs/loop.md` evolved,
+system-owned). No side project revived (no commits since their registry rows).
 
-- **System-level: nothing waiting** in any core system. No `LOCK BROKEN`, no
-  open proposals, no escalated self-changes. No push sent.
-- zesty-eng-team: 6 work items, none older than 14 days.
-- mpulse-engage-team: 5 work items, none older than 14 days.
-- mpulse-dpi-team: 14 work items, none older than 14 days.
+**System-level: 2 waiting.** Push attempted; not delivered (Remote Control inactive).
+
+- **zesty-eng-team · S-001 (charter, open):** name a second product repo the
+  system has already been working on in the charter's roster, or confirm it is
+  out of scope (if declined, the system denies edits there and hands its two
+  open PRs back). Approve: `scoreboard/apply S-001` in that repo.
+- **mpulse-dpi-team · scope question** (`state.md` § Waiting on Andres: system):
+  do two open PRs on repos outside its roster count as its work? Its score
+  snapshot already counts two of them among merged PRs.
+
+**Stale in the systems' own lists** (resolved by your relock commits at 08:26;
+each system's next session should clear them, nothing for you to do):
+- zesty-eng-team: "relock owed", "charter line now false" and "reviewer is the
+  kit v1 copy". Checked: boot "Locks intact (16 files)"; the carry-over line is
+  gone from `docs/charter.md`; `change-reviewer.md` matches the kit.
+- mpulse-engage-team: "settings.json not written" and "ask, not forbid not
+  applied". Checked: `settings.json` has 121 ask rules and the six kit hook
+  events; charter line 52 reads "without Andres's approval in the moment".
+
+**Work lists (counts only):**
+- zesty-eng-team: 6 work items, 2 older than 14 days.
+- mpulse-engage-team: 5 work items, 4 older than 14 days.
+- mpulse-dpi-team: 14 work items, 8 older than 14 days.
+
+Also seen, for the systems' own loops: engage and dpi report a deeper pass due
+(a new escape and S2 above baseline in their first snapshots), and dpi's boot
+asks for an `env` event for a changed local settings file.
 
 ## Last asked
 

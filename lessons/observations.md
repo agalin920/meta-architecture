@@ -18,6 +18,8 @@ Side-project refs are to the working tree on 2026-10-28; *(u)* = uncommitted.
 - Unreviewed instruction channels (auto-memory, gitignored local settings) accrete grants ad hoc — `zesty-eng-team: docs/team-log.md` Open with Director (I)
 - Transcripts are incomplete and the system prompt is not stored; claims about instructions are graded "unverified" — `zesty-eng-team: .claude/agents/architect.md` §4b (A)
 - Read a one-letter answer to a two-option question back before rewriting rules — `zesty-eng-team: docs/decision-log.md` (2026-08-19) (I)
+- A hand-written "waiting on the human" list goes stale the moment the human acts outside the session: 5 of 7 system items in two systems were already resolved by the human's own relock commits about 20 minutes after they were written, yet still listed. Lock-related waiting items could be re-derived from the lock check instead of kept as prose — weekly review 2026-10-29b, checks in each repo (I)
+- Day one of the loop: merged PRs far outnumber `unit` events (10:5, 39:2, 52:1 over the last 30 days), so most work still runs outside the loop; the boot check flags it but nothing yet makes it fire — each system's 2026-10-29 boot check (I)
 - Ask the human one question with the finding stated, not a batch of questions (rejected three times) — `zesty-eng-team` ticket worklog, process note (I)
 - "Cannot run" was claimed for a gate whose tool was available — `mpulse-engage-team: docs/definition-of-done.md` §4 (I)
 - A rule contradicted the repo's own git history for two retros; read docs against the git log, not only against output — `mpulse-engage-team: docs/decision-log.md` (D-024) (I)

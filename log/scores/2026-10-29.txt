@@ -2,6 +2,6 @@ Meta scoreboard, last 30 days to 2026-10-29
   M1 zesty-eng-team: S1 flat, S2 better, S3 better, S4 no data, G1 better
   M1 mpulse-engage-team: S1 flat, S2 worse, S3 better, S4 no data, G1 better
   M1 mpulse-dpi-team: S1 better, S2 worse, S3 better, S4 no data, G1 better
-  M2 escalations/system/week: 0.23  {'zesty-eng-team': 0.0, 'mpulse-engage-team': 0.45, 'mpulse-dpi-team': 0.23}
+  M2 escalations/system/week: 0.68  {'zesty-eng-team': 0.45, 'mpulse-engage-team': 0.9, 'mpulse-dpi-team': 0.68}
   M3 playbook: {'founding': 8, 'candidate': 16, 'proven': 0, 'retired': 9, 'open_trials': 0}
   M4 reverted/judged: 0/0
