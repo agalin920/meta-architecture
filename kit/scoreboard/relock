@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Re-record the hashes of every locked file, after Andres changes one himself.
+#
+# Run this in YOUR terminal, not through Claude: the kernel guard refuses it
+# from a session, because an agent that could relock could hide its own edit.
+#   scoreboard/relock            # prints the diff of hashes, asks, then writes
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+files=$(cat <<'LIST'
+docs/charter.md
+scoreboard/definitions.md
+scoreboard/score.py
+scoreboard/verdicts.py
+scoreboard/relock
+.claude/settings.json
+.claude/hooks/kernel_guard.py
+.claude/hooks/boot_check.py
+.claude/hooks/stop_check.py
+.claude/agents/change-reviewer.md
+LIST
+)
+# Baselines are locked too: every scoreboard/baseline-*.json present.
+files="$files
+$(ls scoreboard/baseline-*.json 2>/dev/null || true)"
+new=$(for f in $files; do [ -f "$f" ] && shasum -a 256 "$f"; done)
+if [ -f scoreboard/lock.sha256 ]; then
+  diff <(grep -v '^#' scoreboard/lock.sha256) <(echo "$new") || true
+fi
+read -r -p "Write these hashes to scoreboard/lock.sha256? [y/N] " ok
+[ "$ok" = "y" ] || { echo "Nothing written."; exit 1; }
+{ echo "# Hashes of locked files. Written by scoreboard/relock on $(date +%F). Do not edit by hand."; echo "$new"; } > scoreboard/lock.sha256
+echo "Relocked. Commit it: git add scoreboard/lock.sha256 && git commit -m 'relock: <what you changed>'"

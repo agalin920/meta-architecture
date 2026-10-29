@@ -1,0 +1,47 @@
+{
+  "_comment": "Merge into each system's .claude/settings.json. Keep every existing deny rule; these are added, never substituted. SYSTEM paths are relative to the repo root.",
+  "permissions": {
+    "deny": [
+      "Edit(docs/charter.md)",
+      "Write(docs/charter.md)",
+      "Edit(scoreboard/**)",
+      "Write(scoreboard/**)",
+      "Edit(.claude/hooks/**)",
+      "Write(.claude/hooks/**)",
+      "Edit(.claude/settings.json)",
+      "Write(.claude/settings.json)",
+      "Edit(.claude/settings.local.json)",
+      "Write(.claude/settings.local.json)",
+      "Edit(.claude/agents/change-reviewer.md)",
+      "Write(.claude/agents/change-reviewer.md)",
+      "Edit(~/.claude/settings.json)",
+      "Write(~/.claude/settings.json)",
+      "Bash(scoreboard/relock*)",
+      "Bash(./scoreboard/relock*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/boot_check.py\"" }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          { "type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/kernel_guard.py\"" }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/stop_check.py\"" }
+        ]
+      }
+    ]
+  }
+}
