@@ -3,7 +3,7 @@
 Rewritten in place, never appended to. The pre-redesign handoff is at
 [`archive/HANDOFF.md`](archive/HANDOFF.md).
 
-**As of 2026-10-28:** the migration ran today under
+**As of 2026-10-29:** the migration ran on 2026-10-28 under
 [`REDESIGN.md`](REDESIGN.md), on branch `colony-migration` in this repo and in
 the three core systems. **Merged to `main` and pushed on 2026-10-29**, at Andres's
 request, in all four repos (fast-forward; nothing on the remotes was overwritten).
@@ -27,14 +27,21 @@ Nothing waiting.
 
 ## Waiting on Andres: work
 
-- Commit or leave the side projects' uncommitted work. Much of their measured
-  evidence lives only there (`systems.md`).
-- Run the "Weekly lessons review" scheduled task once from the app ("Run now") and
-  approve its tools, so the Monday runs don't pause on permission prompts.
+- 2026-10-28 — Commit or leave the side projects' uncommitted work. Much of their
+  measured evidence lives only there (`systems.md`). Not urgent.
+- 2026-10-29 — Approve the "Weekly lessons review" run's tools in the app (and stop
+  the old "Colony DNA harvest" run), so the Monday runs don't pause on prompts.
 
 ## Waiting on Andres — from the systems
 
-Rewritten by every weekly lessons review (`meta/keeper.md` § 6). Nothing yet.
+Rewritten by every weekly lessons review (`meta/keeper.md` § 6). Last run:
+2026-10-29, the first review, run in a session at Andres's request.
+
+- **System-level: nothing waiting** in any core system. No `LOCK BROKEN`, no
+  open proposals, no escalated self-changes. No push sent.
+- zesty-eng-team: 6 work items, none older than 14 days.
+- mpulse-engage-team: 5 work items, none older than 14 days.
+- mpulse-dpi-team: 14 work items, none older than 14 days.
 
 ## Last asked
 

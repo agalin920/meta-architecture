@@ -80,3 +80,20 @@ Side-project refs are to the working tree on 2026-10-28; *(u)* = uncommitted.
 - An undocumented redaction looks like an evidence gap; publish conclusions, not the employer's surface — `archive/meta/architect-log.md:1025-1027` (A)
 - Timezone slips silently shift date-windowed metrics — `archive/meta/architect-log.md:2171-2185` (I)
 - A rename is cheapest before launch — `archive/meta/architect-log.md:2545-2547` (A)
+
+## From the migration and its first day (2026-10-28 → 29)
+
+Each was a real failure caught during the migration or its first live tests, and each now has a fix in `kit/`. Marked (I): an incident with a fix, not yet a measured effect.
+
+- Deny rules must be tested live, not read. `Write(path)` rules are inert; only `Edit(path)` blocks file writes (it covers every file tool). A Bash rule mixing `*` with a trailing `:*` matches literally and never fires. The rule files looked correct for weeks — `kit/settings.kernel.json`, commit "settings: working force-push denies" (I)
+- A test that cannot run must not report PASS. A live lock test reported 8/8 PASS while every session had failed to authenticate; the hash comparison passed because nothing had been attempted — `kit/tools/lock_test.sh` (I)
+- A whitespace-only edit is not a test: the edit tool normalised it away before any permission check, so the lock was never exercised — `kit/tools/lock_test.sh` step 5 (I)
+- Machine-parsed records need hard boundaries. A changelog entry's verdict line bled into the entry above it, so a self-change could never have been judged or reverted — `kit/scoreboard/verdicts.py` (I)
+- A measure that only matures after 30 days cannot judge a change whose window is 14–30 days; it would revert every change as "no effect". Claims name a leading measure; the slow one gets a tripwire — `kit/docs/loop.md` § A self-change (I)
+- When a measure's instrument changes, compare only within the same instrument, and never count one event twice across the switch — `INSTRUMENT_SINCE` in each system's scoreboard (I)
+- A tripwire that only compares hashes is blind to an edit that was re-hashed but never committed; report uncommitted changes to locked files separately — `kit/hooks/boot_check.py` (I)
+- Stage only what you mean to commit. A broad `git add -A` would have swept an untracked folder that can hold credentials into a commit; staging tracked changes plus named paths avoids it — engage clean-slate and rename commits (I)
+- An archived instruction file is still an instruction file. A verbatim copy of `CLAUDE.md` inside `archive/` can load as live instructions when that folder is read; archive it under another name — commit "archive: rename archived CLAUDE.md" (I)
+- Concurrent sessions in one repo race on shared state files; one rewrite dropped the other's new line. Re-read immediately before writing, and diff after — zesty clean-slate pass (I)
+- Theme words in instruction files prime agent behaviour. "DNA", "colony" and "default no to more agents" implied fixed templates and under-use of subagents; neutral names plus an explicit fan-out rule replaced them — `playbook.md` § No org chart (A)
+- One "waiting on the human" list mixes system decisions with work asks, so the rare system decision drowns and a weekly push fires for merges already known. Two lists, and only system items push — `kit/docs/loop.md` § Waiting on Andres: two lists (A)

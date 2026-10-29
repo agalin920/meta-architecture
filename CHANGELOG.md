@@ -21,6 +21,22 @@ block so the scripts skip them:
 Maintenance changes claim `<!-- claim: maintenance none; landed: … -->`. S1
 cannot be claimed (see `docs/loop.md`).
 
+## M-001 · 2026-10-29 · First day: names, proposals, two lists, clean slate
+<!-- claim: maintenance none; landed: 2026-10-29 -->
+Not a self-change: Andres's decisions on the first day after the migration, applied across this layer and the three core systems.
+
+- **What changed:**
+  - **Neutral names.** `dna.md` became `playbook.md`; "colony", "DNA" and "harvest" are gone from live files. The playbook now says to fan out agents freely; "default no" covers only permanent rules, files and steps.
+  - **Proposals.** Systems may propose charter or scoreboard changes (`log/pending/S-NNN`, one open per kind). Andres approves with `scoreboard/apply` in his own terminal; sessions are refused.
+  - **Two waiting lists.** *System* (proposals, escalated changes, locks) and *work* (merges, approvals, product or security calls). The weekly review rolls up and pushes system items only. Work items over 14 days are re-checked.
+  - **Clean slate.** The three systems' instructions now state today's rules without history, with originals archived. Old queues were parked and work lists re-checked and dated. Boot reads are now 564, 695 and 627 lines.
+  - **Charters.** The comment-marker rule moved out of the charters into scoreboard mechanism.
+  - **Kit fixes** found by the first live tests: the changelog parser, unjudgeable S1 claims, the instrument switch, uncommitted locked edits, inert deny rules, a lock test that passed without running. All are recorded in `lessons/observations.md`.
+  - **Two mPulse systems stay separate** (Andres's ruling), revisited at the 2027-01-31 check.
+  - **The live lock test passed** in all four repos: 8 of 8 attempts refused.
+- **Why:** keep Andres out of the middle and keep the loop free of old baggage.
+- **Verdict:** n/a (decisions)
+
 ## M-000 · 2026-10-28 · The colony redesign
 <!-- claim: none none; landed: 2026-10-28 -->
 Not a self-change. Andres's redesign (`REDESIGN.md`), carried out on branch
