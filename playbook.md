@@ -193,7 +193,7 @@ second system's boot ◀── trials.md ◀── this layer picks a trial targ
 
 - **The review runs on its own, in two ways.** A weekly scheduled task (Monday
   morning, in the Claude desktop app, "Weekly lessons review") runs a headless session
-  here. Every session opened in this repo also reviews at boot. Review 001
+  here. A session opened here also runs it at boot when the last review is more than 7 days old. Review 001
   ran 76 days late; nothing here waits for someone to remember.
 - **Trials are pulled, not pushed.** This layer writes a trial entry to
   [`trials.md`](trials.md) addressed to a system. That system's boot

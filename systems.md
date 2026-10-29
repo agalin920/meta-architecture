@@ -23,9 +23,9 @@ exchange domain content.
 
 | System | Path | Purpose | Scoreboard | Migrated |
 |---|---|---|---|---|
-| **zesty-eng-team** | `../zestyio/zesty-eng-team` | Ticket in, reviewable PR out, on a Zesty product repo | S1–S4 + G1, GitHub | 2026-10-28, branch `colony-migration` |
-| **mpulse-engage-team** | `../mpulsemobile/mpulse-engage-team` | Ticket in, reviewable PR out, across the mPulse Engage services | S1–S4 + G1, GitHub + tracker (structure-only reads) | 2026-10-28, branch `colony-migration` (from `program-build-skill`) |
-| **mpulse-dpi-team** | `../mpulsemobile/mpulse-dpi-team` | Ticket in, reviewable PR out, on the DPI product | S1–S4 + G1, GitHub + tracker (structure-only reads) | 2026-10-28, branch `colony-migration` |
+| **zesty-eng-team** | `../zestyio/zesty-eng-team` | Ticket in, reviewable PR out, on a Zesty product repo | S1–S4 + G1, GitHub | 2026-10-28; merged to `main` 2026-10-29 |
+| **mpulse-engage-team** | `../mpulsemobile/mpulse-engage-team` | Ticket in, reviewable PR out, across the mPulse Engage services | S1–S4 + G1, GitHub + tracker (structure-only reads) | 2026-10-28; merged to `main` 2026-10-29 (branch began from `program-build-skill`) |
+| **mpulse-dpi-team** | `../mpulsemobile/mpulse-dpi-team` | Ticket in, reviewable PR out, on the DPI product | S1–S4 + G1, GitHub + tracker (structure-only reads) | 2026-10-28; merged to `main` 2026-10-29 |
 
 The two mPulse teams were copied from zesty-eng-team on 2026-08-10, not grown
 independently.
@@ -35,9 +35,9 @@ independently.
 
 | | S1 escapes/PR | S2 outside findings/PR | S3 Andres corrections/PR | S4 escalations/unit | G1 merged PRs/week | Boot lines |
 |---|---|---|---|---|---|---|
-| zesty-eng-team | 0.00 (n=7) | 2.82 | 1.65 | n/a | 1.98 | 2,120 → 586 |
-| mpulse-engage-team | 0.23 (n=22) | 2.12 | 0.79 | n/a | 6.65 | ~6,600 → 700 |
-| mpulse-dpi-team | 0.17 (n=6) | 2.73 | 0.55 | n/a | 6.4 | 3,127 → 639 |
+| zesty-eng-team | 0.00 (n=7) | 2.82 | 1.65 | n/a | 1.98 | 2,120 → 564 |
+| mpulse-engage-team | 0.23 (n=22) | 2.12 | 0.79 | n/a | 6.65 | ~6,600 → 695 |
+| mpulse-dpi-team | 0.17 (n=6) | 2.73 | 0.55 | n/a | 6.4 | 3,127 → 627 |
 
 **Read the systems against their own baselines, not against each other.**
 - Definitions differ per system: each system's `scoreboard/definitions.md`

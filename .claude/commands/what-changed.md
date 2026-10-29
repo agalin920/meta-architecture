@@ -1,17 +1,17 @@
 ---
-description: Tell Andres, in two minutes, how this system has evolved and whether each change helped.
+description: Tell Andres, in two minutes, how the systems and the playbook have changed, and whether it helped.
 ---
 
-Andres asked "what has changed?". Answer in plain language, short enough to read in two minutes.
+Andres asked "what has changed?". Answer across all systems, in plain language, short enough to read in two minutes.
 
-1. Run `python3 .claude/hooks/boot_check.py < /dev/null` and `python3 scoreboard/score.py --summary`. If either reports **LOCK BROKEN**, lead with that and stop there.
-2. Read `CHANGELOG.md` entries since the date under "Last asked" in `state.md` (or the last 30 days if none).
-3. Write, in this order and nothing else:
-   - **Waiting on you** — first the system list (`## Waiting on Andres: system` in `HANDOFF.md`): for each open proposal in `log/pending/S-*.md`, its one-sentence change, the evidence in one line, and how to approve it (`scoreboard/apply S-NNN` in his terminal) or decline it (tell any session why); for each escalated self-change, what it is and what you need. Then the work list (`## Waiting on Andres: work`), one line each, oldest first, with its date. If both are empty, say so in one line.
-   - **What changed** — one line per change: what, why (the event that prompted it), and its verdict so far: helped (with the numbers), reverted (and why), or still open (due when).
-   - **The scores** — each measure now against the 2026-10-28 baseline, one line, with what is not measured named where it matters.
-   - **The reviewer's record** — changes it landed that were later reverted as worse, if any.
-   - **Lessons sent to the playbook** — candidates marked since last time, if any.
-4. Update "Last asked" in `state.md` to today and commit it as `memory: what-changed`.
+1. Run `echo '{}' | python3 .claude/hooks/boot_check.py` here, and in each core system (`../zestyio/zesty-eng-team`, `../mpulsemobile/mpulse-engage-team`, `../mpulsemobile/mpulse-dpi-team`). If any prints **LOCK BROKEN**, lead with that and stop.
+2. Run `python3 scoreboard/score.py`: each system against its baseline (M1), escalations (M2), playbook flow (M3) and rollbacks (M4).
+3. Read `CHANGELOG.md` here and in each core system, since the date under "Last asked" in `HANDOFF.md` (or the last 30 days).
+4. Write, in this order and nothing else:
+   - **Waiting on you**: `HANDOFF.md` § Waiting on Andres: system, then § Waiting on Andres — from the systems, then the work list, each item with its date.
+   - **Per system**: one line per self-change, with its verdict so far (helped with numbers, reverted and why, or open and when it is due).
+   - **The scores**: one line per system from M1, naming what is not measured where it matters.
+   - **The playbook**: lessons collected, trials open, anything proven.
+5. Update "Last asked" in `HANDOFF.md` to today and commit it: `git -C . add HANDOFF.md && git -C . commit -m "memory: what-changed"`.
 
-No process narrative, no tool-by-tool account. Name numbers and commits. Say what you did not verify.
+No process narrative. Name numbers and commits. Say what you did not verify.

@@ -4,7 +4,7 @@ Rewritten in place, never appended to. The pre-redesign handoff is at
 [`archive/HANDOFF.md`](archive/HANDOFF.md).
 
 **As of 2026-10-29:** the migration ran on 2026-10-28 under
-[`REDESIGN.md`](REDESIGN.md), on branch `colony-migration` in this repo and in
+[`REDESIGN.md`](REDESIGN.md), in this repo and in
 the three core systems. **Merged to `main` and pushed on 2026-10-29**, at Andres's
 request, in all four repos (fast-forward; nothing on the remotes was overwritten).
 

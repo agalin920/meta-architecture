@@ -69,7 +69,7 @@ def m1(since, until):
         base_path = os.path.join(repo, "scoreboard", "baseline-2026-10-28.json")
         try:
             base = json.load(open(base_path))
-            base = base.get("measures", base)
+            base = base.get("scores") or base.get("measures") or base   # systems store them under "scores"
         except Exception:
             out[name] = {"error": "no baseline"}
             continue
@@ -77,6 +77,11 @@ def m1(since, until):
         if err:
             out[name] = {"error": err}
             continue
+        # S1 only counts PRs merged 30+ days ago, so read it from the window 30 days earlier.
+        lag = dt.timedelta(days=30)
+        s1, err1 = child_scores(name, repo, since - lag, until - lag)
+        if not err1 and s1:
+            now = {**now, "S1": s1.get("S1", {})}
         row = {}
         for k in MEASURES:
             b, a = (base.get(k) or {}).get("value"), (now.get(k) or {}).get("value")

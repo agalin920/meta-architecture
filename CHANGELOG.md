@@ -2,9 +2,10 @@
 
 How this system has changed itself, written for Andres. Newest first.
 Each self-change is one commit, `evolve(C-NNN): …`. Its claim names the one
-score it should move. `scoreboard/verdicts.py` judges it once its window closes:
-the later of 14 days or 5 merged PRs, capped at 30 days. A change that did not
-help is reverted, and the failure is kept in `lessons.md`.
+measure (M1–M4) it should move. `scoreboard/verdicts.py` judges it once its
+window closes: the later of 14 days or 5 review runs, capped at 30 days. A
+change that did not help is reverted, and the failure is kept in `lessons/`.
+M-entries record Andres's decisions; they are not self-changes.
 
 Entry format (keep it; the scripts parse it). Examples sit indented in a code
 block so the scripts skip them:

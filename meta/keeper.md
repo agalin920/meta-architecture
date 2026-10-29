@@ -5,7 +5,7 @@ quarterly review) and `meta/dispatch.md` (carry-packets). Both are archived
 under [`archive/meta/`](../archive/meta/). It runs:
 
 - **weekly**, from the "Weekly lessons review" scheduled task;
-- **at the boot of any session in this repo**;
+- **at the boot of a session in this repo** when the last review is more than 7 days old;
 - when Andres asks.
 
 It is idempotent: running it twice does nothing new.
@@ -99,6 +99,6 @@ reports; deciding stays with Andres, in the system concerned.
   - push or merge anything.
 
 **No finding without an executed check.** Every claim about a system cites the
-command run in that system's repo and what it returned. In the old dispatch
+command run in that system's repo and what it returned. In the old cross-repo proposal record
 record, ten of eleven rejections were the same failure: an assertion about a
 target repo that nobody had checked in that repo.

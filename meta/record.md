@@ -37,7 +37,7 @@ Andres's Phase 1 answers, 2026-10-28 (design/phase-1.md §7):
 
 Review 001's proposals and asks, as settled on 2026-10-28:
 
-- **M-1 accepted as `founding`** (ruling 1). The nine pre-bar invariants move to `founding`, and `overhead-ceiling` keeps `proven`. archive/meta/architect-log.md:3482-3484
+- **M-1 accepted as `founding`** (ruling 1). The pre-bar invariants move to `founding` (8 in the catalog, `overhead-ceiling` among them; it was the one that had kept `proven` under the old bar). archive/meta/architect-log.md:3482-3484
 - **M-3 folded into the kernel:** read `git status` beside `git log`, and the registry carries an *uncommitted* column. archive/meta/architect-log.md:3488-3489
 - **M-5 folded into the kernel:** "an append-only log that is not committed is neither append-only nor a log". archive/meta/architect-log.md:3492-3494
 - **M-2 superseded** by the continuous loop (ruling 4). M-2 had proposed cutting the Architect audit to "has it run" and rewriting claim IV. archive/meta/architect-log.md:3485-3487

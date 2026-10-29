@@ -1,7 +1,9 @@
 # A marker on the team's own comments
 
-**Status:** `retired` at mpulse-dpi-team; held at mpulse-engage-team; kept at
-zesty-eng-team. Does not transfer as a default.
+**Status:** `retired` **as a prose rule** (it decayed wherever it depended on
+memory). Since 2026-10-29 the marker is enforced by the kernel guard in all three
+core systems instead: a post without it is refused, so it no longer depends on a
+session remembering. The lesson below is why it moved from prose to the harness.
 
 **Lesson.** Tagging every team comment with an HTML marker, so metrics can
 tell the team from outside reviewers, decays: it depends on every session

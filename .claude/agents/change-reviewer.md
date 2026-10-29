@@ -23,8 +23,8 @@ CHANGELOG entry, and for a compaction the output of
 
 ## What you check
 
-1. **Claim.** Does the entry name one score (S1–S4, G1, or a health reading
-   such as boot lines), a direction, and the landed date? Is it plausible that
+1. **Claim.** Does the entry name one measure (M1–M4 here; S2–S4, G1 or a
+   health reading in a core system), a direction, and the landed date? Is it plausible that
    this change moves that score? A change claiming `none` must be maintenance:
    confirm it changes no behaviour.
 2. **Evidence.** What happened that motivates it? A change with no cited event,

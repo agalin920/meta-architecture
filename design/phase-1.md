@@ -1,6 +1,6 @@
 # Phase 1 — the colony design, for Andres's approval
 
-**Status: DRAFT, waiting for Andres.** Written 2026-10-28 under
+**Status: APPROVED by Andres on 2026-10-28 and carried out; later rulings are in `log/` and `CHANGELOG.md`.** Written 2026-10-28 under
 [`REDESIGN.md`](../REDESIGN.md) §11. Nothing below has been applied to any
 system. Phase 0 is done: all four in-scope repos are tagged `pre-colony-2026-10`
 and sit on a new, unpushed `colony-migration` branch with in-flight work
@@ -89,8 +89,8 @@ Extra hard line: none beyond the shared set.
   yourself.
 - Human engineers share the same repos and tickets. **Never touch a ticket
   assigned to a person.**
-- **Don't grow the monolith.** If the natural home for a change is the
-  monolith, say so to Andres first.
+- **Respect the platform's architectural guardrails** (kept in that system's
+  private charter).
 
 ### mpulse-dpi-team
 
@@ -131,8 +131,8 @@ budget; failing knowledge checks (staleness); uncommitted memory files.
 
 **Jira reads are structure-only.** The scoreboard script asks Jira for keys,
 types, links, dates and status. It never asks for summaries, descriptions or
-comments. That keeps patient data out by construction, because the raw Jira
-client is not sanitised and the org's sanitiser hook is currently broken.
+comments. That keeps patient data out by construction, whatever the state of
+any sanitising layer.
 
 **Baseline.** The scripts run over 2026-08-29 → 10-28 (60 days, before any
 self-change). S1 uses the PRs merged by 09-28. The result is committed as
@@ -455,7 +455,7 @@ runs any loop entry still owed.
   - The 5,864-line team log comes off the boot path into `archive/`.
   - `verify_docs.py`, `gates.py` and `state_check.py` are kept and wired into
     the boot check.
-  - The PHI already committed (see the report) is not copied into any new file.
+  - Any sensitive data found in history is not copied into any new file.
 - **dpi:**
   - `knowledge/dpi.md` (1,606) is split by routing and compacted under the
     conservation check.
@@ -509,10 +509,9 @@ rewritten, not carried on hope.
    from the app's scheduled-tasks list (pause, edit, run now, delete), or by
    asking any session.
 3. **Close the guard gaps: yes.**
-4. **The flagged PHI** was one stage test-member identifier in an engage
-   worklog. Ruled unneeded and removed from the current file on the engage
-   `colony-migration` branch (`5ccd655`). It remains in earlier history on
-   `origin/main`; no history was rewritten.
+4. **A flagged sensitive-data item** in one system's history was ruled unneeded
+   and removed from the current file; history was not rewritten. Details stay in
+   that system's private repo.
 5. **Architect log: archive verbatim.**
 6. **engage `skills/build-team`: keep as is**, rework later.
 
