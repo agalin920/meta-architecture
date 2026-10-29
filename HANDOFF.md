@@ -28,10 +28,6 @@ pushes after review.
     (35 ahead of `origin/main`).
 - Commit or leave the side projects' uncommitted work. Much of their measured
   evidence lives only there (`systems.md`).
-- Run `kit/tools/lock_test.sh` once in your own terminal. It is the live half
-  of the lock test. Headless sessions launched by an agent could not log in,
-  and launching one in bypass mode was refused, so only the synthetic half has
-  run (36 of 36 per system).
 - Run the `dna-harvest` scheduled task once from the app ("Run now") and
   approve its tools, so the Monday runs don't pause on permission prompts.
 
