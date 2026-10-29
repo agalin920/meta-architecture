@@ -12,6 +12,7 @@ scoreboard/definitions.md
 scoreboard/score.py
 scoreboard/verdicts.py
 scoreboard/relock
+scoreboard/apply
 .claude/settings.json
 .claude/hooks/kernel_guard.py
 .claude/hooks/boot_check.py

@@ -153,6 +153,24 @@ def waiting(root):
     return sum(1 for l in m.group(1).splitlines() if l.startswith(("- ", "* ")))
 
 
+def proposals(root):
+    """Open charter/scoreboard proposals (log/pending/S-NNN.md) for Andres."""
+    d = os.path.join(root, "log", "pending")
+    out, kinds = [], {}
+    for name in sorted(os.listdir(d)) if os.path.isdir(d) else []:
+        if not re.match(r"S-\d+\.md$", name):
+            continue
+        text = read(os.path.join(d, name)) or ""
+        if not re.search(r"^- \*\*Status:\*\*\s*open", text, re.M):
+            continue
+        kind = (re.search(r"^- \*\*Kind:\*\*\s*(\w+)", text, re.M) or [None, "?"])[1]
+        kinds[kind] = kinds.get(kind, 0) + 1
+        title = re.sub(r"^S-\d+\s*·\s*", "", text.splitlines()[0].lstrip("# ").strip()) if text else name
+        out.append(f"{name[:-3]} ({kind}): {title}")
+    over = [k for k, n in kinds.items() if n > 1]
+    return out, over
+
+
 def trials(root):
     text = read(os.path.normpath(os.path.join(root, TRIALS)))
     if not text:
@@ -192,6 +210,11 @@ def main():
     w = waiting(root)
     if w:
         lines.append(f"Waiting on Andres: {w} item(s) in current state. Mention them when he arrives.")
+    props, over = proposals(root)
+    if props:
+        lines.append("Proposals for Andres (he approves with `scoreboard/apply S-NNN` in his terminal): " + "; ".join(props))
+    if over:
+        lines.append("More than one open proposal for: " + ", ".join(over) + ". Keep one per kind; withdraw the weaker.")
     t = trials(root)
     if t:
         lines.append("Playbook trials addressed here, not yet taken up: " + ", ".join(t) +

@@ -151,6 +151,10 @@ def main():
         if re.search(r"(^|[\s/;&|])relock\b", cmd):
             deny("scoreboard/relock is Andres's to run, in his own terminal. "
                  "A session that could relock could hide its own edit to a locked file.")
+        if re.search(r"(^|[\s;&|.])(\./)?scoreboard/apply\b", cmd) or (
+                re.search(r"log/pending/S-\d+", cmd) and re.search(r"\b(git\s+(apply|am)|patch)\b", cmd)):
+            deny("Applying a charter or scoreboard proposal is Andres's step: he runs scoreboard/apply S-NNN "
+                 "in his own terminal. Leave the proposal under 'Waiting on Andres'.")
         hits = names_locked(cmd)
         if hits and not READ_OK.search(cmd) and WRITE_SIGNS.search(cmd):
             deny(f"This command touches a locked path ({', '.join(sorted(set(hits)))}) and looks like it "

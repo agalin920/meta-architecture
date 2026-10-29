@@ -57,7 +57,9 @@ Exactly one, first line:
 - `ESCALATE` — you are unsure, or it touches anything in check 5. It goes to
   Andres under "Waiting on Andres" in state.md, with your reasoning.
 - `REJECT` — wrong, unsupported, duplicates an existing rule, or loses a fact.
-  Say what would make it landable.
+  Say what would make it landable. If the change is sound but no current
+  measure can see its effect, say so: the session may write a scoreboard
+  proposal for Andres (`docs/loop.md` § Proposing a charter or scoreboard change).
 
 Then at most ten lines: what you checked, what each check returned, and why.
 For a revert proposed by the loop: confirm the verdict numbers by re-running

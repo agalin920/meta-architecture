@@ -104,6 +104,44 @@ condensing of knowledge.
    - `REJECT`: restore the files. Write a `lesson` event if the rejection
      taught something.
 
+## Proposing a charter or scoreboard change
+
+The charter and scoreboard are locked: the system cannot change its own purpose,
+hard lines or ruler. It can propose a change, and should, when evidence shows
+that a measure misleads, a blind spot keeps costing it, a sound change can't be
+seen by any measure, or a hard line no longer fits the work.
+
+1. **One open proposal per kind** (one for the charter, one for the scoreboard).
+   If one is already open, strengthen it or withdraw it; don't add a second.
+2. Write `log/pending/S-NNN.md`:
+
+   ```
+   # S-NNN · <the change in one sentence>
+   - **Kind:** scoreboard | charter
+   - **Status:** open
+   - **Evidence:** <the units, corrections, numbers or reviewer verdicts behind it>
+   - **What it lets the system do:** <what it can't do or see today>
+   - **Risk:** <how it could mislead or be gamed; what it replaces>
+   - **Change:** log/pending/S-NNN.patch
+   ```
+
+   Then write `log/pending/S-NNN.patch`: the exact diff to the locked files, made
+   with `git diff` against a scratch copy. Never apply it here.
+3. Add one line under `## Waiting on Andres` in `state.md`:
+   `- S-NNN (scoreboard): <one sentence> — log/pending/S-NNN.md`.
+   Write an `escalation` event and commit memory.
+4. Andres decides:
+   - **Approve:** he runs `scoreboard/apply S-NNN` in his own terminal. It
+     applies the patch, re-locks and commits. Sessions are refused if they try.
+   - **Decline:** he says why. Set **Status** to `declined <date>: <his reason>`,
+     remove the waiting line, and write a `decision` event. Don't re-propose it
+     without new evidence.
+   - **Change it:** revise the proposal and patch in place, with the status
+     still open.
+
+A new scoreboard measure is added **beside** the old ones, never in place of
+them. A diagnostic reading can be added the same way.
+
 ## Applying a verdict
 
 | Verdict | What to do |

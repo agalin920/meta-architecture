@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# Apply a charter or scoreboard proposal Andres has approved, re-lock, and commit.
+#
+# Run it in YOUR terminal, not through Claude: the kernel guard refuses it from a
+# session, because a system that could apply its own proposal could rewrite its
+# own ruler.
+#   scoreboard/apply S-001        # shows the proposal and the change, asks, applies
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+id="${1:?usage: scoreboard/apply S-NNN}"
+md="log/pending/$id.md"; patch="log/pending/$id.patch"
+[ -f "$md" ] && [ -f "$patch" ] || { echo "No $md and $patch here."; exit 1; }
+grep -q '^- \*\*Status:\*\* open' "$md" || { echo "$id is not open."; exit 1; }
+git diff --quiet && git diff --cached --quiet || { echo "Uncommitted changes in the working tree; commit or stash them first."; exit 1; }
+
+echo "== $id"; sed -n '1,40p' "$md"; echo; echo "== The change"; cat "$patch"; echo
+read -r -p "Apply $id? [y/N] " ok
+[ "$ok" = "y" ] || { echo "Nothing applied."; exit 1; }
+
+git apply --check "$patch"
+git apply "$patch"
+
+python3 - "$id" <<'EOF'
+import datetime, glob, hashlib, os, sys
+sid = sys.argv[1]
+today = datetime.date.today().isoformat()
+# Re-lock: refresh every listed hash, and lock any new scoreboard file or baseline.
+p = "scoreboard/lock.sha256"
+lines = open(p).read().splitlines()
+head = [l for l in lines if l.startswith("#")]
+paths = [l.split(None, 1)[1].strip() for l in lines if l.strip() and not l.startswith("#")]
+for f in sorted(glob.glob("scoreboard/*")):
+    if os.path.isfile(f) and f != p and f not in paths:
+        paths.append(f)
+paths = [x for x in paths if os.path.exists(x)]
+open(p, "w").write("\n".join(head + [hashlib.sha256(open(x, "rb").read()).hexdigest() + "  " + x for x in paths]) + "\n")
+# Mark the proposal applied.
+md = f"log/pending/{sid}.md"
+s = open(md).read().replace("- **Status:** open", f"- **Status:** applied {today}", 1)
+open(md, "w").write(s)
+import re
+title = re.sub(r"^S-\d+\s*·\s*", "", s.splitlines()[0].lstrip("# ").strip())
+# Remove its line from Waiting on Andres.
+state = "state.md" if os.path.exists("state.md") else "HANDOFF.md"
+st = open(state).read().splitlines()
+open(state, "w").write("\n".join(l for l in st if not (l.startswith("- ") and sid in l)) + "\n")
+# Record the decision.
+log = f"log/events-{today[:7]}.md"
+with open(log, "a") as f:
+    f.write(f"- {today} {datetime.datetime.now():%H:%M} | decision | {sid} | Andres approved and applied: {title}\n")
+open(".git/APPLY_MSG", "w").write(f"apply({sid}): {title}\n\nApproved and applied by Andres with scoreboard/apply; locks re-hashed.\n")
+EOF
+
+git add -u
+git apply --numstat "$patch" | cut -f3 | while read -r f; do [ -e "$f" ] && git add -- "$f"; done
+git add "log/events-$(date +%Y-%m).md" scoreboard/lock.sha256
+git commit -q -F .git/APPLY_MSG && rm -f .git/APPLY_MSG
+echo "Applied $id and re-locked: $(git log --oneline -1)"
+echo "Push when ready: git push"

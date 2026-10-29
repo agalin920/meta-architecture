@@ -10,7 +10,9 @@
       "Edit(.claude/agents/change-reviewer.md)",
       "Edit(~/.claude/settings.json)",
       "Bash(scoreboard/relock*)",
-      "Bash(./scoreboard/relock*)"
+      "Bash(./scoreboard/relock*)",
+      "Bash(scoreboard/apply*)",
+      "Bash(./scoreboard/apply*)"
     ]
   },
   "hooks": {

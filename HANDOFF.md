@@ -28,6 +28,10 @@ request, in all four repos (fast-forward; nothing on the remotes was overwritten
 - Run the "Weekly lessons review" scheduled task once from the app ("Run now") and
   approve its tools, so the Monday runs don't pause on permission prompts.
 
+## Waiting on Andres — from the systems
+
+Rewritten by every weekly lessons review (`meta/keeper.md` § 6). Nothing yet.
+
 ## Last asked
 
 "What has changed?": never.

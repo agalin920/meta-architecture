@@ -60,7 +60,23 @@ When a trial's verdict lands in the receiving system's changelog:
 Proven lessons enter `playbook.md` in **one batch per month**, through this layer's
 own `change-reviewer`. A change that would weaken a kernel guard goes to Andres.
 
-## 6. Keep this layer's own kernel
+## 6. Roll up what is waiting on Andres
+
+Every run, rewrite the section `## Waiting on Andres — from the systems` in
+`HANDOFF.md` from scratch. For each core system, list:
+
+- each open proposal in `log/pending/S-*.md`: its id, kind, one-sentence change,
+  and "approve: `scoreboard/apply S-NNN` in that repo";
+- the count of other items under its `## Waiting on Andres`, with the oldest
+  one in a line;
+- `LOCK BROKEN`, first and loudest, if any boot check printed it.
+
+If anything is listed, send Andres **one** push notification: how many items
+are waiting, and the single most important one. Send nothing in a week where
+nothing is waiting. The roll-up only reports; deciding stays with Andres, in
+the system concerned.
+
+## 7. Keep this layer's own kernel
 
 - Record each run as a `review` event in `log/`.
 - Compute this layer's scoreboard: `python3 scoreboard/score.py`.

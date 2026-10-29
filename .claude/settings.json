@@ -91,7 +91,9 @@
       "Bash(git push*)",
       "Bash(git merge*)",
       "Bash(gh pr merge*)",
-      "Bash(gh api *merge*)"
+      "Bash(gh api *merge*)",
+      "Bash(scoreboard/apply*)",
+      "Bash(./scoreboard/apply*)"
     ]
   },
   "hooks": {
