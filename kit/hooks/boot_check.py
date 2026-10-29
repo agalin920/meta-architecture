@@ -141,7 +141,7 @@ def waiting(root):
     m = re.search(r"^## Waiting on Andres\s*\n(.*?)(?=^## |\Z)", text, re.S | re.M)
     if not m:
         return 0
-    return sum(1 for l in m.group(1).splitlines() if l.lstrip().startswith(("-", "*", "1", "2", "3")))
+    return sum(1 for l in m.group(1).splitlines() if l.startswith(("- ", "* ")))
 
 
 def trials(root):
@@ -182,7 +182,7 @@ def main():
         lines.append("Self-changes due a verdict (run `python3 scoreboard/verdicts.py`): " + ", ".join(due))
     w = waiting(root)
     if w:
-        lines.append(f"Waiting on Andres: {w} item(s) in state.md. Mention them when he arrives.")
+        lines.append(f"Waiting on Andres: {w} item(s) in current state. Mention them when he arrives.")
     t = trials(root)
     if t:
         lines.append("DNA trials addressed here, not yet taken up: " + ", ".join(t) +
