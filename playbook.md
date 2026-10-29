@@ -119,6 +119,11 @@ invent them, and every such change lands in the changelog.
 - **The guards apply to every agent, however many.** Whatever an agent claims,
   a direct check backs it. Whatever it writes, an agent that did not write it
   reviews it. Locks and rollback hold.
+- **Behaviour changes come from the loop, not from above.** Migrations and
+  layer-wide passes clear clutter, fix defects and add evidence; they don't
+  redesign how a system works or how its subagents think. That changes only
+  through the system's own loop, on evidence, under its reviewer (Andres,
+  2026-10-29).
 - **"Default no" is only for permanent weight:** new standing rules, files,
   required steps. That weight is what sank the old layer. How many agents work
   on a task is a different question, and the answer is "as many as help".
