@@ -22,6 +22,22 @@ block so the scripts skip them:
 Maintenance changes claim `<!-- claim: maintenance none; landed: … -->`. S1
 cannot be claimed (see `docs/loop.md`).
 
+## M-002 · 2026-10-29 · Audits, kit v2: every evolvable part has evidence, a trigger and a verdict
+<!-- claim: maintenance none; landed: 2026-10-29 -->
+Not a self-change: Andres asked for no holistic misses. Independent audits of
+all four repos and a design-level review found that several parts of each
+system could not evolve on evidence.
+
+- **What changed:**
+  - **The crew is visible.** Every subagent spawn is logged by a hook. Units record each one's effect, `tools/crew_report.py` shows each agent's record, and the change-reviewer is scored too.
+  - **Triggers no longer wait on memory.** The boot check computes when a deeper pass is due, overdue verdicts, stale or broken score snapshots, unlogged units, changes to instruction channels, and queue age.
+  - **Verdicts have statistics:** a minimum sample, a 10% effect, shared credit, and "insufficient data" never read as failure.
+  - **Safety model.** Locks stay flatly refused. Outside-world actions ask Andres in the moment instead of being refused (his ruling). Guard loopholes are closed: pushes and apply by any spelling, `gh api` writes, marker bypasses, case-variant paths.
+  - **This layer:** its scoreboard was blind (wrong key) and now isn't. Its public settings no longer name product repos. Kit drift and side-project revivals are checked weekly. The falsifier runs on 2027-01-31 and 2027-03-31.
+  - **The three systems:** kit v2, audit fixes and simplification. Their locked-file changes wait for Andres to apply them in his own terminal, because the agents were refused, correctly.
+- **Why:** "if we don't have insight into the crew, how can it evolve."
+- **Verdict:** n/a (decisions)
+
 ## M-001 · 2026-10-29 · First day: names, proposals, two lists, clean slate
 <!-- claim: maintenance none; landed: 2026-10-29 -->
 Not a self-change: Andres's decisions on the first day after the migration, applied across this layer and the three core systems.
