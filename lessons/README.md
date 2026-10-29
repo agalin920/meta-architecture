@@ -1,7 +1,7 @@
 # Lessons catalog
 
-Every lesson the colony has learned, with its status and evidence, including
-what failed. [`../../dna.md`](../../dna.md) holds the kernel and the full DNA
+Every lesson the systems have learned, with its status and evidence, including
+what failed. [`../playbook.md`](../playbook.md) holds the kernel and the full playbook
 rule; this folder is the record behind it. Old pattern files: `archive/patterns/`.
 
 | Status | Means |
@@ -11,10 +11,10 @@ rule; this folder is the record behind it. Old pattern files: `archive/patterns/
 | `proven` | Helped in one system, then still helped when tried in another. **None yet**: the rule starts 2026-10-28 |
 | `retired` | Tried and failed, or cut. Kept with the reason so nobody reinvents it |
 
-**The DNA rule, in brief.** A `candidate` becomes `proven` when a trial in a
+**The playbook rule, in brief.** A `candidate` becomes `proven` when a trial in a
 second system gets the verdict *helped* there, then holds at least 10 units
 and 30 days with its score not worse, and no system has a worse verdict. At
-least 44 days end to end; `dna.md` changes at most monthly. The candidates
+least 44 days end to end; `playbook.md` changes at most monthly. The candidates
 below were judged from pre-migration logs, not yet by `scoreboard/verdicts.py`.
 
 **Citations.** `system: file:line` is at that repo's `pre-colony-2026-10` tag

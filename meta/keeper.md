@@ -1,10 +1,10 @@
-# Keeping the DNA
+# Keeping the playbook
 
 The procedure for this layer's one job. It replaces `meta/architect.md` (the
 quarterly review) and `meta/dispatch.md` (carry-packets). Both are archived
 under [`archive/meta/`](../archive/meta/). It runs:
 
-- **weekly**, from the `dna-harvest` scheduled task;
+- **weekly**, from the "Weekly lessons review" scheduled task;
 - **at the boot of any session in this repo**;
 - when Andres asks.
 
@@ -24,11 +24,11 @@ For each **core** system (zesty-eng-team, mpulse-engage-team, mpulse-dpi-team):
 
 Side projects are dormant. Read them only if Andres revives one.
 
-## 2. Harvest
+## 2. Collect
 
 For each new candidate or retirement:
 
-- Write or update `dna/lessons/<slug>.md` with the system, the change, the claim
+- Write or update `lessons/<slug>.md` with the system, the change, the claim
   and the verdict numbers.
 - **Mechanism only.** Strip every product, ticket, code, company or regulatory
   detail before it enters this public repo. If the lesson cannot be stated
@@ -40,7 +40,7 @@ For each new candidate or retirement:
 A `candidate` may be trialled in another core system whose own scoreboard
 could show the same effect.
 
-- Write one entry to [`dna/trials.md`](../dna/trials.md), addressed to that
+- Write one entry to [`trials.md`](../trials.md), addressed to that
   system, with the lesson, the claim to test, and the source verdict.
 - **Cross-company trials carry mechanism only.**
 - At most **one open trial per system** at a time, so its verdicts stay
@@ -55,14 +55,14 @@ When a trial's verdict lands in the receiving system's changelog:
 - **Worse or no effect**: the lesson stays local. Mark it "does not transfer"
   with the numbers.
 
-## 5. Write the DNA (at most monthly)
+## 5. Update the playbook (at most monthly)
 
-Proven lessons enter `dna.md` in **one batch per month**, through this layer's
+Proven lessons enter `playbook.md` in **one batch per month**, through this layer's
 own `change-reviewer`. A change that would weaken a kernel guard goes to Andres.
 
 ## 6. Keep this layer's own kernel
 
-- Record each run as a `harvest` event in `log/`.
+- Record each run as a `review` event in `log/`.
 - Compute this layer's scoreboard: `python3 scoreboard/score.py`.
 - Take this layer's own self-changes through `kit/docs/loop.md`, as every
   system does.

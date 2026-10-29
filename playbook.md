@@ -1,16 +1,17 @@
-# The DNA
+# The playbook
 
-**What every system in the colony is built from, and how it learns.**
+**What every system is built from, and how it learns.**
 
-The image is the spiders in *Children of Time*: what one generation learns is
-written into the DNA, so the next one is born already knowing it. The same book
-carries the warning. Bad lessons are inherited just as faithfully as good ones,
-so **real-world results, not opinions or essays, decide what enters here.**
+What one system learns is written here, so the next system starts out already
+knowing it. The warning that comes with that (from the *Children of Time* image
+in `REDESIGN.md`) is the reason for every rule below. **A bad lesson spreads as
+faithfully as a good one**, so real-world results, not opinions or essays,
+decide what enters here.
 
 This file replaces `spine.md` (archived at [`archive/spine.md`](archive/spine.md)).
 The reasoning and Andres's rulings are in [`REDESIGN.md`](REDESIGN.md). Every
 lesson behind this file, with its evidence, is in
-[`dna/lessons/`](dna/lessons/README.md).
+[`lessons/`](lessons/README.md).
 
 **Read it as a resource, not a procedure.** A new system takes the kernel below
 and expresses it however its domain needs. [`kit/`](kit/) holds working
@@ -71,8 +72,8 @@ in the lessons catalog.
    what changed, why, what it was expected to do, and whether it did. It is how
    he answers "what has changed?".
 
-8. **DNA link.** Lessons that prove out locally are marked as candidates in the
-   system's `lessons.md`. Lessons from the DNA arrive as trials and are applied
+8. **Playbook link.** Lessons that prove out locally are marked as candidates in the
+   system's `lessons.md`. Lessons from the playbook arrive as trials and are applied
    like any other self-change.
 
 **Defaults every system keeps:**
@@ -100,13 +101,29 @@ in the lessons catalog.
 system's own notes and rules, reversible in seconds. He was the bottleneck on
 evolution, not the safeguard for it.
 
-## No org chart
+## No org chart: how agents work together
 
 Rituals (manager, standup, retro) are not part of the kernel. Subagents are a
 **starting crew, not an org chart**: the system may tune, merge, retire or
 invent them, and every such change lands in the changelog.
 
-**Any session is the colony.** There is no manager persona. Whatever session
+- **Fan out freely.** Spawn as many agents as the work benefits from, in
+  parallel, for every independent question or piece of work. Token cost is not
+  a constraint (ruling 13). There is no habitual cap.
+- **Runtime agents are not structure.** Any role can be spawned, merged or
+  dropped for a single task. Specialists emerge from the work, not from a
+  roster.
+- **Coordinate through shared memory, not a coordinator.** The event log,
+  current state, knowledge and lessons are how agents pass work to each other
+  and to the next session.
+- **The guards apply to every agent, however many.** Whatever an agent claims,
+  a direct check backs it. Whatever it writes, an agent that did not write it
+  reviews it. Locks and rollback hold.
+- **"Default no" is only for permanent weight:** new standing rules, files,
+  required steps. That weight is what sank the old layer. How many agents work
+  on a task is a different question, and the answer is "as many as help".
+
+**Any session is the system.** There is no manager persona. Whatever session
 Andres opens knows what the system knows, and answers both "here's what I
 want" and "what has changed?".
 
@@ -122,18 +139,18 @@ want" and "what has changed?".
 | `retired` | Tried and failed, or cut. **Kept with the reason**, so nobody reinvents it | No |
 
 **A carried trial counts.** The old bar demanded two independent inventions,
-which a system grown from this DNA can never supply for what it already
+which a system built from this playbook can never supply for what it already
 inherited. Nine of ten old `proven` patterns failed that bar. A real trial in a
 second system, judged by that system's own scoreboard, is a real test.
 
-**The candidates harvested at migration (2026-10-28) rest on pre-migration
+**The candidates collected at migration (2026-10-28) rest on pre-migration
 evidence:** a number or a changed decision on record, not a verdict from
 `scoreboard/verdicts.py`. They are trialled under the new rule like any other.
 
 **Presence is not evidence.** A lesson moves on a verdict computed from
 outside data, never because it is present and the system seems fine.
 
-## The DNA rule
+## The playbook rule
 
 A lesson enters this file when **all** of these hold:
 
@@ -156,30 +173,30 @@ the reason.
   system: **at least 44 days end to end** before it can change what new systems
   inherit.
 - **Batching.** This file changes **at most once a month**, in one batch.
-  Andres also approves any DNA change that would weaken a kernel guard.
+  Andres also approves any playbook change that would weaken a kernel guard.
 
 ## How a lesson travels
 
 ```
 system's loop ──verdict "helped"──▶ system's lessons.md (candidate)
       ▲                                        │
-      │                              harvest (weekly + at meta boot)
+      │                              review (weekly + at meta boot)
       │                                        ▼
-second system's boot ◀── dna/trials.md ◀── this layer picks a trial target
+second system's boot ◀── trials.md ◀── this layer picks a trial target
       │
       └─ applies it as its own self-change: reviewer, claim, window
                │
        verdict "helped" + 10 units + 30 days held
                ▼
-        dna/lessons/<lesson>.md → proven ──monthly batch──▶ this file
+        lessons/<lesson>.md → proven ──monthly batch──▶ this file
 ```
 
-- **Harvest runs on its own, in two ways.** A weekly scheduled task (Monday
-  morning, in the Claude desktop app, `dna-harvest`) runs a headless session
-  here. Every session opened in this repo also harvests at boot. Review 001
+- **The review runs on its own, in two ways.** A weekly scheduled task (Monday
+  morning, in the Claude desktop app, "Weekly lessons review") runs a headless session
+  here. Every session opened in this repo also reviews at boot. Review 001
   ran 76 days late; nothing here waits for someone to remember.
 - **Trials are pulled, not pushed.** This layer writes a trial entry to
-  [`dna/trials.md`](dna/trials.md) addressed to a system. That system's boot
+  [`trials.md`](trials.md) addressed to a system. That system's boot
   check lists it, and the system applies it through its own reviewer and
   rollback. An unattended job never writes into a live working tree.
 - **Mechanism only across companies.** A Zesty lesson may be trialled at
@@ -193,9 +210,10 @@ second system's boot ◀── dna/trials.md ◀── this layer picks a trial 
 2. Copy the `kit/` and configure it: system name, locked paths, boot budget.
 3. Write the scoreboard script **and record a baseline before any
    self-change**.
-4. Start with the smallest crew the work needs. The default answer to "should
-   we add an agent, a file, a step?" is **no**.
-5. Read [`dna/lessons/`](dna/lessons/README.md) for what has already been
+4. Start with a small standing crew and let roles emerge. Spawn agents freely
+   at runtime. The default answer to a new standing rule, file or required
+   step is **no**.
+5. Read [`lessons/`](lessons/README.md) for what has already been
    tried, including what failed.
 6. Register it in [`systems.md`](systems.md).
 

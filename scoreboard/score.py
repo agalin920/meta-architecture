@@ -7,7 +7,7 @@ The meta layer's scoreboard, computed from the core systems' own data.
   python3 scoreboard/score.py --baseline   # writes scoreboard/baseline-2026-10-28.json
 
 Exposes compute(since, until) and merged_prs(since, until) for verdicts.py.
-For this layer a "unit" is a harvest run. This file is locked.
+For this layer a "unit" is a review run. This file is locked.
 """
 
 import argparse
@@ -92,14 +92,14 @@ def m1(since, until):
 
 def m3():
     counts = {"founding": 0, "candidate": 0, "proven": 0, "retired": 0}
-    d = os.path.join(ROOT, "dna", "lessons")
+    d = os.path.join(ROOT, "lessons")
     for name in os.listdir(d) if os.path.isdir(d) else []:
         if name.endswith(".md") and name not in ("README.md", "observations.md"):
             m = STATUS.search(open(os.path.join(d, name), encoding="utf-8").read())
             if m:
                 counts[m.group(1).lower()] += 1
-    trials = open(os.path.join(ROOT, "dna", "trials.md"), encoding="utf-8").read() \
-        if os.path.exists(os.path.join(ROOT, "dna", "trials.md")) else ""
+    trials = open(os.path.join(ROOT, "trials.md"), encoding="utf-8").read() \
+        if os.path.exists(os.path.join(ROOT, "trials.md")) else ""
     counts["open_trials"] = len(re.findall(r"^- \*\*Status:\*\*\s*open", trials, re.M))
     return counts
 
@@ -134,7 +134,7 @@ def compute(since, until):
 
 
 def merged_prs(since, until):
-    return events(ROOT, "harvest", since, until)
+    return events(ROOT, "review", since, until)
 
 
 def main():
@@ -157,7 +157,7 @@ def main():
     for name, row in res["M1"]["detail"].items():
         print(f"  M1 {name}: " + (row.get("error") or ", ".join(f"{k} {v}" for k, v in row.items())))
     print(f"  M2 escalations/system/week: {res['M2']['value']}  {res['M2']['detail']}")
-    print(f"  M3 DNA: {res['M3']['detail']}")
+    print(f"  M3 playbook: {res['M3']['detail']}")
     print(f"  M4 reverted/judged: {res['M4']['reverted']}/{res['M4']['judged']}")
 
 

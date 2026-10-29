@@ -1,6 +1,6 @@
 # meta-architecture
 
-The DNA of a colony of self-evolving, agent-run systems, and the layer that
+The shared playbook of a set of self-evolving, agent-run systems, and the layer that
 keeps it.
 
 Each system gets four things:
@@ -12,7 +12,7 @@ Each system gets four things:
 
 There are no managers, standups or retros. The right specialists and ways of
 working emerge on their own. Every system's hard-won lessons are written back
-into the DNA, so every new system starts smarter, but only lessons whose
+into the playbook, so every new system starts smarter, but only lessons whose
 real-world results held up in more than one system get in.
 
 The full reasoning, and Andres's rulings, are in [`REDESIGN.md`](REDESIGN.md)
@@ -21,11 +21,11 @@ The full reasoning, and Andres's rulings, are in [`REDESIGN.md`](REDESIGN.md)
 ## What's here
 
 ```
-dna.md            what every system is built from: the kernel, lesson statuses,
-                  the DNA rule, the harvest. Start here if you are building
-dna/lessons/      every lesson, with status and evidence: founding, candidate,
+playbook.md       what every system is built from: the kernel, lesson statuses,
+                  the playbook rule, the weekly review. Start here if you are building
+lessons/          every lesson, with status and evidence: founding, candidate,
                   proven, retired
-dna/trials.md     lessons being tried in a second system
+trials.md         lessons being tried in a second system
 kit/              working implementations of the kernel's mechanism (locks,
                   boot and stop checks, rollback, reviewer, the loop) to copy
 charter.md        this layer's purpose and hard lines. Andres's; locked
@@ -33,7 +33,7 @@ systems.md        the registry: 3 core systems, 6 dormant side projects
 scoreboard/       this layer's own scoreboard. Locked
 CHANGELOG.md      how this layer has changed itself, and whether it helped
 HANDOFF.md        current state, including what is waiting on Andres
-meta/keeper.md    the DNA-keeping procedure (weekly, and at boot)
+meta/keeper.md    the playbook-keeping procedure (weekly, and at boot)
 meta/thesis.md    why this should work, and what would prove it wrong
 meta/record.md    every lesson, ruling and result from before the redesign
 archive/          everything that came before, verbatim; MAPPING.md says where it went
@@ -56,4 +56,4 @@ under `~/dev/`.
 ## Using it
 
 Open a session here and say what you want, or ask "what has changed?".
-The harvest runs itself every Monday.
+The lessons review runs itself every Monday.

@@ -9,7 +9,7 @@ Prints a short block into the session's context:
   - the boot read path against its budget;
   - self-changes whose verdict window has closed;
   - what is waiting on Andres;
-  - DNA trials addressed to this system that it has not taken up.
+  - Playbook trials addressed to this system that it has not taken up.
 
 Every item here exists because the thing it checks was once left to someone
 remembering, and was forgotten. This file is locked.
@@ -27,7 +27,7 @@ import sys
 SYSTEM = "SYSTEM-NAME"
 BOOT_BUDGET = 1000                         # lines; the kernel's overhead ceiling
 MEMORY = ["log/", "state.md", "knowledge/", "lessons.md", "CHANGELOG.md", "tickets/"]
-DNA_TRIALS = "../../meta-architecture/dna/trials.md"   # relative to repo root
+TRIALS = "../../meta-architecture/trials.md"   # relative to repo root
 # -----------------------------------------------------------------------------
 
 EVENT = re.compile(r"^- (\d{4}-\d{2}-\d{2})[^|]*\|\s*(\w[\w-]*)\s*\|\s*([^|]+?)\s*\|")
@@ -154,7 +154,7 @@ def waiting(root):
 
 
 def trials(root):
-    text = read(os.path.normpath(os.path.join(root, DNA_TRIALS)))
+    text = read(os.path.normpath(os.path.join(root, TRIALS)))
     if not text:
         return []
     taken = read(os.path.join(root, "CHANGELOG.md")) or ""
@@ -194,8 +194,8 @@ def main():
         lines.append(f"Waiting on Andres: {w} item(s) in current state. Mention them when he arrives.")
     t = trials(root)
     if t:
-        lines.append("DNA trials addressed here, not yet taken up: " + ", ".join(t) +
-                     " (see " + DNA_TRIALS + ").")
+        lines.append("Playbook trials addressed here, not yet taken up: " + ", ".join(t) +
+                     " (see " + TRIALS + ").")
     print("\n".join(lines))
 
 

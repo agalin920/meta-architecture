@@ -11,7 +11,7 @@ A change's window closes at the later of 14 days or 5 merged team PRs after it
 landed, and never later than 30 days. Then the named score over the window is
 compared with the same-length window before the change:
 
-    helped     moved in the claimed direction        -> keep; DNA candidate
+    helped     moved in the claimed direction        -> keep; playbook candidate
     worse      moved the other way                   -> revert
     no effect  did not move, or there is no data     -> revert
 
@@ -137,7 +137,7 @@ def main():
         if verdict == "too early":
             print(f"{ch['id']}: TOO EARLY — {why} — leave it open and re-judge later")
             continue
-        action = "keep; add to lessons.md as a DNA candidate" if verdict == "helped" \
+        action = "keep; add to lessons.md as a playbook candidate" if verdict == "helped" \
             else f"revert: git revert {commit_of(ch)}  (confirm with change-reviewer first)"
         print(f"{ch['id']}: {verdict.upper()} — {why} — window {ch['landed']}..{end} — {action}")
     if not due and not args.all:

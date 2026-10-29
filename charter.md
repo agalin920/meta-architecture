@@ -7,21 +7,21 @@ previous charter is at [`archive/charter.md`](archive/charter.md).
 
 ## Purpose
 
-Every system in the colony gets measurably better at its own purpose over time,
+Every system gets measurably better at its own purpose over time,
 and what one system learns, the next system is born knowing.
 
 Andres sets direction and watches it grow. He does not manage the work.
 
 ## This layer's job
 
-**Keep the DNA.**
+**Keep the playbook.**
 
-- Harvest lessons from the systems.
+- Collect lessons from the systems.
 - Trial them in other systems.
-- Write the proven ones into [`dna.md`](dna.md), which is what every new system
+- Write the proven ones into [`playbook.md`](playbook.md), which is what every new system
   is built from.
 
-Real-world results decide what enters the DNA, not opinions or essays. A bad
+Real-world results decide what enters the playbook, not opinions or essays. A bad
 lesson is inherited as faithfully as a good one.
 
 This layer runs the same kernel as every system: a scoreboard it cannot edit, a
@@ -42,8 +42,8 @@ something to fix.
 
 1. **Nothing employer-internal enters this repo.** It is public. Zesty and
    mPulse systems never exchange domain content: no code, tickets, practices or
-   internals. The DNA carries mechanism only.
-2. **The DNA changes more slowly than any system.** The rule is in `dna.md`.
+   internals. The playbook carries mechanism only.
+2. **The playbook changes more slowly than any system.** The rule is in `playbook.md`.
 3. **Never change a system's charter or what its scoreboard measures.** Those
    are Andres's.
 4. **Never modify a side project** until Andres revives it. **Never touch**
@@ -79,7 +79,7 @@ more.** Measures and sources are in
 |---|---|
 | M1 | Each core system's scores against its 2026-10-28 baseline |
 | M2 | Escalations to Andres per core system per week |
-| M3 | DNA flow: candidates, trials, proven, retired |
+| M3 | Playbook flow: candidates, trials, proven, retired |
 | M4 | Share of self-changes rolled back |
 
 **Not measured:**
@@ -91,5 +91,5 @@ more.** Measures and sources are in
 ## Two requests, answered from any session
 
 - **"Here's what I want."** Do it, pulling in whatever subagents it needs.
-- **"What has changed?"** A short, honest story of how the colony evolved and
+- **"What has changed?"** A short, honest story of how the systems evolved and
   whether each change helped (`/what-changed`).

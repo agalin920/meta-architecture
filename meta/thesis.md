@@ -1,6 +1,6 @@
 # Thesis
 
-Why the colony design should work, in a form that can be proven wrong.
+Why this design should work, in a form that can be proven wrong.
 Rewritten 2026-10-28 for the redesign. The previous thesis, with its four claims
 and the history of each, is at [`archive/meta/thesis.md`](../archive/meta/thesis.md).
 Its results are kept in [`record.md`](record.md).
@@ -34,7 +34,7 @@ reviewer and automatic rollback in place of human approval) improves faster
 than the approval-gated systems did, without pulling Andres back into the
 middle.**
 
-**And a DNA that only accepts lessons which helped in a second system makes
+**And a playbook that only accepts lessons which helped in a second system makes
 each new system start better than the last.**
 
 ## What would prove it wrong
@@ -61,9 +61,10 @@ thing to change.
 ## What it does not claim
 
 - **That systems should converge.** Divergence where domains differ is correct.
-  The DNA carries mechanism, not uniformity.
-- **That more lessons is better.** The default answer to "add an agent, a file,
-  a step?" is still no.
+  The playbook carries mechanism, not uniformity.
+- **That more structure is better.** The default answer to a new standing
+  rule, file or required step is still no. How many agents work on a task is a
+  different question (`playbook.md` § No org chart).
 - **That the scoreboard sees everything.** Each system names what it does not
   measure. The two largest blind spots are escapes nobody links back to a PR,
   and corrections Andres makes that no session logged.

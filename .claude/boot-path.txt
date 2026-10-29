@@ -1,5 +1,5 @@
 CLAUDE.md
 charter.md
 HANDOFF.md
-dna.md
+playbook.md
 systems.md

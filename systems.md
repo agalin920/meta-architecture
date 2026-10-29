@@ -1,6 +1,6 @@
 # Systems
 
-The colony's registry. Rewritten 2026-10-28 for the redesign. The previous
+The registry of systems. Rewritten 2026-10-28 for the redesign. The previous
 registry (771 lines, every system's history through review 001) is kept
 verbatim at [`archive/systems.md`](archive/systems.md).
 
@@ -47,12 +47,12 @@ independently.
 
 ## Side projects (dormant, not modified)
 
-Each was read on 2026-10-28 and its mechanism lessons harvested into
-[`dna/lessons/`](dna/lessons/README.md). **None was touched.** Uncommitted work
+Each was read on 2026-10-28 and its mechanism lessons collected into
+[`lessons/`](lessons/README.md). **None was touched.** Uncommitted work
 is listed so nobody mistakes it for idleness. It stays exactly as it is until
 Andres revives the system, and a revival is when a side project gets migrated.
 
-| System | Path | Purpose | Last activity | Uncommitted / unpushed at harvest |
+| System | Path | Purpose | Last activity | Uncommitted / unpushed at review |
 |---|---|---|---|---|
 | personal-university | `../personal-university` | A classical education for one student | 2026-08-23 | none |
 | brand-system | `../brand-system` | Public presence for galind.io | 2026-08-16 | 8 modified files; 3 commits never pushed |
@@ -62,7 +62,7 @@ Andres revives the system, and a revival is when a side project gets migrated.
 | zesty-webengine-team | `../zestyio/zesty-webengine-team` | Engineering delivery on a Zesty product repo | 2026-08-19 (founding only, 0 tickets) | none. Andres confirmed 2026-10-28 that it is not running anywhere |
 
 **Much of their measured evidence lives only in those uncommitted files.** The
-harvest quotes it, but the originals would be lost if those working trees were
+review quotes it, but the originals would be lost if those working trees were
 discarded. Whether to commit them is Andres's call.
 
 ## Not systems

@@ -1,10 +1,10 @@
-# DNA trials
+# Playbook trials
 
 Lessons this layer has asked a second system to try. Each system's boot check
 lists the open trials addressed to it. The system applies a trial as its own
 self-change, through its own reviewer, claim and rollback window, and puts the
 trial id in its changelog entry. Its verdict there decides whether the lesson
-transfers. The rule is in [`../dna.md`](../dna.md).
+transfers. The rule is in [`playbook.md`](playbook.md).
 
 **Mechanism only.** Nothing here may name a product, ticket, practice or
 internal detail of any company. At most one open trial per system at a time.

@@ -33,4 +33,4 @@ reads is what the system knows; the order itself carries priority.
   [overhead-ceiling](overhead-ceiling.md).
 
 **Origin.** Convergent: personal-university, zesty-eng-team, brand-system,
-2026-08. Expressed now as the boot path and boot check (`../../dna.md`).
+2026-08. Expressed now as the boot path and boot check (`../playbook.md`).

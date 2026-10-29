@@ -13,10 +13,10 @@ logs and changelogs, never by hand.
 |---|---|---|---|
 | **M1** | Per core system, per measure (S1–S4, G1): the last 30 days against that system's `baseline-2026-10-28.json`, as better / flat / worse. Summed as "measures better", "flat", "worse" | more better | each system's `scoreboard/score.py` |
 | **M2** | Escalations to Andres per core system per week, last 4 weeks | down (not zero by hiding: S4 in each system counts the same events) | `escalation` events in each system's `log/` |
-| **M3** | DNA flow: lessons by status (founding, candidate, proven, retired); open trials | candidates and proven up | `dna/lessons/`, `dna/trials.md` |
+| **M3** | Playbook flow: lessons by status (founding, candidate, proven, retired); open trials | candidates and proven up | `lessons/`, `trials.md` |
 | **M4** | Share of judged self-changes that were reverted, across core systems | a healthy band, not zero: zero means nothing was risked or nothing was judged | each system's `CHANGELOG.md` |
 
-Units for this layer's own rollback windows are **harvest runs** (`harvest`
+Units for this layer's own rollback windows are **review runs** (`review`
 events in `log/`).
 
 ## Not measured
@@ -35,5 +35,5 @@ events in `log/`).
 - **M1** is "baseline" by definition on that date.
 - **M2** has no pre-migration instrument; escalations were not logged as
   events.
-- **M3** is the catalog as harvested at migration.
+- **M3** is the catalog as collected at migration.
 - **M4** is n/a, because no self-change had been judged.

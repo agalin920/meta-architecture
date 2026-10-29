@@ -4,7 +4,7 @@ Lessons on record with **no measured evidence that they helped**: designs that
 were argued but never exercised (**A**), tests or reading rules written before
 any data (**P**), and single incidents whose remedy was never measured
 (**I**). They are not statuses. Any of them can become a `candidate` the first
-time a system tries it and gets the verdict *helped* (`../../dna.md`).
+time a system tries it and gets the verdict *helped* (`../playbook.md`).
 Side-project refs are to the working tree on 2026-10-28; *(u)* = uncommitted.
 
 ## From the core systems
@@ -65,7 +65,7 @@ Side-project refs are to the working tree on 2026-10-28; *(u)* = uncommitted.
 - The first retro's job is to cut wrong founding predictions — `zesty-webengine-team: docs/team-log.md:24-28` (P)
 
 ## From this layer's log
-- Divergence is cheap and local; convergence is expensive and deliberate (two clocks) — `archive/meta/architect-log.md:243-252` (A; now the DNA's slowness rule)
+- Divergence is cheap and local; convergence is expensive and deliberate (two clocks) — `archive/meta/architect-log.md:243-252` (A; now the playbook's slowness rule)
 - Do not promote on fresh evidence; a fresh idea from a live project is the most persuasive thing there is — `archive/meta/architect-log.md:433-436` (A; now the 44-day minimum)
 - Births are evidence only through what they decline or invent; a birth count is not a result — `archive/meta/architect-log.md:2297-2311`, `:2575-2587` (A)
 - Ask rather than infer: quiet can be deprioritisation, not neglect — `archive/meta/architect-log.md:192-195` (A; now ruling 2)

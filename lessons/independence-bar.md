@@ -4,7 +4,7 @@
 
 **Lesson.** The old bar made a pattern `proven` only when two systems invented
 it independently, and spent its effort sorting copies, carries and inherited
-presence out of that count. Systems born from the DNA can never re-invent what
+presence out of that count. Systems born from the playbook can never re-invent what
 they inherited, so the bar could barely turn. What counts now is a trial: a
 lesson tried in a second system and judged by that system's scoreboard.
 
@@ -25,7 +25,7 @@ lesson tried in a second system and judged by that system's scoreboard.
   `archive/meta/architect-log.md:410-414`; `archive/patterns/README.md:120-123`.
 - **Copies lose the invisible part:** both mPulse teams lost the `unmeasured`
   category they inherited: `archive/patterns/README.md:142-145`.
-- A carried trial counts as a trial, not as an invention (`../../dna.md`).
+- A carried trial counts as a trial, not as an invention (`../playbook.md`).
 
 **Where it failed / limits**
 - It did stop this layer promoting its own proposals by carrying them, which

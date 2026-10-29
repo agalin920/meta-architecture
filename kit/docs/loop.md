@@ -32,7 +32,7 @@ The types are:
 | `revert` | A change was rolled back |
 | `lesson` | A lesson worth keeping |
 | `decision` | A decision, with its reason |
-| `trial` | A DNA trial was taken up |
+| `trial` | A playbook trial was taken up |
 
 The ref is the PR, ticket, or change id. A unit that spans several PRs takes
 its worklog slug as the ref, and is dated when its last PR merged or its last

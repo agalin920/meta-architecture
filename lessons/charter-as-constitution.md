@@ -15,7 +15,7 @@ improvement loop will in time optimise the definition of success itself.
   `archive/patterns/charter-as-constitution.md:21-23`.
 - The gate held where it was tested: resale-desk staged a charter amendment as
   a PROPOSED file and only the human applied it:
-  `resale-desk: docs/project-log.md:102-104` (harvest R-10).
+  `resale-desk: docs/project-log.md:102-104` (review R-10).
 - No measured change of outcome is on record. The status rests on ruling 1
   (`REDESIGN.md:94-96`), not on a number.
 
@@ -36,4 +36,4 @@ improvement loop will in time optimise the definition of success itself.
   preference is decoration: `archive/patterns/charter-as-constitution.md:47-50`.
 
 **Origin.** Convergent: personal-university, zesty-eng-team, brand-system,
-media-log, 2026-08. Kernel item 1 (`../../dna.md`).
+media-log, 2026-08. Kernel item 1 (`../playbook.md`).

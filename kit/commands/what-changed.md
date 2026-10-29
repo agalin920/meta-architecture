@@ -11,7 +11,7 @@ Andres asked "what has changed?". Answer in plain language, short enough to read
    - **What changed** — one line per change: what, why (the event that prompted it), and its verdict so far: helped (with the numbers), reverted (and why), or still open (due when).
    - **The scores** — each measure now against the 2026-10-28 baseline, one line, with what is not measured named where it matters.
    - **The reviewer's record** — changes it landed that were later reverted as worse, if any.
-   - **Lessons sent to the DNA** — candidates marked since last time, if any.
+   - **Lessons sent to the playbook** — candidates marked since last time, if any.
 4. Update "Last asked" in `state.md` to today and commit it as `memory: what-changed`.
 
 No process narrative, no tool-by-tool account. Name numbers and commits. Say what you did not verify.
