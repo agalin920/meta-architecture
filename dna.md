@@ -125,6 +125,10 @@ which a system grown from this DNA can never supply for what it already
 inherited. Nine of ten old `proven` patterns failed that bar. A real trial in a
 second system, judged by that system's own scoreboard, is a real test.
 
+**The candidates harvested at migration (2026-10-28) rest on pre-migration
+evidence:** a number or a changed decision on record, not a verdict from
+`scoreboard/verdicts.py`. They are trialled under the new rule like any other.
+
 **Presence is not evidence.** A lesson moves on a verdict computed from
 outside data, never because it is present and the system seems fine.
 

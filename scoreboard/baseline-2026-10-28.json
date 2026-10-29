@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-28",
+  "M1": "baseline by definition",
+  "M2": "no pre-migration instrument",
+  "M3": {
+    "founding": 8,
+    "candidate": 16,
+    "proven": 0,
+    "retired": 9,
+    "open_trials": 0
+  },
+  "M4": "n/a: no self-change judged"
+}
