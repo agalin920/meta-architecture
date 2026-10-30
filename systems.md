@@ -52,7 +52,7 @@ systems; which kind each is (core or side project) is Andres's call.
 
 | System | Path | Purpose | Scoreboard | Status |
 |---|---|---|---|---|
-| **vinted-shopper** | `../vinted-shopper` | Find second-hand things Andres wants on Vinted, at a good price; he buys, it never does | G1 hit rate, S2 price against asking, S3 follow-ups; S1 returns and S4 escalations as guardrails. From its own shortlist log and his `data/orders.csv` | Staged 2026-10-29, kit 2.1. Awaiting install by Andres (the guard keeps this layer out of new repos, and the baseline and locks are his to record) |
+| **vinted-shopper** | `../vinted-shopper` | Find second-hand things Andres wants on Vinted, at a good price; he buys, it never does | G1 hit rate, S2 price against asking, S3 follow-ups; S1 returns and S4 escalations as guardrails. From its own shortlist log and his `data/orders.csv` | Installed 2026-10-29 by Andres (`f5208d4`), kit 2.1: locks intact (15 files), kit drift 0 undeclared, boot path 224/1000, no remote. Baseline empty at founding; a second one is due after 30 days or 10 sessions |
 
 ## Side projects (dormant, not modified)
 

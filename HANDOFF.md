@@ -29,9 +29,6 @@ request, in all four repos (fast-forward; nothing on the remotes was overwritten
 
 ## Waiting on Andres: work
 
-- 2026-10-29 — Install vinted-shopper: run the install script staged in this
-  session's scratchpad, in your own terminal (it records the baseline and the
-  locks). The staged copy lives under `/private/tmp` and does not survive a reboot.
 
 - 2026-10-28 — Commit or leave the side projects' uncommitted work. Much of their
   measured evidence lives only there (`systems.md`). Not urgent.
