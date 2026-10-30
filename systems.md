@@ -45,6 +45,15 @@ independently.
 - S1 counts only PRs merged by 09-28.
 - S4 had no instrument before the migration.
 
+## New systems
+
+Built from the playbook after the redesign. Not yet in the charter's table of
+systems; which kind each is (core or side project) is Andres's call.
+
+| System | Path | Purpose | Scoreboard | Status |
+|---|---|---|---|---|
+| **vinted-shopper** | `../vinted-shopper` | Find second-hand things Andres wants on Vinted, at a good price; he buys, it never does | G1 hit rate, S2 price against asking, S3 follow-ups; S1 returns and S4 escalations as guardrails. From its own shortlist log and his `data/orders.csv` | Staged 2026-10-29, kit 2.1. Awaiting install by Andres (the guard keeps this layer out of new repos, and the baseline and locks are his to record) |
+
 ## Side projects (dormant, not modified)
 
 Each was read on 2026-10-28 and its mechanism lessons collected into

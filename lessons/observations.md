@@ -86,6 +86,11 @@ Side-project refs are to the working tree on 2026-10-28; *(u)* = uncommitted.
 - Timezone slips silently shift date-windowed metrics — `archive/meta/architect-log.md:2171-2185` (I)
 - A rename is cheapest before launch — `archive/meta/architect-log.md:2545-2547` (A)
 
+## From births
+
+- A system cannot be born from inside this layer. The guard's edit roots (rightly) refuse files outside this repo and the core systems, and a session may not write a baseline or locks for itself. A birth is staged here and installed by Andres's own script, which also makes the baseline and the first lock record his — vinted-shopper, 2026-10-29 (A)
+- A boundary can be held by what a tool lacks rather than by a rule. A shopper that reads in a signed-out browser has no account and no wallet to misuse, so "never buy" holds even if an instruction is ignored. Compare resale-desk, which drives the signed-in browser under a rule — vinted-shopper charter, 2026-10-29 (A)
+
 ## From the migration and its first day (2026-10-28 → 29)
 
 Each was a real failure caught during the migration or its first live tests, and each now has a fix in `kit/`. Marked (I): an incident with a fix, not yet a measured effect.
