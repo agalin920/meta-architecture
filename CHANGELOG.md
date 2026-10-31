@@ -23,6 +23,19 @@ block so the scripts skip them:
 Maintenance changes claim `<!-- claim: maintenance none; landed: … -->`. S1
 and S4 cannot be claimed in a core system (see `kit/docs/loop.md`).
 
+## M-010 · 2026-10-30 · Kit 2.5: platform watch, pruning, split and new-system signals
+<!-- claim: maintenance none; landed: 2026-10-30; files: kit/tools/crew_report.py,kit/docs/loop.md,kit/commands/evolve.md,kit/VERSION,meta/keeper.md,meta/platform.md,log/pending/M-010-platform-watch.patch -->
+Not a self-change: Andres's ruling (2026-10-30). He declined direct system-to-system messaging.
+
+- **What changed:**
+  - **Platform watch.** The weekly review (`keeper.md` § 7) reads Claude Code's release notes down to the last version read (`meta/platform.md`), and asks of each new building block: should a system use it (a proposal line for Andres, never a trial), and does it open a way around a system's frame (a system-level line).
+  - **Pruning.** The crew report lists agents, skills and commands unused for 60 days, counted from when logging began; each deeper pass cuts or justifies each one. Nothing is removed automatically. In all four core systems: zesty C-012, engage C-014, dpi C-007, vinted-shopper C-004.
+  - **Split and new-system signals.** The weekly review looks for one system doing two jobs and for work no system owns, and proposes; building a system stays Andres's call.
+  - **Locked half, waiting on Andres:** `log/pending/M-010-platform-watch.patch`. It adds an allow list with `claude --version` and one exact curl of the release notes, and updates the weekly review's prompt to name the new steps. After it is applied, the app's stored prompt has to be updated to match (the boot check will say so).
+- **Why:** the skills miss came from nobody tracking the platform; the body had no signal for things that should die.
+- **Reviewer:** CONCERN · four findings, all fixed before landing (see the systems' entries).
+- **Verdict:** n/a (decision)
+
 ## M-009 · 2026-10-30 · Kit 2.4: connectors and schedules under the frame; model and tools in the standing question
 <!-- claim: maintenance none; landed: 2026-10-30; files: kit/hooks/kernel_guard.py,kit/hooks/boot_check.py,kit/settings.kernel.json,kit/scoreboard/relock,kit/scoreboard/apply,kit/schedules/evolve-SYSTEM-NAME.md,kit/docs/loop.md,kit/commands/evolve.md,kit/VERSION,playbook.md,.claude/hooks/kernel_guard.py,.claude/hooks/boot_check.py,.claude/settings.json,scoreboard/relock,scoreboard/apply,.claude/schedules/ -->
 Not a self-change: Andres's ruling (2026-10-30) that the systems evolve what they can reach and when they run, with systems writing their own hooks and live A/B variation left out.

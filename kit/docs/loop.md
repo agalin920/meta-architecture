@@ -164,6 +164,14 @@ those words. `tools/crew_report.py` lists each skill with how often it was
 loaded, each command with how often Andres typed it, and each kind of work
 with its units.
 
+**Pruning.** The crew report also lists **prune candidates**: an agent, skill or
+command defined here and not used for 60 days, counted from when that kind of
+use began to be logged (the change-reviewer is locked and never listed). Nothing fades out by itself, because the rarest know-how
+is often the most important. Each deeper pass takes every candidate and either
+cuts it (a self-change, archived, never deleted) or writes one line in its
+`deep pass` event saying why it stays. Cuts beyond the pass's three
+self-changes are listed in that event and wait for the next pass.
+
 ## Tools, connectors and schedules
 
 What the system can reach and when it runs are part of the body too (Andres,

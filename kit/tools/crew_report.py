@@ -49,6 +49,7 @@ import datetime as dt
 import glob
 import os
 import re
+import subprocess
 from collections import defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -59,6 +60,7 @@ DECISIONS = ["LAND", "CONCERN", "ESCALATE", "REJECT"]   # REJECT: only in events
 GENERIC = {"general-purpose", "fork", "claude", "explore", "plan", "claude-code-guide", "statusline-setup"}
 AD_HOC_MIN = 3
 KIND_MIN, KIND_DAYS = 3, 30   # units of one kind within that many days, no command or skill: recurring freehand work
+PRUNE_DAYS = 60               # defined and unused this long: the deeper pass cuts it or says why it stays
 SINCE, UNTIL = dt.date(2000, 1, 1), dt.date(2999, 12, 31)
 SLUG = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 
@@ -201,6 +203,52 @@ def kinds(capabilities):
                   "recurring work; consider one.")
 
 
+def prune(today=None):
+    """Agents, skills and commands defined here more than PRUNE_DAYS ago and not used in the last
+    PRUNE_DAYS: spawned or logged (agents), loaded (skills), typed (commands). Reads all of the log,
+    whatever the window. The change-reviewer is locked and never listed."""
+    today = today or dt.date.today()
+    last, logged_since = {}, {}   # logged_since: the first day each kind of use was logged at all
+    for d, kind, sid, rest in lines("spawns-*.md", dt.date(2000, 1, 1), today):
+        name = rest.split("|", 1)[0].strip().lstrip("/")
+        key = {"spawn": "agent", "skill": "skill", "command": "command"}.get(kind)
+        if key:
+            last[(key, name)] = max(last.get((key, name), d), d)
+            logged_since[key] = min(logged_since.get(key, d), d)
+    for d, kind, ref, text in lines("events-*.md", dt.date(2000, 1, 1), today):
+        if kind == "agent":
+            name = text.split("·", 1)[0].strip()
+            last[("agent", name)] = max(last.get(("agent", name), d), d)
+    found = [("agent", f[:-3], f".claude/agents/{f}") for f in sorted(os.listdir(os.path.join(ROOT, ".claude", "agents")))
+             if f.endswith(".md") and f != "change-reviewer.md"] if os.path.isdir(os.path.join(ROOT, ".claude", "agents")) else []
+    sdir = os.path.join(ROOT, ".claude", "skills")
+    found += [("skill", d, f".claude/skills/{d}/SKILL.md") for d in sorted(os.listdir(sdir))
+              if os.path.isfile(os.path.join(sdir, d, "SKILL.md"))] if os.path.isdir(sdir) else []
+    cdir = os.path.join(ROOT, ".claude", "commands")
+    found += [("command", f[:-3], f".claude/commands/{f}") for f in sorted(os.listdir(cdir))
+              if f.endswith(".md")] if os.path.isdir(cdir) else []
+    out = []
+    for key, name, path in found:
+        added = subprocess.run(["git", "-C", ROOT, "log", "--diff-filter=A", "--follow", "--format=%cs", "--", path],
+                               capture_output=True, text=True).stdout.split()
+        born = dt.date.fromisoformat(added[-1]) if added else today
+        if key not in logged_since:
+            continue                  # this kind of use was never logged here: no evidence either way
+        born = max(born, logged_since[key])   # use before logging began is unknown, not absent
+        # /x is one capability whether Andres types it or the model loads it: take the later use.
+        uses = [last.get((k, name)) for k in ((key,) if key == "agent" else ("skill", "command"))]
+        used = max((u for u in uses if u), default=None)
+        if (today - born).days > PRUNE_DAYS and (not used or (today - used).days > PRUNE_DAYS):
+            out.append(f"  {key} {name}: tracked since {born}, last used {used or 'never'}")
+    print()
+    if out:
+        print(f"Prune candidates (defined and unused for {PRUNE_DAYS}+ days): cut each, or record why it stays "
+              f"(docs/loop.md § Agents, skills and commands)")
+        print("\n".join(out))
+    else:
+        print(f"Prune candidates: none (nothing defined and unused for {PRUNE_DAYS}+ days).")
+
+
 def main():
     global SINCE, UNTIL
     ap = argparse.ArgumentParser()
@@ -287,6 +335,7 @@ def main():
     concerns = [row for row in reviewed_rows if row[2].upper().startswith(("CONCERN", "REJECT"))]
     for d, ref, text in concerns[-5:]:
         print(f"  {ref} on {d}: {text}")
+    prune()
 
 
 if __name__ == "__main__":
