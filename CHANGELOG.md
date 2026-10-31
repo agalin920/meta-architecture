@@ -23,6 +23,18 @@ block so the scripts skip them:
 Maintenance changes claim `<!-- claim: maintenance none; landed: … -->`. S1
 and S4 cannot be claimed in a core system (see `kit/docs/loop.md`).
 
+## M-011 · 2026-10-31 · Kit 2.6: sleep, quarantine, and a practice-test pilot
+<!-- claim: maintenance none; landed: 2026-10-31; files: kit/docs/loop.md,kit/commands/evolve.md,kit/VERSION,meta/keeper.md,playbook.md,log/pending/M-011-suspended-status.patch -->
+Not a self-change: Andres's ruling (2026-10-30). Curiosity (exploring changes no problem asked for) waits until the practice tests show what replays cost and catch.
+
+- **What changed:**
+  - **Sleep.** Every deeper pass ends with a Tidy step: merges as compactions, facts archived only with the command that contradicts them, waiting items rechecked, nothing deleted. In all four core systems (zesty C-013, engage C-015, dpi C-008, vinted-shopper C-005).
+  - **Quarantine.** A lesson that has spread (proven, or run in two or more systems) and then looks worse or causes an escape is `suspended`: no new trials, flagged in the playbook if proven, and Andres told which systems still run it (`keeper.md` § 4, `playbook.md` statuses).
+  - **Practice tests, pilot in zesty-eng-team only** (its C-013): past tasks the team got wrong, replayed in a sealed sandbox before a self-change to the instructions lands. Two cases; one held for a weak check.
+  - **Locked half, waiting on Andres:** `log/pending/M-011-suspended-status.patch` lets this layer's scoreboard count `suspended` lessons (M3).
+- **Reviewer:** CONCERN · the replay sandbox leaked the answer and could commit; Tidy skipped compaction rules; quarantine overlapped the trial rule · all fixed before landing.
+- **Verdict:** n/a (decision)
+
 ## M-010 · 2026-10-30 · Kit 2.5: platform watch, pruning, split and new-system signals
 <!-- claim: maintenance none; landed: 2026-10-30; files: kit/tools/crew_report.py,kit/docs/loop.md,kit/commands/evolve.md,kit/VERSION,meta/keeper.md,meta/platform.md,log/pending/M-010-platform-watch.patch -->
 Not a self-change: Andres's ruling (2026-10-30). He declined direct system-to-system messaging.

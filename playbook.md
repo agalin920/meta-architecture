@@ -164,6 +164,7 @@ want" and "what has changed?".
 | `founding` | One of the original invariants. Labelled, not re-proved (ruling 1). Can still be retired on evidence | Yes, through the kernel |
 | `candidate` | Measurably helped in one system: its self-change got the verdict *helped* | No; available to trial |
 | `proven` | Helped in one system, **then still helped when tried in another** | Yes, once written into this file |
+| `suspended` | Looked worse, or caused an escape, in a system running it. **Quarantined**: no new trials, flagged here if proven, and Andres is told which systems still run it (`meta/keeper.md` § 4) | No, until cleared |
 | `retired` | Tried and failed, or cut. **Kept with the reason**, so nobody reinvents it | No |
 
 **A carried trial counts.** The old bar demanded two independent inventions,

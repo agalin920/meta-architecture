@@ -63,6 +63,16 @@ When a trial's verdict lands in the receiving system's changelog:
 - **Looks worse, no effect, or unproven**: the lesson stays local. Mark it
   "does not transfer" with the numbers. The receiving system may still keep
   the change (changes are kept by default); that is its call, not a transfer.
+- **Quarantine** (Andres, 2026-10-30). A trial that looks worse only means
+  "does not transfer" (above). Quarantine is for a lesson that has already
+  spread: if a `proven` lesson, or any lesson two or more systems run, gets a
+  *looks worse* verdict or an escape traced to it in any of them, mark it
+  `suspended` in `lessons/` with the system, the verdict and the numbers, the
+  same week. A suspended lesson gets no new trials, and a `proven` one is
+  flagged in `playbook.md` so no new system starts from it. Add a system-level
+  line for Andres listing every system still running it; each of those systems
+  decides for itself whether to keep or revert its copy. It goes back to its
+  old status only with new evidence, or to `retired`.
 
 ## 5. Update the playbook (at most monthly)
 
