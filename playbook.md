@@ -232,12 +232,22 @@ second system's boot ◀── trials.md ◀── this layer picks a trial targ
   mPulse, and the reverse, as mechanism: what to measure, when to check, how
   to review. No code, tickets, practices or internals cross. The meta
   reviewer checks every trial entry for this.
+- **A skill travels the same way** (Andres, 2026-10-31). A skill that helped
+  in one system is a candidate like any lesson; its trial is the skill itself,
+  copied into the second system's `.claude/skills/` as that system's
+  self-change. Once proven, it goes into [`kit/skills/`](kit/skills/) with its
+  record, and new systems start with it. Only general mechanism goes in: no
+  repo, product, ticket format or credential path, and nothing personal. This
+  is the only shared pool. User-level skills and agents in `~/.claude` load in
+  every session, so each system's guard runs only those from its own
+  employer's tooling (`kit/docs/loop.md` § Tools, connectors and schedules).
 
 ## Building a new system
 
 1. Write the charter with Andres: goal, hard lines, scoreboard.
 2. Copy the `kit/` and configure it: system name, locked paths, boot budget,
-   and its first schedule (`kit/schedules/evolve-SYSTEM-NAME.md`, renamed for it).
+   its first schedule (`kit/schedules/evolve-SYSTEM-NAME.md`, renamed for it),
+   its `TOOL_ROOTS` in the guard, and the proven skills in `kit/skills/`.
 3. Write the scoreboard script **and record a baseline before any
    self-change**.
 4. Start with a small standing crew and let roles emerge. Spawn agents freely
