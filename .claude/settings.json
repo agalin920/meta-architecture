@@ -155,7 +155,7 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "Bash|Edit|Write|MultiEdit|NotebookEdit",
+        "matcher": "Bash|Edit|Write|MultiEdit|NotebookEdit|mcp__scheduled-tasks__.*|CronCreate|CronDelete|RemoteTrigger",
         "hooks": [
           {
             "type": "command",

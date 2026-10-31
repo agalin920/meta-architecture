@@ -23,9 +23,11 @@ scoreboard/apply
 .claude/agents/change-reviewer.md
 LIST
 )
-# Baselines are locked too: every scoreboard/baseline-*.json present.
+# Baselines are locked too: every scoreboard/baseline-*.json present, and the
+# connectors and declared schedules.
 files="$files
-$(ls scoreboard/baseline-*.json 2>/dev/null || true)"
+$(ls scoreboard/baseline-*.json 2>/dev/null || true)
+$(ls .mcp.json .claude/schedules/*.md 2>/dev/null || true)"
 new=$(for f in $files; do [ -f "$f" ] && shasum -a 256 "$f"; done)
 if [ -f scoreboard/lock.sha256 ]; then
   diff <(grep -v '^#' scoreboard/lock.sha256) <(echo "$new") || true

@@ -18,7 +18,9 @@ when something is due:
   - the score snapshot (log/scores/) stale or broken, or more merged PRs than units;
   - instruction channels changed since log/env.sha256 (memory, settings, model);
   - what is waiting on Andres, aged from each item's first date;
-  - playbook trials addressed to this system that it has not taken up.
+  - playbook trials addressed to this system that it has not taken up;
+  - declared schedules (.claude/schedules/) that are missing, run from another
+    folder or differ from the app's tasks, and tasks here nobody declared.
 
 Usage: as a SessionStart hook (payload on stdin), or by hand:
   python3 .claude/hooks/boot_check.py < /dev/null
@@ -338,6 +340,14 @@ def channels(root, model=None):
                        ("~/.claude/CLAUDE.md", os.path.join(home, ".claude", "CLAUDE.md"))):
         if os.path.isfile(path):
             out[name] = _sha(open(path, "rb").read())
+    try:                                   # connectors: user scope and this project's, in ~/.claude.json
+        cj = json.load(open(os.path.join(home, ".claude.json")))
+        servers = {"user": cj.get("mcpServers") or {}}
+        for k in sorted({root, os.path.realpath(root)}):
+            servers[k] = ((cj.get("projects") or {}).get(k) or {}).get("mcpServers") or {}
+        out["connectors"] = _sha(json.dumps(servers, sort_keys=True).encode())
+    except (OSError, ValueError):
+        pass
     if model:
         out[f"model:{model}"] = _sha(model.encode())
     return out
@@ -450,6 +460,78 @@ def trials(root):
     return out
 
 
+APP_TASKS = "~/Library/Application Support/Claude/claude-code-sessions/*/*/scheduled-tasks.json"
+WATCH_ALL_TASKS = False                    # meta: also flag tasks in folders where nothing declares them
+
+
+def _front(text):
+    """(frontmatter dict, body) of a SKILL.md-style file."""
+    m = re.match(r"---\n(.*?)\n---\n?(.*)", text or "", re.S)
+    if not m:
+        return {}, (text or "").strip()
+    meta = dict(re.findall(r"^(\w+):\s*(.*?)\s*$", m.group(1), re.M))
+    return meta, m.group(2).strip()
+
+
+def _when(v):
+    """A fireAt as an aware datetime: the app stores epoch ms, a declaration an ISO string."""
+    try:
+        if str(v).isdigit():
+            return dt.datetime.fromtimestamp(int(v) / 1000, dt.timezone.utc)
+        return dt.datetime.fromisoformat(str(v).replace("Z", "+00:00"))
+    except (TypeError, ValueError):
+        return None
+
+
+def schedules(root):
+    """Declared schedules (.claude/schedules/<id>.md) against the app's scheduled tasks."""
+    declared = {}
+    for f in sorted(glob.glob(os.path.join(root, ".claude", "schedules", "*.md"))):
+        declared[os.path.basename(f)[:-3]] = _front(read(f))
+    tasks = {}
+    for f in glob.glob(os.path.expanduser(APP_TASKS)):
+        try:
+            for t in json.load(open(f)).get("scheduledTasks", []):
+                tasks[t.get("id")] = t
+        except Exception:
+            continue
+    here = os.path.realpath(root)
+    now = dt.datetime.now(dt.timezone.utc)
+    out = []
+    for tid, t in tasks.items():
+        cwd = os.path.realpath(t.get("cwd") or "")
+        if cwd == here and tid not in declared:
+            out.append(f"{tid} runs here but is not declared: disable it and tell Andres, or propose it")
+        elif WATCH_ALL_TASKS and cwd != here and tid not in declared and t.get("enabled", True) and \
+                not os.path.isfile(os.path.join(cwd, ".claude", "schedules", f"{tid}.md")):
+            out.append(f"{tid} runs from {t.get('cwd')}, where nothing declares it and no system's guards load")
+    for tid, (meta, body) in declared.items():
+        t = tasks.get(tid)
+        once = _when(meta.get("fireAt")) if meta.get("fireAt") else None
+        if once and once < now:
+            continue                           # a one-time run already due: done, nothing to keep in sync
+        if t is None:
+            out.append(f"{tid} is declared but not scheduled: create it from a session here with the "
+                       f"scheduled-tasks tool (taskId {tid}, its time and prompt); the guard asks Andres")
+            continue
+        if os.path.realpath(t.get("cwd") or "") != here:
+            out.append(f"{tid} runs from {t.get('cwd')}, not here, so this repo's guards do not load: "
+                       f"delete it and recreate it from a session here")
+        if once:
+            if _when(t.get("fireAt")) != once:
+                out.append(f"{tid} runs at {t.get('fireAt') or t.get('cronExpression')}, declared {meta.get('fireAt')}")
+        elif (t.get("cronExpression") or "") != (meta.get("cron") or ""):
+            out.append(f"{tid} runs at {t.get('cronExpression') or t.get('fireAt')}, declared {meta.get('cron')}")
+        _, live = _front(read(t.get("filePath") or ""))
+        if live != body:
+            out.append(f"{tid}: its prompt differs from .claude/schedules/{tid}.md")
+        if not t.get("enabled", True):
+            out.append(f"{tid} is declared but disabled")
+    if os.path.isfile(os.path.join(root, ".mcp.json")) and ".mcp.json" not in (read(os.path.join(root, "scoreboard", "lock.sha256")) or ""):
+        out.append(".mcp.json exists but is not locked: tell Andres (he runs scoreboard/relock once he has read it)")
+    return out
+
+
 def main():
     if "--write-env" in sys.argv:
         root = os.environ.get("CLAUDE_PROJECT_DIR") or os.getcwd()
@@ -529,6 +611,9 @@ def main():
     if t:
         lines.append("Playbook trials addressed here, not yet taken up: " + ", ".join(t) +
                      " (see " + TRIALS + ").")
+    drift = schedules(root)
+    if drift:
+        lines.append("Schedules and connectors (the loop doc, § Tools, connectors and schedules): " + "; ".join(drift) + ".")
     print("\n".join(lines))
 
 

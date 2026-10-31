@@ -5,7 +5,9 @@ PreToolUse hook: the kernel's locks, enforced by the harness rather than prose.
 Two outcomes besides allow (Andres ruled 2026-10-29):
 
   deny  flatly refused, even with his approval in the moment:
-        - writes to locked files (any spelling, any case);
+        - writes to locked files (any spelling, any case), connectors (.mcp.json,
+          ~/.claude.json), declared schedules (.claude/schedules/), and the app's
+          task prompts and task store;
         - writes to log/raw/, the raw evidence S3 is counted from (Andres's
           prompts). The prompt_log hook writes it through Python, not a tool,
           so it is unaffected; sessions may read it, never edit it;
@@ -20,7 +22,9 @@ Two outcomes besides allow (Andres ruled 2026-10-29):
           releases or settings, and any DELETE; GraphQL mutations that merge,
           close or move refs;
         - curl PURGE/DELETE/POST/PUT to a non-localhost host;
-        - docker exec/run against a database container.
+        - docker exec/run against a database container;
+        - creating, changing, deleting or starting a scheduled task, session cron
+          or routine; `claude mcp` and `claude plugin` changes.
 
 This cannot stop every spelling of a write: a shell can always build a path the
 guard does not anticipate. scoreboard/lock.sha256 and the boot check are the
@@ -47,15 +51,25 @@ LOCKED = [                                  # relative to the repo root
     ".claude/settings.json",
     ".claude/settings.local.json",
     ".claude/agents/change-reviewer.md",
+    ".mcp.json",                            # connectors reach outside the repo
+    ".claude/schedules/",                   # declared unattended runs
 ]
 # Branches of OTHER repos this system must never push to (any spelling). Its own
 # repo is exempt (pushing its own main is how memory reaches the remote).
 PROTECTED = ["main", "master", "develop", "dev", "stage", "beta", "stable", "production", "release/*"]
 # -----------------------------------------------------------------------------
 
-HOME_LOCKED = [os.path.expanduser("~/.claude/settings.json")]
+HOME_LOCKED = [os.path.expanduser("~/.claude/settings.json"), os.path.expanduser("~/.claude/scheduled-tasks/"),
+               os.path.expanduser("~/.claude.json")]       # user and local connectors live here
+# The app's scheduled-task store (times, folders, enabled flags), wherever the account keeps it.
+HOME_GLOBS = [os.path.expanduser("~/Library/Application Support/Claude/claude-code-sessions/*/*/scheduled-tasks.json")]
 # Evidence written only by hooks: sessions read it, never write it (Andres, 2026-10-29).
 RAW = ["log/raw/"]
+
+# Tools that create, change or start a run nobody watches: scheduled tasks, session crons, cloud routines.
+SCHEDULE_TOOLS = re.compile(r"^(mcp__scheduled-tasks__(create|update|delete|run)_scheduled_task|CronCreate|CronDelete|RemoteTrigger)$")
+# Commands that add or remove a connector or plugin without naming a file.
+CONNECTOR_CMD = re.compile(r"\bclaude\s+(?:mcp\s+(?:add|add-json|add-from-claude-desktop|remove)|plugins?\s+(?:install|uninstall|enable|disable|marketplace))\b")
 
 # A command that names a locked path is allowed only if it shows none of these.
 WRITE_SIGNS = re.compile(
@@ -139,7 +153,7 @@ def is_locked_file(path, root):
 def names_locked(cmd):
     cmd = cmd.casefold()
     hits = []
-    for rel in LOCKED + RAW + ["~/.claude/settings.json", ".claude/settings"]:
+    for rel in LOCKED + RAW + ["~/.claude/settings.json", ".claude/settings", "/.claude/scheduled-tasks", "scheduled-tasks.json", "~/.claude.json"]:
         key = rel.rstrip("/").casefold()
         base = os.path.basename(key)
         # Bare file names count too (a session may have cd'd), but only
@@ -307,9 +321,16 @@ def main():
     inp = payload.get("tool_input", {}) or {}
     root = project_dir(payload)
 
+    if SCHEDULE_TOOLS.match(tool):
+        ask("This sets up, changes or starts an unattended run. Andres approves each, and it must match a "
+            "declared .claude/schedules/<id>.md (the loop doc, § Tools, connectors and schedules).")
+        finish()
+
     if tool in ("Edit", "Write", "MultiEdit", "NotebookEdit"):
         path = inp.get("file_path") or inp.get("notebook_path") or ""
         hit = is_locked_file(path, root) if path else None
+        if path and any(fnmatch.fnmatch(os.path.realpath(os.path.expanduser(path)), g) for g in HOME_GLOBS):
+            hit = "the app's scheduled-task store"
         if hit in RAW:
             deny(f"{hit} is raw evidence written only by a hook (Andres's prompts; S3 is counted from it). "
                  f"Sessions may read it, never edit it.")
@@ -335,6 +356,9 @@ def main():
                      "written only by a hook (S3 is counted from it); read it with the Read tool, cat, grep, tail or jq, never edit it.")
             deny(f"This command touches a locked path ({', '.join(sorted(set(hits)))}) and looks like it "
                  f"could write. Locked files are Andres's. Reading them with cat/grep/git log is fine.")
+        if CONNECTOR_CMD.search(cmd):
+            ask("This adds or removes a connector or plugin, which reaches outside the repo. Andres approves it "
+                "in the moment; propose it first (Kind: connector).")
         check_marker(cmd, root)
         check_push(cmd, root)
         check_gh_writes(cmd)

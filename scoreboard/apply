@@ -29,7 +29,7 @@ p = "scoreboard/lock.sha256"
 lines = open(p).read().splitlines()
 head = [l for l in lines if l.startswith("#")]
 paths = [l.split(None, 1)[1].strip() for l in lines if l.strip() and not l.startswith("#")]
-for f in sorted(glob.glob("scoreboard/*")):
+for f in sorted(glob.glob("scoreboard/*") + glob.glob(".mcp.json") + glob.glob(".claude/schedules/*.md")):
     if os.path.isfile(f) and f != p and f not in paths:
         paths.append(f)
 paths = [x for x in paths if os.path.exists(x)]

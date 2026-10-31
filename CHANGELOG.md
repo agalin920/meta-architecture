@@ -23,6 +23,15 @@ block so the scripts skip them:
 Maintenance changes claim `<!-- claim: maintenance none; landed: … -->`. S1
 and S4 cannot be claimed in a core system (see `kit/docs/loop.md`).
 
+## M-009 · 2026-10-30 · Kit 2.4: connectors and schedules under the frame; model and tools in the standing question
+<!-- claim: maintenance none; landed: 2026-10-30; files: kit/hooks/kernel_guard.py,kit/hooks/boot_check.py,kit/settings.kernel.json,kit/scoreboard/relock,kit/scoreboard/apply,kit/schedules/evolve-SYSTEM-NAME.md,kit/docs/loop.md,kit/commands/evolve.md,kit/VERSION,playbook.md,.claude/hooks/kernel_guard.py,.claude/hooks/boot_check.py,.claude/settings.json,scoreboard/relock,scoreboard/apply,.claude/schedules/ -->
+Not a self-change: Andres's ruling (2026-10-30) that the systems evolve what they can reach and when they run, with systems writing their own hooks and live A/B variation left out.
+
+- **What changed:** connectors (`.mcp.json`, `~/.claude.json`) and declared schedules (`.claude/schedules/<id>.md`) are locked; the guard asks before any scheduled task is created, changed, deleted or started and on `claude mcp` and `claude plugin` changes, and refuses edits to the app's task store; the boot check compares declared schedules with the app's tasks and hashes connectors as an instruction channel; the standing question asks about models, scripts and connectors. Each core system declares `evolve-<system>`, a Monday deeper pass that runs only when one is due (zesty C-011, engage C-013, dpi C-006, vinted-shopper C-003).
+- **Found on the way:** a scheduled task runs in the folder of the session that created it. This layer's three tasks were created from `~/dev`, so the weekly review has run without this repo's guards. They are declared in `.claude/schedules/`; this layer's boot check (which also watches tasks in folders where nothing declares them) says to recreate them from a session here.
+- **Reviewers (all five systems):** CONCERN · `claude mcp add` (which writes `~/.claude.json`) and a direct edit of the app's task store got past the lock; one-time dates were never compared; `run_scheduled_task` and `CronDelete` were not asked · all fixed before landing: the guard asks on `claude mcp` and `claude plugin` changes and refuses edits to `~/.claude.json` and the task store; the boot check compares `fireAt`, skips one-time runs already due, and hashes this project's connectors as an instruction channel
+- **Verdict:** n/a (decision)
+
 ## M-008 · 2026-10-30 · Kit hook: the prompt log tags who wrote each prompt
 <!-- claim: maintenance none; landed: 2026-10-30; files: kit/hooks/prompt_log.py,.claude/hooks/prompt_log.py,kit/docs/loop.md -->
 Not a self-change: Andres's ruling to fix S3 now rather than at the 2026-11-29 re-baseline.

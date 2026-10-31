@@ -111,8 +111,9 @@ It reads the window's events, scores and tickets, and the output of
 `python3 tools/crew_report.py` (spawns, `agent` effects, the change-reviewer's
 decisions and their outcomes), with one standing question: **for each subagent,
 skill and command, and the change-reviewer, would we define this one today,
-given its record? And which kinds of work keep recurring with no command or
-skill behind them?**
+given its record? Is each agent on the right model for its job? Would a script
+in `tools/` or a connector let the system do what it keeps doing by hand? And
+which kinds of work keep recurring with no command or skill behind them?**
 It proposes at most three self-changes, each with a claim. It must say what it
 would **cut**; "nothing should be cut, because…" is a valid answer, and silence
 is not. It ends with a `deep pass` event.
@@ -162,6 +163,34 @@ when its description matches the words a task arrives in, so write it in
 those words. `tools/crew_report.py` lists each skill with how often it was
 loaded, each command with how often Andres typed it, and each kind of work
 with its units.
+
+## Tools, connectors and schedules
+
+What the system can reach and when it runs are part of the body too (Andres,
+2026-10-30). Two are self-changes; two reach outside, so they are locked and
+proposed.
+
+- **A script** in `tools/` is a self-change: add one when units keep doing the
+  same steps by hand.
+- **A model** is the `model:` line of an agent file; changing it is a
+  self-change, claimed on the measure that agent serves, with the cost in the
+  Why. The change-reviewer's file, model line included, is locked.
+- **A connector** reaches outside the repo: `.mcp.json`, or `claude mcp add`,
+  which writes `~/.claude.json`. Both are locked: the guard refuses edits to
+  either file and asks Andres on `claude mcp` and `claude plugin` changes, and
+  the boot check hashes this project's connectors as an instruction channel.
+  Propose one with **Kind:** connector, saying what it reads and can write.
+- **A schedule** is a run nobody watches. Each is `.claude/schedules/<id>.md`:
+  frontmatter `title` and `cron` (local time) or `fireAt`, and the prompt as the
+  body. They are locked: propose a new or changed one with **Kind:** schedule.
+  Once applied, the boot check says it is declared but not scheduled; create it
+  from a session in this repo with the scheduled-tasks tool (taskId = the file
+  name, the same time and prompt), so it runs here with this repo's guards. The
+  guard asks Andres each time. The boot check flags a schedule that runs here
+  undeclared, from another folder, or with a different time or prompt.
+  A scheduled prompt does no ticket work and nothing outside the repo (no push,
+  PR, comment or message), puts anything for Andres on his waiting list, and
+  stops at any permission prompt.
 
 ## A self-change
 
@@ -237,13 +266,13 @@ hard lines or ruler. It can propose a change, and should, when evidence shows
 that a measure misleads, a blind spot keeps costing it, a sound change can't be
 seen by any measure, or a hard line no longer fits the work.
 
-1. **One open proposal per kind** (one for the charter, one for the scoreboard).
+1. **One open proposal per kind** (charter, scoreboard, connector, schedule).
    If one is already open, strengthen it or withdraw it; don't add a second.
 2. Write `log/pending/S-NNN.md`:
 
    ```
    # S-NNN · <the change in one sentence>
-   - **Kind:** scoreboard | charter
+   - **Kind:** scoreboard | charter | connector | schedule
    - **Status:** open
    - **Evidence:** <the units, corrections, numbers or reviewer verdicts behind it>
    - **What it lets the system do:** <what it can't do or see today>

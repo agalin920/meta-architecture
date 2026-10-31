@@ -235,7 +235,8 @@ second system's boot ◀── trials.md ◀── this layer picks a trial targ
 ## Building a new system
 
 1. Write the charter with Andres: goal, hard lines, scoreboard.
-2. Copy the `kit/` and configure it: system name, locked paths, boot budget.
+2. Copy the `kit/` and configure it: system name, locked paths, boot budget,
+   and its first schedule (`kit/schedules/evolve-SYSTEM-NAME.md`, renamed for it).
 3. Write the scoreboard script **and record a baseline before any
    self-change**.
 4. Start with a small standing crew and let roles emerge. Spawn agents freely
