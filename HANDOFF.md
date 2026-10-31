@@ -21,6 +21,14 @@ request, in all four repos (fast-forward; nothing on the remotes was overwritten
 - **Weekly review:** the "Weekly lessons review" task (Monday morning, Claude desktop
   app), plus this repo's boot.
 - **Falsifier checks:** 2027-01-31 and 2027-03-31 (`meta/thesis.md`).
+- **S3 re-baseline due 2026-11-29.** S3 changed definition on 2026-10-29 (Andres's
+  follow-up prompts instead of hand-kept findings), so until then it reads
+  "worse" against the old baselines in M1 and the systems' boot checks without
+  anything having got worse (each system's `definitions.md` § Definition
+  breaks). From that date, with 30 days under the new definition, each work
+  system writes a scoreboard proposal (`log/pending/S-NNN`) for a fresh S3
+  baseline, and the weekly review lists it here for Andres. Until then, read
+  S3 "worse" as the break, not a result.
 
 ## Waiting on Andres: system
 
