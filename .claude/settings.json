@@ -166,7 +166,7 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "Task|Agent",
+        "matcher": "Task|Agent|Skill",
         "hooks": [
           {
             "type": "command",
