@@ -30,7 +30,7 @@ CORE = {
 MEASURES = ["S1", "S2", "S3", "S4", "G1"]
 UP_IS_GOOD = {"G1"}
 EVENT = re.compile(r"^- (\d{4}-\d{2}-\d{2})[^|]*\|\s*(\w[\w-]*)\s*\|")
-STATUS = re.compile(r"\*\*Status:\*\*\s*`?(founding|candidate|proven|retired)`?", re.I)
+STATUS = re.compile(r"\*\*Status:\*\*\s*`?(founding|candidate|proven|suspended|retired)`?", re.I)
 
 
 def events(repo, kind, since, until):
@@ -100,7 +100,7 @@ def m1(since, until):
 
 
 def m3():
-    counts = {"founding": 0, "candidate": 0, "proven": 0, "retired": 0}
+    counts = {"founding": 0, "candidate": 0, "proven": 0, "suspended": 0, "retired": 0}
     d = os.path.join(ROOT, "lessons")
     for name in os.listdir(d) if os.path.isdir(d) else []:
         if name.endswith(".md") and name not in ("README.md", "observations.md"):

@@ -1,7 +1,7 @@
-# Hashes of locked files. Written by scoreboard/relock on 2026-10-30. Do not edit by hand.
+# Hashes of locked files. Written by scoreboard/relock on 2026-10-31. Do not edit by hand.
 beacc1371b2056da12b3c565469b2045a4c462abd5423575d97110700e643e3f  charter.md
 9a9401e32f2afa95088b6a4179756085b000d1fa61992a4ab709d232656638d4  scoreboard/definitions.md
-eea360089c3e8d0199faa6964cf298795f4f6592301e7ee9652de8fd4af74ffd  scoreboard/score.py
+cab42c18b0b27c6206bb40809bb9821725f9807dce20779b52813f1a01710d4e  scoreboard/score.py
 e51767cea725e9626c512277419b07554982b69ff6b2774f2dd78be921fb9945  scoreboard/verdicts.py
 f3fa7b2d453993f98fac246a85a66c7bf94086f2ef940bc542b3170d533effd8  scoreboard/relock
 f7c72321d8068953e2691b60c2ba3bde84b0a0624f5e3fe3ef193ede4725617f  scoreboard/apply
