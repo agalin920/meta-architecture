@@ -159,7 +159,7 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "Bash|Edit|Write|MultiEdit|NotebookEdit|mcp__scheduled-tasks__.*|CronCreate|CronDelete|RemoteTrigger",
+        "matcher": "Bash|Edit|Write|MultiEdit|NotebookEdit|Read|Grep|Glob|mcp__scheduled-tasks__.*|CronCreate|CronDelete|RemoteTrigger|Skill|Agent|Task",
         "hooks": [
           {
             "type": "command",

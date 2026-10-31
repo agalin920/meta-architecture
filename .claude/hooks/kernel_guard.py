@@ -25,6 +25,9 @@ Two outcomes besides allow (Andres ruled 2026-10-29):
         - docker exec/run against a database container;
         - creating, changing, deleting or starting a scheduled task, session cron
           or routine; `claude mcp` and `claude plugin` changes.
+  deny  also: a user-level skill or agent whose files live outside TOOL_ROOTS and
+        ~/.claude itself, and any read of FOREIGN_TOOLING (the other employer's
+        shared tooling).
 
 This cannot stop every spelling of a write: a shell can always build a path the
 guard does not anticipate. scoreboard/lock.sha256 and the boot check are the
@@ -36,6 +39,7 @@ Configure the constants below per system. This file is itself locked.
 import json
 import os
 import fnmatch
+import glob
 import re
 import subprocess
 import sys
@@ -75,6 +79,11 @@ RAW = ["log/raw/"]
 
 # Tools that create, change or start a run nobody watches: scheduled tasks, session crons, cloud routines.
 SCHEDULE_TOOLS = re.compile(r"^(mcp__scheduled-tasks__(create|update|delete|run)_scheduled_task|CronCreate|CronDelete|RemoteTrigger)$")
+# User-level skills and agents are links into each employer's shared tooling. One runs
+# here only if its files live under TOOL_ROOTS, or are real files in ~/.claude itself; the
+# other employer's tooling is not read either (Andres, 2026-10-31). Empty: only ~/.claude itself.
+TOOL_ROOTS = []
+FOREIGN_TOOLING = []
 # Commands that add or remove a connector or plugin without naming a file.
 CONNECTOR_CMD = re.compile(r"\bclaude\s+(?:mcp\s+(?:add|add-json|add-from-claude-desktop|remove)|plugins?\s+(?:install|uninstall|enable|disable|marketplace))\b")
 
@@ -319,6 +328,62 @@ def check_marker(cmd, root):
          f"so the scoreboard can tell it apart from Andres's own words. Add it to the body and retry.")
 
 
+def _user_tools():
+    """{(kind, name): [realpath]} for user-level skills and agents, by folder or file name and by
+    frontmatter `name:`, so a renamed definition cannot slip past."""
+    out = {}
+    def add(kind, name, real):
+        out.setdefault((kind, name.strip().lower()), []).append(real)
+    for f in glob.glob(os.path.expanduser("~/.claude/skills/*/SKILL.md")):
+        real = os.path.realpath(f)
+        add("skill", os.path.basename(os.path.dirname(f)), real)
+        m = re.search(r"^name:\s*(\S+)", (open(real, errors="replace").read(2000) if os.path.isfile(real) else ""), re.M)
+        if m:
+            add("skill", m.group(1), real)
+    for f in glob.glob(os.path.expanduser("~/.claude/agents/**/*.md"), recursive=True):
+        real = os.path.realpath(f)
+        add("agent", os.path.basename(f)[:-3], real)
+        m = re.search(r"^name:\s*(\S+)", (open(real, errors="replace").read(2000) if os.path.isfile(real) else ""), re.M)
+        if m:
+            add("agent", m.group(1), real)
+    return out
+
+
+def _outside(real, roots):
+    allowed = [os.path.realpath(os.path.expanduser("~/.claude"))] + [os.path.realpath(os.path.expanduser(r)) for r in roots]
+    return not any(real == a or real.startswith(a + os.sep) for a in allowed)
+
+
+def foreign_tool(tool, inp, root):
+    """Why this call would load or read another employer's tooling, or None."""
+    if tool == "Skill":
+        name = str(inp.get("skill") or "").lstrip("/")
+        if not name or ":" in name:
+            return None                             # plugin skills are their own channel
+        hits = _user_tools().get(("skill", name.lower()), [])
+    elif tool in ("Agent", "Task"):
+        hits = _user_tools().get(("agent", str(inp.get("subagent_type") or "").lower()), [])
+    elif tool in ("Read", "Grep", "Glob"):
+        p = inp.get("file_path") or inp.get("path") or ""
+        real = os.path.realpath(os.path.join(root, os.path.expanduser(p))) if p else ""
+        hits = [real] if real and any(real == f or real.startswith(f + os.sep) for f in
+                                      (os.path.realpath(os.path.expanduser(x)) for x in FOREIGN_TOOLING)) else []
+        return "read" if hits else None
+    else:
+        return None
+    return "load" if any(_outside(h, TOOL_ROOTS) for h in hits) else None
+
+
+def foreign_cmd(cmd):
+    """A shell command that names another employer's tooling: its full path, or a folder name distinctive enough."""
+    cmd = os.path.expanduser(cmd)
+    for x in FOREIGN_TOOLING:
+        full, base = os.path.expanduser(x), os.path.basename(x)
+        if full in cmd or ("-" in base and base in cmd):
+            return True
+    return False
+
+
 def main():
     try:
         payload = json.load(sys.stdin)
@@ -327,6 +392,11 @@ def main():
     tool = payload.get("tool_name", "")
     inp = payload.get("tool_input", {}) or {}
     root = project_dir(payload)
+
+    hit = foreign_tool(tool, inp, root)
+    if hit or (tool == "Bash" and foreign_cmd(inp.get("command", ""))):
+        deny("That is another employer's shared tooling, which this system does not load or read (Andres, "
+             "2026-10-31). Do not open its files by any other route; do the step with this system's own know-how.")
 
     if SCHEDULE_TOOLS.match(tool):
         ask("This sets up, changes or starts an unattended run. Andres approves each, and it must match a "

@@ -199,6 +199,14 @@ proposed.
   either file and asks Andres on `claude mcp` and `claude plugin` changes, and
   the boot check hashes this project's connectors as an instruction channel.
   Propose one with **Kind:** connector, saying what it reads and can write.
+- **User-level skills and agents** (`~/.claude/skills`, `~/.claude/agents`)
+  load in every session on this machine; most are links into an employer's
+  shared tooling. The guard runs one only if its files live under this
+  system's `TOOL_ROOTS` (its employer's folder, or none) or in `~/.claude`
+  itself, refuses reading the other employer's tooling (`FOREIGN_TOOLING`),
+  and the boot check hashes both
+  folders as instruction channels: when they change, write an `env` event
+  saying what changed and whether it touches this system's work.
 - **A schedule** is a run nobody watches. Each is `.claude/schedules/<id>.md`:
   frontmatter `title` and `cron` (local time) or `fireAt`, and the prompt as the
   body. They are locked: propose a new or changed one with **Kind:** schedule.

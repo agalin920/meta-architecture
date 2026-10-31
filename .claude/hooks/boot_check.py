@@ -348,6 +348,14 @@ def channels(root, model=None):
         out["connectors"] = _sha(json.dumps(servers, sort_keys=True).encode())
     except (OSError, ValueError):
         pass
+    for label, d in (("user-skills", os.path.join(home, ".claude", "skills")),
+                     ("user-agents", os.path.join(home, ".claude", "agents"))):
+        h = hashlib.sha256()                   # shared tooling these link to changes when its repo does
+        for f in sorted(glob.glob(os.path.join(d, "**", "*"), recursive=True)):
+            if os.path.isfile(f):
+                h.update(os.path.relpath(f, d).encode() + b"\0" + open(f, "rb").read())
+        if os.path.isdir(d):
+            out[label] = h.hexdigest()
     if model:
         out[f"model:{model}"] = _sha(model.encode())
     return out
