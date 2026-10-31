@@ -24,11 +24,6 @@ request, in all four repos (fast-forward; nothing on the remotes was overwritten
 
 ## Waiting on Andres: system
 
-- 2026-10-30 — **vinted-shopper is core (your ruling): the locked half.** The
-  charter row, the guard's `EDIT_ROOTS` (so this layer may edit it) and the
-  scoreboard (M1 now reads each system's first baseline), plus vinted-shopper's
-  kit 2.3 hooks. `bash finish-vinted-core.sh` (session 8588c1b4's scratchpad,
-  `finish5/`) offers each with its diff and relocks.
 
 ## Waiting on Andres: work
 
