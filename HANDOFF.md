@@ -23,6 +23,12 @@ request, in all four repos (fast-forward; nothing on the remotes was overwritten
 
 ## Waiting on Andres: system
 
+- 2026-10-30 — **Typed-command logging (escalated by the change-reviewer).**
+  Kit 2.3 would log each command or skill you type (its name only) in the spawn
+  log, from a UserPromptExpansion hook. The kit half is
+  `log/pending/M-006-command-logging.patch`, and each repo's locked hook and
+  settings are staged. `bash finish-commands.sh` (session 8588c1b4's scratchpad,
+  `finish4/`) offers all of it with diffs, relocks and asks before pushing.
 - 2026-10-29 — vinted-shopper is not in the charter's table of systems. Add it
   as core or side project when you next edit `charter.md` (see `systems.md` § New
   systems).

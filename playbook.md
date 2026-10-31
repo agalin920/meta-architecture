@@ -132,7 +132,10 @@ invent them, and every such change lands in the changelog.
   matches its description; an agent gives a fresh context, independence or
   tool limits. Both are evolvable. A miss caused by missing know-how usually
   wants a skill, not another agent: a heuristic each system's loop may revise
-  on its own evidence. `kit/docs/loop.md` § Agents and skills.
+  on its own evidence. Commands (workflows Andres starts) are judged the same
+  way, and a kind of work that recurs with no command or skill behind it gets
+  one: each system grows what its own work calls for. `kit/docs/loop.md`
+  § Agents, skills and commands.
 - **Coordinate through shared memory, not a coordinator.** The event log,
   current state, knowledge and lessons are how agents pass work to each other
   and to the next session.

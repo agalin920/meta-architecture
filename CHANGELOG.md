@@ -23,6 +23,22 @@ block so the scripts skip them:
 Maintenance changes claim `<!-- claim: maintenance none; landed: … -->`. S1
 and S4 cannot be claimed in a core system (see `kit/docs/loop.md`).
 
+## M-006 · 2026-10-30 · Kit 2.3: commands are judged too; recurring work gets a skill
+<!-- claim: maintenance none; landed: 2026-10-30 -->
+Not a self-change: Andres's ruling that the loop judges commands as it judges
+agents and skills, and that work which keeps recurring with nothing behind it
+gets a command or skill, so each system grows what its own work calls for
+rather than the ticket pipeline it was copied with.
+
+- **What changed:**
+  - **Kit 2.3.** `kit/docs/loop.md` § Agents, skills and commands; `unit` events start with a kind (a command's name or a generic slug, never a name or ticket text); the deeper pass and `kit/commands/evolve.md` ask of each command too, and which kinds of work recur with no command or skill. `kit/tools/crew_report.py` lists typed commands and kinds of work, flagging a kind seen on 3 distinct refs within 30 days with nothing behind it.
+  - **Commands stay where they are.** `.claude/commands/x.md` and `.claude/skills/x/SKILL.md` both give `/x`; moving them would churn locked paths and open verdict windows for nothing.
+  - **Systems.** zesty C-006, engage C-007 and dpi C-005 landed the same. All four change-reviewers escalated the `unit` kind prefix (it changes how events are recorded); Andres approved it in chat.
+  - **Typed-command logging.** The kit hook logs each typed command by name on UserPromptExpansion (tested on 2.1.312; arguments and prompt never written). It changes how evidence is recorded: `log/pending/M-006-command-logging.patch` and each repo's locked hook and settings wait on Andres.
+  - **Observation.** `lessons/observations.md` records how this layer missed skills: a design drawn from a team metaphor, checked against the metaphor rather than the platform's building blocks.
+- **Why:** each system's recent work was mostly freehand (architecture proposals, investigations) that no command or skill covered, and nothing asked whether it should be.
+- **Verdict:** n/a (decisions)
+
 ## M-005 · 2026-10-30 · Kit 2.2: skills are part of the evolvable body
 <!-- claim: maintenance none; landed: 2026-10-30 -->
 Not a self-change: Andres's ruling that the systems build and improve skills as

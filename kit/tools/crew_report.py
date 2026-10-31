@@ -28,6 +28,13 @@ Skills: every skill in .claude/skills/, and any loaded from elsewhere, with how
 often the model loaded it (`skill` lines in spawns-*.md, from the same hook):
                     - 2026-10-30 14:05 | skill | 1a2b3c4d | run-tests
 
+Commands: every command in .claude/commands/, with how often Andres typed it
+(`command` lines in spawns-*.md, from the hook on UserPromptExpansion):
+                    - 2026-10-30 14:00 | command | 1a2b3c4d | take-ticket
+Kinds of work: `unit` events start with a kind (`<kind> · <outcome>`): a command's
+name or a short slug. A kind seen on 3 distinct refs within 30 days with no
+command or skill of that name is flagged as recurring freehand work.
+
 Every agent defined in .claude/agents/ is listed, including the ones never
 spawned. Undefined subagent types or names seen at least 3 times are listed as
 "repeated ad hoc role; consider defining it". This is evidence for the evolver's
@@ -51,6 +58,7 @@ DECISIONS = ["LAND", "CONCERN", "ESCALATE", "REJECT"]   # REJECT: only in events
 # Built-in generic types: spawned for anything, so their count says nothing about a missing role.
 GENERIC = {"general-purpose", "fork", "claude", "explore", "plan", "claude-code-guide", "statusline-setup"}
 AD_HOC_MIN = 3
+KIND_MIN, KIND_DAYS = 3, 30   # units of one kind within that many days, no command or skill: recurring freehand work
 SINCE, UNTIL = dt.date(2000, 1, 1), dt.date(2999, 12, 31)
 SLUG = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 
@@ -138,6 +146,59 @@ def skills():
         print("No skills defined in .claude/skills/ and none loaded in this window.")
     elif not loads:
         print("No skill lines in this window (written by .claude/hooks/spawn_log.py, matcher Skill).")
+    return set(defined) | set(loads)
+
+
+def commands():
+    """Each command in .claude/commands/, and each typed command or skill defined elsewhere, with
+    how often Andres typed it (`command` lines in spawns-*.md, from the UserPromptExpansion hook)."""
+    cdir = os.path.join(ROOT, ".claude", "commands")
+    defined = sorted(f[:-3] for f in os.listdir(cdir) if f.endswith(".md")) if os.path.isdir(cdir) else []
+    typed = defaultdict(lambda: {"n": 0, "last": None})
+    for d, kind, sid, rest in lines("spawns-*.md", SINCE, UNTIL):
+        if kind == "command":
+            t = typed[rest.split("|", 1)[0].strip().lstrip("/") or "?"]
+            t["n"] += 1
+            t["last"] = max(t["last"] or d, d)
+    print()
+    print(f"{'command':<40}{'typed':>8}  last")
+    for name in sorted(set(defined) | set(typed), key=lambda x: (x not in defined, x.lower())):
+        t = typed.get(name)
+        tag = "" if name in defined else "  (skill, plugin or built-in)"
+        print(f"{name:<40}{t['n']:>8}  {t['last']}{tag}" if t else f"{name:<40}{0:>8}  never typed in this window")
+    if not typed:
+        print("No command lines in this window (written by .claude/hooks/spawn_log.py on UserPromptExpansion).")
+    return set(defined) | set(typed)
+
+
+def kinds(capabilities):
+    """Kinds of work, from `unit` events (`<kind> · <outcome>`). A kind seen on KIND_MIN distinct refs
+    (pieces of work, not revisions of one) within KIND_DAYS days, with no command or skill of that
+    name, is work the system keeps doing freehand."""
+    by = defaultdict(dict)   # kind -> {ref: first date}
+    units = defaultdict(int)
+    unkinded = 0
+    for d, kind, ref, text in lines("events-*.md", SINCE, UNTIL):
+        if kind != "unit":
+            continue
+        head = text.split("·", 1)[0].strip()
+        if "·" in text and SLUG.match(head):
+            by[head][ref] = min(by[head].get(ref, d), d)
+            units[head] += 1
+        else:
+            unkinded += 1
+    print()
+    print(f"Kinds of work: {sum(units.values())} unit(s) with a kind, {unkinded} without")
+    print(f"  {'kind':<36}{'pieces':>7}{'units':>7}  last")
+    for k, refs in sorted(by.items(), key=lambda kv: (-len(kv[1]), kv[0])):
+        backed = k in capabilities
+        print(f"  {k:<36}{len(refs):>7}{units[k]:>7}  {max(refs.values())}{'' if backed else '  (no command or skill)'}")
+    for k, refs in sorted(by.items()):
+        ds = sorted(refs.values())
+        recur = any((ds[i + KIND_MIN - 1] - ds[i]).days <= KIND_DAYS for i in range(len(ds) - KIND_MIN + 1))
+        if k not in capabilities and recur:
+            print(f"{k}: {KIND_MIN}+ pieces of work within {KIND_DAYS} days with no command or skill behind it: "
+                  "recurring work; consider one.")
 
 
 def main():
@@ -213,7 +274,8 @@ def main():
         if k not in defined and k.lower() not in GENERIC and n >= AD_HOC_MIN:
             print(f"{k}: spawned {n} times, not defined in .claude/agents/: repeated ad hoc role; consider defining it.")
 
-    skills()
+    caps = skills() | commands()   # defined here, or loaded or typed from a user or plugin skill
+    kinds(caps)
     print()
     total = sum(reviewed.values())
     print(f"change-reviewer: {total} decision(s) logged as `reviewed` events: " +

@@ -85,6 +85,7 @@ Side-project refs are to the working tree on 2026-10-28; *(u)* = uncommitted.
 - An undocumented redaction looks like an evidence gap; publish conclusions, not the employer's surface — `archive/meta/architect-log.md:1025-1027` (A)
 - Timezone slips silently shift date-windowed metrics — `archive/meta/architect-log.md:2171-2185` (I)
 - A rename is cheapest before launch — `archive/meta/architect-log.md:2545-2547` (A)
+- A design drawn from a metaphor (a team of roles) left out a primitive the metaphor had no word for: skills were in the 2026-10-29 research report, written outside this repo, which quoted the Claude Code docs: "custom commands have been merged into skills". They were dropped from the build list, and absent from the redesign until Andres asked on 2026-10-30. Check a design against the platform's full list of building blocks (instructions, skills, agents, commands, hooks, MCP, plugins), not against the metaphor — M-005, M-006 (I)
 
 ## From births
 

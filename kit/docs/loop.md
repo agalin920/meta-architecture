@@ -25,7 +25,7 @@ The types are:
 | Type | Written when | Text |
 |---|---|---|
 | `begin` | A work command starts (its first step) | what was asked |
-| `unit` | A unit of work finished | outcome, and the gap from the plan |
+| `unit` | A unit of work finished | `<kind> · <outcome, and the gap from the plan>` |
 | `loop` | The loop ran for that ref | what it did |
 | `agent` | Once per subagent the unit used | `<name> · changed\|confirmed\|unused\|wrong · <one line>` |
 | `correction` | Andres corrected the work, in chat or on GitHub | `<class-slug> · <what he caught, where we should have caught it>` |
@@ -74,8 +74,11 @@ commits from Andres's.
 
 0. **Begin.** Every work command writes `| begin | <ref> |` as its first step,
    so a unit whose loop never ran is still caught at the next boot.
-1. **What happened against what we expected.** Write the `unit` event: the
-   outcome, and one line on the gap between plan and reality. Name the review
+1. **What happened against what we expected.** Write the `unit` event: its
+   kind, then the outcome and one line on the gap between plan and reality.
+   The kind is the command's name (`take-ticket`) or a short slug for work no
+   command covers (`architecture-proposal`), never a name or ticket text; reuse
+   one that fits (`python3 tools/crew_report.py` lists them). Name the review
    findings, CI failures, and reproductions that differed from the plan. Write
    one `agent` event per subagent the unit used.
 2. **Corrections.** Did Andres correct anything this unit, in chat or on a PR?
@@ -107,8 +110,9 @@ a new escape, or a measure worse than baseline, in the latest score snapshot.
 It reads the window's events, scores and tickets, and the output of
 `python3 tools/crew_report.py` (spawns, `agent` effects, the change-reviewer's
 decisions and their outcomes), with one standing question: **for each subagent,
-each skill and the change-reviewer, would we define this one today, given its
-record?**
+skill and command, and the change-reviewer, would we define this one today,
+given its record? And which kinds of work keep recurring with no command or
+skill behind them?**
 It proposes at most three self-changes, each with a claim. It must say what it
 would **cut**; "nothing should be cut, because…" is a valid answer, and silence
 is not. It ends with a `deep pass` event.
@@ -132,9 +136,9 @@ When an escape lands (S1 counts a new one), list every change that landed in
 the 30 days before that PR merged. The next deeper pass looks at them first.
 An escape traced to a change is clear harm: revert it (§ Applying a verdict).
 
-## Agents and skills
+## Agents, skills and commands
 
-Both are part of the body the loop evolves, and they do different jobs
+All three are part of the body the loop evolves, and they do different jobs
 (Andres, 2026-10-30).
 
 - **A skill is know-how**: a procedure, a checklist, a script, in
@@ -145,11 +149,19 @@ Both are part of the body the loop evolves, and they do different jobs
 - **An agent is separation**: a fresh context, independence from the work it
   judges, tool limits, parallel work. A reviewer has to be an agent; how to run
   a repo's tests is a skill.
+- **A command is a workflow Andres starts**: `/take-ticket`, `/review-pr`.
+  Claude Code treats `.claude/commands/x.md` and `.claude/skills/x/SKILL.md`
+  alike (both give `/x`), so moving one between them gains nothing by itself.
 
 When a miss came from missing know-how, a new or better skill usually beats a
-new agent. A skill is loaded only when its description matches the words a
-task arrives in, so write it in those words. `tools/crew_report.py` lists each
-skill with how often it was loaded.
+new agent. When a command's know-how is needed elsewhere, move it into a
+skill the command uses. When one kind of work recurs (3 pieces of work, by
+ref, in 30 days) with no command or skill behind it, propose one: the system grows what its
+actual work calls for, not what it was copied with. A skill is loaded only
+when its description matches the words a task arrives in, so write it in
+those words. `tools/crew_report.py` lists each skill with how often it was
+loaded, each command with how often Andres typed it, and each kind of work
+with its units.
 
 ## A self-change
 
