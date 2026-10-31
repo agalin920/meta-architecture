@@ -52,11 +52,12 @@ LOCKED = [                                  # relative to the repo root
 # repo is exempt (pushing its own main is how memory reaches the remote).
 PROTECTED = ["main", "master", "develop", "dev", "stage", "beta", "stable", "production", "release/*"]
 # meta-architecture only (declared in .claude/kit-deviations.md): file edits are
-# allowed in this repo and the three core systems, and nowhere else. This replaces
+# allowed in this repo and the core systems, and nowhere else. This replaces
 # a list of every product repo by name, which a public repo should not carry.
 DEV = os.path.expanduser("~/dev")
 EDIT_ROOTS = [os.path.join(DEV, p) for p in (
-    "meta-architecture", "zestyio/zesty-eng-team", "mpulsemobile/mpulse-engage-team", "mpulsemobile/mpulse-dpi-team")]
+    "meta-architecture", "zestyio/zesty-eng-team", "mpulsemobile/mpulse-engage-team", "mpulsemobile/mpulse-dpi-team",
+    "vinted-shopper")]
 # -----------------------------------------------------------------------------
 
 HOME_LOCKED = [os.path.expanduser("~/.claude/settings.json")]
@@ -318,7 +319,7 @@ def main():
         target = os.path.realpath(os.path.join(root, os.path.expanduser(path))) if path else ""
         if target and target.startswith(DEV + "/") and not any(
                 target == r or target.startswith(r + "/") for r in EDIT_ROOTS):
-            deny("From meta-architecture, edits are allowed only here and in the three core systems. "
+            deny("From meta-architecture, edits are allowed only here and in the core systems. "
                  "Side projects, datasets and product repos are not this layer's to change.")
         hit = is_locked_file(path, root) if path else None
         if hit in RAW:

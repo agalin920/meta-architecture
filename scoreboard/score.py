@@ -12,6 +12,7 @@ For this layer a "unit" is a review run. This file is locked.
 
 import argparse
 import datetime as dt
+import glob
 import importlib.util
 import json
 import os
@@ -24,6 +25,7 @@ CORE = {
     "zesty-eng-team": os.path.join(DEV, "zestyio/zesty-eng-team"),
     "mpulse-engage-team": os.path.join(DEV, "mpulsemobile/mpulse-engage-team"),
     "mpulse-dpi-team": os.path.join(DEV, "mpulsemobile/mpulse-dpi-team"),
+    "vinted-shopper": os.path.join(DEV, "vinted-shopper"),
 }
 MEASURES = ["S1", "S2", "S3", "S4", "G1"]
 UP_IS_GOOD = {"G1"}
@@ -66,7 +68,9 @@ def child_scores(name, repo, since, until):
 def m1(since, until):
     out = {}
     for name, repo in CORE.items():
-        base_path = os.path.join(repo, "scoreboard", "baseline-2026-10-28.json")
+        # the system's first baseline: 2026-10-28 for the migrated systems, its founding date for a newer one
+        found = sorted(glob.glob(os.path.join(repo, "scoreboard", "baseline-*.json")))
+        base_path = found[0] if found else os.path.join(repo, "scoreboard", "baseline-2026-10-28.json")
         try:
             base = json.load(open(base_path))
             base = base.get("scores") or base.get("measures") or base   # systems store them under "scores"

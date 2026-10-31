@@ -31,7 +31,7 @@ changelog, a self-change reviewer, and rollback. It is not exempt from itself.
 
 | Kind | Systems |
 |---|---|
-| **Core** — always matter, full kernel | zesty-eng-team, mpulse-engage-team, mpulse-dpi-team |
+| **Core** — always matter, full kernel | zesty-eng-team, mpulse-engage-team, mpulse-dpi-team, vinted-shopper |
 | **Side projects** | personal-university, brand-system, galind-team, the-debrief, resale-desk, zesty-webengine-team |
 | **Dataset, not a system** | media-log |
 
