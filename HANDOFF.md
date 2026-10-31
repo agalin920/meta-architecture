@@ -71,8 +71,9 @@ each system's next session should clear them, nothing for you to do):
 - mpulse-dpi-team: 14 work items, 8 older than 14 days.
 
 Also seen, for the systems' own loops: engage and dpi report a deeper pass due
-(a new escape and S2 above baseline in their first snapshots), and dpi's boot
-asks for an `env` event for a changed local settings file.
+(a new escape and S2 above baseline in their first snapshots). dpi's changed
+local settings file was recorded by Andres on 2026-10-31 (kit 2.7), as were the
+cleared `~/.claude` skills, agents and old auto-memory in every system.
 
 ## Last asked
 

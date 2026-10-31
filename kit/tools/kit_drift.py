@@ -41,6 +41,8 @@ OWNED = {
 }
 BLOCKS = [(re.compile(r"^#\s*-+\s*per-system configuration"), re.compile(r"^#\s*-{10,}\s*$")),
           (re.compile(r"<<'LIST'"), re.compile(r"^LIST\s*$"))]
+# Per-system values set outside the block: kit 2.7's tool scoping (each system's own employer).
+LINES = re.compile(r"^(TOOL_ROOTS|FOREIGN_TOOLING) = ")
 
 
 def body(path):
@@ -62,7 +64,7 @@ def body(path):
                 end = stop
                 break
         else:
-            out.append(line)
+            out.append(line.split(" = ")[0] + " = [per-system value ignored]" if LINES.search(line) else line)
     return out
 
 
