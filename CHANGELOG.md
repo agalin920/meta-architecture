@@ -23,6 +23,15 @@ block so the scripts skip them:
 Maintenance changes claim `<!-- claim: maintenance none; landed: … -->`. S1
 and S4 cannot be claimed in a core system (see `kit/docs/loop.md`).
 
+## M-008 · 2026-10-30 · Kit hook: the prompt log tags who wrote each prompt
+<!-- claim: maintenance none; landed: 2026-10-30; files: kit/hooks/prompt_log.py,.claude/hooks/prompt_log.py,kit/docs/loop.md -->
+Not a self-change: Andres's ruling to fix S3 now rather than at the 2026-11-29 re-baseline.
+
+- **What changed:** `prompt_log.py` tags each prompt's `origin` (`andres`, `agent`, `notification`, `shell`) from its opening tag, under a file lock, and gains `--backfill` for lines already written. The core systems' S3 counts only `andres` (zesty S-003, engage S-002, dpi S-002, vinted-shopper S-001).
+- **Why:** S3 counted messages from other sessions, task notifications and shell commands as Andres's follow-ups: about a third of the logged prompts in zesty and dpi.
+- **Locked half, waiting on Andres:** `log/pending/M-008-prompt-origin.patch` (this layer's own copy of the hook is locked).
+- **Verdict:** n/a (decision)
+
 ## M-007 · 2026-10-30 · vinted-shopper is a core system
 <!-- claim: maintenance none; landed: 2026-10-30; files: systems.md,README.md,meta/record.md,meta/keeper.md,meta/thesis.md,.claude/commands/what-changed.md,.claude/kit-deviations.md,kit/tools/lock_test.sh,HANDOFF.md -->
 Not a self-change: Andres's ruling ("Core"). It runs the full kernel and is in active use; it is personal, not an employer system.
