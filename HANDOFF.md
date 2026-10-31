@@ -23,13 +23,6 @@ request, in all four repos (fast-forward; nothing on the remotes was overwritten
 
 ## Waiting on Andres: system
 
-- 2026-10-30 — **Skill-load logging (escalated by the change-reviewer).** Kit
-  2.2 would log each skill the model loads (its name only, never its arguments)
-  in the spawn log, with the PostToolUse matcher `Task|Agent|Skill`. It changes
-  how evidence is recorded, so it is yours: the kit half is
-  `log/pending/M-005-skill-logging.patch`, and each repo's locked hook and
-  matcher are staged. `bash finish-skills.sh` (session 8588c1b4's scratchpad,
-  `finish3/`) offers all of it with diffs, relocks and asks before pushing.
 - 2026-10-29 — vinted-shopper is not in the charter's table of systems. Add it
   as core or side project when you next edit `charter.md` (see `systems.md` § New
   systems).
