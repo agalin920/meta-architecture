@@ -55,7 +55,7 @@ Evidence the session does not write: `log/spawns-YYYY-MM.md` (every subagent
 spawn and every skill the model loads, by a hook, committed) and
 `log/raw/prompts-YYYY-MM.jsonl` (Andres's
 prompts, by a hook, gitignored because they can hold sensitive text). The guard refuses agent
-writes to `log/raw/`; S3 reads only the `time` and `session` of each line,
+writes to `log/raw/`; S3 reads only the `time`, `session` and `origin` of each line,
 never the text.
 
 The ref is the PR, ticket, or change id. A unit that spans several PRs takes
