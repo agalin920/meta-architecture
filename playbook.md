@@ -127,6 +127,12 @@ invent them, and every such change lands in the changelog.
 - **Runtime agents are not structure.** Any role can be spawned, merged or
   dropped for a single task. Specialists emerge from the work, not from a
   roster.
+- **Skills hold know-how, agents hold separation** (Andres, 2026-10-30). A
+  skill (`.claude/skills/`) is loaded by any session or agent whose task
+  matches its description; an agent gives a fresh context, independence or
+  tool limits. Both are evolvable. A miss caused by missing know-how usually
+  wants a skill, not another agent: a heuristic each system's loop may revise
+  on its own evidence. `kit/docs/loop.md` § Agents and skills.
 - **Coordinate through shared memory, not a coordinator.** The event log,
   current state, knowledge and lessons are how agents pass work to each other
   and to the next session.

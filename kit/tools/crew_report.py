@@ -24,6 +24,10 @@ and CHANGELOG.md: changes the reviewer LANDed that were later reverted for harm
 count against it; changes it raised a CONCERN on that were later reverted for
 harm count for it. A revert for "no effect" (the rule before 2026-10-29) is not harm.
 
+Skills: every skill in .claude/skills/, and any loaded from elsewhere, with how
+often the model loaded it (`skill` lines in spawns-*.md, from the same hook):
+                    - 2026-10-30 14:05 | skill | 1a2b3c4d | run-tests
+
 Every agent defined in .claude/agents/ is listed, including the ones never
 spawned. Undefined subagent types or names seen at least 3 times are listed as
 "repeated ad hoc role; consider defining it". This is evidence for the evolver's
@@ -47,6 +51,7 @@ DECISIONS = ["LAND", "CONCERN", "ESCALATE", "REJECT"]   # REJECT: only in events
 # Built-in generic types: spawned for anything, so their count says nothing about a missing role.
 GENERIC = {"general-purpose", "fork", "claude", "explore", "plan", "claude-code-guide", "statusline-setup"}
 AD_HOC_MIN = 3
+SINCE, UNTIL = dt.date(2000, 1, 1), dt.date(2999, 12, 31)
 SLUG = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 
 
@@ -106,13 +111,44 @@ def corrections(since, until):
         print("  No `correction` events in this window.")
 
 
+def skills():
+    """Each skill in .claude/skills/, and each skill loaded from elsewhere (user or plugin),
+    with how often the model loaded it. A slash command typed by Andres is not a load."""
+    sdir = os.path.join(ROOT, ".claude", "skills")
+    defined = sorted(d for d in os.listdir(sdir) if os.path.isfile(os.path.join(sdir, d, "SKILL.md"))) \
+        if os.path.isdir(sdir) else []
+    loads = defaultdict(lambda: {"n": 0, "sessions": set(), "last": None})
+    for d, kind, sid, rest in lines("spawns-*.md", SINCE, UNTIL):
+        if kind != "skill":
+            continue
+        s = loads[rest.split("|", 1)[0].strip() or "?"]
+        s["n"] += 1
+        s["sessions"].add(sid)
+        s["last"] = max(s["last"] or d, d)
+    print()
+    print(f"{'skill':<40}{'loaded':>8}{'sessions':>10}  last")
+    for name in sorted(set(defined) | set(loads), key=lambda x: (x not in defined, x.lower())):
+        s = loads.get(name)
+        tag = "" if name in defined else "  (user or plugin)"
+        if not s:
+            print(f"{name:<40}{0:>8}{0:>10}  never loaded in this window")
+            continue
+        print(f"{name:<40}{s['n']:>8}{len(s['sessions']):>10}  {s['last']}{tag}")
+    if not defined and not loads:
+        print("No skills defined in .claude/skills/ and none loaded in this window.")
+    elif not loads:
+        print("No skill lines in this window (written by .claude/hooks/spawn_log.py, matcher Skill).")
+
+
 def main():
+    global SINCE, UNTIL
     ap = argparse.ArgumentParser()
     ap.add_argument("--since", default="2000-01-01")
     ap.add_argument("--until", default="2999-12-31")
     ap.add_argument("--corrections", action="store_true", help="correction classes and their recurrence")
     a = ap.parse_args()
     since, until = dt.date.fromisoformat(a.since), dt.date.fromisoformat(a.until)
+    SINCE, UNTIL = since, until
     if a.corrections:
         return corrections(since, until)
 
@@ -177,6 +213,7 @@ def main():
         if k not in defined and k.lower() not in GENERIC and n >= AD_HOC_MIN:
             print(f"{k}: spawned {n} times, not defined in .claude/agents/: repeated ad hoc role; consider defining it.")
 
+    skills()
     print()
     total = sum(reviewed.values())
     print(f"change-reviewer: {total} decision(s) logged as `reviewed` events: " +

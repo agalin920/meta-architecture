@@ -52,7 +52,8 @@ counts Andres's follow-ups from the raw prompt log and from GitHub, never
 correction you see.
 
 Evidence the session does not write: `log/spawns-YYYY-MM.md` (every subagent
-spawn, by a hook, committed) and `log/raw/prompts-YYYY-MM.jsonl` (Andres's
+spawn and every skill the model loads, by a hook, committed) and
+`log/raw/prompts-YYYY-MM.jsonl` (Andres's
 prompts, by a hook, gitignored because they can hold sensitive text). The guard refuses agent
 writes to `log/raw/`; S3 reads only the `time` and `session` of each line,
 never the text.
@@ -105,8 +106,9 @@ a new escape, or a measure worse than baseline, in the latest score snapshot.
 
 It reads the window's events, scores and tickets, and the output of
 `python3 tools/crew_report.py` (spawns, `agent` effects, the change-reviewer's
-decisions and their outcomes), with one standing question: **for each subagent
-and the change-reviewer, would we define this one today, given its record?**
+decisions and their outcomes), with one standing question: **for each subagent,
+each skill and the change-reviewer, would we define this one today, given its
+record?**
 It proposes at most three self-changes, each with a claim. It must say what it
 would **cut**; "nothing should be cut, because…" is a valid answer, and silence
 is not. It ends with a `deep pass` event.
@@ -130,11 +132,30 @@ When an escape lands (S1 counts a new one), list every change that landed in
 the 30 days before that PR merged. The next deeper pass looks at them first.
 An escape traced to a change is clear harm: revert it (§ Applying a verdict).
 
+## Agents and skills
+
+Both are part of the body the loop evolves, and they do different jobs
+(Andres, 2026-10-30).
+
+- **A skill is know-how**: a procedure, a checklist, a script, in
+  `.claude/skills/<name>/SKILL.md`. Any session or subagent picks it up when
+  its description matches the task, and until then it costs only that
+  description. Know-how some tasks need but not every boot belongs here, not
+  in the boot path.
+- **An agent is separation**: a fresh context, independence from the work it
+  judges, tool limits, parallel work. A reviewer has to be an agent; how to run
+  a repo's tests is a skill.
+
+When a miss came from missing know-how, a new or better skill usually beats a
+new agent. A skill is loaded only when its description matches the words a
+task arrives in, so write it in those words. `tools/crew_report.py` lists each
+skill with how often it was loaded.
+
 ## A self-change
 
 A self-change is anything that changes how the system behaves: `CLAUDE.md`,
-`docs/`, `.claude/agents/`, `.claude/commands/`, `tools/`, and any removal or
-condensing of knowledge.
+`docs/`, `.claude/agents/`, `.claude/skills/`, `.claude/commands/`, `tools/`,
+and any removal or condensing of knowledge.
 
 1. Make the edit in the working tree. Do not commit yet.
 2. Draft its CHANGELOG entry (format in `CHANGELOG.md`), with a claim: one

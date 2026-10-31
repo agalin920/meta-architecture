@@ -23,6 +23,20 @@ block so the scripts skip them:
 Maintenance changes claim `<!-- claim: maintenance none; landed: … -->`. S1
 and S4 cannot be claimed in a core system (see `kit/docs/loop.md`).
 
+## M-005 · 2026-10-30 · Kit 2.2: skills are part of the evolvable body
+<!-- claim: maintenance none; landed: 2026-10-30 -->
+Not a self-change: Andres's ruling that the systems build and improve skills as
+well as agents. A skill holds know-how any session or agent loads when the task
+matches its description; an agent holds separation.
+
+- **What changed:**
+  - **Kit 2.2.** `kit/docs/loop.md` gains § Agents and skills and names `.claude/skills/` as part of a self-change; the deeper pass and `kit/commands/evolve.md` ask of each skill what they ask of each agent; `kit/tools/crew_report.py` lists every skill with its load count.
+  - **Playbook.** § No org chart gains one bullet: skills hold know-how, agents hold separation, and "a skill usually beats a new agent" is a heuristic each system's loop may revise.
+  - **Systems.** zesty C-005, engage C-006 and dpi C-004 landed the same docs, `/evolve` and crew report, each through its own change-reviewer (two CONCERNs and one LAND, every point fixed before landing).
+  - **Skill-load logging escalated.** This layer's change-reviewer said ESCALATE: the kit hook and settings matcher change how evidence is recorded. The kit half is `log/pending/M-005-skill-logging.patch`; each repo's locked hook and matcher are staged. Both wait on Andres (`HANDOFF.md`); until then every skill reads "never loaded".
+- **Why:** agents were the only unit the loop could grow, so know-how had to become another agent or sit in the boot path.
+- **Verdict:** n/a (decisions)
+
 ## M-004 · 2026-10-29 · Auto memory off; its notes go to intake for the loop
 <!-- claim: maintenance none; landed: 2026-10-29 -->
 Not a self-change: Andres's decision. Claude Code's auto memory kept
