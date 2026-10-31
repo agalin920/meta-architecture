@@ -4,7 +4,7 @@ description: Tell Andres, in two minutes, how the systems and the playbook have 
 
 Andres asked "what has changed?". Answer across all systems, in plain language, short enough to read in two minutes.
 
-1. Run `echo '{}' | python3 .claude/hooks/boot_check.py` here, and in each core system (`../zestyio/zesty-eng-team`, `../mpulsemobile/mpulse-engage-team`, `../mpulsemobile/mpulse-dpi-team`). If any prints **LOCK BROKEN**, lead with that and stop.
+1. Run `echo '{}' | python3 .claude/hooks/boot_check.py` here, and in each core system (`../zestyio/zesty-eng-team`, `../mpulsemobile/mpulse-engage-team`, `../mpulsemobile/mpulse-dpi-team`, `../vinted-shopper`). If any prints **LOCK BROKEN**, lead with that and stop.
 2. Run `python3 scoreboard/score.py`: each system against its baseline (M1), escalations (M2), playbook flow (M3) and rollbacks (M4).
 3. Read `CHANGELOG.md` here and in each core system, since the date under "Last asked" in `HANDOFF.md` (or the last 30 days).
 4. Write, in this order and nothing else:

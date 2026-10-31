@@ -29,7 +29,7 @@ trials.md         lessons being tried in a second system
 kit/              working implementations of the kernel's mechanism (locks,
                   boot and stop checks, rollback, reviewer, the loop) to copy
 charter.md        this layer's purpose and hard lines. Andres's; locked
-systems.md        the registry: 3 core systems, 6 dormant side projects
+systems.md        the registry: 4 core systems, 6 dormant side projects
 scoreboard/       this layer's own scoreboard. Locked
 CHANGELOG.md      how this layer has changed itself, and whether it helped
 HANDOFF.md        current state, including what is waiting on Andres
@@ -47,6 +47,7 @@ design/phase-1.md the approved design for the migration
 | [zesty-eng-team](../zestyio/zesty-eng-team) | core, `active` |
 | [mpulse-engage-team](../mpulsemobile/mpulse-engage-team) | core, `active` |
 | [mpulse-dpi-team](../mpulsemobile/mpulse-dpi-team) | core, `active` |
+| [vinted-shopper](../vinted-shopper) | core, `active` |
 | personal-university, brand-system, galind-team, the-debrief, resale-desk, zesty-webengine-team | side projects, `dormant` |
 | media-log | `dataset` |
 

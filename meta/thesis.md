@@ -43,7 +43,8 @@ Measured on **2027-01-31** (about two months of free evolution after the
 migration merges), then again on **2027-03-31**. The redesign is wrong if any
 of these hold:
 
-1. **No improvement.** At least 2 of the 3 core systems have S1–S3 (escapes,
+1. **No improvement.** At least 2 of the 3 core systems (the three migrated on
+   2026-10-28, fixed at registration; systems added later are not counted) have S1–S3 (escapes,
    outside findings, Andres's corrections) flat or worse against their
    2026-10-28 baselines, with G1 (merged PRs per week) not up.
 2. **Andres is back in the middle.** Either escalations average more than 2 per

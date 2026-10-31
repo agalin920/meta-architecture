@@ -18,7 +18,8 @@ never finished.
 
 ## 1. Read what changed (read-only)
 
-For each **core** system (zesty-eng-team, mpulse-engage-team, mpulse-dpi-team):
+For each **core** system (zesty-eng-team, mpulse-engage-team, mpulse-dpi-team,
+vinted-shopper):
 
 - `git -C <repo> log` and **`git -C <repo> status`**. A system with uncommitted
   memory looks idle in `git log` and is not (review 001, M-3).
@@ -37,7 +38,8 @@ For each new candidate or retirement:
 - Write or update `lessons/<slug>.md` with the system, the change, the claim
   and the verdict numbers.
 - **Mechanism only.** Strip every product, ticket, code, company or regulatory
-  detail before it enters this public repo. If the lesson cannot be stated
+  detail, and anything personal from vinted-shopper (items, sizes, prices,
+  sellers), before it enters this public repo. If the lesson cannot be stated
   without them, it stays local.
 - **A retirement is worth as much as a promotion.** Write it with the reason.
 

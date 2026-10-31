@@ -26,9 +26,11 @@ exchange domain content.
 | **zesty-eng-team** | `../zestyio/zesty-eng-team` | Ticket in, reviewable PR out, on a Zesty product repo | S1–S4 + G1, GitHub | 2026-10-28; merged to `main` 2026-10-29 |
 | **mpulse-engage-team** | `../mpulsemobile/mpulse-engage-team` | Ticket in, reviewable PR out, across the mPulse Engage services | S1–S4 + G1, GitHub + tracker (structure-only reads) | 2026-10-28; merged to `main` 2026-10-29 (branch began from `program-build-skill`) |
 | **mpulse-dpi-team** | `../mpulsemobile/mpulse-dpi-team` | Ticket in, reviewable PR out, on the DPI product | S1–S4 + G1, GitHub + tracker (structure-only reads) | 2026-10-28; merged to `main` 2026-10-29 |
+| **vinted-shopper** | `../vinted-shopper` | Find second-hand things Andres wants on Vinted, at a good price; he buys, it never does | G1 hit rate, S2 price against asking, S3 follow-ups; S1 returns and S4 escalations as guardrails. From its own shortlist log and his `data/orders.csv` | Installed 2026-10-29 by Andres (`f5208d4`) on kit 2.1; core by his ruling 2026-10-30, kit 2.3 the same day. Baseline 2026-10-29, empty at founding; no remote |
 
 The two mPulse teams were copied from zesty-eng-team on 2026-08-10, not grown
-independently.
+independently. vinted-shopper is personal, not an employer system: only mechanism
+crosses between it and the others, as between Zesty and mPulse.
 
 **Baselines**, window 2026-08-29 → 10-28. Each is computed by its own repo's
 `scoreboard/score.py` and locked at `scoreboard/baseline-2026-10-28.json`.
@@ -45,14 +47,6 @@ independently.
 - S1 counts only PRs merged by 09-28.
 - S4 had no instrument before the migration.
 
-## New systems
-
-Built from the playbook after the redesign. Not yet in the charter's table of
-systems; which kind each is (core or side project) is Andres's call.
-
-| System | Path | Purpose | Scoreboard | Status |
-|---|---|---|---|---|
-| **vinted-shopper** | `../vinted-shopper` | Find second-hand things Andres wants on Vinted, at a good price; he buys, it never does | G1 hit rate, S2 price against asking, S3 follow-ups; S1 returns and S4 escalations as guardrails. From its own shortlist log and his `data/orders.csv` | Installed 2026-10-29 by Andres (`f5208d4`), kit 2.1: locks intact (15 files), kit drift 0 undeclared, boot path 224/1000, no remote. Baseline empty at founding; a second one is due after 30 days or 10 sessions |
 
 ## Side projects (dormant, not modified)
 

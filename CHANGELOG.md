@@ -23,6 +23,18 @@ block so the scripts skip them:
 Maintenance changes claim `<!-- claim: maintenance none; landed: … -->`. S1
 and S4 cannot be claimed in a core system (see `kit/docs/loop.md`).
 
+## M-007 · 2026-10-30 · vinted-shopper is a core system
+<!-- claim: maintenance none; landed: 2026-10-30; files: systems.md,README.md,meta/record.md,meta/keeper.md,meta/thesis.md,.claude/commands/what-changed.md,.claude/kit-deviations.md,kit/tools/lock_test.sh,HANDOFF.md -->
+Not a self-change: Andres's ruling ("Core"). It runs the full kernel and is in active use; it is personal, not an employer system.
+
+- **What changed:**
+  - **Registry.** `systems.md` moves it from New systems to Core systems; `README.md`, `meta/record.md`, `meta/keeper.md` § 1, `/what-changed`, `kit/tools/lock_test.sh` and the weekly review's prompt now list it. Keeper's mechanism-only rule now also strips anything personal from it (items, sizes, prices, sellers).
+  - **Kit 2.3 in vinted-shopper** (its C-002): skills and commands in the loop, kinds of work, the crew report.
+  - **Locked half, waiting on Andres:** the charter row, the guard's `EDIT_ROOTS`, `scoreboard/score.py` (adds it to CORE; M1 reads each system's first baseline instead of 2026-10-28, since vinted-shopper's is 2026-10-29), and vinted-shopper's kit 2.3 hooks.
+  - **Not changed: the thesis.** `tools/thesis_check.py` and its pre-registered falsifier stay on the three migrated systems; adding a system after registration would move the goalposts.
+- **Why:** the charter table, the weekly review and this layer's edit rights listed three core systems; a fourth was running outside all of them.
+- **Verdict:** n/a (decisions)
+
 ## M-006 · 2026-10-30 · Kit 2.3: commands are judged too; recurring work gets a skill
 <!-- claim: maintenance none; landed: 2026-10-30 -->
 Not a self-change: Andres's ruling that the loop judges commands as it judges

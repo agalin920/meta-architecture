@@ -13,7 +13,7 @@ Employer-internal detail is left out on purpose (ticket and PR identifiers, trac
 Every ruling here is Andres's. Each line paraphrases REDESIGN.md §4 closely.
 
 1. **Founding status accepted** (review 001 M-1, option A). The original spine invariants are labelled `founding` and are no longer re-proved through independent invention.
-2. **Core vs side projects.** The core systems are zesty-eng-team, mpulse-engage-team and mpulse-dpi-team. Everything else is a side project. A quiet side project is paused, not failed, and side projects may die.
+2. **Core vs side projects.** The core systems are zesty-eng-team, mpulse-engage-team and mpulse-dpi-team (vinted-shopper joined them on 2026-10-30, Andres's ruling). Everything else is a side project. A quiet side project is paused, not failed, and side projects may die.
 3. **Compact the meta layer's memory.** Keep every lesson and result and compress the debate. Nothing is deleted from history. This file is the result.
 4. **Rituals are optional.** Manager, standup and retro leave the spine. The spine states the learning loop's goal, not its form, and the method itself may evolve.
 5. **Self-changes do not need Andres's approval.** A reviewer agent that did not make the change checks it, passes routine changes, and escalates only when it is unsure.

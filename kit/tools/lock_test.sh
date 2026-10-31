@@ -16,6 +16,7 @@ REPOS=(
   "$HOME/dev/zestyio/zesty-eng-team:docs/charter.md"
   "$HOME/dev/mpulsemobile/mpulse-engage-team:docs/charter.md"
   "$HOME/dev/mpulsemobile/mpulse-dpi-team:docs/charter.md"
+  "$HOME/dev/vinted-shopper:docs/charter.md"
 )
 overall=0
 for entry in "${REPOS[@]}"; do

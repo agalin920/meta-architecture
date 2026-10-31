@@ -14,8 +14,9 @@ request, in all four repos (fast-forward; nothing on the remotes was overwritten
   review. The lessons catalog is in `lessons/`.
 - **Trials:** none open. The earliest possible candidate is 14 days after a
   core system's first self-change.
-- **Core systems:** all three migrated to the kernel, with baselines recorded
-  2026-10-28. See `systems.md`.
+- **Core systems:** four. The three work systems migrated to the kernel with
+  baselines recorded 2026-10-28; vinted-shopper was built on it, baseline
+  2026-10-29, and made core on 2026-10-30. See `systems.md`.
 - **Side projects:** dormant and untouched. Lessons collected.
 - **Weekly review:** the "Weekly lessons review" task (Monday morning, Claude desktop
   app), plus this repo's boot.
@@ -23,9 +24,11 @@ request, in all four repos (fast-forward; nothing on the remotes was overwritten
 
 ## Waiting on Andres: system
 
-- 2026-10-29 — vinted-shopper is not in the charter's table of systems. Add it
-  as core or side project when you next edit `charter.md` (see `systems.md` § New
-  systems).
+- 2026-10-30 — **vinted-shopper is core (your ruling): the locked half.** The
+  charter row, the guard's `EDIT_ROOTS` (so this layer may edit it) and the
+  scoreboard (M1 now reads each system's first baseline), plus vinted-shopper's
+  kit 2.3 hooks. `bash finish-vinted-core.sh` (session 8588c1b4's scratchpad,
+  `finish5/`) offers each with its diff and relocks.
 
 ## Waiting on Andres: work
 
